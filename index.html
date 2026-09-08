@@ -6,7 +6,7 @@
     <title>Happy Birthday Annika Jaatni! ✨</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,500;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,500;1,400&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -38,12 +38,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: 
-                radial-gradient(circle at 80% 12%, rgba(255, 255, 255, 0.8) 0px, rgba(255, 255, 255, 0.15) 18px, transparent 20px),
-                linear-gradient(to bottom, rgba(8, 3, 20, 0.75), rgba(15, 6, 32, 0.9)),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 800"><g fill="%232e124d" opacity="0.4"><circle cx="50" cy="650" r="100"/><circle cx="180" cy="670" r="120"/><circle cx="350" cy="640" r="110"/><circle cx="480" cy="680" r="90"/></g><g fill="%23130624"><circle cx="100" cy="720" r="120"/><circle cx="280" cy="710" r="140"/><circle cx="420" cy="730" r="110"/></g><path d="M220,680 Q225,640 235,640 Q245,640 250,680 Z" fill="%234a2175"/><circle cx="230" cy="630" r="8" fill="%234a2175"/><circle cx="242" cy="633" r="7" fill="%234a2175"/></svg>');
-            background-size: cover, cover, cover;
-            background-position: center;
+            background: #0d0618;
         }
 
         .overlay {
@@ -59,7 +54,7 @@
         .card-content {
             position: relative;
             z-index: 2;
-            padding: 25px 20px;
+            padding: 15px 10px;
             width: 100%;
             text-align: center;
         }
@@ -73,128 +68,180 @@
             display: block;
         }
 
-        .for-annu {
-            font-family: 'Alex Brush', cursive;
-            font-size: 2.2rem;
-            color: #ffb7d5;
-            margin-bottom: 5px;
-        }
-
-        .hb-title {
-            font-size: 1rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #d8c7ed;
-        }
-
-        .name-annika {
-            font-family: 'Alex Brush', cursive;
-            font-size: 3.5rem;
-            color: #ffffff;
-            text-shadow: 0 0 15px rgba(255, 183, 213, 0.8);
-            margin: -5px 0 10px 0;
-        }
-
-        .tagline {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 1.1rem;
-            color: #e0d5f0;
-            margin-bottom: 25px;
-        }
-
-        .grid-buttons {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            margin-bottom: 25px;
-        }
-
-        .grid-card {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            padding: 10px 5px;
-            backdrop-filter: blur(5px);
-        }
-
+        /* STEP 1, 2, 3 STYLES */
+        .for-annu { font-family: 'Alex Brush', cursive; font-size: 2.2rem; color: #ffb7d5; }
+        .hb-title { font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; color: #d8c7ed; }
+        .name-annika { font-family: 'Alex Brush', cursive; font-size: 3.5rem; color: #ffffff; text-shadow: 0 0 15px rgba(255, 183, 213, 0.8); }
+        .tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: #e0d5f0; margin-bottom: 25px; }
+        .grid-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 25px; }
+        .grid-card { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 10px 5px; }
         .grid-card span { display: block; font-size: 1.1rem; }
         .grid-card p { font-size: 0.7rem; color: #fff; }
+        .hb-main-head { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #ffffff; margin-bottom: 20px; }
+        .romantic-paragraph { font-size: 0.92rem; line-height: 1.65; color: #f1e8fc; font-weight: 300; margin-bottom: 18px; white-space: pre-line; }
 
-        .top-badge-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        /* --- INSTAGRAM DM CHAT UI STYLES --- */
+        .chat-card-box {
+            background: rgba(18, 10, 32, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 12px 10px;
+            backdrop-filter: blur(12px);
+            text-align: left;
             margin-bottom: 15px;
         }
 
-        .for-you-title {
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            color: #d8c7ed;
-            text-transform: uppercase;
-            margin: 0 auto;
+        .chat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 8px;
+            margin-bottom: 12px;
         }
 
-        .hb-main-head {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem;
-            color: #ffffff;
-            font-weight: 400;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        .chat-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .romantic-paragraph {
-            font-size: 0.92rem;
-            line-height: 1.65;
-            color: #f1e8fc;
-            font-weight: 300;
-            margin-bottom: 18px;
-            text-align: center;
-            white-space: pre-line;
-        }
-
-        .waveform-box {
-            width: 100%;
-            height: 35px;
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            padding: 2px;
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .avatar-inner {
+            width: 100%;
+            height: 100%;
+            background: #1a0933;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #ffb7d5;
+        }
+
+        .chat-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.4rem;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .chat-status {
+            font-size: 0.62rem;
+            color: #ff71ce;
+            display: block;
+            margin-top: -3px;
+            height: 14px;
+        }
+
+        .chat-icons {
+            display: flex;
+            gap: 10px;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .chat-messages-area {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            height: 380px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .chat-messages-area::-webkit-scrollbar { width: 4px; }
+        .chat-messages-area::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 4px; }
+
+        .msg-bubble {
+            max-width: 82%;
+            padding: 8px 12px;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            line-height: 1.35;
+            position: relative;
+            animation: popIn 0.3s ease-out forwards;
+        }
+
+        .msg-left {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border-bottom-left-radius: 4px;
+        }
+
+        .msg-right {
+            align-self: flex-end;
+            background: linear-gradient(135deg, #7b2cbf 0%, #9d4edd 100%);
+            color: #ffffff;
+            border-bottom-right-radius: 4px;
+        }
+
+        .msg-time {
+            font-size: 0.58rem;
+            opacity: 0.6;
+            margin-top: 2px;
+            display: block;
+            text-align: right;
+        }
+
+        /* TYPING INDICATOR BUBBLE */
+        .typing-bubble {
+            display: flex;
+            align-items: center;
             gap: 4px;
-            margin: 20px 0 25px 0;
+            padding: 10px 14px;
         }
 
-        .wave-bar {
-            width: 3px;
-            height: 10px;
-            background: linear-gradient(180deg, #ff71ce, #b967ff);
-            border-radius: 3px;
-            animation: waveAnim 1.2s infinite ease-in-out alternate;
+        .dot {
+            width: 6px;
+            height: 6px;
+            background: #ffb7d5;
+            border-radius: 50%;
+            animation: dotBlink 1.4s infinite ease-in-out;
+        }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes dotBlink {
+            0%, 100% { transform: translateY(0); opacity: 0.4; }
+            50% { transform: translateY(-4px); opacity: 1; }
         }
 
-        .wave-bar:nth-child(2) { animation-delay: 0.2s; }
-        .wave-bar:nth-child(3) { animation-delay: 0.4s; }
-        .wave-bar:nth-child(4) { animation-delay: 0.1s; }
-        .wave-bar:nth-child(5) { animation-delay: 0.5s; }
-        .wave-bar:nth-child(6) { animation-delay: 0.3s; }
-
-        @keyframes waveAnim {
-            0% { height: 6px; opacity: 0.4; }
-            100% { height: 28px; opacity: 1; box-shadow: 0 0 10px #ff71ce; }
+        .chat-input-fake {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 8px 12px;
+            font-size: 0.75rem;
+            color: #ffffff;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 36px;
         }
 
         .glass-btn {
             background: rgba(30, 15, 45, 0.7);
             border: 1px solid rgba(255, 183, 213, 0.4);
             color: #ffffff;
-            padding: 14px 28px;
-            font-size: 0.95rem;
+            padding: 12px 24px;
+            font-size: 0.9rem;
             border-radius: 30px;
             cursor: pointer;
             backdrop-filter: blur(10px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            transition: all 0.3s ease;
             width: 85%;
             margin: 0 auto;
             display: block;
@@ -204,6 +251,11 @@
             from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
     </style>
 </head>
 <body>
@@ -211,23 +263,22 @@
     <audio id="bgMusic" src="boyfriend.mp3" loop></audio>
     <audio id="sahibaAudio" src="sahiba.mp3" loop></audio>
 
-    <div class="step-container" id="mainContainer">
+    <div class="step-container">
         <div class="overlay"></div>
 
         <div class="card-content">
+
             <!-- STEP 1 -->
             <div class="card active" id="step1">
                 <p class="for-annu">For Annu 🎀</p>
                 <p class="hb-title">Happy Birthday</p>
                 <h1 class="name-annika">Annika Jaatni</h1>
                 <p class="tagline">Some stories are written by heart, yours is my favourite. ♡</p>
-
                 <div class="grid-buttons">
                     <div class="grid-card"><span>🖼️</span><p>Memories</p></div>
                     <div class="grid-card"><span>✉️</span><p>Letters</p></div>
                     <div class="grid-card"><span>🎂</span><p>Celebrate</p></div>
                 </div>
-
                 <button class="glass-btn" onclick="nextStep(2, true)">Continue Our Memories ➔</button>
             </div>
 
@@ -243,38 +294,60 @@
                 <button class="glass-btn" onclick="nextStep(3, false, true)">Next Step ➔</button>
             </div>
 
-            <!-- STEP 3 (AAPKA NAYA TEXT + SAHIBA SONG) -->
+            <!-- STEP 3 -->
             <div class="card" id="step3">
-                <div class="top-badge-container">
-                    <p class="for-you-title">FOR YOU</p>
-                </div>
-
+                <p style="font-size: 0.75rem; letter-spacing: 3px; color: #d8c7ed; margin-bottom: 10px;">FOR YOU</p>
                 <h1 class="hb-main-head">Happy Birthday</h1>
-
                 <p class="romantic-paragraph">
                     Sep 10 2022 just a single hi 😭🎀<br>
                     I can't forget it kitni phat rahi thi uske baad se lekar abtak hmari itni baate hogyi itne high lows aagye 🫶🫢<br><br>
                     but still 😂 mujhe pehli wish abhi tak yaad hai ♾️🥰 20 sep my sweet annu turns 15 hayee 😭💕<br><br>
                     Chaliye fir aage dekhte hmari visual representations stranger se jaan tak banne ki 😋🌹
                 </p>
-
-                <div class="waveform-box">
-                    <div class="wave-bar"></div><div class="wave-bar"></div>
-                    <div class="wave-bar"></div><div class="wave-bar"></div>
-                    <div class="wave-bar"></div><div class="wave-bar"></div>
-                </div>
-
                 <button class="glass-btn" onclick="nextStep(4)">
                     Tu es prête ? ➔<br>
                     <span style="font-size:0.75rem; opacity:0.8;">(Let's see how it all started)</span>
                 </button>
             </div>
 
-            <!-- STEP 4 -->
+            <!-- STEP 4: LIVE DYNAMIC ANIMATED CHAT -->
             <div class="card" id="step4">
-                <h1 class="hb-main-head">Step 4</h1>
-                <p class="romantic-paragraph">Next memory coming soon... ✨</p>
+                <div class="chat-card-box">
+                    <div class="chat-header">
+                        <div class="chat-profile">
+                            <div class="profile-avatar">
+                                <div class="avatar-inner">A</div>
+                            </div>
+                            <div>
+                                <span class="chat-name">Annu (Madam ji)</span>
+                                <span class="chat-status" id="chatStatus">online</span>
+                            </div>
+                        </div>
+                        <div class="chat-icons">
+                            <span>📞</span>
+                            <span>🎥</span>
+                        </div>
+                    </div>
+
+                    <div class="chat-messages-area" id="chatContainer">
+                        <!-- MESSAGES WILL BE TYPED LOCALLY & ADDED DYNAMICALLY VIA JS -->
+                    </div>
+
+                    <div class="chat-input-fake">
+                        <span id="inputBoxText" style="opacity: 0.6;">Message...</span>
+                        <span>📷</span>
+                    </div>
+                </div>
+
+                <button class="glass-btn" onclick="nextStep(5)">Next Memory ➔</button>
             </div>
+
+            <!-- STEP 5 -->
+            <div class="card" id="step5">
+                <h1 class="hb-main-head">Step 5</h1>
+                <p class="romantic-paragraph">Next memory coming up soon... ✨</p>
+            </div>
+
         </div>
     </div>
 
@@ -287,8 +360,7 @@
 
             if (playSahiba) {
                 var boyfriendAudio = document.getElementById('bgMusic');
-                if (boyfriendAudio) { boyfriendAudio.pause(); } // Stop previous song
-                
+                if (boyfriendAudio) { boyfriendAudio.pause(); }
                 var sahibaAudio = document.getElementById('sahibaAudio');
                 if (sahibaAudio) { sahibaAudio.play().catch(function(e) {}); }
             }
@@ -301,6 +373,96 @@
             if (nextCard) { 
                 nextCard.classList.add('active'); 
             }
+
+            if (stepNumber === 4) {
+                startLiveChatAnimation();
+            }
+        }
+
+        /* LIVE REAL-TIME CHAT VIDEO TYPE ANIMATION */
+        const chatData = [
+            { sender: 'left', text: 'Good morning shweety 🌸', time: '15:44' },
+            { sender: 'left', text: 'Radhey Radhey 🙏💖', time: '15:44' },
+            { sender: 'right', text: 'Good morning mere alloo k parathey 😭❤️', time: '15:44' },
+            { sender: 'left', text: 'Uthgye tumm? Chaii piyoge? ☕🥺', time: '15:44' },
+            { sender: 'right', text: '😋 Ha aapke hatho se cutie', time: '15:45' },
+            { sender: 'right', text: 'har cheez ek time pe achi lagti 💕😭 ek aap ho hmesha achi lagti', time: '15:45' },
+            { sender: 'left', text: '😂💕 jhalla hi ho bilkul aap', time: '15:46' },
+            { sender: 'right', text: 'haa apke liye 😂😭', time: '15:46' }
+        ];
+
+        let animationStarted = false;
+
+        async function startLiveChatAnimation() {
+            if (animationStarted) return;
+            animationStarted = true;
+
+            const chatContainer = document.getElementById('chatContainer');
+            const chatStatus = document.getElementById('chatStatus');
+            const inputBoxText = document.getElementById('inputBoxText');
+            
+            chatContainer.innerHTML = '';
+
+            for (let i = 0; i < chatData.length; i++) {
+                const msg = chatData[i];
+
+                if (msg.sender === 'left') {
+                    // Annu Typing Simulation
+                    chatStatus.innerText = 'typing...';
+                    let typingBubble = createTypingIndicator();
+                    chatContainer.appendChild(typingBubble);
+                    scrollToBottom(chatContainer);
+
+                    await delay(1600); // Annu thinking/typing time
+                    
+                    typingBubble.remove();
+                    chatStatus.innerText = 'online';
+
+                    appendMessage(chatContainer, msg.sender, msg.text, msg.time);
+                    scrollToBottom(chatContainer);
+                    await delay(1000);
+
+                } else {
+                    // Your Typing Simulation in Input Box
+                    inputBoxText.style.opacity = '1';
+                    inputBoxText.style.color = '#ffffff';
+                    
+                    for (let charIndex = 0; charIndex <= msg.text.length; charIndex++) {
+                        inputBoxText.innerText = msg.text.substring(0, charIndex);
+                        await delay(35); // Keypress speed
+                    }
+
+                    await delay(400); // Send delay
+                    inputBoxText.innerText = 'Message...';
+                    inputBoxText.style.opacity = '0.6';
+
+                    appendMessage(chatContainer, msg.sender, msg.text, msg.time);
+                    scrollToBottom(chatContainer);
+                    await delay(1200);
+                }
+            }
+        }
+
+        function createTypingIndicator() {
+            const bubble = document.createElement('div');
+            bubble.className = 'msg-bubble msg-left typing-bubble';
+            bubble.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+            return bubble;
+        }
+
+        function appendMessage(container, sender, text, time) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `msg-bubble msg-${sender}`;
+            msgDiv.innerHTML = `${text}<span class="msg-time">${time}</span>`;
+            container.appendChild(msgDiv);
+        }
+
+        function scrollToBottom(container) {
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
         }
     </script>
 </body>
