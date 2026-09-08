@@ -68,7 +68,7 @@
             display: block;
         }
 
-        /* STEP 1, 2, 3 STYLES */
+        /* CARD 1 & 2 STYLES */
         .for-annu { font-family: 'Alex Brush', cursive; font-size: 2.2rem; color: #ffb7d5; }
         .hb-title { font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; color: #d8c7ed; }
         .name-annika { font-family: 'Alex Brush', cursive; font-size: 3.5rem; color: #ffffff; text-shadow: 0 0 15px rgba(255, 183, 213, 0.8); }
@@ -80,7 +80,70 @@
         .hb-main-head { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #ffffff; margin-bottom: 20px; }
         .romantic-paragraph { font-size: 0.92rem; line-height: 1.65; color: #f1e8fc; font-weight: 300; margin-bottom: 18px; white-space: pre-line; }
 
-        /* --- INSTAGRAM DM CHAT UI STYLES --- */
+        /* STEP 3 EXACT MATCH STYLING */
+        .for-you-subhead {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            color: #ffb7d5;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .step3-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 18px;
+        }
+
+        .step3-text-box {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: #f1e8fc;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 20px;
+            min-height: 180px;
+        }
+
+        .step3-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 0.95rem;
+            color: #e0d5f0;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* WAVEFORM BAR ANIMATION */
+        .waveform-box {
+            width: 100%;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            margin: 15px 0;
+        }
+
+        .wave-bar {
+            width: 3px;
+            height: 10px;
+            background: linear-gradient(180deg, #ff71ce, #b967ff);
+            border-radius: 3px;
+            animation: waveAnim 1.2s infinite ease-in-out alternate;
+        }
+        .wave-bar:nth-child(2) { animation-delay: 0.2s; }
+        .wave-bar:nth-child(3) { animation-delay: 0.4s; }
+        .wave-bar:nth-child(4) { animation-delay: 0.1s; }
+        .wave-bar:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes waveAnim {
+            0% { height: 6px; opacity: 0.4; }
+            100% { height: 26px; opacity: 1; box-shadow: 0 0 10px #ff71ce; }
+        }
+
+        /* INSTAGRAM CHAT STYLES (STEP 4) */
         .chat-card-box {
             background: rgba(18, 10, 32, 0.95);
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -196,7 +259,6 @@
             text-align: right;
         }
 
-        /* TYPING INDICATOR BUBBLE */
         .typing-bubble {
             display: flex;
             align-items: center;
@@ -262,13 +324,13 @@
 
     <audio id="bgMusic" src="boyfriend.mp3" loop></audio>
     <audio id="sahibaAudio" src="sahiba.mp3" loop></audio>
+    <audio id="pherMilaDeRamAudio" src="phermiladeram.mp3" loop></audio>
 
     <div class="step-container">
         <div class="overlay"></div>
 
         <div class="card-content">
 
-            <!-- STEP 1 -->
             <div class="card active" id="step1">
                 <p class="for-annu">For Annu 🎀</p>
                 <p class="hb-title">Happy Birthday</p>
@@ -279,10 +341,9 @@
                     <div class="grid-card"><span>✉️</span><p>Letters</p></div>
                     <div class="grid-card"><span>🎂</span><p>Celebrate</p></div>
                 </div>
-                <button class="glass-btn" onclick="nextStep(2, true)">Continue Our Memories ➔</button>
+                <button class="glass-btn" onclick="nextStep(2, 'boyfriend')">Continue Our Memories ➔</button>
             </div>
 
-            <!-- STEP 2 -->
             <div class="card" id="step2">
                 <h1 class="hb-main-head">Special Day ❤️</h1>
                 <p class="romantic-paragraph">
@@ -291,26 +352,29 @@
                     aaj ke din focus karo bs<br>
                     it's your special day today i wanna make it special more ❤️
                 </p>
-                <button class="glass-btn" onclick="nextStep(3, false, true)">Next Step ➔</button>
+                <button class="glass-btn" onclick="nextStep(3, 'sahiba')">Next Step ➔</button>
             </div>
 
-            <!-- STEP 3 -->
             <div class="card" id="step3">
-                <p style="font-size: 0.75rem; letter-spacing: 3px; color: #d8c7ed; margin-bottom: 10px;">FOR YOU</p>
-                <h1 class="hb-main-head">Happy Birthday</h1>
-                <p class="romantic-paragraph">
-                    Sep 10 2022 just a single hi 😭🎀<br>
-                    I can't forget it kitni phat rahi thi uske baad se lekar abtak hmari itni baate hogyi itne high lows aagye 🫶🫢<br><br>
-                    but still 😂 mujhe pehli wish abhi tak yaad hai ♾️🥰 20 sep my sweet annu turns 15 hayee 😭💕<br><br>
-                    Chaliye fir aage dekhte hmari visual representations stranger se jaan tak banne ki 😋🌹
-                </p>
-                <button class="glass-btn" onclick="nextStep(4)">
-                    Tu es prête ? ➔<br>
-                    <span style="font-size:0.75rem; opacity:0.8;">(Let's see how it all started)</span>
+                <p class="for-you-subhead">FOR YOU</p>
+                <h1 class="step3-title">Happy Birthday</h1>
+                
+                <div class="step3-text-box" id="step3Text"></div>
+                
+                <div class="step3-quote" id="step3Quote"></div>
+
+                <div class="waveform-box">
+                    <div class="wave-bar"></div><div class="wave-bar"></div>
+                    <div class="wave-bar"></div><div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                </div>
+
+                <button class="glass-btn" onclick="nextStep(4, 'boyfriend')">
+                    Let's see...<br>
+                    <span style="font-size:0.75rem; font-style: italic; opacity:0.8;">how it all started.</span>
                 </button>
             </div>
 
-            <!-- STEP 4: LIVE DYNAMIC ANIMATED CHAT -->
             <div class="card" id="step4">
                 <div class="chat-card-box">
                     <div class="chat-header">
@@ -330,8 +394,7 @@
                     </div>
 
                     <div class="chat-messages-area" id="chatContainer">
-                        <!-- MESSAGES WILL BE TYPED LOCALLY & ADDED DYNAMICALLY VIA JS -->
-                    </div>
+                        </div>
 
                     <div class="chat-input-fake">
                         <span id="inputBoxText" style="opacity: 0.6;">Message...</span>
@@ -342,7 +405,6 @@
                 <button class="glass-btn" onclick="nextStep(5)">Next Memory ➔</button>
             </div>
 
-            <!-- STEP 5 -->
             <div class="card" id="step5">
                 <h1 class="hb-main-head">Step 5</h1>
                 <p class="romantic-paragraph">Next memory coming up soon... ✨</p>
@@ -352,17 +414,28 @@
     </div>
 
     <script>
-        function nextStep(stepNumber, playBoyfriend = false, playSahiba = false) {
-            if (playBoyfriend) {
-                var boyfriendAudio = document.getElementById('bgMusic');
-                if (boyfriendAudio) { boyfriendAudio.play().catch(function(e) {}); }
-            }
+        function stopAllAudio() {
+            var boyfriend = document.getElementById('bgMusic');
+            var sahiba = document.getElementById('sahibaAudio');
+            var pherMila = document.getElementById('pherMilaDeRamAudio');
 
-            if (playSahiba) {
-                var boyfriendAudio = document.getElementById('bgMusic');
-                if (boyfriendAudio) { boyfriendAudio.pause(); }
-                var sahibaAudio = document.getElementById('sahibaAudio');
-                if (sahibaAudio) { sahibaAudio.play().catch(function(e) {}); }
+            if (boyfriend) { boyfriend.pause(); }
+            if (sahiba) { sahiba.pause(); }
+            if (pherMila) { pherMila.pause(); }
+        }
+
+        function nextStep(stepNumber, songToPlay = null) {
+            stopAllAudio();
+
+            if (songToPlay === 'boyfriend') {
+                var bf = document.getElementById('bgMusic');
+                if (bf) bf.play().catch(e => {});
+            } else if (songToPlay === 'sahiba') {
+                var sb = document.getElementById('sahibaAudio');
+                if (sb) sb.play().catch(e => {});
+            } else if (songToPlay === 'phermila') {
+                var pm = document.getElementById('pherMilaDeRamAudio');
+                if (pm) pm.play().catch(e => {});
             }
 
             document.querySelectorAll('.card').forEach(function(card) {
@@ -374,12 +447,49 @@
                 nextCard.classList.add('active'); 
             }
 
+            if (stepNumber === 3) {
+                // Play Pher Mila De Ram on Step 3
+                var pm = document.getElementById('pherMilaDeRamAudio');
+                if (pm) pm.play().catch(e => {});
+                
+                startStep3Typewriter();
+            }
+
             if (stepNumber === 4) {
                 startLiveChatAnimation();
             }
         }
 
-        /* LIVE REAL-TIME CHAT VIDEO TYPE ANIMATION */
+        /* STEP 3 LIVE TYPEWRITER ANIMATION */
+        const step3Message = "Sep 10 2022 just a single hi 😭🎀\nI can't forget it kitni phat rahi thi uske baad se lekar abtak hmari itni baate hogyi itne high lows aagye 🫶🫢\n\nbut still 😂 mujhe pehli wish abhi tak yaad hai ♾️🥰 20 sep my sweet annu turns 15 hayee 😭💕\n\nChaliye fir aage dekhte hmari visual representations stranger se jaan tak banne ki 😋🌹";
+        const step3QuoteText = "situation decides that memory blushes dilati h ya ansu 👁️👁️😭 .";
+
+        let step3Started = false;
+
+        async function startStep3Typewriter() {
+            if (step3Started) return;
+            step3Started = true;
+
+            const textBox = document.getElementById('step3Text');
+            const quoteBox = document.getElementById('step3Quote');
+            
+            textBox.innerText = '';
+            quoteBox.innerText = '';
+
+            for (let i = 0; i <= step3Message.length; i++) {
+                textBox.innerText = step3Message.substring(0, i);
+                await delay(25);
+            }
+
+            await delay(300);
+
+            for (let j = 0; j <= step3QuoteText.length; j++) {
+                quoteBox.innerText = step3QuoteText.substring(0, j);
+                await delay(30);
+            }
+        }
+
+        /* LIVE REAL-TIME CHAT VIDEO TYPE ANIMATION FOR STEP 4 */
         const chatData = [
             { sender: 'left', text: 'Good morning shweety 🌸', time: '15:44' },
             { sender: 'left', text: 'Radhey Radhey 🙏💖', time: '15:44' },
@@ -407,13 +517,12 @@
                 const msg = chatData[i];
 
                 if (msg.sender === 'left') {
-                    // Annu Typing Simulation
                     chatStatus.innerText = 'typing...';
                     let typingBubble = createTypingIndicator();
                     chatContainer.appendChild(typingBubble);
                     scrollToBottom(chatContainer);
 
-                    await delay(1600); // Annu thinking/typing time
+                    await delay(1600);
                     
                     typingBubble.remove();
                     chatStatus.innerText = 'online';
@@ -423,16 +532,15 @@
                     await delay(1000);
 
                 } else {
-                    // Your Typing Simulation in Input Box
                     inputBoxText.style.opacity = '1';
                     inputBoxText.style.color = '#ffffff';
                     
                     for (let charIndex = 0; charIndex <= msg.text.length; charIndex++) {
                         inputBoxText.innerText = msg.text.substring(0, charIndex);
-                        await delay(35); // Keypress speed
+                        await delay(35);
                     }
 
-                    await delay(400); // Send delay
+                    await delay(400);
                     inputBoxText.innerText = 'Message...';
                     inputBoxText.style.opacity = '0.6';
 
