@@ -68,7 +68,7 @@
             display: block;
         }
 
-        /* CARD STYLES */
+        /* CARD 1 & 2 STYLES */
         .for-annu { font-family: 'Alex Brush', cursive; font-size: 2.2rem; color: #ffb7d5; }
         .hb-title { font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; color: #d8c7ed; }
         .name-annika { font-family: 'Alex Brush', cursive; font-size: 3.5rem; color: #ffffff; text-shadow: 0 0 15px rgba(255, 183, 213, 0.8); }
@@ -80,12 +80,42 @@
         .hb-main-head { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #ffffff; margin-bottom: 20px; }
         .romantic-paragraph { font-size: 0.92rem; line-height: 1.65; color: #f1e8fc; font-weight: 300; margin-bottom: 18px; white-space: pre-line; }
 
-        /* STEP 3 STYLES */
-        .for-you-subhead { font-size: 0.75rem; letter-spacing: 3px; color: #ffb7d5; text-transform: uppercase; margin-bottom: 8px; }
-        .step3-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: #ffffff; margin-bottom: 18px; }
-        .step3-text-box { font-size: 0.88rem; line-height: 1.6; color: #f1e8fc; font-weight: 300; text-align: center; margin-bottom: 20px; min-height: 180px; }
-        .step3-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.95rem; color: #e0d5f0; margin-top: 15px; margin-bottom: 20px; }
+        /* STEP 3 EXACT MATCH STYLING */
+        .for-you-subhead {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            color: #ffb7d5;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
 
+        .step3-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 18px;
+        }
+
+        .step3-text-box {
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: #f1e8fc;
+            font-weight: 300;
+            text-align: center;
+            margin-bottom: 20px;
+            min-height: 180px;
+        }
+
+        .step3-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 0.95rem;
+            color: #e0d5f0;
+            margin-top: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* WAVEFORM BAR ANIMATION */
         .waveform-box {
             width: 100%;
             height: 35px;
@@ -113,7 +143,7 @@
             100% { height: 26px; opacity: 1; box-shadow: 0 0 10px #ff71ce; }
         }
 
-        /* STEP 4 CHAT STYLES */
+        /* INSTAGRAM CHAT STYLES (STEP 4) */
         .chat-card-box {
             background: rgba(18, 10, 32, 0.95);
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -133,12 +163,57 @@
             margin-bottom: 12px;
         }
 
-        .chat-profile { display: flex; align-items: center; gap: 10px; }
-        .profile-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); padding: 2px; display: flex; align-items: center; justify-content: center; }
-        .avatar-inner { width: 100%; height: 100%; background: #1a0933; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold; color: #ffb7d5; }
-        .chat-name { font-family: 'Great Vibes', cursive; font-size: 1.4rem; color: #ffffff; letter-spacing: 0.5px; }
-        .chat-status { font-size: 0.62rem; color: #ff71ce; display: block; margin-top: -3px; height: 14px; }
-        .chat-icons { display: flex; gap: 10px; font-size: 1rem; opacity: 0.8; }
+        .chat-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            padding: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .avatar-inner {
+            width: 100%;
+            height: 100%;
+            background: #1a0933;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #ffb7d5;
+        }
+
+        .chat-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.4rem;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .chat-status {
+            font-size: 0.62rem;
+            color: #ff71ce;
+            display: block;
+            margin-top: -3px;
+            height: 14px;
+        }
+
+        .chat-icons {
+            display: flex;
+            gap: 10px;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
 
         .chat-messages-area {
             display: flex;
@@ -162,16 +237,49 @@
             animation: popIn 0.3s ease-out forwards;
         }
 
-        .msg-left { align-self: flex-start; background: rgba(255, 255, 255, 0.12); color: #ffffff; border-bottom-left-radius: 4px; }
-        .msg-right { align-self: flex-end; background: linear-gradient(135deg, #7b2cbf 0%, #9d4edd 100%); color: #ffffff; border-bottom-right-radius: 4px; }
-        .msg-time { font-size: 0.58rem; opacity: 0.6; margin-top: 2px; display: block; text-align: right; }
+        .msg-left {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border-bottom-left-radius: 4px;
+        }
 
-        .typing-bubble { display: flex; align-items: center; gap: 4px; padding: 10px 14px; }
-        .dot { width: 6px; height: 6px; background: #ffb7d5; border-radius: 50%; animation: dotBlink 1.4s infinite ease-in-out; }
+        .msg-right {
+            align-self: flex-end;
+            background: linear-gradient(135deg, #7b2cbf 0%, #9d4edd 100%);
+            color: #ffffff;
+            border-bottom-right-radius: 4px;
+        }
+
+        .msg-time {
+            font-size: 0.58rem;
+            opacity: 0.6;
+            margin-top: 2px;
+            display: block;
+            text-align: right;
+        }
+
+        .typing-bubble {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 10px 14px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            background: #ffb7d5;
+            border-radius: 50%;
+            animation: dotBlink 1.4s infinite ease-in-out;
+        }
         .dot:nth-child(2) { animation-delay: 0.2s; }
         .dot:nth-child(3) { animation-delay: 0.4s; }
 
-        @keyframes dotBlink { 0%, 100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(-4px); opacity: 1; } }
+        @keyframes dotBlink {
+            0%, 100% { transform: translateY(0); opacity: 0.4; }
+            50% { transform: translateY(-4px); opacity: 1; }
+        }
 
         .chat-input-fake {
             background: rgba(255, 255, 255, 0.05);
@@ -185,182 +293,6 @@
             justify-content: space-between;
             align-items: center;
             min-height: 36px;
-        }
-
-        /* --- STEP 5: DREAM / THOUGHT SEQUENCE STYLING --- */
-        .dream-wrapper {
-            position: relative;
-            width: 100%;
-            height: 480px;
-            background: radial-gradient(circle at center, #1b0c33 0%, #080312 100%);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 15px 10px;
-            margin-bottom: 15px;
-        }
-
-        .dream-subhead {
-            font-size: 0.7rem;
-            letter-spacing: 2px;
-            color: #ffb7d5;
-            text-transform: uppercase;
-        }
-
-        /* FLOATING CHARACTERS */
-        .characters-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            width: 100%;
-            height: 180px;
-            padding: 0 10px;
-        }
-
-        .char-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: floatChar 3s infinite ease-in-out alternate;
-        }
-
-        .char-box.right { animation-delay: 1.5s; }
-
-        /* ANIMATED STICK FIGURES */
-        .stick-figure {
-            width: 60px;
-            height: 110px;
-            position: relative;
-        }
-
-        .head {
-            width: 32px;
-            height: 32px;
-            border: 2px solid #ffffff;
-            border-radius: 50%;
-            margin: 0 auto;
-            position: relative;
-            background: #0d0618;
-            box-shadow: 0 0 10px rgba(255, 183, 213, 0.5);
-        }
-
-        /* SMILE AND EYES */
-        .head::before {
-            content: '• •';
-            position: absolute;
-            top: 4px;
-            left: 7px;
-            font-size: 10px;
-            color: #ffffff;
-        }
-
-        .head::after {
-            content: '‿';
-            position: absolute;
-            bottom: 3px;
-            left: 10px;
-            font-size: 12px;
-            color: #ff71ce;
-        }
-
-        /* GIRL HAIR STYLING FOR ANNIKA */
-        .char-box.left .head::before {
-            content: '✿ • •';
-            font-size: 9px;
-            left: 2px;
-            color: #ffb7d5;
-        }
-
-        .body-line {
-            width: 2px;
-            height: 35px;
-            background: #ffffff;
-            margin: 0 auto;
-        }
-
-        .arms {
-            width: 40px;
-            height: 2px;
-            background: #ffffff;
-            position: absolute;
-            top: 45px;
-            left: 10px;
-            border-radius: 2px;
-        }
-
-        .legs {
-            position: absolute;
-            top: 68px;
-            left: 18px;
-            width: 24px;
-            height: 30px;
-            border-left: 2px solid #ffffff;
-            border-right: 2px solid #ffffff;
-            transform: skewX(-5deg);
-        }
-
-        .char-label {
-            font-size: 0.75rem;
-            color: #ffb7d5;
-            margin-top: 6px;
-            font-weight: 500;
-        }
-
-        @keyframes floatChar {
-            0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-8px) rotate(2deg); }
-        }
-
-        /* THOUGHT CONTAINER AREA */
-        .thought-display-area {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            height: 220px;
-            overflow-y: auto;
-            padding: 5px;
-        }
-
-        .thought-card {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(8px);
-            border-radius: 14px;
-            padding: 10px 12px;
-            text-align: left;
-            animation: popIn 0.4s ease-out forwards;
-            position: relative;
-        }
-
-        .thought-card.left-side {
-            border-left: 3px solid #ff71ce;
-            align-self: flex-start;
-            width: 90%;
-        }
-
-        .thought-card.right-side {
-            border-right: 3px solid #b967ff;
-            align-self: flex-end;
-            width: 90%;
-        }
-
-        .thought-author {
-            font-size: 0.68rem;
-            font-weight: 600;
-            color: #ffb7d5;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-bottom: 3px;
-        }
-
-        .thought-text {
-            font-size: 0.78rem;
-            line-height: 1.4;
-            color: #ffffff;
         }
 
         .glass-btn {
@@ -377,8 +309,15 @@
             display: block;
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes popIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
     </style>
 </head>
 <body>
@@ -386,7 +325,6 @@
     <audio id="bgMusic" src="boyfriend.mp3" loop></audio>
     <audio id="sahibaAudio" src="sahiba.mp3" loop></audio>
     <audio id="pherMilaDeRamAudio" src="phermiladeram.mp3" loop></audio>
-    <audio id="blueAudio" src="blue.mp3" loop></audio>
 
     <div class="step-container">
         <div class="overlay"></div>
@@ -422,6 +360,7 @@
                 <h1 class="step3-title">Happy Birthday</h1>
                 
                 <div class="step3-text-box" id="step3Text"></div>
+                
                 <div class="step3-quote" id="step3Quote"></div>
 
                 <div class="waveform-box">
@@ -454,7 +393,8 @@
                         </div>
                     </div>
 
-                    <div class="chat-messages-area" id="chatContainer"></div>
+                    <div class="chat-messages-area" id="chatContainer">
+                        </div>
 
                     <div class="chat-input-fake">
                         <span id="inputBoxText" style="opacity: 0.6;">Message...</span>
@@ -462,45 +402,12 @@
                     </div>
                 </div>
 
-                <button class="glass-btn" onclick="nextStep(5, 'blue')">Next Memory ➔</button>
+                <button class="glass-btn" onclick="nextStep(5)">Next Memory ➔</button>
             </div>
 
             <div class="card" id="step5">
-                <div class="dream-wrapper">
-                    <p class="dream-subhead">✦ A LITTLE MOMENT ✦</p>
-
-                    <div class="characters-container">
-                        <div class="char-box left">
-                            <div class="stick-figure">
-                                <div class="head"></div>
-                                <div class="body-line"></div>
-                                <div class="arms"></div>
-                                <div class="legs"></div>
-                            </div>
-                            <span class="char-label">Annika ji 🌸</span>
-                        </div>
-
-                        <div class="char-box right">
-                            <div class="stick-figure">
-                                <div class="head"></div>
-                                <div class="body-line"></div>
-                                <div class="arms"></div>
-                                <div class="legs"></div>
-                            </div>
-                            <span class="char-label">Vinnu ✨</span>
-                        </div>
-                    </div>
-
-                    <div class="thought-display-area" id="thoughtContainer">
-                        </div>
-                </div>
-
-                <button class="glass-btn" onclick="nextStep(6)">Continue ➔</button>
-            </div>
-
-            <div class="card" id="step6">
-                <h1 class="hb-main-head">Step 6</h1>
-                <p class="romantic-paragraph">To be continued... ❤️</p>
+                <h1 class="hb-main-head">Step 5</h1>
+                <p class="romantic-paragraph">Next memory coming up soon... ✨</p>
             </div>
 
         </div>
@@ -511,12 +418,10 @@
             var boyfriend = document.getElementById('bgMusic');
             var sahiba = document.getElementById('sahibaAudio');
             var pherMila = document.getElementById('pherMilaDeRamAudio');
-            var blue = document.getElementById('blueAudio');
 
             if (boyfriend) { boyfriend.pause(); }
             if (sahiba) { sahiba.pause(); }
             if (pherMila) { pherMila.pause(); }
-            if (blue) { blue.pause(); }
         }
 
         function nextStep(stepNumber, songToPlay = null) {
@@ -528,9 +433,9 @@
             } else if (songToPlay === 'sahiba') {
                 var sb = document.getElementById('sahibaAudio');
                 if (sb) sb.play().catch(e => {});
-            } else if (songToPlay === 'blue') {
-                var bl = document.getElementById('blueAudio');
-                if (bl) bl.play().catch(e => {});
+            } else if (songToPlay === 'phermila') {
+                var pm = document.getElementById('pherMilaDeRamAudio');
+                if (pm) pm.play().catch(e => {});
             }
 
             document.querySelectorAll('.card').forEach(function(card) {
@@ -539,4 +444,119 @@
 
             var nextCard = document.getElementById('step' + stepNumber);
             if (nextCard) { 
-                nextCard.classLi
+                nextCard.classList.add('active'); 
+            }
+
+            if (stepNumber === 3) {
+                // Play Pher Mila De Ram on Step 3
+                var pm = document.getElementById('pherMilaDeRamAudio');
+                if (pm) pm.play().catch(e => {});
+                
+                startStep3Typewriter();
+            }
+
+            if (stepNumber === 4) {
+                startLiveChatAnimation();
+            }
+        }
+
+        /* STEP 3 LIVE TYPEWRITER ANIMATION */
+        const step3Message = "Sep 10 2022 just a single hi 😭🎀\nI can't forget it kitni phat rahi thi uske baad se lekar abtak hmari itni baate hogyi itne high lows aagye 🫶🫢\n\nbut still 😂 mujhe pehli wish abhi tak yaad hai ♾️🥰 20 sep my sweet annu turns 15 hayee 😭💕\n\nChaliye fir aage dekhte hmari visual representations stranger se jaan tak banne ki 😋🌹";
+        const step3QuoteText = "situation decides that memory blushes dilati h ya ansu 👁️👁️😭 .";
+
+        let step3Started = false;
+
+        async function startStep3Typewriter() {
+            if (step3Started) return;
+            step3Started = true;
+
+            const textBox = document.getElementById('step3Text');
+            const quoteBox = document.getElementById('step3Quote');
+            
+            textBox.innerText = '';
+            quoteBox.innerText = '';
+
+            for (let i = 0; i <= step3Message.length; i++) {
+                textBox.innerText = step3Message.substring(0, i);
+                await delay(25);
+            }
+
+            await delay(300);
+
+            for (let j = 0; j <= step3QuoteText.length; j++) {
+                quoteBox.innerText = step3QuoteText.substring(0, j);
+                await delay(30);
+            }
+        }
+
+        /* LIVE REAL-TIME CHAT VIDEO TYPE ANIMATION FOR STEP 4 */
+        const chatData = [
+            { sender: 'left', text: 'Good morning shweety 🌸', time: '15:44' },
+            { sender: 'left', text: 'Radhey Radhey 🙏💖', time: '15:44' },
+            { sender: 'right', text: 'Good morning mere alloo k parathey 😭❤️', time: '15:44' },
+            { sender: 'left', text: 'Uthgye tumm? Chaii piyoge? ☕🥺', time: '15:44' },
+            { sender: 'right', text: '😋 Ha aapke hatho se cutie', time: '15:45' },
+            { sender: 'right', text: 'har cheez ek time pe achi lagti 💕😭 ek aap ho hmesha achi lagti', time: '15:45' },
+            { sender: 'left', text: '😂💕 jhalla hi ho bilkul aap', time: '15:46' },
+            { sender: 'right', text: 'haa apke liye 😂😭', time: '15:46' }
+        ];
+
+        let animationStarted = false;
+
+        async function startLiveChatAnimation() {
+            if (animationStarted) return;
+            animationStarted = true;
+
+            const chatContainer = document.getElementById('chatContainer');
+            const chatStatus = document.getElementById('chatStatus');
+            const inputBoxText = document.getElementById('inputBoxText');
+            
+            chatContainer.innerHTML = '';
+
+            for (let i = 0; i < chatData.length; i++) {
+                const msg = chatData[i];
+
+                if (msg.sender === 'left') {
+                    chatStatus.innerText = 'typing...';
+                    let typingBubble = createTypingIndicator();
+                    chatContainer.appendChild(typingBubble);
+                    scrollToBottom(chatContainer);
+
+                    await delay(1600);
+                    
+                    typingBubble.remove();
+                    chatStatus.innerText = 'online';
+
+                    appendMessage(chatContainer, msg.sender, msg.text, msg.time);
+                    scrollToBottom(chatContainer);
+                    await delay(1000);
+
+                } else {
+                    inputBoxText.style.opacity = '1';
+                    inputBoxText.style.color = '#ffffff';
+                    
+                    for (let charIndex = 0; charIndex <= msg.text.length; charIndex++) {
+                        inputBoxText.innerText = msg.text.substring(0, charIndex);
+                        await delay(35);
+                    }
+
+                    await delay(400);
+                    inputBoxText.innerText = 'Message...';
+                    inputBoxText.style.opacity = '0.6';
+
+                    appendMessage(chatContainer, msg.sender, msg.text, msg.time);
+                    scrollToBottom(chatContainer);
+                    await delay(1200);
+                }
+            }
+        }
+
+        function createTypingIndicator() {
+            const bubble = document.createElement('div');
+            bubble.className = 'msg-bubble msg-left typing-bubble';
+            bubble.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+            return bubble;
+        }
+
+        function appendMessage(container, sender, text, time) {
+            const msgDiv = document.createElement('di
