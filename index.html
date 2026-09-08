@@ -54,7 +54,7 @@
         .card-content {
             position: relative;
             z-index: 2;
-            padding: 15px 10px;
+            padding: 15px 12px;
             width: 100%;
             text-align: center;
         }
@@ -187,12 +187,13 @@
             min-height: 36px;
         }
 
-        /* STEP 5: DREAM & THOUGHT VIDEO FORMAT STYLES WITH BG1.JPG & BUTTERFLIES */
+        /* STEP 5: CINEMATIC ALTERNATE THOUGHT SEQUENCE */
         .dream-wrapper {
             position: relative;
             width: 100%;
             height: 480px;
-            background: url('bg1.jpg') no-repeat center center/cover;
+            background: url('bg1.jpg') no-repeat center center;
+            background-size: cover;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, 0.2);
             overflow: hidden;
@@ -227,7 +228,7 @@
             text-align: center;
         }
 
-        /* ANIMATED BUTTERFLIES */
+        /* BUTTERFLIES */
         .butterfly {
             position: absolute;
             font-size: 1.2rem;
@@ -235,7 +236,7 @@
             animation: flyButterfly 4s infinite ease-in-out alternate;
             filter: drop-shadow(0 0 5px #ff71ce);
         }
-        .butterfly.left-fly { left: 15px; top: 40%; animation-delay: 0s; }
+        .butterfly.left-fly { left: 15px; top: 40%; }
         .butterfly.right-fly { right: 15px; top: 40%; animation-delay: 2s; }
 
         @keyframes flyButterfly {
@@ -257,14 +258,14 @@
             flex-direction: column;
             align-items: center;
             transition: all 0.5s ease;
-            opacity: 0.4;
-            transform: scale(0.9);
+            opacity: 0.25;
+            transform: scale(0.85);
         }
 
         .char-box.active-char {
             opacity: 1;
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 12px rgba(255, 113, 206, 0.8));
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 15px rgba(255, 113, 206, 0.9));
         }
 
         .stick-figure {
@@ -324,16 +325,16 @@
         }
 
         .cloud-bubble {
-            background: rgba(30, 15, 45, 0.85);
-            border: 1px solid rgba(255, 183, 213, 0.4);
+            background: rgba(30, 15, 45, 0.9);
+            border: 1px solid rgba(255, 183, 213, 0.5);
             backdrop-filter: blur(10px);
             border-radius: 24px;
             padding: 14px 18px;
             text-align: center;
             width: 100%;
             max-width: 360px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-            animation: cloudPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+            animation: cloudPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
             position: relative;
         }
 
@@ -345,7 +346,7 @@
             transform: translateX(-50%);
             border-left: 10px solid transparent;
             border-right: 10px solid transparent;
-            border-bottom: 10px solid rgba(255, 183, 213, 0.4);
+            border-bottom: 10px solid rgba(255, 183, 213, 0.5);
         }
 
         .cloud-author {
@@ -368,6 +369,29 @@
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
+        /* STEP 6: SCREEN RECORDER VIDEO FORMAT WITH BUTTERFLIES */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 420px;
+            background: #080312;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 183, 213, 0.3);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
         .glass-btn {
             background: rgba(30, 15, 45, 0.7);
             border: 1px solid rgba(255, 183, 213, 0.4);
@@ -387,7 +411,6 @@
 </head>
 <body>
 
-    <!-- SONG REFERENCES -->
     <audio id="bgMusic" src="boyfriend.mp3" loop preload="auto"></audio>
     <audio id="sahibaAudio" src="sahiba.mp3" loop preload="auto"></audio>
     <audio id="pherMilaDeRamAudio" src="phermiladeram.mp3" loop preload="auto"></audio>
@@ -398,7 +421,6 @@
 
         <div class="card-content">
 
-            <!-- STEP 1 -->
             <div class="card active" id="step1">
                 <p class="for-annu">For Annu 🎀</p>
                 <p class="hb-title">Happy Birthday</p>
@@ -412,7 +434,6 @@
                 <button class="glass-btn" onclick="nextStep(2, 'boyfriend')">Continue Our Memories ➔</button>
             </div>
 
-            <!-- STEP 2 -->
             <div class="card" id="step2">
                 <h1 class="hb-main-head">Special Day ❤️</h1>
                 <p class="romantic-paragraph">
@@ -424,7 +445,6 @@
                 <button class="glass-btn" onclick="nextStep(3, 'sahiba')">Next Step ➔</button>
             </div>
 
-            <!-- STEP 3 -->
             <div class="card" id="step3">
                 <p class="for-you-subhead">FOR YOU</p>
                 <h1 class="step3-title">Happy Birthday</h1>
@@ -444,7 +464,6 @@
                 </button>
             </div>
 
-            <!-- STEP 4: LIVE CHAT -->
             <div class="card" id="step4">
                 <div class="chat-card-box">
                     <div class="chat-header">
@@ -474,20 +493,17 @@
                 <button class="glass-btn" onclick="nextStep(5, 'blue')">Next Memory ➔</button>
             </div>
 
-            <!-- STEP 5: DREAM & THOUGHT SEQUENCE (VIDEO FORMAT WITH BG1.JPG & BUTTERFLIES) -->
             <div class="card" id="step5">
                 <div class="dream-wrapper">
                     <div class="dream-overlay"></div>
                     
-                    <!-- ANIMATED BUTTERFLIES -->
                     <div class="butterfly left-fly">🦋</div>
                     <div class="butterfly right-fly">🦋</div>
 
-                    <p class="dream-subhead">✦ A LITTLE MOMENT ✦</p>
+                    <p class="dream-subhead">✦ CINEMATIC MOMENTS ✦</p>
 
                     <div class="characters-container">
-                        <!-- LEFT: VINNU -->
-                        <div class="char-box" id="charVinnu">
+                        <div class="char-box left" id="charVinnu">
                             <div class="stick-figure">
                                 <div class="head"></div>
                                 <div class="body-line"></div>
@@ -497,7 +513,6 @@
                             <span class="char-label">Vinnu ✨</span>
                         </div>
 
-                        <!-- RIGHT: ANNIKA JI -->
                         <div class="char-box" id="charAnnika">
                             <div class="stick-figure">
                                 <div class="head"></div>
@@ -512,13 +527,20 @@
                     <div class="thought-stage-area" id="thoughtStage"></div>
                 </div>
 
-                <button class="glass-btn" onclick="nextStep(6)">Continue ➔</button>
+                <button class="glass-btn" onclick="nextStep(6)">Continue to Video ➔</button>
             </div>
 
-            <!-- STEP 6 -->
             <div class="card" id="step6">
-                <h1 class="hb-main-head">Step 6</h1>
-                <p class="romantic-paragraph">To be continued... ❤️</p>
+                <h1 class="hb-main-head" style="font-size: 1.8rem; margin-bottom: 10px;">Our Special Recording ❤️</h1>
+                
+                <div class="video-wrapper">
+                    <div class="butterfly left-fly">🦋</div>
+                    <div class="butterfly right-fly">🦋</div>
+                    
+                    <video id="screenVideo" src="recording.mp4" autoplay loop muted playsinline></video>
+                </div>
+
+                <p class="romantic-paragraph" style="font-size: 0.85rem; margin-bottom: 15px;">To be continued... ♾️</p>
             </div>
 
         </div>
@@ -583,6 +605,13 @@
             if (stepNumber === 5) {
                 playAudioSafely('blueAudio');
                 startThoughtSequence();
+            }
+
+            if (stepNumber === 6) {
+                var vid = document.getElementById('screenVideo');
+                if(vid) {
+                    vid.play().catch(e => console.log("Video play error:", e));
+                }
             }
         }
 
@@ -699,14 +728,13 @@
             container.appendChild(msgDiv);
         }
 
-        /* STEP 5: TURN-BY-TURN CINEMATIC THOUGHT SEQUENCE (CORRECT CHARACTERS & 1 SEC PAUSE) */
+        /* STEP 5: CINEMATIC ALTERNATE THOUGHT SEQUENCE */
         const thoughtsSequence = [
-            { speaker: 'vinnu', author: 'Vinnu ✨', text: 'oh god ye idhar jind me kyu nahi rehta 🥀😭paas hota toh kitna acha hota' },
-            { speaker: 'annika', author: 'Annika ji 🌸', text: 'yaar ye annika kitni pyari hai 🥰kitni achi baate krti hai isko kabhi hurt nahi krunga' },
-            { speaker: 'vinnu', author: 'Vinnu ✨', text: 'yaar ye kitna badhiya hai 😭isse baat krke toh har ladki ko acha lagta hoga 🎀' },
-            { speaker: 'annika', author: 'Annika ji 🌸', text: 'isko toh hmesha khush rakhunga 😐bad boys se protect krke rakhunga' },
-            { speaker: 'vinnu', author: 'Vinnu ✨', text: 'dekhte hai aage kya hota 😗' },
-            { speaker: 'annika', author: 'Annika ji 🌸', text: 'yaar isko propose krdu kya 😭kar hi deta hun 💓 meri hi hai after all' }
+            { speaker: 'vinnu', author: 'Vinnu ✨', text: 'yaar ye annika kitna pyari hai 😭kitni achi baate krti' },
+            { speaker: 'annika', author: 'Annika ji 🌸', text: 'yaar ye vinnu kash ye mere paas abhi jind me hota miss krti ho bada 🥲💓' },
+            { speaker: 'vinnu', author: 'Vinnu ✨', text: 'isko toh hmesha khush rakhunga sbse protect rakhunga galat ladko se 😭😂aur khud se bhi' },
+            { speaker: 'annika', author: 'Annika ji 🌸', text: '😭ye ekdam jhala hi hai yaar butterflies le aata hai' },
+            { speaker: 'vinnu', author: 'Vinnu ✨', text: 'anyways love her  🥰🫶' }
         ];
 
         let thoughtStarted = false;
@@ -723,7 +751,6 @@
             for (let i = 0; i < thoughtsSequence.length; i++) {
                 const item = thoughtsSequence[i];
                 
-                // Highlight active character, dim other
                 if (item.speaker === 'vinnu') {
                     if(charVinnu) charVinnu.classList.add('active-char');
                     if(charAnnika) charAnnika.classList.remove('active-char');
@@ -732,17 +759,15 @@
                     if(charVinnu) charVinnu.classList.remove('active-char');
                 }
 
-                // Create cloud bubble
                 const cloud = document.createElement('div');
                 cloud.className = 'cloud-bubble';
                 cloud.innerHTML = `<div class="cloud-author">💭 ${item.author}</div><div class="cloud-text" id="cloudText_${i}"></div>`;
                 
                 if(thoughtStage) {
-                    thoughtStage.innerHTML = ''; // Pehla wala gayab karke naya laana (video format style)
+                    thoughtStage.innerHTML = '';
                     thoughtStage.appendChild(cloud);
                 }
 
-                // Typewriter effect inside cloud
                 const textElem = document.getElementById(`cloudText_${i}`);
                 const fullText = item.text;
                 for (let c = 0; c <= fullText.length; c++) {
@@ -750,8 +775,7 @@
                     await delay(30);
                 }
 
-                // 1 Second Pause before switching to next character
-                await delay(1200);
+                await delay(1500);
             }
         }
 
