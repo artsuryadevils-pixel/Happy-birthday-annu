@@ -369,14 +369,15 @@
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* STEP 6: SCREEN RECORDER VIDEO FORMAT WITH BUTTERFLIES */
+        /* STEP 6: SCREEN RECORDER VIDEO FORMAT WITH SPIDER-VERSE WALLPAPER BACKGROUND & BUTTERFLIES */
         .video-wrapper {
             position: relative;
             width: 100%;
             height: 420px;
-            background: #080312;
+            background: url('bg2.jpg') no-repeat center center;
+            background-size: cover;
             border-radius: 20px;
-            border: 1px solid rgba(255, 183, 213, 0.3);
+            border: 1px solid rgba(255, 183, 213, 0.4);
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -385,11 +386,30 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.8);
         }
 
-        .video-wrapper video {
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            background: rgba(10, 3, 20, 0.5);
+            z-index: 1;
             border-radius: 20px;
+        }
+
+        .video-wrapper video {
+            position: relative;
+            z-index: 2;
+            width: 86%;
+            height: 90%;
+            object-fit: cover;
+            border-radius: 14px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .video-wrapper .butterfly {
+            z-index: 3;
         }
 
         .glass-btn {
@@ -411,6 +431,7 @@
 </head>
 <body>
 
+    <!-- SONG REFERENCES -->
     <audio id="bgMusic" src="boyfriend.mp3" loop preload="auto"></audio>
     <audio id="sahibaAudio" src="sahiba.mp3" loop preload="auto"></audio>
     <audio id="pherMilaDeRamAudio" src="phermiladeram.mp3" loop preload="auto"></audio>
@@ -421,6 +442,7 @@
 
         <div class="card-content">
 
+            <!-- STEP 1 -->
             <div class="card active" id="step1">
                 <p class="for-annu">For Annu 🎀</p>
                 <p class="hb-title">Happy Birthday</p>
@@ -434,6 +456,7 @@
                 <button class="glass-btn" onclick="nextStep(2, 'boyfriend')">Continue Our Memories ➔</button>
             </div>
 
+            <!-- STEP 2 -->
             <div class="card" id="step2">
                 <h1 class="hb-main-head">Special Day ❤️</h1>
                 <p class="romantic-paragraph">
@@ -445,6 +468,7 @@
                 <button class="glass-btn" onclick="nextStep(3, 'sahiba')">Next Step ➔</button>
             </div>
 
+            <!-- STEP 3 -->
             <div class="card" id="step3">
                 <p class="for-you-subhead">FOR YOU</p>
                 <h1 class="step3-title">Happy Birthday</h1>
@@ -464,6 +488,7 @@
                 </button>
             </div>
 
+            <!-- STEP 4: LIVE CHAT -->
             <div class="card" id="step4">
                 <div class="chat-card-box">
                     <div class="chat-header">
@@ -493,6 +518,7 @@
                 <button class="glass-btn" onclick="nextStep(5, 'blue')">Next Memory ➔</button>
             </div>
 
+            <!-- STEP 5: CINEMATIC ALTERNATE THOUGHT SEQUENCE -->
             <div class="card" id="step5">
                 <div class="dream-wrapper">
                     <div class="dream-overlay"></div>
@@ -506,286 +532,4 @@
                         <div class="char-box left" id="charVinnu">
                             <div class="stick-figure">
                                 <div class="head"></div>
-                                <div class="body-line"></div>
-                                <div class="arms"></div>
-                                <div class="legs"></div>
-                            </div>
-                            <span class="char-label">Vinnu ✨</span>
-                        </div>
-
-                        <div class="char-box" id="charAnnika">
-                            <div class="stick-figure">
-                                <div class="head"></div>
-                                <div class="body-line"></div>
-                                <div class="arms"></div>
-                                <div class="legs"></div>
-                            </div>
-                            <span class="char-label">Annika ji 🌸</span>
-                        </div>
-                    </div>
-
-                    <div class="thought-stage-area" id="thoughtStage"></div>
-                </div>
-
-                <button class="glass-btn" onclick="nextStep(6)">Continue to Video ➔</button>
-            </div>
-
-            <div class="card" id="step6">
-                <h1 class="hb-main-head" style="font-size: 1.8rem; margin-bottom: 10px;">Our Special Recording ❤️</h1>
-                
-                <div class="video-wrapper">
-                    <div class="butterfly left-fly">🦋</div>
-                    <div class="butterfly right-fly">🦋</div>
-                    
-                    <video id="screenVideo" src="recording.mp4" autoplay loop muted playsinline></video>
-                </div>
-
-                <p class="romantic-paragraph" style="font-size: 0.85rem; margin-bottom: 15px;">To be continued... ♾️</p>
-            </div>
-
-        </div>
-    </div>
-
-    <script>
-        function stopAllAudio() {
-            var audioIds = ['bgMusic', 'sahibaAudio', 'pherMilaDeRamAudio', 'blueAudio'];
-            audioIds.forEach(function(id) {
-                var el = document.getElementById(id);
-                if (el) {
-                    try {
-                        el.pause();
-                        el.currentTime = 0;
-                    } catch(e) {}
-                }
-            });
-        }
-
-        function playAudioSafely(audioId) {
-            stopAllAudio();
-            var el = document.getElementById(audioId);
-            if (el) {
-                var playPromise = el.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(function(error) {
-                        console.log("Audio play blocked/failed:", error);
-                    });
-                }
-            }
-        }
-
-        function nextStep(stepNumber, songToPlay = null) {
-            if (songToPlay === 'boyfriend') {
-                playAudioSafely('bgMusic');
-            } else if (songToPlay === 'sahiba') {
-                playAudioSafely('sahibaAudio');
-            } else if (songToPlay === 'blue') {
-                playAudioSafely('blueAudio');
-            } else {
-                stopAllAudio();
-            }
-
-            document.querySelectorAll('.card').forEach(function(card) {
-                card.classList.remove('active');
-            });
-
-            var nextCard = document.getElementById('step' + stepNumber);
-            if (nextCard) { 
-                nextCard.classList.add('active'); 
-            }
-
-            if (stepNumber === 3) {
-                playAudioSafely('pherMilaDeRamAudio');
-                startStep3Typewriter();
-            }
-
-            if (stepNumber === 4) {
-                startLiveChatAnimation();
-            }
-
-            if (stepNumber === 5) {
-                playAudioSafely('blueAudio');
-                startThoughtSequence();
-            }
-
-            if (stepNumber === 6) {
-                var vid = document.getElementById('screenVideo');
-                if(vid) {
-                    vid.play().catch(e => console.log("Video play error:", e));
-                }
-            }
-        }
-
-        /* STEP 3 TYPEWRITER */
-        const step3Message = "Sep 10 2022 just a single hi 😭🎀\nI can't forget it kitni phat rahi thi uske baad se lekar abtak hmari itni baate hogyi itne high lows aagye 🫶🫢\n\nbut still 😂 mujhe pehli wish abhi tak yaad hai ♾️🥰 20 sep my sweet annu turns 15 hayee 😭💕\n\nChaliye fir aage dekhte hmari visual representations stranger se jaan tak banne ki 😋🌹";
-        const step3QuoteText = "situation decides that memory blushes dilati h ya ansu 👁️👁️😭 .";
-
-        let step3Started = false;
-        async function startStep3Typewriter() {
-            if (step3Started) return;
-            step3Started = true;
-
-            const textBox = document.getElementById('step3Text');
-            const quoteBox = document.getElementById('step3Quote');
-            
-            if(textBox) textBox.innerText = '';
-            if(quoteBox) quoteBox.innerText = '';
-
-            for (let i = 0; i <= step3Message.length; i++) {
-                if(textBox) textBox.innerText = step3Message.substring(0, i);
-                await delay(25);
-            }
-
-            await delay(300);
-
-            for (let j = 0; j <= step3QuoteText.length; j++) {
-                if(quoteBox) quoteBox.innerText = step3QuoteText.substring(0, j);
-                await delay(30);
-            }
-        }
-
-        /* STEP 4 LIVE CHAT */
-        const chatData = [
-            { sender: 'left', text: 'Good morning shweety 🌸', time: '15:44' },
-            { sender: 'left', text: 'Radhey Radhey 🙏💖', time: '15:44' },
-            { sender: 'right', text: 'Good morning mere alloo k parathey 😭❤️', time: '15:44' },
-            { sender: 'left', text: 'Uthgye tumm? Chaii piyoge? ☕🥺', time: '15:44' },
-            { sender: 'right', text: '😋 Ha aapke hatho se cutie', time: '15:45' },
-            { sender: 'right', text: 'har cheez ek time pe achi lagti 💕😭 ek aap ho hmesha achi lagti', time: '15:45' },
-            { sender: 'left', text: '😂💕 jhalla hi ho bilkul aap', time: '15:46' },
-            { sender: 'right', text: 'haa apke liye 😂😭', time: '15:46' }
-        ];
-
-        let animationStarted = false;
-        async function startLiveChatAnimation() {
-            if (animationStarted) return;
-            animationStarted = true;
-
-            const chatContainer = document.getElementById('chatContainer');
-            const chatStatus = document.getElementById('chatStatus');
-            const inputBoxText = document.getElementById('inputBoxText');
-            
-            if(chatContainer) chatContainer.innerHTML = '';
-
-            for (let i = 0; i < chatData.length; i++) {
-                const msg = chatData[i];
-
-                if (msg.sender === 'left') {
-                    if(chatStatus) chatStatus.innerText = 'typing...';
-                    let typingBubble = createTypingIndicator();
-                    if(chatContainer) {
-                        chatContainer.appendChild(typingBubble);
-                        scrollToBottom(chatContainer);
-                    }
-
-                    await delay(1600);
-                    
-                    typingBubble.remove();
-                    if(chatStatus) chatStatus.innerText = 'online';
-
-                    if(chatContainer) {
-                        appendMessage(chatContainer, msg.sender, msg.text, msg.time);
-                        scrollToBottom(chatContainer);
-                    }
-                    await delay(1000);
-
-                } else {
-                    if(inputBoxText) {
-                        inputBoxText.style.opacity = '1';
-                        inputBoxText.style.color = '#ffffff';
-                    }
-                    
-                    for (let charIndex = 0; charIndex <= msg.text.length; charIndex++) {
-                        if(inputBoxText) inputBoxText.innerText = msg.text.substring(0, charIndex);
-                        await delay(35);
-                    }
-
-                    await delay(400);
-                    if(inputBoxText) {
-                        inputBoxText.innerText = 'Message...';
-                        inputBoxText.style.opacity = '0.6';
-                    }
-
-                    if(chatContainer) {
-                        appendMessage(chatContainer, msg.sender, msg.text, msg.time);
-                        scrollToBottom(chatContainer);
-                    }
-                    await delay(1200);
-                }
-            }
-        }
-
-        function createTypingIndicator() {
-            const bubble = document.createElement('div');
-            bubble.className = 'msg-bubble msg-left typing-bubble';
-            bubble.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
-            return bubble;
-        }
-
-        function appendMessage(container, sender, text, time) {
-            const msgDiv = document.createElement('div');
-            msgDiv.className = `msg-bubble msg-${sender}`;
-            msgDiv.innerHTML = `${text}<span class="msg-time">${time}</span>`;
-            container.appendChild(msgDiv);
-        }
-
-        /* STEP 5: CINEMATIC ALTERNATE THOUGHT SEQUENCE */
-        const thoughtsSequence = [
-            { speaker: 'vinnu', author: 'Vinnu ✨', text: 'yaar ye annika kitna pyari hai 😭kitni achi baate krti' },
-            { speaker: 'annika', author: 'Annika ji 🌸', text: 'yaar ye vinnu kash ye mere paas abhi jind me hota miss krti ho bada 🥲💓' },
-            { speaker: 'vinnu', author: 'Vinnu ✨', text: 'isko toh hmesha khush rakhunga sbse protect rakhunga galat ladko se 😭😂aur khud se bhi' },
-            { speaker: 'annika', author: 'Annika ji 🌸', text: '😭ye ekdam jhala hi hai yaar butterflies le aata hai' },
-            { speaker: 'vinnu', author: 'Vinnu ✨', text: 'anyways love her  🥰🫶' }
-        ];
-
-        let thoughtStarted = false;
-        async function startThoughtSequence() {
-            if (thoughtStarted) return;
-            thoughtStarted = true;
-
-            const thoughtStage = document.getElementById('thoughtStage');
-            const charVinnu = document.getElementById('charVinnu');
-            const charAnnika = document.getElementById('charAnnika');
-
-            if(thoughtStage) thoughtStage.innerHTML = '';
-
-            for (let i = 0; i < thoughtsSequence.length; i++) {
-                const item = thoughtsSequence[i];
-                
-                if (item.speaker === 'vinnu') {
-                    if(charVinnu) charVinnu.classList.add('active-char');
-                    if(charAnnika) charAnnika.classList.remove('active-char');
-                } else {
-                    if(charAnnika) charAnnika.classList.add('active-char');
-                    if(charVinnu) charVinnu.classList.remove('active-char');
-                }
-
-                const cloud = document.createElement('div');
-                cloud.className = 'cloud-bubble';
-                cloud.innerHTML = `<div class="cloud-author">💭 ${item.author}</div><div class="cloud-text" id="cloudText_${i}"></div>`;
-                
-                if(thoughtStage) {
-                    thoughtStage.innerHTML = '';
-                    thoughtStage.appendChild(cloud);
-                }
-
-                const textElem = document.getElementById(`cloudText_${i}`);
-                const fullText = item.text;
-                for (let c = 0; c <= fullText.length; c++) {
-                    if(textElem) textElem.innerText = fullText.substring(0, c);
-                    await delay(30);
-                }
-
-                await delay(1500);
-            }
-        }
-
-        function scrollToBottom(container) {
-            if(container) container.scrollTop = container.scrollHeight;
-        }
-
-        function delay(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
-    </script>
-</body>
-</html>
+                                
