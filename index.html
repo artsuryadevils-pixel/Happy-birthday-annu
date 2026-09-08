@@ -38,8 +38,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: url('bg2.jpg') no-repeat center center;
+            background: url('bg1.jpg') no-repeat center center;
             background-size: cover;
+        }
+
+        /* Step 5 and 6 specific background */
+        .step-container.bg-alt {
+            background: url('bg2.jpg') no-repeat center center !important;
+            background-size: cover !important;
         }
 
         .overlay {
@@ -69,7 +75,6 @@
             display: block;
         }
 
-        /* CARD STYLES */
         .for-annu { font-family: 'Alex Brush', cursive; font-size: 2.2rem; color: #ffb7d5; }
         .hb-title { font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; color: #d8c7ed; }
         .name-annika { font-family: 'Alex Brush', cursive; font-size: 3.5rem; color: #ffffff; text-shadow: 0 0 15px rgba(255, 183, 213, 0.8); }
@@ -81,7 +86,6 @@
         .hb-main-head { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #ffffff; margin-bottom: 20px; }
         .romantic-paragraph { font-size: 0.92rem; line-height: 1.65; color: #f1e8fc; font-weight: 300; margin-bottom: 18px; white-space: pre-line; }
 
-        /* STEP 3 STYLES */
         .for-you-subhead { font-size: 0.75rem; letter-spacing: 3px; color: #ffb7d5; text-transform: uppercase; margin-bottom: 8px; }
         .step3-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: #ffffff; margin-bottom: 18px; }
         .step3-text-box { font-size: 0.88rem; line-height: 1.6; color: #f1e8fc; font-weight: 300; text-align: center; margin-bottom: 20px; min-height: 180px; }
@@ -114,7 +118,6 @@
             100% { height: 26px; opacity: 1; box-shadow: 0 0 10px #ff71ce; }
         }
 
-        /* STEP 4 CHAT STYLES */
         .chat-card-box {
             background: rgba(18, 10, 32, 0.95);
             border: 1px solid rgba(255, 255, 255, 0.15);
@@ -188,7 +191,6 @@
             min-height: 36px;
         }
 
-        /* STEP 5: CINEMATIC THOUGHT SEQUENCE */
         .dream-wrapper {
             position: relative;
             width: 100%;
@@ -229,7 +231,6 @@
             text-align: center;
         }
 
-        /* BUTTERFLIES */
         .butterfly {
             position: absolute;
             font-size: 1.2rem;
@@ -316,7 +317,6 @@
         .legs { position: absolute; top: 56px; left: 15px; width: 20px; height: 24px; border-left: 2px solid #ffffff; border-right: 2px solid #ffffff; transform: skewX(-5deg); }
         .char-label { font-size: 0.7rem; color: #ffb7d5; margin-top: 4px; font-weight: 500; }
 
-        /* CLOUD STAGE */
         .thought-stage-area {
             height: 150px;
             display: flex;
@@ -370,7 +370,6 @@
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* STEP 6 VIDEO WRAPPER */
         .video-wrapper {
             position: relative;
             width: 100%;
@@ -409,10 +408,6 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .video-wrapper .butterfly {
-            z-index: 3;
-        }
-
         .glass-btn {
             background: rgba(30, 15, 45, 0.7);
             border: 1px solid rgba(255, 183, 213, 0.4);
@@ -437,7 +432,7 @@
     <audio id="forAReasonAudio" src="forareason.mp3" loop preload="auto"></audio>
     <audio id="blueAudio" src="blue.mp3" loop preload="auto"></audio>
 
-    <div class="step-container">
+    <div class="step-container" id="mainContainer">
         <div class="overlay"></div>
 
         <div class="card-content">
@@ -534,4 +529,6 @@
                                 <div class="head"></div>
                                 <div class="body-line"></div>
                                 <div class="arms"></div>
-                                <div class="legs
+                                <div class="legs"></div>
+                            </div>
+                  
