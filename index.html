@@ -23,7 +23,6 @@
             overflow-x: hidden;
         }
 
-        /* Glassmorphism Card Effect */
         .container {
             background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(15px);
@@ -38,7 +37,6 @@
             position: relative;
         }
 
-        /* Dancing Font Animation */
         .dance-text {
             font-family: 'Fredoka', cursive;
             font-size: 26px;
@@ -136,26 +134,26 @@
 </head>
 <body>
 
-    <!-- Background Music -->
+    <!-- Background Music: Karan Aujla - Boyfriend -->
     <audio id="bgMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+        <source src="https://audio.com/shree-1856298661938449/audio/karan-aujla-boyfriend-official-audio" type="audio/mp3">
     </audio>
 
     <div class="container">
         <button class="music-btn" onclick="toggleMusic()">🎵 Music</button>
 
-        <!-- Step 1 -->
+        <!-- Step 1: Start -->
         <div class="step active" id="step1">
             <div class="heart-icon">💖</div>
-            <h1 class="dance-text">[Step 1 Title]</h1>
-            <p>[Step 1 Message - Yahan aapka welcome text aayega]</p>
-            <button class="btn" onclick="nextStep(2)">Next ➡️</button>
+            <h1 class="dance-text">Hey Annu! ❤️</h1>
+            <p>Aapke liye ek chota sa interactive surprise prepare kiya hai. Ready ho?</p>
+            <button class="btn" onclick="startExperience(2)">Haan, Let's Start! ✨</button>
         </div>
 
         <!-- Step 2 -->
         <div class="step" id="step2">
             <h1 class="dance-text">[Step 2 Title]</h1>
-            <p>[Step 2 Message]</p>
+            <p>[Step 2 Message - Yahan aapka message aayega]</p>
             <button class="btn" onclick="nextStep(3)">Next ➡️</button>
         </div>
 
@@ -170,7 +168,7 @@
         <!-- Step 4 (Dance Vibe Slot) -->
         <div class="step" id="step4">
             <h1 class="dance-text">[Dance Vibe Title 💃]</h1>
-            <p>[Dance Vibe Text - Aapka custom text yahan aayega]</p>
+            <p>[Dance Vibe Text]</p>
             <button class="btn" onclick="nextStep(5)">Next ➡️</button>
         </div>
 
@@ -185,7 +183,7 @@
         <!-- Step 6 (Travel Vibe Slot) -->
         <div class="step" id="step6">
             <h1 class="dance-text">[Travel Memory Title ✈️]</h1>
-            <p>[Travel Text - Aapka custom travel message]</p>
+            <p>[Travel Text]</p>
             <button class="btn" onclick="nextStep(7)">Next ➡️</button>
         </div>
 
@@ -237,6 +235,12 @@
     </div>
 
     <script>
+        function startExperience(stepNumber) {
+            let music = document.getElementById('bgMusic');
+            music.play().catch(e => console.log("Music play blocked: ", e));
+            nextStep(stepNumber);
+        }
+
         function nextStep(stepNumber) {
             let steps = document.querySelectorAll('.step');
             steps.forEach(step => step.classList.remove('active'));
@@ -254,4 +258,5 @@
     </script>
 </body>
 </html>
+
 
