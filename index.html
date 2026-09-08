@@ -1,1 +1,257 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Annu ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 50%, #ff758c 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Card Effect */
+        .container {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 25px;
+            padding: 25px 20px;
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        /* Dancing Font Animation */
+        .dance-text {
+            font-family: 'Fredoka', cursive;
+            font-size: 26px;
+            color: #ffffff;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: dance 1.2s infinite alternate ease-in-out;
+        }
+
+        @keyframes dance {
+            0% { transform: translateY(0) rotate(-3deg); }
+            100% { transform: translateY(-10px) rotate(3deg); }
+        }
+
+        .step {
+            display: none;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        p {
+            color: #ffffff;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 240px;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            margin-bottom: 15px;
+            border: 3px dashed #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn {
+            background: #ffffff;
+            color: #ff416c;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: 0.2s ease;
+        }
+
+        .btn:active {
+            transform: scale(0.92);
+        }
+
+        .music-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .heart-icon {
+            font-size: 45px;
+            margin-bottom: 10px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+    </audio>
+
+    <div class="container">
+        <button class="music-btn" onclick="toggleMusic()">🎵 Music</button>
+
+        <!-- Step 1 -->
+        <div class="step active" id="step1">
+            <div class="heart-icon">💖</div>
+            <h1 class="dance-text">[Step 1 Title]</h1>
+            <p>[Step 1 Message - Yahan aapka welcome text aayega]</p>
+            <button class="btn" onclick="nextStep(2)">Next ➡️</button>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step" id="step2">
+            <h1 class="dance-text">[Step 2 Title]</h1>
+            <p>[Step 2 Message]</p>
+            <button class="btn" onclick="nextStep(3)">Next ➡️</button>
+        </div>
+
+        <!-- Step 3 (Photo Slot) -->
+        <div class="step" id="step3">
+            <h1 class="dance-text">[Photo 1 Title]</h1>
+            <div class="photo-placeholder">📸 Photo 1 Slot</div>
+            <p>[Photo 1 Caption]</p>
+            <button class="btn" onclick="nextStep(4)">Next ➡️</button>
+        </div>
+
+        <!-- Step 4 (Dance Vibe Slot) -->
+        <div class="step" id="step4">
+            <h1 class="dance-text">[Dance Vibe Title 💃]</h1>
+            <p>[Dance Vibe Text - Aapka custom text yahan aayega]</p>
+            <button class="btn" onclick="nextStep(5)">Next ➡️</button>
+        </div>
+
+        <!-- Step 5 (Photo Slot) -->
+        <div class="step" id="step5">
+            <h1 class="dance-text">[Photo 2 Title]</h1>
+            <div class="photo-placeholder">📸 Photo 2 Slot</div>
+            <p>[Photo 2 Caption]</p>
+            <button class="btn" onclick="nextStep(6)">Next ➡️</button>
+        </div>
+
+        <!-- Step 6 (Travel Vibe Slot) -->
+        <div class="step" id="step6">
+            <h1 class="dance-text">[Travel Memory Title ✈️]</h1>
+            <p>[Travel Text - Aapka custom travel message]</p>
+            <button class="btn" onclick="nextStep(7)">Next ➡️</button>
+        </div>
+
+        <!-- Step 7 (Photo Slot) -->
+        <div class="step" id="step7">
+            <h1 class="dance-text">[Photo 3 Title]</h1>
+            <div class="photo-placeholder">📸 Photo 3 Slot</div>
+            <p>[Photo 3 Caption]</p>
+            <button class="btn" onclick="nextStep(8)">Next ➡️</button>
+        </div>
+
+        <!-- Step 8 -->
+        <div class="step" id="step8">
+            <h1 class="dance-text">[Step 8 Title]</h1>
+            <p>[Step 8 Message]</p>
+            <button class="btn" onclick="nextStep(9)">Next ➡️</button>
+        </div>
+
+        <!-- Step 9 -->
+        <div class="step" id="step9">
+            <h1 class="dance-text">[Secret Note Title 💌]</h1>
+            <p>[Secret Note Message]</p>
+            <button class="btn" onclick="nextStep(10)">Next ➡️</button>
+        </div>
+
+        <!-- Step 10 -->
+        <div class="step" id="step10">
+            <h1 class="dance-text">[Birthday Wish Title 🎉]</h1>
+            <p>[Birthday Wish Message]</p>
+            <button class="btn" onclick="nextStep(11)">Next ➡️</button>
+        </div>
+
+        <!-- Step 11 (Photo Slot) -->
+        <div class="step" id="step11">
+            <h1 class="dance-text">[Final Photo Title]</h1>
+            <div class="photo-placeholder">📸 Final Photo Slot</div>
+            <p>[Final Photo Caption]</p>
+            <button class="btn" onclick="nextStep(12)">Next ➡️</button>
+        </div>
+
+        <!-- Step 12 -->
+        <div class="step" id="step12">
+            <div class="heart-icon">🥳</div>
+            <h1 class="dance-text">[End Note Title]</h1>
+            <p>[Ending Message]</p>
+            <button class="btn" onclick="nextStep(1)">Replay 🔄</button>
+        </div>
+
+    </div>
+
+    <script>
+        function nextStep(stepNumber) {
+            let steps = document.querySelectorAll('.step');
+            steps.forEach(step => step.classList.remove('active'));
+            document.getElementById('step' + stepNumber).classList.add('active');
+        }
+
+        function toggleMusic() {
+            let music = document.getElementById('bgMusic');
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
+    </script>
+</body>
+</html>
 
