@@ -315,7 +315,7 @@
         .legs { position: absolute; top: 56px; left: 15px; width: 20px; height: 24px; border-left: 2px solid #ffffff; border-right: 2px solid #ffffff; transform: skewX(-5deg); }
         .char-label { font-size: 0.7rem; color: #ffb7d5; margin-top: 4px; font-weight: 500; }
 
-        /* CLOUD / BADAL STYLE THOUGHT STAGE */
+        /* CLOUD STAGE */
         .thought-stage-area {
             height: 150px;
             display: flex;
@@ -369,12 +369,12 @@
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* STEP 6: SCREEN RECORDER VIDEO FORMAT WITH SPIDER-VERSE WALLPAPER BACKGROUND & BUTTERFLIES */
+        /* STEP 6 VIDEO WRAPPER WITH USER'S IMAGE (12402.png) */
         .video-wrapper {
             position: relative;
             width: 100%;
             height: 420px;
-            background: url('bg2.jpg') no-repeat center center;
+            background: url('12402.png') no-repeat center center;
             background-size: cover;
             border-radius: 20px;
             border: 1px solid rgba(255, 183, 213, 0.4);
@@ -431,10 +431,8 @@
 </head>
 <body>
 
-    <!-- SONG REFERENCES -->
-    <audio id="bgMusic" src="boyfriend.mp3" loop preload="auto"></audio>
-    <audio id="sahibaAudio" src="sahiba.mp3" loop preload="auto"></audio>
-    <audio id="pherMilaDeRamAudio" src="phermiladeram.mp3" loop preload="auto"></audio>
+    <audio id="boyfriendAudio" src="boyfriend.mp3" loop preload="auto"></audio>
+    <audio id="forAReasonAudio" src="forareason.mp3" loop preload="auto"></audio>
     <audio id="blueAudio" src="blue.mp3" loop preload="auto"></audio>
 
     <div class="step-container">
@@ -442,7 +440,6 @@
 
         <div class="card-content">
 
-            <!-- STEP 1 -->
             <div class="card active" id="step1">
                 <p class="for-annu">For Annu 🎀</p>
                 <p class="hb-title">Happy Birthday</p>
@@ -453,10 +450,9 @@
                     <div class="grid-card"><span>✉️</span><p>Letters</p></div>
                     <div class="grid-card"><span>🎂</span><p>Celebrate</p></div>
                 </div>
-                <button class="glass-btn" onclick="nextStep(2, 'boyfriend')">Continue Our Memories ➔</button>
+                <button class="glass-btn" onclick="nextStep(2, 'blue')">Continue Our Memories ➔</button>
             </div>
 
-            <!-- STEP 2 -->
             <div class="card" id="step2">
                 <h1 class="hb-main-head">Special Day ❤️</h1>
                 <p class="romantic-paragraph">
@@ -465,10 +461,9 @@
                     aaj ke din focus karo bs<br>
                     it's your special day today i wanna make it special more ❤️
                 </p>
-                <button class="glass-btn" onclick="nextStep(3, 'sahiba')">Next Step ➔</button>
+                <button class="glass-btn" onclick="nextStep(3, 'boyfriend')">Next Step ➔</button>
             </div>
 
-            <!-- STEP 3 -->
             <div class="card" id="step3">
                 <p class="for-you-subhead">FOR YOU</p>
                 <h1 class="step3-title">Happy Birthday</h1>
@@ -482,13 +477,12 @@
                     <div class="wave-bar"></div>
                 </div>
 
-                <button class="glass-btn" onclick="nextStep(4, 'boyfriend')">
+                <button class="glass-btn" onclick="nextStep(4, 'blue')">
                     Let's see...<br>
                     <span style="font-size:0.75rem; font-style: italic; opacity:0.8;">how it all started.</span>
                 </button>
             </div>
 
-            <!-- STEP 4: LIVE CHAT -->
             <div class="card" id="step4">
                 <div class="chat-card-box">
                     <div class="chat-header">
@@ -518,7 +512,6 @@
                 <button class="glass-btn" onclick="nextStep(5, 'blue')">Next Memory ➔</button>
             </div>
 
-            <!-- STEP 5: CINEMATIC ALTERNATE THOUGHT SEQUENCE -->
             <div class="card" id="step5">
                 <div class="dream-wrapper">
                     <div class="dream-overlay"></div>
@@ -532,4 +525,11 @@
                         <div class="char-box left" id="charVinnu">
                             <div class="stick-figure">
                                 <div class="head"></div>
-                                
+                                <div class="body-line"></div>
+                                <div class="arms"></div>
+                                <div class="legs"></div>
+                            </div>
+                            <span class="char-label">Vinnu ✨</span>
+                        </div>
+
+                        <div class="char-box" 
