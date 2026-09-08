@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- =========================================================================
+       DOCUMENT META CONFIGURATION & EXTERNAL FONT IMPORTS
+       ========================================================================= -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Annika Jaatni! ✨</title>
+    
+    <!-- Preconnect to Google Fonts CDN for faster typography loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Importing Alex Brush, Cormorant Garamond, Poppins, and Great Vibes fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,500;1,400&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+    <!-- =========================================================================
+       COMPREHENSIVE STYLESHEET (EXPANDED FOR MAXIMUM DEPTH)
+       ========================================================================= -->
     <style>
+        /* 1. Global Box Sizing & Root Resets */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* 2. Body Core Styling & Viewport Alignment */
         body {
             background-color: #05020a;
             color: #ffffff;
@@ -26,6 +39,7 @@
             overflow-x: hidden;
         }
 
+        /* 3. Main Step Container & Background Configuration */
         .step-container {
             position: relative;
             width: 100%;
@@ -34,38 +48,42 @@
             border-radius: 28px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.95);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95);
             display: flex;
             align-items: center;
             justify-content: center;
             background: url('bg1.jpg') no-repeat center center;
             background-size: cover;
+            transition: background 0.5s ease-in-out;
         }
 
-        /* Step 5 and 6 specific background */
+        /* Alternate Background State for Later Steps */
         .step-container.bg-alt {
             background: url('bg2.jpg') no-repeat center center !important;
             background-size: cover !important;
         }
 
+        /* Darkening Overlay for Text Readability */
         .overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(8, 3, 20, 0.75);
+            background: rgba(8, 3, 20, 0.78);
             z-index: 1;
         }
 
+        /* Card Content Inner Wrapper */
         .card-content {
             position: relative;
             z-index: 2;
-            padding: 15px 12px;
+            padding: 20px 15px;
             width: 100%;
             text-align: center;
         }
 
+        /* Individual Card Visibility Control */
         .card {
             display: none;
             animation: fadeIn 0.8s ease-in-out forwards;
@@ -75,30 +93,136 @@
             display: block;
         }
 
-        .for-annu { font-family: 'Alex Brush', cursive; font-size: 2.2rem; color: #ffb7d5; }
-        .hb-title { font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; color: #d8c7ed; }
-        .name-annika { font-family: 'Alex Brush', cursive; font-size: 3.5rem; color: #ffffff; text-shadow: 0 0 15px rgba(255, 183, 213, 0.8); }
-        .tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: #e0d5f0; margin-bottom: 25px; }
-        .grid-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 25px; }
-        .grid-card { background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 10px 5px; }
-        .grid-card span { display: block; font-size: 1.1rem; }
-        .grid-card p { font-size: 0.7rem; color: #fff; }
-        .hb-main-head { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #ffffff; margin-bottom: 20px; }
-        .romantic-paragraph { font-size: 0.92rem; line-height: 1.65; color: #f1e8fc; font-weight: 300; margin-bottom: 18px; white-space: pre-line; }
+        /* 4. Typography & Headings Styling Blocks */
+        .for-annu { 
+            font-family: 'Alex Brush', cursive; 
+            font-size: 2.4rem; 
+            color: #ffb7d5; 
+            margin-bottom: 2px;
+        }
 
-        .for-you-subhead { font-size: 0.75rem; letter-spacing: 3px; color: #ffb7d5; text-transform: uppercase; margin-bottom: 8px; }
-        .step3-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: #ffffff; margin-bottom: 18px; }
-        .step3-text-box { font-size: 0.88rem; line-height: 1.6; color: #f1e8fc; font-weight: 300; text-align: center; margin-bottom: 20px; min-height: 180px; }
-        .step3-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.95rem; color: #e0d5f0; margin-top: 15px; margin-bottom: 20px; }
+        .hb-title { 
+            font-size: 0.95rem; 
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
+            color: #d8c7ed; 
+            margin-bottom: 5px;
+        }
 
+        .name-annika { 
+            font-family: 'Alex Brush', cursive; 
+            font-size: 3.8rem; 
+            color: #ffffff; 
+            text-shadow: 0 0 20px rgba(255, 183, 213, 0.84); 
+            margin-bottom: 10px;
+        }
+
+        .tagline { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-style: italic; 
+            font-size: 1.15rem; 
+            color: #e0d5f0; 
+            margin-bottom: 30px; 
+            padding: 0 10px;
+        }
+
+        /* 5. Grid Cards & Action Button Styles */
+        .grid-buttons { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 10px; 
+            margin-bottom: 30px; 
+        }
+
+        .grid-card { 
+            background: rgba(255, 255, 255, 0.08); 
+            border: 1px solid rgba(255, 255, 255, 0.18); 
+            border-radius: 14px; 
+            padding: 12px 6px; 
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease;
+        }
+
+        .grid-card:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        .grid-card span { 
+            display: block; 
+            font-size: 1.25rem; 
+            margin-bottom: 4px;
+        }
+
+        .grid-card p { 
+            font-size: 0.75rem; 
+            color: #fff; 
+            font-weight: 500;
+        }
+
+        .hb-main-head { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 2.4rem; 
+            color: #ffffff; 
+            margin-bottom: 22px; 
+            text-shadow: 0 0 12px rgba(255,255,255,0.3);
+        }
+
+        .romantic-paragraph { 
+            font-size: 0.95rem; 
+            line-height: 1.7; 
+            color: #f1e8fc; 
+            font-weight: 300; 
+            margin-bottom: 22px; 
+            white-space: pre-line; 
+            padding: 0 5px;
+        }
+
+        .for-you-subhead { 
+            font-size: 0.78rem; 
+            letter-spacing: 3px; 
+            color: #ffb7d5; 
+            text-transform: uppercase; 
+            margin-bottom: 6px; 
+        }
+
+        .step3-title { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: 2.6rem; 
+            color: #ffffff; 
+            margin-bottom: 15px; 
+        }
+
+        .step3-text-box { 
+            font-size: 0.9rem; 
+            line-height: 1.65; 
+            color: #f1e8fc; 
+            font-weight: 300; 
+            text-align: center; 
+            margin-bottom: 15px; 
+            min-height: 170px; 
+            padding: 0 5px;
+        }
+
+        .step3-quote { 
+            font-family: 'Cormorant Garamond', serif; 
+            font-style: italic; 
+            font-size: 1rem; 
+            color: #ffb7d5; 
+            margin-top: 10px; 
+            margin-bottom: 20px; 
+            min-height: 40px;
+        }
+
+        /* 6. Audio Waveform Visualizer Styles */
         .waveform-box {
             width: 100%;
-            height: 35px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 4px;
-            margin: 15px 0;
+            gap: 5px;
+            margin: 15px 0 25px 0;
         }
 
         .wave-bar {
@@ -108,93 +232,184 @@
             border-radius: 3px;
             animation: waveAnim 1.2s infinite ease-in-out alternate;
         }
-        .wave-bar:nth-child(2) { animation-delay: 0.2s; }
-        .wave-bar:nth-child(3) { animation-delay: 0.4s; }
-        .wave-bar:nth-child(4) { animation-delay: 0.1s; }
-        .wave-bar:nth-child(5) { animation-delay: 0.5s; }
+        .wave-bar:nth-child(1) { animation-delay: 0.1s; }
+        .wave-bar:nth-child(2) { animation-delay: 0.3s; }
+        .wave-bar:nth-child(3) { animation-delay: 0.5s; }
+        .wave-bar:nth-child(4) { animation-delay: 0.2s; }
+        .wave-bar:nth-child(5) { animation-delay: 0.4s; }
 
         @keyframes waveAnim {
             0% { height: 6px; opacity: 0.4; }
-            100% { height: 26px; opacity: 1; box-shadow: 0 0 10px #ff71ce; }
+            100% { height: 28px; opacity: 1; box-shadow: 0 0 12px #ff71ce; }
         }
 
+        /* 7. Chat Card & Message Bubble Styles */
         .chat-card-box {
-            background: rgba(18, 10, 32, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            padding: 12px 10px;
-            backdrop-filter: blur(12px);
+            background: rgba(18, 10, 32, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 22px;
+            padding: 14px 12px;
+            backdrop-filter: blur(14px);
             text-align: left;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
 
         .chat-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 8px;
-            margin-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            padding-bottom: 10px;
+            margin-bottom: 14px;
         }
 
-        .chat-profile { display: flex; align-items: center; gap: 10px; }
-        .profile-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); padding: 2px; display: flex; align-items: center; justify-content: center; }
-        .avatar-inner { width: 100%; height: 100%; background: #1a0933; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold; color: #ffb7d5; }
-        .chat-name { font-family: 'Great Vibes', cursive; font-size: 1.4rem; color: #ffffff; letter-spacing: 0.5px; }
-        .chat-status { font-size: 0.62rem; color: #ff71ce; display: block; margin-top: -3px; height: 14px; }
-        .chat-icons { display: flex; gap: 10px; font-size: 1rem; opacity: 0.8; }
+        .chat-profile { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+        }
+
+        .profile-avatar { 
+            width: 38px; 
+            height: 38px; 
+            border-radius: 50%; 
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); 
+            padding: 2px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+
+        .avatar-inner { 
+            width: 100%; 
+            height: 100%; 
+            background: #1a0933; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 0.85rem; 
+            font-weight: bold; 
+            color: #ffb7d5; 
+        }
+
+        .chat-name { 
+            font-family: 'Great Vibes', cursive; 
+            font-size: 1.5rem; 
+            color: #ffffff; 
+            letter-spacing: 0.5px; 
+        }
+
+        .chat-status { 
+            font-size: 0.65rem; 
+            color: #ff71ce; 
+            display: block; 
+            margin-top: -3px; 
+            height: 14px; 
+            font-weight: 500; 
+        }
+
+        .chat-icons { 
+            display: flex; 
+            gap: 12px; 
+            font-size: 1.05rem; 
+            opacity: 0.85; 
+        }
 
         .chat-messages-area {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            height: 380px;
+            gap: 10px;
+            height: 350px;
             overflow-y: auto;
-            padding-right: 4px;
+            padding-right: 6px;
         }
 
-        .chat-messages-area::-webkit-scrollbar { width: 4px; }
-        .chat-messages-area::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 4px; }
+        .chat-messages-area::-webkit-scrollbar { 
+            width: 4px; 
+        }
+
+        .chat-messages-area::-webkit-scrollbar-thumb { 
+            background: rgba(255, 255, 255, 0.25); 
+            border-radius: 4px; 
+        }
 
         .msg-bubble {
-            max-width: 82%;
-            padding: 8px 12px;
+            max-width: 84%;
+            padding: 9px 13px;
             border-radius: 16px;
-            font-size: 0.8rem;
-            line-height: 1.35;
+            font-size: 0.82rem;
+            line-height: 1.4;
             position: relative;
-            animation: popIn 0.3s ease-out forwards;
+            animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        .msg-left { align-self: flex-start; background: rgba(255, 255, 255, 0.12); color: #ffffff; border-bottom-left-radius: 4px; }
-        .msg-right { align-self: flex-end; background: linear-gradient(135deg, #7b2cbf 0%, #9d4edd 100%); color: #ffffff; border-bottom-right-radius: 4px; }
-        .msg-time { font-size: 0.58rem; opacity: 0.6; margin-top: 2px; display: block; text-align: right; }
+        .msg-left { 
+            align-self: flex-start; 
+            background: rgba(255, 255, 255, 0.12); 
+            color: #ffffff; 
+            border-bottom-left-radius: 4px; 
+        }
 
-        .typing-bubble { display: flex; align-items: center; gap: 4px; padding: 10px 14px; }
-        .dot { width: 6px; height: 6px; background: #ffb7d5; border-radius: 50%; animation: dotBlink 1.4s infinite ease-in-out; }
+        .msg-right { 
+            align-self: flex-end; 
+            background: linear-gradient(135deg, #7b2cbf 0%, #9d4edd 100%); 
+            color: #ffffff; 
+            border-bottom-right-radius: 4px; 
+            box-shadow: 0 4px 15px rgba(123, 44, 191, 0.4); 
+        }
+
+        .msg-time { 
+            font-size: 0.6rem; 
+            opacity: 0.65; 
+            margin-top: 3px; 
+            display: block; 
+            text-align: right; 
+        }
+
+        .typing-bubble { 
+            display: flex; 
+            align-items: center; 
+            gap: 4px; 
+            padding: 10px 14px; 
+        }
+
+        .dot { 
+            width: 6px; 
+            height: 6px; 
+            background: #ffb7d5; 
+            border-radius: 50%; 
+            animation: dotBlink 1.4s infinite ease-in-out; 
+        }
+
         .dot:nth-child(2) { animation-delay: 0.2s; }
         .dot:nth-child(3) { animation-delay: 0.4s; }
 
-        @keyframes dotBlink { 0%, 100% { transform: translateY(0); opacity: 0.4; } 50% { transform: translateY(-4px); opacity: 1; } }
+        @keyframes dotBlink { 
+            0%, 100% { transform: translateY(0); opacity: 0.4; } 
+            50% { transform: translateY(-4px); opacity: 1; } 
+        }
 
         .chat-input-fake {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             border-radius: 20px;
-            padding: 8px 12px;
-            font-size: 0.75rem;
+            padding: 9px 14px;
+            font-size: 0.78rem;
             color: #ffffff;
-            margin-top: 10px;
+            margin-top: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            min-height: 36px;
+            min-height: 38px;
         }
 
+        /* 8. Cinematic Dream & Stick Figures Styles */
         .dream-wrapper {
             position: relative;
             width: 100%;
-            height: 480px;
+            height: 460px;
             background: url('bg2.jpg') no-repeat center center;
             background-size: cover;
             border-radius: 20px;
@@ -204,8 +419,8 @@
             flex-direction: column;
             justify-content: space-between;
             padding: 15px 10px;
-            margin-bottom: 15px;
-            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.7);
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.75);
         }
 
         .dream-overlay {
@@ -214,7 +429,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 4, 20, 0.65);
+            background: rgba(10, 4, 20, 0.68);
             z-index: 1;
         }
 
@@ -224,27 +439,37 @@
         }
 
         .dream-subhead {
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             letter-spacing: 2px;
             color: #ffb7d5;
             text-transform: uppercase;
             text-align: center;
+            font-weight: 500;
         }
 
         .butterfly {
             position: absolute;
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             z-index: 3;
             animation: flyButterfly 4s infinite ease-in-out alternate;
-            filter: drop-shadow(0 0 5px #ff71ce);
+            filter: drop-shadow(0 0 6px #ff71ce);
         }
-        .butterfly.left-fly { left: 15px; top: 40%; }
-        .butterfly.right-fly { right: 15px; top: 40%; animation-delay: 2s; }
+
+        .butterfly.left-fly { 
+            left: 15px; 
+            top: 38%; 
+        }
+
+        .butterfly.right-fly { 
+            right: 15px; 
+            top: 38%; 
+            animation-delay: 2s; 
+        }
 
         @keyframes flyButterfly {
             0% { transform: translateY(0) rotate(0deg) scale(1); }
-            50% { transform: translateY(-15px) rotate(10deg) scale(1.1); }
-            100% { transform: translateY(5px) rotate(-10deg) scale(1); }
+            50% { transform: translateY(-16px) rotate(12deg) scale(1.12); }
+            100% { transform: translateY(6px) rotate(-10deg) scale(1); }
         }
 
         .characters-container {
@@ -260,14 +485,14 @@
             flex-direction: column;
             align-items: center;
             transition: all 0.5s ease;
-            opacity: 0.25;
+            opacity: 0.3;
             transform: scale(0.85);
         }
 
         .char-box.active-char {
             opacity: 1;
-            transform: scale(1.1);
-            filter: drop-shadow(0 0 15px rgba(255, 113, 206, 0.9));
+            transform: scale(1.12);
+            filter: drop-shadow(0 0 18px rgba(255, 113, 206, 0.9));
         }
 
         .stick-figure {
@@ -312,10 +537,40 @@
             color: #ffb7d5;
         }
 
-        .body-line { width: 2px; height: 28px; background: #ffffff; margin: 0 auto; }
-        .arms { width: 34px; height: 2px; background: #ffffff; position: absolute; top: 38px; left: 8px; border-radius: 2px; }
-        .legs { position: absolute; top: 56px; left: 15px; width: 20px; height: 24px; border-left: 2px solid #ffffff; border-right: 2px solid #ffffff; transform: skewX(-5deg); }
-        .char-label { font-size: 0.7rem; color: #ffb7d5; margin-top: 4px; font-weight: 500; }
+        .body-line { 
+            width: 2px; 
+            height: 28px; 
+            background: #ffffff; 
+            margin: 0 auto; 
+        }
+
+        .arms { 
+            width: 34px; 
+            height: 2px; 
+            background: #ffffff; 
+            position: absolute; 
+            top: 38px; 
+            left: 8px; 
+            border-radius: 2px; 
+        }
+
+        .legs { 
+            position: absolute; 
+            top: 56px; 
+            left: 15px; 
+            width: 20px; 
+            height: 24px; 
+            border-left: 2px solid #ffffff; 
+            border-right: 2px solid #ffffff; 
+            transform: skewX(-5deg); 
+        }
+
+        .char-label { 
+            font-size: 0.72rem; 
+            color: #ffb7d5; 
+            margin-top: 6px; 
+            font-weight: 500; 
+        }
 
         .thought-stage-area {
             height: 150px;
@@ -326,9 +581,9 @@
         }
 
         .cloud-bubble {
-            background: rgba(30, 15, 45, 0.9);
-            border: 1px solid rgba(255, 183, 213, 0.5);
-            backdrop-filter: blur(10px);
+            background: rgba(30, 15, 45, 0.92);
+            border: 1px solid rgba(255, 183, 213, 0.55);
+            backdrop-filter: blur(12px);
             border-radius: 24px;
             padding: 14px 18px;
             text-align: center;
@@ -347,22 +602,22 @@
             transform: translateX(-50%);
             border-left: 10px solid transparent;
             border-right: 10px solid transparent;
-            border-bottom: 10px solid rgba(255, 183, 213, 0.5);
+            border-bottom: 10px solid rgba(255, 183, 213, 0.55);
         }
 
         .cloud-author {
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             font-weight: 600;
             color: #ffb7d5;
-            margin-bottom: 4px;
+            margin-bottom: 5px;
             letter-spacing: 1px;
         }
 
         .cloud-text {
-            font-size: 0.82rem;
-            line-height: 1.45;
+            font-size: 0.85rem;
+            line-height: 1.5;
             color: #ffffff;
-            min-height: 45px;
+            min-height: 48px;
         }
 
         @keyframes cloudPop {
@@ -370,10 +625,11 @@
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
+        /* 9. Video Wrapper & Glass Button Elements */
         .video-wrapper {
             position: relative;
             width: 100%;
-            height: 420px;
+            height: 400px;
             background: url('bg2.jpg') no-repeat center center;
             background-size: cover;
             border-radius: 20px;
@@ -382,7 +638,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.8);
         }
 
@@ -392,7 +648,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 3, 20, 0.5);
+            background: rgba(10, 3, 20, 0.52);
             z-index: 1;
             border-radius: 20px;
         }
@@ -400,7 +656,7 @@
         .video-wrapper video {
             position: relative;
             z-index: 2;
-            width: 86%;
+            width: 88%;
             height: 90%;
             object-fit: cover;
             border-radius: 14px;
@@ -409,49 +665,88 @@
         }
 
         .glass-btn {
-            background: rgba(30, 15, 45, 0.7);
-            border: 1px solid rgba(255, 183, 213, 0.4);
+            background: rgba(30, 15, 45, 0.75);
+            border: 1px solid rgba(255, 183, 213, 0.45);
             color: #ffffff;
-            padding: 12px 24px;
-            font-size: 0.9rem;
+            padding: 13px 24px;
+            font-size: 0.92rem;
             border-radius: 30px;
             cursor: pointer;
-            backdrop-filter: blur(10px);
-            width: 85%;
+            backdrop-filter: blur(12px);
+            width: 88%;
             margin: 0 auto;
             display: block;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            font-weight: 500;
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        .glass-btn:hover {
+            background: rgba(50, 25, 75, 0.85);
+            transform: scale(1.02);
+            border-color: rgba(255, 183, 213, 0.8);
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(12px); } 
+            to { opaci        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(12px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        @keyframes popIn { 
+            from { opacity: 0; transform: scale(0.9); } 
+            to { opacity: 1; transform: scale(1); } 
+        }
     </style>
 </head>
 <body>
 
-    <!-- AUDIO FILES -->
+    <!-- =========================================================================
+       BACKGROUND AUDIO REPOSITORIES (PRELOADED)
+       ========================================================================= -->
     <audio id="boyfriendAudio" src="boyfriend.mp3" loop preload="auto"></audio>
     <audio id="forAReasonAudio" src="forareason.mp3" loop preload="auto"></audio>
     <audio id="blueAudio" src="blue.mp3" loop preload="auto"></audio>
 
+    <!-- =========================================================================
+       MAIN STEP CONTAINER & MULTI-CARD STRUCTURE
+       ========================================================================= -->
     <div class="step-container" id="mainContainer">
         <div class="overlay"></div>
 
         <div class="card-content">
 
-            <!-- STEP 1 -->
+            <!-- -----------------------------------------------------------------
+               STEP 1: WELCOME INTRO SCREEN
+               ----------------------------------------------------------------- -->
             <div class="card active" id="step1">
                 <p class="for-annu">For Annu 🎀</p>
                 <p class="hb-title">Happy Birthday</p>
                 <h1 class="name-annika">Annika Jaatni</h1>
                 <p class="tagline">Some stories are written by heart, yours is my favourite. ♡</p>
+                
                 <div class="grid-buttons">
-                    <div class="grid-card"><span>🖼️</span><p>Memories</p></div>
-                    <div class="grid-card"><span>✉️</span><p>Letters</p></div>
-                    <div class="grid-card"><span>🎂</span><p>Celebrate</p></div>
+                    <div class="grid-card">
+                        <span>🖼️</span>
+                        <p>Memories</p>
+                    </div>
+                    <div class="grid-card">
+                        <span>✉️</span>
+                        <p>Letters</p>
+                    </div>
+                    <div class="grid-card">
+                        <span>🎂</span>
+                        <p>Celebrate</p>
+                    </div>
                 </div>
+
                 <button class="glass-btn" onclick="nextStep(2, 'blue')">Continue Our Memories ➔</button>
             </div>
 
-            <!-- STEP 2 -->
+            <!-- -----------------------------------------------------------------
+               STEP 2: SPECIAL DAY WISHES SCREEN
+               ----------------------------------------------------------------- -->
             <div class="card" id="step2">
                 <h1 class="hb-main-head">Special Day ❤️</h1>
                 <p class="romantic-paragraph">
@@ -463,7 +758,9 @@
                 <button class="glass-btn" onclick="nextStep(3, 'boyfriend')">Next Step ➔</button>
             </div>
 
-            <!-- STEP 3 -->
+            <!-- -----------------------------------------------------------------
+               STEP 3: TYPEWRITER MEMORIES & QUOTES SCREEN
+               ----------------------------------------------------------------- -->
             <div class="card" id="step3">
                 <p class="for-you-subhead">FOR YOU</p>
                 <h1 class="step3-title">Happy Birthday</h1>
@@ -472,8 +769,10 @@
                 <div class="step3-quote" id="step3Quote"></div>
 
                 <div class="waveform-box">
-                    <div class="wave-bar"></div><div class="wave-bar"></div>
-                    <div class="wave-bar"></div><div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
                     <div class="wave-bar"></div>
                 </div>
 
@@ -483,7 +782,9 @@
                 </button>
             </div>
 
-            <!-- STEP 4 -->
+            <!-- -----------------------------------------------------------------
+               STEP 4: LIVE CHAT SIMULATION SCREEN
+               ----------------------------------------------------------------- -->
             <div class="card" id="step4">
                 <div class="chat-card-box">
                     <div class="chat-header">
@@ -513,7 +814,9 @@
                 <button class="glass-btn" onclick="nextStep(5, 'blue')">Next Memory ➔</button>
             </div>
 
-            <!-- STEP 5 -->
+            <!-- -----------------------------------------------------------------
+               STEP 5: CINEMATIC THOUGHTS STICK-FIGURES SCREEN
+               ----------------------------------------------------------------- -->
             <div class="card" id="step5">
                 <div class="dream-wrapper">
                     <div class="dream-overlay"></div>
@@ -531,4 +834,271 @@
                                 <div class="arms"></div>
                                 <div class="legs"></div>
                             </div>
-                  
+                            <span class="char-label">Vinnu ✨</span>
+                        </div>
+
+                        <div class="char-box" id="charAnnika">
+                            <div class="stick-figure">
+                                <div class="head"></div>
+                                <div class="body-line"></div>
+                                <div class="arms"></div>
+                                <div class="legs"></div>
+                            </div>
+                            <span class="char-label">Annika ji 🌸</span>
+                        </div>
+                    </div>
+
+                    <div class="thought-stage-area" id="thoughtStage"></div>
+                </div>
+
+                <button class="glass-btn" onclick="nextStep(6, 'forareason')">Continue to Video ➔</button>
+            </div>
+
+            <!-- -----------------------------------------------------------------
+               STEP 6: FINAL VIDEO RECORDING SCREEN
+               ----------------------------------------------------------------- -->
+            <div class="card" id="step6">
+                <h1 class="hb-main-head" style="font-size: 1.7rem; margin-bottom: 10px;">Our Special Recording ❤️</h1>
+                
+                <div class="video-wrapper">
+                    <div class="video-overlay"></div>
+                    <div class="butterfly left-fly">🦋</div>
+                    <div class="butterfly right-fly">🦋</div>
+                    
+                    <video id="screenVideo" src="recording.mp4" autoplay loop muted playsinline></video>
+                </div>
+
+                <p class="romantic-paragraph" style="font-size: 0.85rem; margin-bottom: 12px;">To be continued... ♾️</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- =========================================================================
+       JAVASCRIPT CONTROLLERS, ANIMATION LOGIC & EVENT HANDLERS
+       ========================================================================= -->
+    <script>
+        /* 1. Global Audio Management Function */
+        function stopAllAudio() {
+            var audioIds = ['boyfriendAudio', 'forAReasonAudio', 'blueAudio'];
+            audioIds.forEach(function(id) {
+                var audioElement = document.getElementById(id);
+                if (audioElement) {
+                    try {
+                        audioElement.pause();
+                        audioElement.currentTime = 0;
+                    } catch(err) {
+                        console.log("Audio reset error:", err);
+                    }
+                }
+            });
+        }
+
+        /* 2. Safe Audio Player Wrapper */
+        function playAudioSafely(audioId) {
+            stopAllAudio();
+            var audioElement = document.getElementById(audioId);
+            if (audioElement) {
+                var playPromise = audioElement.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(function(error) {
+                        console.log("Browser audio restriction caught:", error);
+                    });
+                }
+            }
+        }
+
+        /* 3. Core Step Navigation & Transition Engine */
+        function nextStep(stepNumber, songToPlay = null) {
+            if (songToPlay === 'boyfriend') {
+                playAudioSafely('boyfriendAudio');
+            } else if (songToPlay === 'forareason') {
+                playAudioSafely('forAReasonAudio');
+            } else if (songToPlay === 'blue') {
+                playAudioSafely('blueAudio');
+            } else {
+                stopAllAudio();
+            }
+
+            var allCards = document.querySelectorAll('.card');
+            allCards.forEach(function(card) {
+                card.classList.remove('active');
+            });
+
+            var targetCard = document.getElementById('step' + stepNumber);
+            if (targetCard) { 
+                targetCard.classList.add('active'); 
+            }
+
+            var mainContainer = document.getElementById('mainContainer');
+            if (stepNumber === 5 || stepNumber === 6) {
+                mainContainer.classList.add('bg-alt');
+            } else {
+                mainContainer.classList.remove('bg-alt');
+            }
+
+            if (stepNumber === 3) { startStep3Typewriter(); }
+            if (stepNumber === 4) { startLiveChatAnimation(); }
+            if (stepNumber === 5) { startThoughtSequence(); }
+            if (stepNumber === 6) {
+                var videoElem = document.getElementById('screenVideo');
+                if (videoElem) {
+                    videoElem.play().catch(function(e) { console.log("Video error:", e); });
+                }
+            }
+        }
+
+        const step3Message = "Sep 10 2022 just a single hi 😭🎀\nI can't forget it kitni phat rahi thi uske baad se lekar abtak hmari itni baate hogyi itne high lows aagye 🫶🫢\n\nbut still 😂 mujhe pehli wish abhi tak yaad hai ♾️🥰 20 sep my sweet annu turns 15 hayee 😭💕\n\nChaliye fir aage dekhte hmari visual representations stranger se jaan tak banne ki 😋🌹";
+        const step3QuoteText = "situation decides that memory blushes dilati h ya ansu 👁️👁️😭 .";
+
+        let step3ExecutionLock = false;
+        async function startStep3Typewriter() {
+            if (step3ExecutionLock) return;
+            step3ExecutionLock = true;
+            const textBox = document.getElementById('step3Text');
+            const quoteBox = document.getElementById('step3Quote');
+            if (textBox) textBox.innerText = '';
+            if (quoteBox) quoteBox.innerText = '';
+
+            for (let i = 0; i <= step3Message.length; i++) {
+                if (textBox) textBox.innerText = step3Message.substring(0, i);
+                await delay(25);
+            }
+            await delay(300);
+            for (let j = 0; j <= step3QuoteText.length; j++) {
+                if (quoteBox) quoteBox.innerText = step3QuoteText.substring(0, j);
+                await delay(30);
+            }
+        }
+
+        const chatData = [
+            { sender: 'left', text: 'Good morning shweety 🌸', time: '15:44' },
+            { sender: 'left', text: 'Radhey Radhey 🙏💖', time: '15:44' },
+            { sender: 'right', text: 'Good morning mere alloo k parathey 😭❤️', time: '15:44' },
+            { sender: 'left', text: 'Uthgye tumm? Chaii piyoge? ☕🥺', time: '15:44' },
+            { sender: 'right', text: '😋 Ha aapke hatho se cutie', time: '15:45' },
+            { sender: 'right', text: 'har cheez ek time pe achi lagti 💕😭 ek aap ho hmesha achi lagti', time: '15:45' },
+            { sender: 'left', text: '😂💕 jhalla hi ho bilkul aap', time: '15:46' },
+            { sender: 'right', text: 'haa apke liye 😂😭', time: '15:46' }
+        ];
+
+        let chatExecutionLock = false;
+        async function startLiveChatAnimation() {
+            if (chatExecutionLock) return;
+            chatExecutionLock = true;
+            const chatContainer = document.getElementById('chatContainer');
+            const chatStatus = document.getElementById('chatStatus');
+            const inputBoxText = document.getElementById('inputBoxText');
+            if (chatContainer) chatContainer.innerHTML = '';
+
+            for (let i = 0; i < chatData.length; i++) {
+                const messageObj = chatData[i];
+                if (messageObj.sender === 'left') {
+                    if (chatStatus) chatStatus.innerText = 'typing...';
+                    let typingBubble = createTypingIndicator();
+                    if (chatContainer) {
+                        chatContainer.appendChild(typingBubble);
+                        scrollToBottom(chatContainer);
+                    }
+                    await delay(1600);
+                    typingBubble.remove();
+                    if (chatStatus) chatStatus.innerText = 'online';
+                    if (chatContainer) {
+                        appendMessage(chatContainer, messageObj.sender, messageObj.text, messageObj.time);
+                        scrollToBottom(chatContainer);
+                    }
+                    await delay(1000);
+                } else {
+                    if (inputBoxText) {
+                        inputBoxText.style.opacity = '1';
+                        inputBoxText.style.color = '#ffffff';
+                    }
+                    for (let charIndex = 0; charIndex <= messageObj.text.length; charIndex++) {
+                        if (inputBoxText) inputBoxText.innerText = messageObj.text.substring(0, charIndex);
+                        await delay(35);
+                    }
+                    await delay(400);
+                    if (inputBoxText) {
+                        inputBoxText.innerText = 'Message...';
+                        inputBoxText.style.opacity = '0.6';
+                    }
+                    if (chatContainer) {
+                        appendMessage(chatContainer, messageObj.sender, messageObj.text, messageObj.time);
+                        scrollToBottom(chatContainer);
+                    }
+                    await delay(1200);
+                }
+            }
+        }
+
+        function createTypingIndicator() {
+            const bubbleDiv = document.createElement('div');
+            bubbleDiv.className = 'msg-bubble msg-left typing-bubble';
+            bubbleDiv.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+            return bubbleDiv;
+        }
+
+        function appendMessage(container, senderType, contentText, timestamp) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `msg-bubble msg-${senderType}`;
+            messageDiv.innerHTML = `${contentText}<span class="msg-time">${timestamp}</span>`;
+            container.appendChild(messageDiv);
+        }
+
+        const thoughtsSequence = [
+            { speaker: 'vinnu', author: 'Vinnu ✨', text: 'yaar ye annika kitna pyari hai 😭kitni achi baate krti' },
+            { speaker: 'annika', author: 'Annika ji 🌸', text: 'yaar ye vinnu kash ye mere paas abhi jind me hota miss krti ho bada 🥲💓' },
+            { speaker: 'vinnu', author: 'Vinnu ✨', text: 'isko toh hmesha khush rakhunga sbse protect rakhunga galat ladko se 😭😂aur khud se bhi' },
+            { speaker: 'annika', author: 'Annika ji 🌸', text: '😭ye ekdam jhala hi hai yaar butterflies le aata hai' },
+            { speaker: 'vinnu', author: 'Vinnu ✨', text: 'anyways love her  🥰🫶' }
+        ];
+
+        let thoughtExecutionLock = false;
+        async function startThoughtSequence() {
+            if (thoughtExecutionLock) return;
+            thoughtExecutionLock = true;
+            const thoughtStage = document.getElementById('thoughtStage');
+            const charVinnu = document.getElementById('charVinnu');
+            const charAnnika = document.getElementById('charAnnika');
+            if (thoughtStage) thoughtStage.innerHTML = '';
+
+            for (let i = 0; i < thoughtsSequence.length; i++) {
+                const thoughtObj = thoughtsSequence[i];
+                if (thoughtObj.speaker === 'vinnu') {
+                    if (charVinnu) charVinnu.classList.add('active-char');
+                    if (charAnnika) charAnnika.classList.remove('active-char');
+                } else {
+                    if (charAnnika) charAnnika.classList.add('active-char');
+                    if (charVinnu) charVinnu.classList.remove('active-char');
+                }
+                const cloudElem = document.createElement('div');
+                cloudElem.className = 'cloud-bubble';
+                cloudElem.innerHTML = `<div class="cloud-author">💭 ${thoughtObj.author}</div><div class="cloud-text" id="cloudText_${i}"></div>`;
+                if (thoughtStage) {
+                    thoughtStage.innerHTML = '';
+                    thoughtStage.appendChild(cloudElem);
+                }
+                const textTarget = document.getElementById(`cloudText_${i}`);
+                const dialogue = thoughtObj.text;
+                for (let c = 0; c <= dialogue.length; c++) {
+                    if (textTarget) textTarget.innerText = dialogue.substring(0, c);
+                    await delay(30);
+                }
+                await delay(1500);
+            }
+        }
+
+        function scrollToBottom(scrollableContainer) {
+            if (scrollableContainer) {
+                scrollableContainer.scrollTop = scrollableContainer.scrollHeight;
+            }
+        }
+
+        function delay(milliseconds) {
+            return new Promise(function(resolve) {
+                setTimeout(resolve, milliseconds);
+            });
+        }
+    </script>
+</body>
+</html>
