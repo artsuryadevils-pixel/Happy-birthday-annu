@@ -15,7 +15,7 @@
         }
 
         body {
-            background-color: #06020e;
+            background-color: #05020a;
             color: #ffffff;
             font-family: 'Poppins', sans-serif;
             min-height: 100vh;
@@ -38,19 +38,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #0d0618;
-        }
-
-        /* --- CUTE GARDEN NIGHT BACKGROUND SVG --- */
-        .garden-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            opacity: 0.35;
-            pointer-events: none;
+            background: 
+                radial-gradient(circle at 80% 12%, rgba(255, 255, 255, 0.8) 0px, rgba(255, 255, 255, 0.15) 18px, transparent 20px),
+                linear-gradient(to bottom, rgba(8, 3, 20, 0.75), rgba(15, 6, 32, 0.9)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 800"><g fill="%232e124d" opacity="0.4"><circle cx="50" cy="650" r="100"/><circle cx="180" cy="670" r="120"/><circle cx="350" cy="640" r="110"/><circle cx="480" cy="680" r="90"/></g><g fill="%23130624"><circle cx="100" cy="720" r="120"/><circle cx="280" cy="710" r="140"/><circle cx="420" cy="730" r="110"/></g><path d="M220,680 Q225,640 235,640 Q245,640 250,680 Z" fill="%234a2175"/><circle cx="230" cy="630" r="8" fill="%234a2175"/><circle cx="242" cy="633" r="7" fill="%234a2175"/></svg>');
+            background-size: cover, cover, cover;
+            background-position: center;
         }
 
         .overlay {
@@ -59,13 +52,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at center, rgba(13, 6, 24, 0.4) 0%, rgba(6, 2, 14, 0.85) 100%);
-            z-index: 2;
+            background: rgba(8, 3, 20, 0.45);
+            z-index: 1;
         }
 
         .card-content {
             position: relative;
-            z-index: 3;
+            z-index: 2;
             padding: 25px 20px;
             width: 100%;
             text-align: center;
@@ -80,7 +73,54 @@
             display: block;
         }
 
-        /* TOP MUSIC BADGE */
+        .for-annu {
+            font-family: 'Alex Brush', cursive;
+            font-size: 2.2rem;
+            color: #ffb7d5;
+            margin-bottom: 5px;
+        }
+
+        .hb-title {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #d8c7ed;
+        }
+
+        .name-annika {
+            font-family: 'Alex Brush', cursive;
+            font-size: 3.5rem;
+            color: #ffffff;
+            text-shadow: 0 0 15px rgba(255, 183, 213, 0.8);
+            margin: -5px 0 10px 0;
+        }
+
+        .tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #e0d5f0;
+            margin-bottom: 25px;
+        }
+
+        .grid-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 25px;
+        }
+
+        .grid-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 10px 5px;
+            backdrop-filter: blur(5px);
+        }
+
+        .grid-card span { display: block; font-size: 1.1rem; }
+        .grid-card p { font-size: 0.7rem; color: #fff; }
+
         .top-badge-container {
             display: flex;
             justify-content: space-between;
@@ -96,23 +136,6 @@
             margin: 0 auto;
         }
 
-        .music-btn-icon {
-            position: absolute;
-            right: 20px;
-            top: 20px;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            border: 1px solid rgba(255, 105, 180, 0.5);
-            background: rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 12px rgba(255, 105, 180, 0.3);
-            cursor: pointer;
-        }
-
-        /* HEADER FONTS */
         .hb-main-head {
             font-family: 'Cormorant Garamond', serif;
             font-size: 2.2rem;
@@ -132,15 +155,6 @@
             white-space: pre-line;
         }
 
-        .italic-quote {
-            font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 1.05rem;
-            color: #d2b3f3;
-            margin-bottom: 25px;
-        }
-
-        /* SOUND WAVE VISUALIZER EFFECT */
         .waveform-box {
             width: 100%;
             height: 35px;
@@ -148,7 +162,7 @@
             align-items: center;
             justify-content: center;
             gap: 4px;
-            margin: 20px 0 30px 0;
+            margin: 20px 0 25px 0;
         }
 
         .wave-bar {
@@ -170,10 +184,9 @@
             100% { height: 28px; opacity: 1; box-shadow: 0 0 10px #ff71ce; }
         }
 
-        /* GLASSMORPHIC ACTION BUTTON */
         .glass-btn {
-            background: rgba(30, 15, 45, 0.65);
-            border: 1px solid rgba(255, 183, 213, 0.35);
+            background: rgba(30, 15, 45, 0.7);
+            border: 1px solid rgba(255, 183, 213, 0.4);
             color: #ffffff;
             padding: 14px 28px;
             font-size: 0.95rem;
@@ -187,12 +200,6 @@
             display: block;
         }
 
-        .glass-btn:hover {
-            border-color: rgba(255, 183, 213, 0.8);
-            box-shadow: 0 0 20px rgba(255, 113, 206, 0.4);
-            transform: translateY(-2px);
-        }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
@@ -201,38 +208,45 @@
 </head>
 <body>
 
-    <!-- BACKGROUND AUDIO: SAHIBA SONG -->
+    <audio id="bgMusic" src="boyfriend.mp3" loop></audio>
     <audio id="sahibaAudio" src="sahiba.mp3" loop></audio>
 
     <div class="step-container" id="mainContainer">
-
-        <!-- CUTE NIGHT GARDEN WITH COUPLE SVG -->
-        <svg class="garden-bg" viewBox="0 0 400 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="200" cy="100" r="35" fill="#fff" opacity="0.15"/>
-            <circle cx="180" cy="90" r="30" fill="#0d0618"/>
-            <g fill="#ffffff" opacity="0.6">
-                <circle cx="50" cy="80" r="1.5"/><circle cx="120" cy="40" r="1"/>
-                <circle cx="320" cy="120" r="1.5"/><circle cx="280" cy="50" r="2"/>
-                <circle cx="90" cy="180" r="1"/>
-            </g>
-            <!-- Garden Flowers & Grass Silhouette -->
-            <path d="M0,600 Q100,580 200,600 T400,600 L400,700 L0,700 Z" fill="#180b2e"/>
-            <path d="M0,630 Q150,610 300,640 T400,620 L400,700 L0,700 Z" fill="#090312"/>
-            <!-- Couple Sitting Together Silhouette -->
-            <path d="M180,620 C180,600 195,595 200,610 C205,595 220,600 220,620 Z" fill="#2d164d"/>
-            <circle cx="193" cy="593" r="6" fill="#2d164d"/>
-            <circle cx="207" cy="595" r="5.5" fill="#2d164d"/>
-        </svg>
-
         <div class="overlay"></div>
 
         <div class="card-content">
+            <!-- STEP 1 -->
+            <div class="card active" id="step1">
+                <p class="for-annu">For Annu 🎀</p>
+                <p class="hb-title">Happy Birthday</p>
+                <h1 class="name-annika">Annika Jaatni</h1>
+                <p class="tagline">Some stories are written by heart, yours is my favourite. ♡</p>
 
-            <!-- STEP 3 (PAGE 3 - EXACT NEW SCREENSHOT CONTENT) -->
-            <div class="card active" id="step3">
+                <div class="grid-buttons">
+                    <div class="grid-card"><span>🖼️</span><p>Memories</p></div>
+                    <div class="grid-card"><span>✉️</span><p>Letters</p></div>
+                    <div class="grid-card"><span>🎂</span><p>Celebrate</p></div>
+                </div>
+
+                <button class="glass-btn" onclick="nextStep(2, true)">Continue Our Memories ➔</button>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="card" id="step2">
+                <h1 class="hb-main-head">Special Day ❤️</h1>
+                <p class="romantic-paragraph">
+                    annu 😋 it's your birthday today<br><br>
+                    Pehle Jo hua sb bhul jao 🫶<br>
+                    aaj ke din focus karo bs<br>
+                    it's your special day today i wanna make it special more ❤️
+                </p>
+                <button class="glass-btn" onclick="nextStep(3, false, true)">Next Step ➔</button>
+            </div>
+
+            <!-- STEP 3 (AAPKA NAYA TEXT + SAHIBA SONG) -->
+            <div class="card" id="step3">
                 <div class="top-badge-container">
                     <p class="for-you-title">FOR YOU</p>
-                    <div class="music-btn-icon" onclick="playSahiba()">🎵</div>
                 </div>
 
                 <h1 class="hb-main-head">Happy Birthday</h1>
@@ -244,46 +258,41 @@
                     Chaliye fir aage dekhte hmari visual representations stranger se jaan tak banne ki 😋🌹
                 </p>
 
-                <!-- AUDIO WAVEFORM ANIMATION -->
                 <div class="waveform-box">
                     <div class="wave-bar"></div><div class="wave-bar"></div>
                     <div class="wave-bar"></div><div class="wave-bar"></div>
                     <div class="wave-bar"></div><div class="wave-bar"></div>
                 </div>
 
-                <!-- FRENCH BUTTON LABEL -->
                 <button class="glass-btn" onclick="nextStep(4)">
                     Tu es prête ? ➔<br>
                     <span style="font-size:0.75rem; opacity:0.8;">(Let's see how it all started)</span>
                 </button>
             </div>
 
-            <!-- STEP 4 (PLACEHOLDER FOR NEXT PAGE) -->
+            <!-- STEP 4 -->
             <div class="card" id="step4">
                 <h1 class="hb-main-head">Step 4</h1>
-                <p class="romantic-paragraph">Next page coming up next... ✨</p>
+                <p class="romantic-paragraph">Next memory coming soon... ✨</p>
             </div>
-
         </div>
     </div>
 
     <script>
-        // PLAY SAHIBA SONG
-        function playSahiba() {
-            var sahiba = document.getElementById('sahibaAudio');
-            if (sahiba) {
-                sahiba.play().catch(function(e) {
-                    console.log("Audio play issue: ", e);
-                });
+        function nextStep(stepNumber, playBoyfriend = false, playSahiba = false) {
+            if (playBoyfriend) {
+                var boyfriendAudio = document.getElementById('bgMusic');
+                if (boyfriendAudio) { boyfriendAudio.play().catch(function(e) {}); }
             }
-        }
 
-        // AUTO PLAY SONG ON LOAD
-        window.addEventListener('DOMContentLoaded', (event) => {
-            playSahiba();
-        });
+            if (playSahiba) {
+                var boyfriendAudio = document.getElementById('bgMusic');
+                if (boyfriendAudio) { boyfriendAudio.pause(); } // Stop previous song
+                
+                var sahibaAudio = document.getElementById('sahibaAudio');
+                if (sahibaAudio) { sahibaAudio.play().catch(function(e) {}); }
+            }
 
-        function nextStep(stepNumber) {
             document.querySelectorAll('.card').forEach(function(card) {
                 card.classList.remove('active');
             });
