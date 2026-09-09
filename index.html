@@ -1128,65 +1128,420 @@
         My cute sweetheart
     </div>
 </div>
+<!-- ================= STEP 7 ================= -->
+<section id="step7" class="step7">
+
+  <!-- Background cat -->
+  <video class="cat-bg" autoplay muted loop playsinline>
+    <source src="cat.mp4" type="video/mp4">
+  </video>
+
+  <!-- Music -->
+  <audio id="sahibaMusic" loop>
+    <source src="sahiba.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Title -->
+  <div id="step7Title" class="step7-title">
+    My Favourite Day 😋🎀
+  </div>
+
+  <!-- Chat -->
+  <div class="chat-box">
+
+    <div class="chat-header">
+      <div class="profile-pic">A</div>
+      <div>
+        <div class="chat-name">annika</div>
+        <div class="online"><span></span> Online</div>
+      </div>
+    </div>
+
+    <div id="messages" class="messages"></div>
+
+  </div>
+
+  <!-- Last message -->
+  <div id="finalLove" class="final-love">
+    Hayye meri Trisha 🥹🎀
+  </div>
+
+</section>
+
+
+<style>
+/* ================= STEP 7 STYLE ================= */
+
+.step7 {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #d90063;
+  font-family: Arial, sans-serif;
+  display: none;
+}
+
+/* Cat video */
+.cat-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.28;
+}
+
+/* Pink overlay */
+.step7::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(220, 0, 95, 0.48);
+  z-index: 1;
+}
+
+/* Title */
+.step7-title {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 28px 15px 15px;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  text-shadow: 0 3px 10px rgba(0,0,0,.35);
+}
+
+/* Chat */
+.chat-box {
+  position: relative;
+  z-index: 3;
+  width: min(94%, 500px);
+  height: 68vh;
+  margin: 10px auto;
+  border-radius: 25px;
+  overflow: hidden;
+  background: rgba(255, 20, 130, 0.62);
+  backdrop-filter: blur(7px);
+  box-shadow: 0 15px 40px rgba(80,0,35,.35);
+}
+
+/* Header */
+.chat-header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 18px;
+  background: rgba(185, 0, 75, .88);
+  color: white;
+}
+
+.profile-pic {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #ff75b9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 22px;
+  border: 2px solid white;
+}
+
+.chat-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.online {
+  font-size: 13px;
+  color: #baffd0;
+}
+
+.online span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #25e875;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+/* Messages */
+.messages {
+  height: calc(100% - 70px);
+  overflow-y: auto;
+  padding: 18px 13px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  scroll-behavior: smooth;
+}
+
+/* Bubble */
+.message-wrap {
+  display: flex;
+  flex-direction: column;
+  max-width: 85%;
+}
+
+.message-wrap.me {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.message-wrap.her {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.message {
+  padding: 12px 15px;
+  border-radius: 19px;
+  color: white;
+  font-size: 16px;
+  line-height: 1.35;
+  box-shadow: 0 3px 10px rgba(80,0,30,.18);
+}
+
+.me .message {
+  background: #ed1990;
+  border-bottom-right-radius: 5px;
+}
+
+.her .message {
+  background: #8e003e;
+  border-bottom-left-radius: 5px;
+}
+
+.seen {
+  color: white;
+  font-size: 11px;
+  margin-top: 3px;
+  opacity: .9;
+}
+
+/* Final */
+.final-love {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 18px;
+  display: none;
+  animation: pop .8s ease;
+  text-shadow: 0 3px 12px rgba(0,0,0,.35);
+}
+
+@keyframes pop {
+  from {
+    transform: scale(.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+</style>
+
 
 <script>
-function runChatSequence() {
-    const chatBox = document.getElementById("chat-messages");
-    const statusText = document.getElementById("contact-status");
-    const statusDot = document.getElementById("status-dot");
+/* ================= STEP 7 CHAT ================= */
 
-    if (!chatBox || chatBox.dataset.loaded === "true") return;
-    chatBox.dataset.loaded = "true";
+const step7 = document.getElementById("step7");
+const messagesBox = document.getElementById("messages");
+const finalLove = document.getElementById("finalLove");
+const music = document.getElementById("sahibaMusic");
 
-    const conversation = [
-        { sender: "user", text: "Aree aree areeee 🥰 theenkss a lottt cutiee 💖" },
-        { sender: "annika", text: "Bhagwan apki bhi har wishes puri kare 😉❤️ birday ho ya na ho😂" },
-        { sender: "user", text: "Thenk againn dearr 😘frr ✨" },
-        { sender: "annika", text: "Andd good morning 🥹😊" }
-    ];
+/*
+   Messages taken from your screen recording.
+   "me" = your messages
+   "her" = Annika's messages
+*/
 
-    let messageIndex = 0;
+const chatMessages = [
 
-    function typeMessage(speaker, text, callback) {
-        const msgDiv = document.createElement("div");
-        msgDiv.className = speaker === "user" ? "msg-bubble msg-right" : "msg-bubble msg-left";
-        chatBox.appendChild(msgDiv);
-        
-        let charIndex = 0;
-        function typingInterval() {
-            if (charIndex < text.length) {
-                msgDiv.textContent += text.charAt(charIndex);
-                charIndex++;
-                chatBox.scrollTop = chatBox.scrollHeight;
-                setTimeout(typingInterval, 40);
-            } else {
-                if (callback) callback();
-            }
-        }
-        typingInterval();
-    }
+  // YOUR MESSAGES
+  {
+    from: "me",
+    text: "Wlcm wlcm 🌚✨"
+  },
 
-    function processNextMessage() {
-        if (messageIndex < conversation.length) {
-            let current = conversation[messageIndex];
-            
-            if (current.sender === "annika" && messageIndex > 0 && conversation[messageIndex - 1].sender === "user") {
-                setTimeout(() => {
-                    if (statusText) statusText.textContent = "Seen just now";
-                    if (statusDot) {
-                        statusDot.style.background = "#888";
-                        statusDot.style.boxShadow = "none";
-                    }
-                }, 1000);
-            }
+  {
+    from: "me",
+    text: "Kya baat kya baat hai 🙈🙈😌😌💗 thnks thnks"
+  },
 
-            typeMessage(current.sender, current.text, () => {
-                messageIndex++;
-                setTimeout(processNextMessage, 800);
-            });
-        }
-    }
+  {
+    from: "me",
+    text: "Applicable for u also 🙂👍😌"
+  },
 
-    setTimeout(processNextMessage, 1000);
+  {
+    from: "me",
+    text: "And good afternoon 😸😸"
+  },
+
+  {
+    from: "me",
+    text: "Lol aage ki wishes ab 😭"
+  },
+
+  {
+    from: "me",
+    text: "First of all 😸 kal ka jo paper hai wo aacha jae"
+  },
+
+  {
+    from: "me",
+    text: "And the biggest thing You will Archive your dreams into real 😭💗💗✨✨✨✨✨ ie 🤭 apse aacha kaun hi Jaan skta hai 😐😂"
+  },
+
+  {
+    from: "me",
+    text: "Kya matlab ye sirf bday ki wishes nahi hai all time wishes Bday ho chahe nah ho 😂🎉🙂❤️"
+  },
+
+  {
+    from: "me",
+    text: "Aur kya hi bolu 🙂😐✨ chalo jab aaogi tab yaad dila Dena"
+  },
+
+  {
+    from: "me",
+    text: "Tab tak ke liye bye bye tata Take care 💞✨✨ And enjoy your a very special day for u today 🙂"
+  },
+
+  {
+    from: "me",
+    text: "Padhte rahiye machate rahiye 😸"
+  },
+
+
+  // ANNIKA'S MESSAGES
+  {
+    from: "her",
+    text: "Are are areeee 😂 theenkss a lottt cutiee ❤️"
+  },
+
+  {
+    from: "her",
+    text: "Bhagwan apki bhi har wishes puri kare 😌❤️ birthday ho ya na ho 😂"
+  },
+
+  {
+    from: "her",
+    text: "Thenk againn dearr 😌🌹✨"
+  },
+
+  {
+    from: "her",
+    text: "Andd good morning 🙃😂"
+  },
+
+  {
+    from: "her",
+    text: "Bhagwan apki bhi har wishes puri kare 😌❤️ birthday ho ya na ho 😂"
+  },
+
+  {
+    from: "her",
+    text: "Abi tak jitne logo ne wish kiya h unse jada wish to aap akele he kardiya 😂❤️✨\n\nPar jitna wish kiya uskaa liya sirf thanks bolna bhot he kaam h ......aap he btaiyaa kya boluu ki apki sari wish ka reply ho jaye 😂\nFir bhi thaaaaankss alott dearr vinayak yaduvanshi ❤️ may god bless you toooo 💖✨"
+  }
+
+];
+
+let messageIndex = 0;
+
+
+/* Show Step 7 */
+function startStep7() {
+
+  step7.style.display = "block";
+
+  // Start Sahiba
+  music.currentTime = 0;
+  music.play().catch(() => {
+    document.addEventListener("click", () => {
+      music.play();
+    }, { once: true });
+  });
+
+  messageIndex = 0;
+  messagesBox.innerHTML = "";
+  finalLove.style.display = "none";
+
+  typeNextMessage();
 }
+
+
+/* Type one message at a time */
+function typeNextMessage() {
+
+  if (messageIndex >= chatMessages.length) {
+
+    setTimeout(() => {
+      finalLove.style.display = "block";
+    }, 1200);
+
+    return;
+  }
+
+  const data = chatMessages[messageIndex];
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "message-wrap " + data.from;
+
+  const bubble = document.createElement("div");
+  bubble.className = "message";
+
+  wrapper.appendChild(bubble);
+  messagesBox.appendChild(wrapper);
+
+  let i = 0;
+
+  function typing() {
+
+    if (i < data.text.length) {
+
+      bubble.textContent += data.text.charAt(i);
+      i++;
+
+      messagesBox.scrollTop = messagesBox.scrollHeight;
+
+      setTimeout(typing, 35);
+
+    } else {
+
+      /*
+        Har tumhare message ke baad
+        "Seen just now" dikhega.
+      */
+
+      if (data.from === "me") {
+
+        const seen = document.createElement("div");
+        seen.className = "seen";
+        seen.textContent = "Seen just now";
+
+        wrapper.appendChild(seen);
+      }
+
+      messageIndex++;
+
+      // Next message thoda pause ke baad
+      setTimeout(typeNextMessage, 900);
+    }
+  }
+
+  typing();
+
+
 </script>
