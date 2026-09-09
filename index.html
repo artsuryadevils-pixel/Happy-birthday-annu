@@ -688,8 +688,8 @@
         }
 
         @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(12px); }
-        to { opaci            @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(12px); } 
+            to { opaci@keyframes fadeIn { 
             from { opacity: 0; transform: translateY(12px); } 
             to { opacity: 1; transform: translateY(0); } 
         }
@@ -857,7 +857,77 @@
             <!-- -----------------------------------------------------------------
                STEP 6: FINAL VIDEO RECORDING SCREEN
                ----------------------------------------------------------------- -->
-            <div class="classList.add('active'); 
+            <div class="card" id="step6">
+                <h1 class="hb-main-head" style="font-size: 1.7rem; margin-bottom: 10px;">Our Special Recording ❤️</h1>
+                
+                <div class="video-wrapper">
+                    <div class="video-overlay"></div>
+                    <div class="butterfly left-fly">🦋</div>
+                    <div class="butterfly right-fly">🦋</div>
+                    
+                    <video id="screenVideo" src="recording.mp4" autoplay loop muted playsinline></video>
+                </div>
+
+                <p class="romantic-paragraph" style="font-size: 0.85rem; margin-bottom: 12px;">To be continued... ♾️</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- =========================================================================
+       JAVASCRIPT CONTROLLERS, ANIMATION LOGIC & EVENT HANDLERS
+       ========================================================================= -->
+    <script>
+        /* 1. Global Audio Management Function */
+        function stopAllAudio() {
+            var audioIds = ['boyfriendAudio', 'forAReasonAudio', 'blueAudio'];
+            audioIds.forEach(function(id) {
+                var audioElement = document.getElementById(id);
+                if (audioElement) {
+                    try {
+                        audioElement.pause();
+                        audioElement.currentTime = 0;
+                    } catch(err) {
+                        console.log("Audio reset error:", err);
+                    }
+                }
+            });
+        }
+
+        /* 2. Safe Audio Player Wrapper */
+        function playAudioSafely(audioId) {
+            stopAllAudio();
+            var audioElement = document.getElementById(audioId);
+            if (audioElement) {
+                var playPromise = audioElement.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(function(error) {
+                        console.log("Browser audio restriction caught:", error);
+                    });
+                }
+            }
+        }
+
+        /* 3. Core Step Navigation & Transition Engine */
+        function nextStep(stepNumber, songToPlay = null) {
+            if (songToPlay === 'boyfriend') {
+                playAudioSafely('boyfriendAudio');
+            } else if (songToPlay === 'forareason') {
+                playAudioSafely('forAReasonAudio');
+            } else if (songToPlay === 'blue') {
+                playAudioSafely('blueAudio');
+            } else {
+                stopAllAudio();
+            }
+
+            var allCards = document.querySelectorAll('.card');
+            allCards.forEach(function(card) {
+                card.classList.remove('active');
+            });
+
+            var targetCard = document.getElementById('step' + stepNumber);
+            if (targetCard) { 
+                targetCard.classList.add('active'); 
             }
 
             var mainContainer = document.getElementById('mainContainer');
@@ -878,7 +948,146 @@
             }
         }
 
-        const step3Message = "Sep 
+        const step3Message = "Sep 10 2022 just a single hi 😭🎀\nI can't forget it kitni phat rahi thi uske baad se lekar abtak hmari itni baate hogyi itne high lows aagye 🫶🫢\n\nbut still 😂 mujhe pehli wish abhi tak yaad hai ♾️🥰 20 sep my sweet annu turns 15 hayee 😭💕\n\nChaliye fir aage dekhte hmari visual representations stranger se jaan tak banne ki 😋🌹";
+        const step3QuoteText = "situation decides that memory blushes dilati h ya ansu 👁️👁️😭 .";
+
+        let step3ExecutionLock = false;
+        async function startStep3Typewriter() {
+            if (step3ExecutionLock) return;
+            step3ExecutionLock = true;
+            const textBox = document.getElementById('step3Text');
+            const quoteBox = document.getElementById('step3Quote');
+            if (textBox) textBox.innerText = '';
+            if (quoteBox) quoteBox.innerText = '';
+
+            for (let i = 0; i <= step3Message.length; i++) {
+                if (textBox) textBox.innerText = step3Message.substring(0, i);
+                await delay(25);
+            }
+            await delay(300);
+            for (let j = 0; j <= step3QuoteText.length; j++) {
+                if (quoteBox) quoteBox.innerText = step3QuoteText.substring(0, j);
+                await delay(30);
+            }
+        }
+
+        const chatData = [
+            { sender: 'left', text: 'Good morning shweety 🌸', time: '15:44' },
+            { sender: 'left', text: 'Radhey Radhey 🙏💖', time: '15:44' },
+            { sender: 'right', text: 'Good morning mere alloo k parathey 😭❤️', time: '15:44' },
+            { sender: 'left', text: 'Uthgye tumm? Chaii piyoge? ☕🥺', time: '15:44' },
+            { sender: 'right', text: '😋 Ha aapke hatho se cutie', time: '15:45' },
+            { sender: 'right', text: 'har cheez ek time pe achi lagti 💕😭 ek aap ho hmesha achi lagti', time: '15:45' },
+            { sender: 'left', text: '😂💕 jhalla hi ho bilkul aap', time: '15:46' },
+            { sender: 'right', text: 'haa apke liye 😂😭', time: '15:46' }
+        ];
+
+        let chatExecutionLock = false;
+        async function startLiveChatAnimation() {
+            if (chatExecutionLock) return;
+            chatExecutionLock = true;
+            const chatContainer = document.getElementById('chatContainer');
+            const chatStatus = document.getElementById('chatStatus');
+            const inputBoxText = document.getElementById('inputBoxText');
+            if (chatContainer) chatContainer.innerHTML = '';
+
+            for (let i = 0; i < chatData.length; i++) {
+                const messageObj = chatData[i];
+                if (messageObj.sender === 'left') {
+                    if (chatStatus) chatStatus.innerText = 'typing...';
+                    let typingBubble = createTypingIndicator();
+                    if (chatContainer) {
+                        chatContainer.appendChild(typingBubble);
+                        scrollToBottom(chatContainer);
+                    }
+                    await delay(1600);
+                    typingBubble.remove();
+                    if (chatStatus) chatStatus.innerText = 'online';
+                    if (chatContainer) {
+                        appendMessage(chatContainer, messageObj.sender, messageObj.text, messageObj.time);
+                        scrollToBottom(chatContainer);
+                    }
+                    await delay(1000);
+                } else {
+                    if (inputBoxText) {
+                        inputBoxText.style.opacity = '1';
+                        inputBoxText.style.color = '#ffffff';
+                    }
+                    for (let charIndex = 0; charIndex <= messageObj.text.length; charIndex++) {
+                        if (inputBoxText) inputBoxText.innerText = messageObj.text.substring(0, charIndex);
+                        await delay(35);
+                    }
+                    await delay(400);
+                    if (inputBoxText) {
+                        inputBoxText.innerText = 'Message...';
+                        inputBoxText.style.opacity = '0.6';
+                    }
+                    if (chatContainer) {
+                        appendMessage(chatContainer, messageObj.sender, messageObj.text, messageObj.time);
+                        scrollToBottom(chatContainer);
+                    }
+                    await delay(1200);
+                }
+            }
+        }
+
+        function createTypingIndicator() {
+            const bubbleDiv = document.createElement('div');
+            bubbleDiv.className = 'msg-bubble msg-left typing-bubble';
+            bubbleDiv.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+            return bubbleDiv;
+        }
+
+        function appendMessage(container, senderType, contentText, timestamp) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `msg-bubble msg-${senderType}`;
+            messageDiv.innerHTML = `${contentText}<span class="msg-time">${timestamp}</span>`;
+            container.appendChild(messageDiv);
+        }
+
+        const thoughtsSequence = [
+            { speaker: 'vinnu', author: 'Vinnu ✨', text: 'yaar ye annika kitna pyari hai 😭kitni achi baate krti' },
+            { speaker: 'annika', author: 'Annika ji 🌸', text: 'yaar ye vinnu kash ye mere paas abhi jind me hota miss krti ho bada 🥲💓' },
+            { speaker: 'vinnu', author: 'Vinnu ✨', text: 'isko toh hmesha khush rakhunga sbse protect rakhunga galat ladko se 😭😂aur khud se bhi' },
+            { speaker: 'annika', author: 'Annika ji 🌸', text: '😭ye ekdam jhala hi hai yaar butterflies le aata hai' },
+            { speaker: 'vinnu', author: 'Vinnu ✨', text: 'anyways love her  🥰🫶' }
+        ];
+
+        let thoughtExecutionLock = false;
+        async function startThoughtSequence() {
+            if (thoughtExecutionLock) return;
+            thoughtExecutionLock = true;
+            const thoughtStage = document.getElementById('thoughtStage');
+            const charVinnu = document.getElementById('charVinnu');
+            const charAnnika = document.getElementById('charAnnika');
+            if (thoughtStage) thoughtStage.innerHTML = '';
+
+            for (let i = 0; i < thoughtsSequence.length; i++) {
+                const thoughtObj = thoughtsSequence[i];
+                if (thoughtObj.speaker === 'vinnu') {
+                    if (charVinnu) charVinnu.classList.add('active-char');
+                    if (charAnnika) charAnnika.classList.remove('active-char');
+                } else {
+                    if (charAnnika) charAnnika.classList.add('active-char');
+                    if (charVinnu) charVinnu.classList.remove('active-char');
+                }
+                const cloudElem = document.createElement('div');
+                cloudElem.className = 'cloud-bubble';
+                cloudElem.innerHTML = `<div class="cloud-author">💭 ${thoughtObj.author}</div><div class="cloud-text" id="cloudText_${i}"></div>`;
+                if (thoughtStage) {
+                    thoughtStage.innerHTML = '';
+                    thoughtStage.appendChild(cloudElem);
+                }
+                const textTarget = document.getElementById(`cloudText_${i}`);
+                const dialogue = thoughtObj.text;
+                for (let c = 0; c <= dialogue.length; c++) {
+                    if (textTarget) textTarget.innerText = dialogue.substring(0, c);
+                    await delay(30);
+                }
+                await delay(1500);
+            }
+        }
+
         function scrollToBottom(scrollableContainer) {
             if (scrollableContainer) {
                 scrollableContainer.scrollTop = scrollableContainer.scrollHeight;
@@ -891,261 +1100,5 @@
             });
         }
     </script>
-<!-- =========================================================
-     STEP 6 — CUTIE JI
-     ========================================================= -->
-
-<div class="card" id="step6">
-
-    <div style="
-        min-height:430px;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-        gap:35px;
-    ">
-
-        <!-- Chhota sa aadmi -->
-        <div style="
-            position:relative;
-            width:90px;
-            height:150px;
-            animation:littleMan 2s ease-in-out infinite;
-        ">
-
-            <!-- Head -->
-            <div style="
-                width:52px;
-                height:52px;
-                border:3px solid #ffb7d5;
-                border-radius:50%;
-                margin:auto;
-                display:flex;
-                align-items:center;
-                justify-content:center;
-                font-size:24px;
-                background:rgba(255,255,255,0.08);
-                box-shadow:0 0 25px rgba(255,113,206,0.7);
-            ">
-                🙂
-            </div>
-
-            <!-- Body -->
-            <div style="
-                position:absolute;
-                width:4px;
-                height:55px;
-                background:white;
-                left:43px;
-                top:52px;
-                border-radius:5px;
-            "></div>
-
-            <!-- Arms -->
-            <div style="
-                position:absolute;
-                width:45px;
-                height:4px;
-                background:white;
-                left:2px;
-                top:75px;
-                transform:rotate(25deg);
-                border-radius:5px;
-            "></div>
-
-            <div style="
-                position:absolute;
-                width:45px;
-                height:4px;
-                background:white;
-                right:2px;
-                top:75px;
-                transform:rotate(-25deg);
-                border-radius:5px;
-            "></div>
-
-            <!-- Legs -->
-            <div style="
-                position:absolute;
-                width:4px;
-                height:50px;
-                background:white;
-                left:30px;
-                top:103px;
-                transform:rotate(18deg);
-                border-radius:5px;
-            "></div>
-
-            <div style="
-                position:absolute;
-                width:4px;
-                height:50px;
-                background:white;
-                right:30px;
-                top:103px;
-                transform:rotate(-18deg);
-                border-radius:5px;
-            "></div>
-
-        </div>
-
-
-        <!-- Dialogue -->
-        <div style="
-            width:90%;
-            max-width:350px;
-            padding:20px;
-            border-radius:25px;
-            background:rgba(255,183,213,0.14);
-            border:1px solid rgba(255,183,213,0.65);
-            color:white;
-            text-align:center;
-            font-size:1rem;
-            line-height:1.7;
-            backdrop-filter:blur(12px);
-            box-shadow:0 10px 30px rgba(0,0,0,0.5);
-        ">
-
-            🎀<br>
-
-            Cutie ji abhi kaha ja rahi ho? 😭💗<br>
-
-            <b>Ruko ruko... 🥺</b>
-
-        </div>
-
-    </div>
-
-
-    <!-- STEP 7 PAR JAANE KA BUTTON -->
-    <button
-        class="glass-btn"
-        onclick="nextStep(7, 'sahiba')"
-    >
-        Ruko... ek aur cheez hai 😋🎀
-    </button>
-
-</div>
-
-
-<style>
-
-@keyframes littleMan {
-
-    0%,100% {
-        transform:translateY(0);
-    }
-
-    50% {
-        transform:translateY(-9px);
-    }
-
-}
-
-</style>
-
-<!-- =========================================================
-     STEP 7 — LAST LITTLE MESSAGE 🎀
-     ========================================================= -->
-
-<div class="card" id="step7">
-
-    <div style="
-        min-height:430px;
-        width:100%;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-        text-align:center;
-        gap:22px;
-        animation:popIn 0.8s ease;
-    ">
-
-        <div style="
-            font-size:3.5rem;
-            animation:heartBeat 1.5s ease-in-out infinite;
-        ">
-            🎀💗
-        </div>
-
-        <p style="
-            margin:0;
-            font-size:0.75rem;
-            letter-spacing:4px;
-            color:#ffb7d5;
-        ">
-            ONE LAST THING
-        </p>
-
-        <h1 style="
-            margin:0;
-            font-size:2rem;
-            color:white;
-            text-shadow:0 0 20px rgba(255,113,206,0.8);
-        ">
-            Ruko ruko... 🥺
-        </h1>
-
-        <div style="
-            width:88%;
-            max-width:360px;
-            padding:25px 20px;
-            border-radius:28px;
-            background:rgba(255,255,255,0.08);
-            border:1px solid rgba(255,183,213,0.5);
-            backdrop-filter:blur(15px);
-            box-shadow:0 10px 35px rgba(0,0,0,0.35);
-        ">
-
-            <p style="
-                margin:0;
-                color:white;
-                font-size:1rem;
-                line-height:1.8;
-            ">
-                Bas itna yaad rakhna... 🥹💗
-                <br><br>
-                <span style="color:#ffb7d5;">
-                    Tumhara birthday mere liye
-                    hamesha special rahega. 🎂✨
-                </span>
-                <br><br>
-                Stay happy, stay blessed
-                aur hamesha smile karte rehna. 🫶🎀
-            </p>
-
-        </div>
-
-        <p style="
-            margin:0;
-            font-size:0.85rem;
-            color:rgba(255,255,255,0.7);
-            font-style:italic;
-        ">
-            — Vinnu ❤️
-        </p>
-
-    </div>
-
-</div>
-
-
-<style>
-
-@keyframes heartBeat {
-
-    0%,100% {
-        transform:scale(1);
-    }
-
-    50% {
-        transform:scale(1.12);
-    }
-
-}
-
-</style>
 </body>
-            </html>
+</html>
