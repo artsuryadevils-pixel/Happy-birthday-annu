@@ -1102,3 +1102,91 @@
     </script>
 </body>
 </html>
+<!-- Step 7: Complete Chat Card & Script (Ise Step 6 ke turant baad paste karein) -->
+<div class="card" id="step7Card">
+    <div style="font-size: 24px; font-weight: bold; margin-bottom: 5px; color: #ff71ce;">😋🎀</div>
+    <div style="font-size: 20px; font-weight: 600; color: #ffb7d5; margin-bottom: 15px; letter-spacing: 0.5px;">My favourite day</div>
+    
+    <div class="chat-card-box" style="background: rgba(18, 10, 32, 0.92); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 22px; padding: 14px 12px; backdrop-filter: blur(14px); text-align: left; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+        <div class="chat-header" style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255, 255, 255, 0.12); padding-bottom: 10px; margin-bottom: 14px;">
+            <div class="chat-profile" style="display: flex; align-items: center; gap: 10px;">
+                <div class="profile-avatar" style="width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); padding: 2px; display: flex; align-items: center; justify-content: center;">
+                    <div class="avatar-inner" style="width: 100%; height: 100%; background: #1a0933; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: bold; color: #ffb7d5;">A</div>
+                </div>
+                <div>
+                    <div class="chat-name" style="font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: bold; color: #ffffff;">Annika</div>
+                    <div class="chat-status" id="contact-status" style="font-size: 0.65rem; color: #ff71ce; display: block; margin-top: -3px; font-weight: 500;">online</div>
+                </div>
+            </div>
+            <div style="width: 10px; height: 10px; background-color: #ff71ce; border-radius: 50%; box-shadow: 0 0 8px #ff71ce;" id="status-dot"></div>
+        </div>
+
+        <div class="chat-messages-area" id="chat-messages" style="display: flex; flex-direction: column; gap: 10px; height: 350px; overflow-y: auto; padding-right: 6px;"></div>
+    </div>
+
+    <div style="font-size: 14px; font-weight: 500; color: #ff71ce; margin-top: 15px; letter-spacing: 1px; text-shadow: 0 0 10px rgba(255,113,206,0.4);">
+        My cute sweetheart
+    </div>
+</div>
+
+<script>
+function runChatSequence() {
+    const chatBox = document.getElementById("chat-messages");
+    const statusText = document.getElementById("contact-status");
+    const statusDot = document.getElementById("status-dot");
+
+    if (!chatBox || chatBox.dataset.loaded === "true") return;
+    chatBox.dataset.loaded = "true";
+
+    const conversation = [
+        { sender: "user", text: "Aree aree areeee 🥰 theenkss a lottt cutiee 💖" },
+        { sender: "annika", text: "Bhagwan apki bhi har wishes puri kare 😉❤️ birday ho ya na ho😂" },
+        { sender: "user", text: "Thenk againn dearr 😘frr ✨" },
+        { sender: "annika", text: "Andd good morning 🥹😊" }
+    ];
+
+    let messageIndex = 0;
+
+    function typeMessage(speaker, text, callback) {
+        const msgDiv = document.createElement("div");
+        msgDiv.className = speaker === "user" ? "msg-bubble msg-right" : "msg-bubble msg-left";
+        chatBox.appendChild(msgDiv);
+        
+        let charIndex = 0;
+        function typingInterval() {
+            if (charIndex < text.length) {
+                msgDiv.textContent += text.charAt(charIndex);
+                charIndex++;
+                chatBox.scrollTop = chatBox.scrollHeight;
+                setTimeout(typingInterval, 40);
+            } else {
+                if (callback) callback();
+            }
+        }
+        typingInterval();
+    }
+
+    function processNextMessage() {
+        if (messageIndex < conversation.length) {
+            let current = conversation[messageIndex];
+            
+            if (current.sender === "annika" && messageIndex > 0 && conversation[messageIndex - 1].sender === "user") {
+                setTimeout(() => {
+                    if (statusText) statusText.textContent = "Seen just now";
+                    if (statusDot) {
+                        statusDot.style.background = "#888";
+                        statusDot.style.boxShadow = "none";
+                    }
+                }, 1000);
+            }
+
+            typeMessage(current.sender, current.text, () => {
+                messageIndex++;
+                setTimeout(processNextMessage, 800);
+            });
+        }
+    }
+
+    setTimeout(processNextMessage, 1000);
+}
+</script>
