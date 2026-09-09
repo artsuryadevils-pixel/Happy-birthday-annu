@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- =========================================================================
+       DOCUMENT META CONFIGURATION & EXTERNAL FONT IMPORTS
+       ========================================================================= -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday Annika Jaatni! ✨</title>
     
+    <!-- Preconnect to Google Fonts CDN for faster typography loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Importing Alex Brush, Cormorant Garamond, Poppins, and Great Vibes fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,500;1,400&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
 
+    <!-- =========================================================================
+       COMPREHENSIVE STYLESHEET (EXPANDED FOR MAXIMUM DEPTH)
+       ========================================================================= -->
     <style>
+        /* 1. Global Box Sizing & Root Resets */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* 2. Body Core Styling & Viewport Alignment */
         body {
             background-color: #05020a;
             color: #ffffff;
@@ -28,6 +39,7 @@
             overflow-x: hidden;
         }
 
+        /* 3. Main Step Container & Background Configuration */
         .step-container {
             position: relative;
             width: 100%;
@@ -45,11 +57,13 @@
             transition: background 0.5s ease-in-out;
         }
 
+        /* Alternate Background State for Later Steps */
         .step-container.bg-alt {
             background: url('bg2.jpg') no-repeat center center !important;
             background-size: cover !important;
         }
 
+        /* Darkening Overlay for Text Readability */
         .overlay {
             position: absolute;
             top: 0;
@@ -60,6 +74,7 @@
             z-index: 1;
         }
 
+        /* Card Content Inner Wrapper */
         .card-content {
             position: relative;
             z-index: 2;
@@ -68,6 +83,7 @@
             text-align: center;
         }
 
+        /* Individual Card Visibility Control */
         .card {
             display: none;
             animation: fadeIn 0.8s ease-in-out forwards;
@@ -77,6 +93,7 @@
             display: block;
         }
 
+        /* 4. Typography & Headings Styling Blocks */
         .for-annu { 
             font-family: 'Alex Brush', cursive; 
             font-size: 2.4rem; 
@@ -109,6 +126,7 @@
             padding: 0 10px;
         }
 
+        /* 5. Grid Cards & Action Button Styles */
         .grid-buttons { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
@@ -196,6 +214,7 @@
             min-height: 40px;
         }
 
+        /* 6. Audio Waveform Visualizer Styles */
         .waveform-box {
             width: 100%;
             height: 40px;
@@ -224,6 +243,7 @@
             100% { height: 28px; opacity: 1; box-shadow: 0 0 12px #ff71ce; }
         }
 
+        /* 7. Chat Card & Message Bubble Styles */
         .chat-card-box {
             background: rgba(18, 10, 32, 0.92);
             border: 1px solid rgba(255, 255, 255, 0.18);
@@ -290,6 +310,13 @@
             font-weight: 500; 
         }
 
+        .chat-icons { 
+            display: flex; 
+            gap: 12px; 
+            font-size: 1.05rem; 
+            opacity: 0.85; 
+        }
+
         .chat-messages-area {
             display: flex;
             flex-direction: column;
@@ -299,6 +326,15 @@
             padding-right: 6px;
         }
 
+        .chat-messages-area::-webkit-scrollbar { 
+            width: 4px; 
+        }
+
+        .chat-messages-area::-webkit-scrollbar-thumb { 
+            background: rgba(255, 255, 255, 0.25); 
+            border-radius: 4px; 
+        }
+
         .msg-bubble {
             max-width: 84%;
             padding: 9px 13px;
@@ -306,6 +342,7 @@
             font-size: 0.82rem;
             line-height: 1.4;
             position: relative;
+            animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
         .msg-left { 
@@ -321,6 +358,310 @@
             color: #ffffff; 
             border-bottom-right-radius: 4px; 
             box-shadow: 0 4px 15px rgba(123, 44, 191, 0.4); 
+        }
+
+        .msg-time { 
+            font-size: 0.6rem; 
+            opacity: 0.65; 
+            margin-top: 3px; 
+            display: block; 
+            text-align: right; 
+        }
+
+        .typing-bubble { 
+            display: flex; 
+            align-items: center; 
+            gap: 4px; 
+            padding: 10px 14px; 
+        }
+
+        .dot { 
+            width: 6px; 
+            height: 6px; 
+            background: #ffb7d5; 
+            border-radius: 50%; 
+            animation: dotBlink 1.4s infinite ease-in-out; 
+        }
+
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes dotBlink { 
+            0%, 100% { transform: translateY(0); opacity: 0.4; } 
+            50% { transform: translateY(-4px); opacity: 1; } 
+        }
+
+        .chat-input-fake {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 20px;
+            padding: 9px 14px;
+            font-size: 0.78rem;
+            color: #ffffff;
+            margin-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 38px;
+        }
+
+        /* 8. Cinematic Dream & Stick Figures Styles */
+        .dream-wrapper {
+            position: relative;
+            width: 100%;
+            height: 460px;
+            background: url('bg2.jpg') no-repeat center center;
+            background-size: cover;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 15px 10px;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.75);
+        }
+
+        .dream-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 4, 20, 0.68);
+            z-index: 1;
+        }
+
+        .dream-subhead, .characters-container, .thought-stage-area {
+            position: relative;
+            z-index: 2;
+        }
+
+        .dream-subhead {
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            color: #ffb7d5;
+            text-transform: uppercase;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .butterfly {
+            position: absolute;
+            font-size: 1.25rem;
+            z-index: 3;
+            animation: flyButterfly 4s infinite ease-in-out alternate;
+            filter: drop-shadow(0 0 6px #ff71ce);
+        }
+
+        .butterfly.left-fly { 
+            left: 15px; 
+            top: 38%; 
+        }
+
+        .butterfly.right-fly { 
+            right: 15px; 
+            top: 38%; 
+            animation-delay: 2s; 
+        }
+
+        @keyframes flyButterfly {
+            0% { transform: translateY(0) rotate(0deg) scale(1); }
+            50% { transform: translateY(-16px) rotate(12deg) scale(1.12); }
+            100% { transform: translateY(6px) rotate(-10deg) scale(1); }
+        }
+
+        .characters-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            width: 100%;
+            padding: 0 15px;
+        }
+
+        .char-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.5s ease;
+            opacity: 0.3;
+            transform: scale(0.85);
+        }
+
+        .char-box.active-char {
+            opacity: 1;
+            transform: scale(1.12);
+            filter: drop-shadow(0 0 18px rgba(255, 113, 206, 0.9));
+        }
+
+        .stick-figure {
+            width: 50px;
+            height: 90px;
+            position: relative;
+        }
+
+        .head {
+            width: 28px;
+            height: 28px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            margin: 0 auto;
+            position: relative;
+            background: #0d0618;
+            box-shadow: 0 0 10px rgba(255, 183, 213, 0.5);
+        }
+
+        .head::before {
+            content: '• •';
+            position: absolute;
+            top: 3px;
+            left: 6px;
+            font-size: 9px;
+            color: #ffffff;
+        }
+
+        .head::after {
+            content: '‿';
+            position: absolute;
+            bottom: 2px;
+            left: 9px;
+            font-size: 10px;
+            color: #ff71ce;
+        }
+
+        .char-box.left .head::before {
+            content: '✿ • •';
+            font-size: 8px;
+            left: 1px;
+            color: #ffb7d5;
+        }
+
+        .body-line { 
+            width: 2px; 
+            height: 28px; 
+            background: #ffffff; 
+            margin: 0 auto; 
+        }
+
+        .arms { 
+            width: 34px; 
+            height: 2px; 
+            background: #ffffff; 
+            position: absolute; 
+            top: 38px; 
+            left: 8px; 
+            border-radius: 2px; 
+        }
+
+        .legs { 
+            position: absolute; 
+            top: 56px; 
+            left: 15px; 
+            width: 20px; 
+            height: 24px; 
+            border-left: 2px solid #ffffff; 
+            border-right: 2px solid #ffffff; 
+            transform: skewX(-5deg); 
+        }
+
+        .char-label { 
+            font-size: 0.72rem; 
+            color: #ffb7d5; 
+            margin-top: 6px; 
+            font-weight: 500; 
+        }
+
+        .thought-stage-area {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+        }
+
+        .cloud-bubble {
+            background: rgba(30, 15, 45, 0.92);
+            border: 1px solid rgba(255, 183, 213, 0.55);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            padding: 14px 18px;
+            text-align: center;
+            width: 100%;
+            max-width: 360px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+            animation: cloudPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            position: relative;
+        }
+
+        .cloud-bubble::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid rgba(255, 183, 213, 0.55);
+        }
+
+        .cloud-author {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #ffb7d5;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .cloud-text {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #ffffff;
+            min-height: 48px;
+        }
+
+        @keyframes cloudPop {
+            0% { opacity: 0; transform: scale(0.7) translateY(10px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* 9. Video Wrapper & Glass Button Elements */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: url('bg2.jpg') no-repeat center center;
+            background-size: cover;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 183, 213, 0.4);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 3, 20, 0.52);
+            z-index: 1;
+            border-radius: 20px;
+        }
+
+        .video-wrapper video {
+            position: relative;
+            z-index: 2;
+            width: 88%;
+            height: 90%;
+            object-fit: cover;
+            border-radius: 14px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.9);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .glass-btn {
@@ -347,54 +688,86 @@
         }
 
         @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(12px); }
+        to { opaci            @keyframes fadeIn { 
             from { opacity: 0; transform: translateY(12px); } 
             to { opacity: 1; transform: translateY(0); } 
         }
+
+        @keyframes popIn { 
+            from { opacity: 0; transform: scale(0.9); } 
+            to { opacity: 1; transform: scale(1); } 
+        }
     </style>
 </head>
-    <body>
-    <div class="step-container" id="stepContainer">
+<body>
+
+    <!-- =========================================================================
+       BACKGROUND AUDIO REPOSITORIES (PRELOADED)
+       ========================================================================= -->
+    <audio id="boyfriendAudio" src="boyfriend.mp3" loop preload="auto"></audio>
+    <audio id="forAReasonAudio" src="forareason.mp3" loop preload="auto"></audio>
+    <audio id="blueAudio" src="blue.mp3" loop preload="auto"></audio>
+
+    <!-- =========================================================================
+       MAIN STEP CONTAINER & MULTI-CARD STRUCTURE
+       ========================================================================= -->
+    <div class="step-container" id="mainContainer">
         <div class="overlay"></div>
+
         <div class="card-content">
-            
-            <!-- Step 1: Greeting Card -->
-            <div class="card active" id="step1Card">
-                <div class="for-annu">For My Special One</div>
-                <div class="hb-title">Happy Birthday</div>
-                <div class="name-annika">Annika</div>
-                <div class="tagline">"You are the most precious chapter of my life."</div>
+
+            <!-- -----------------------------------------------------------------
+               STEP 1: WELCOME INTRO SCREEN
+               ----------------------------------------------------------------- -->
+            <div class="card active" id="step1">
+                <p class="for-annu">For Annu 🎀</p>
+                <p class="hb-title">Happy Birthday</p>
+                <h1 class="name-annika">Annika Jaatni</h1>
+                <p class="tagline">Some stories are written by heart, yours is my favourite. ♡</p>
                 
                 <div class="grid-buttons">
                     <div class="grid-card">
-                        <span>💖</span>
-                        <p>Love</p>
+                        <span>🖼️</span>
+                        <p>Memories</p>
                     </div>
                     <div class="grid-card">
-                        <span>✨</span>
-                        <p>Magic</p>
+                        <span>✉️</span>
+                        <p>Letters</p>
                     </div>
                     <div class="grid-card">
-                        <span>🌹</span>
-                        <p>Forever</p>
+                        <span>🎂</span>
+                        <p>Celebrate</p>
                     </div>
                 </div>
-                <button class="glass-btn" onclick="nextStep(2)">Tap to Continue ✨</button>
+
+                <button class="glass-btn" onclick="nextStep(2, 'blue')">Continue Our Memories ➔</button>
             </div>
 
-            <!-- Step 2: Romantic Paragraph Card -->
-            <div class="card" id="step2Card">
-                <div class="for-you-subhead">A Little Note</div>
-                <h2 class="hb-main-head">Dearest Annika</h2>
-                <div class="romantic-paragraph">
-                    On this special day, I just want to remind you how much joy you bring into my world. Your smile lights up everything around you, and every moment spent with you feels like magic.
-                </div>
-                <button class="glass-btn" onclick="nextStep(3)">Next Memory 🤍</button>
+            <!-- -----------------------------------------------------------------
+               STEP 2: SPECIAL DAY WISHES SCREEN
+               ----------------------------------------------------------------- -->
+            <div class="card" id="step2">
+                <h1 class="hb-main-head">Special Day ❤️</h1>
+                <p class="romantic-paragraph">
+                    annu 😋 it's your birthday today<br><br>
+                    Pehle Jo hua sb bhul jao 🫶<br>
+                    aaj ke din focus karo bs<br>
+                    it's your special day today i wanna make it special more ❤️
+                </p>
+                <button class="glass-btn" onclick="nextStep(3, 'boyfriend')">Next Step ➔</button>
             </div>
 
-            <!-- Step 3: Music & Quote Card -->
-            <div class="card" id="step3Card">
-                <div class="for-you-subhead">Melody of Us</div>
-                <h2 class="step3-title">Special Dedication</h2>
+            <!-- -----------------------------------------------------------------
+               STEP 3: TYPEWRITER MEMORIES & QUOTES SCREEN
+               ----------------------------------------------------------------- -->
+            <div class="card" id="step3">
+                <p class="for-you-subhead">FOR YOU</p>
+                <h1 class="step3-title">Happy Birthday</h1>
+                
+                <div class="step3-text-box" id="step3Text"></div>
+                <div class="step3-quote" id="step3Quote"></div>
+
                 <div class="waveform-box">
                     <div class="wave-bar"></div>
                     <div class="wave-bar"></div>
@@ -402,39 +775,17 @@
                     <div class="wave-bar"></div>
                     <div class="wave-bar"></div>
                 </div>
-                <div class="step3-quote">"Tumse milke aisa laga jaise saari khushiyan mil gayi ho."</div>
-                <audio id="sahiba-audio" src="sahiba.mp3" preload="auto"></audio>
-                <button class="glass-btn" onclick="nextStep(4)">Continue Journey 🌸</button>
+
+                <button class="glass-btn" onclick="nextStep(4, 'blue')">
+                    Let's see...<br>
+                    <span style="font-size:0.75rem; font-style: italic; opacity:0.8;">how it all started.</span>
+                </button>
             </div>
 
-            <!-- Step 4 & 5: Dream & Thought Stage Cards -->
-            <div class="card" id="step4Card">
-                <div class="for-you-subhead">Sweet Thoughts</div>
-                <h2 class="hb-main-head">Our Little Moments</h2>
-                <div class="romantic-paragraph">
-                    Every second thinking about you brings a warm smile to my face. You are truly one of a kind.
-                </div>
-                <button class="glass-btn" onclick="nextStep(6)">Proceed Further 🎬</button>
-            </div>
-
-            <!-- Step 6: Video Wrapper Card -->
-            <div class="card" id="step6Card">
-                <div class="for-you-subhead">Special Memories</div>
-                <h2 class="hb-main-head">Watch This</h2>
-                <div style="margin-bottom: 20px;">
-                    <video controls style="width: 100%; max-height: 250px; border-radius: 14px;">
-                        <source src="video.mp4" type="video/mp4">
-                        Your browser does not support video.
-                    </video>
-                </div>
-                <button class="glass-btn" onclick="nextStep(7)">Final Surprise 💖</button>
-            </div>
-
-            <!-- Step 7: Chat Interface with Exact Pink Theme -->
-            <div class="card" id="step7Card">
-                <div style="font-size: 24px; font-weight: bold; margin-bottom: 5px; color: #ff71ce;">😋🎀</div>
-                <div style="font-size: 20px; font-weight: 600; color: #ffb7d5; margin-bottom: 15px; letter-spacing: 0.5px;">My favourite day</div>
-                
+            <!-- -----------------------------------------------------------------
+               STEP 4: LIVE CHAT SIMULATION SCREEN
+               ----------------------------------------------------------------- -->
+            <div class="card" id="step4">
                 <div class="chat-card-box">
                     <div class="chat-header">
                         <div class="chat-profile">
@@ -442,117 +793,312 @@
                                 <div class="avatar-inner">A</div>
                             </div>
                             <div>
-                                <div class="chat-name" style="font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: bold; color: #ffffff;">Annika</div>
-                                <div class="chat-status" id="contact-status">online</div>
+                                <span class="chat-name">Annu (Madam ji)</span>
+                                <span class="chat-status" id="chatStatus">online</span>
                             </div>
                         </div>
-                        <div style="width: 10px; height: 10px; background-color: #ff71ce; border-radius: 50%; box-shadow: 0 0 8px #ff71ce;" id="status-dot"></div>
+                        <div class="chat-icons">
+                            <span>📞</span>
+                            <span>🎥</span>
+                        </div>
                     </div>
 
-                    <div class="chat-messages-area" id="chat-messages">
-                        <!-- Dynamic typed messages appear here -->
+                    <div class="chat-messages-area" id="chatContainer"></div>
+
+                    <div class="chat-input-fake">
+                        <span id="inputBoxText" style="opacity: 0.6;">Message...</span>
+                        <span>📷</span>
                     </div>
                 </div>
 
-                <div style="font-size: 14px; font-weight: 500; color: #ff71ce; margin-top: 15px; letter-spacing: 1px; text-shadow: 0 0 10px rgba(255,113,206,0.4);">
-                    My cute sweetheart
+                <button class="glass-btn" onclick="nextStep(5, 'blue')">Next Memory ➔</button>
+            </div>
+
+            <!-- -----------------------------------------------------------------
+               STEP 5: CINEMATIC THOUGHTS STICK-FIGURES SCREEN
+               ----------------------------------------------------------------- -->
+            <div class="card" id="step5">
+                <div class="dream-wrapper">
+                    <div class="dream-overlay"></div>
+                    
+                    <div class="butterfly left-fly">🦋</div>
+                    <div class="butterfly right-fly">🦋</div>
+
+                    <p class="dream-subhead">✦ CINEMATIC MOMENTS ✦</p>
+
+                    <div class="characters-container">
+                        <div class="char-box left" id="charVinnu">
+                            <div class="stick-figure">
+                                <div class="head"></div>
+                                <div class="body-line"></div>
+                                <div class="arms"></div>
+                                <div class="legs"></div>
+                            </div>
+                            <span class="char-label">Vinnu ✨</span>
+                        </div>
+
+                        <div class="char-box" id="charAnnika">
+                            <div class="stick-figure">
+                                <div class="head"></div>
+                                <div class="body-line"></div>
+                                <div class="arms"></div>
+                                <div class="legs"></div>
+                            </div>
+                            <span class="char-label">Annika ji 🌸</span>
+                        </div>
+                    </div>
+
+                    <div class="thought-stage-area" id="thoughtStage"></div>
                 </div>
+
+                <button class="glass-btn" onclick="nextStep(6, 'forareason')">Continue to Video ➔</button>
+            </div>
+
+            <!-- -----------------------------------------------------------------
+               STEP 6: FINAL VIDEO RECORDING SCREEN
+               ----------------------------------------------------------------- -->
+            <div class="card" id="step6">
+                <h1 class="hb-main-head" style="font-size: 1.7rem; margin-bottom: 10px;">Our Special Recording ❤️</h1>
+                
+                <div class="video-wrapper">
+                    <div class="video-overlay"></div>
+                    <div class="butterfly left-fly">🦋</div>
+                    <div class="butterfly right-fly">🦋</div>
+                    
+                    <video id="screenVideo" src="recording.mp4" autoplay loop muted playsinline></video>
+                </div>
+
+                <p class="romantic-paragraph" style="font-size: 0.85rem; margin-bottom: 12px;">To be continued... ♾️</p>
             </div>
 
         </div>
     </div>
-        <script>
-    function nextStep(stepNumber) {
-        // Hide all cards
-        const cards = document.querySelectorAll('.card');
-        cards.forEach(card => card.classList.remove('active'));
 
-        // Show target card
-        const targetCard = document.getElementById('step' + stepNumber + 'Card');
-        if (targetCard) {
-            targetCard.classList.add('active');
+    <!-- =========================================================================
+       JAVASCRIPT CONTROLLERS, ANIMATION LOGIC & EVENT HANDLERS
+       ========================================================================= -->
+    <script>
+        /* 1. Global Audio Management Function */
+        function stopAllAudio() {
+            var audioIds = ['boyfriendAudio', 'forAReasonAudio', 'blueAudio'];
+            audioIds.forEach(function(id) {
+                var audioElement = document.getElementById(id);
+                if (audioElement) {
+                    try {
+                        audioElement.pause();
+                        audioElement.currentTime = 0;
+                    } catch(err) {
+                        console.log("Audio reset error:", err);
+                    }
+                }
+            });
         }
 
-        // Handle background or audio changes based on step
-        const container = document.getElementById('stepContainer');
-        if (stepNumber >= 4) {
-            container.classList.add('bg-alt');
-        } else {
-            container.classList.remove('bg-alt');
+        /* 2. Safe Audio Player Wrapper */
+        function playAudioSafely(audioId) {
+            stopAllAudio();
+            var audioElement = document.getElementById(audioId);
+            if (audioElement) {
+                var playPromise = audioElement.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(function(error) {
+                        console.log("Browser audio restriction caught:", error);
+                    });
+                }
+            }
         }
 
-        if (stepNumber === 3) {
-            const audio = document.getElementById("sahiba-audio");
-            if (audio) audio.play().catch(e => console.log("Audio autoplay restricted:", e));
+        /* 3. Core Step Navigation & Transition Engine */
+        function nextStep(stepNumber, songToPlay = null) {
+            if (songToPlay === 'boyfriend') {
+                playAudioSafely('boyfriendAudio');
+            } else if (songToPlay === 'forareason') {
+                playAudioSafely('forAReasonAudio');
+            } else if (songToPlay === 'blue') {
+                playAudioSafely('blueAudio');
+            } else {
+                stopAllAudio();
+            }
+
+            var allCards = document.querySelectorAll('.card');
+            allCards.forEach(function(card) {
+                card.classList.remove('active');
+            });
+
+            var targetCard = document.getElementById('step' + stepNumber);
+            if (targetCard) { 
+                targetCard.classList.add('active'); 
+            }
+
+            var mainContainer = document.getElementById('mainContainer');
+            if (stepNumber === 5 || stepNumber === 6) {
+                mainContainer.classList.add('bg-alt');
+            } else {
+                mainContainer.classList.remove('bg-alt');
+            }
+
+            if (stepNumber === 3) { startStep3Typewriter(); }
+            if (stepNumber === 4) { startLiveChatAnimation(); }
+            if (stepNumber === 5) { startThoughtSequence(); }
+            if (stepNumber === 6) {
+                var videoElem = document.getElementById('screenVideo');
+                if (videoElem) {
+                    videoElem.play().catch(function(e) { console.log("Video error:", e); });
+                }
+            }
         }
 
-        // Trigger Step 7 chat sequence automatically if step 7 is reached
-        if (stepNumber === 7) {
-            runChatSequence();
+        const step3Message = "Sep 10 2022 just a single hi 😭🎀\nI can't forget it kitni phat rahi thi uske baad se lekar abtak hmari itni baate hogyi itne high lows aagye 🫶🫢\n\nbut still 😂 mujhe pehli wish abhi tak yaad hai ♾️🥰 20 sep my sweet annu turns 15 hayee 😭💕\n\nChaliye fir aage dekhte hmari visual representations stranger se jaan tak banne ki 😋🌹";
+        const step3QuoteText = "situation decides that memory blushes dilati h ya ansu 👁️👁️😭 .";
+
+        let step3ExecutionLock = false;
+        async function startStep3Typewriter() {
+            if (step3ExecutionLock) return;
+            step3ExecutionLock = true;
+            const textBox = document.getElementById('step3Text');
+            const quoteBox = document.getElementById('step3Quote');
+            if (textBox) textBox.innerText = '';
+            if (quoteBox) quoteBox.innerText = '';
+
+            for (let i = 0; i <= step3Message.length; i++) {
+                if (textBox) textBox.innerText = step3Message.substring(0, i);
+                await delay(25);
+            }
+            await delay(300);
+            for (let j = 0; j <= step3QuoteText.length; j++) {
+                if (quoteBox) quoteBox.innerText = step3QuoteText.substring(0, j);
+                await delay(30);
+            }
         }
-    }
 
-    // Chat sequence logic for Step 7
-    function runChatSequence() {
-        const chatBox = document.getElementById("chat-messages");
-        const statusText = document.getElementById("contact-status");
-        const statusDot = document.getElementById("status-dot");
-
-        if (!chatBox || chatBox.dataset.loaded === "true") return;
-        chatBox.dataset.loaded = "true"; // Prevent duplicate execution
-
-        const conversation = [
-            { sender: "user", text: "Aree aree areeee 🥰 theenkss a lottt cutiee 💖" },
-            { sender: "annika", text: "Bhagwan apki bhi har wishes puri kare 😉❤️ birday ho ya na ho😂" },
-            { sender: "user", text: "Thenk againn dearr 😘frr ✨" },
-            { sender: "annika", text: "Andd good morning 🥹😊" }
+        const chatData = [
+            { sender: 'left', text: 'Good morning shweety 🌸', time: '15:44' },
+            { sender: 'left', text: 'Radhey Radhey 🙏💖', time: '15:44' },
+            { sender: 'right', text: 'Good morning mere alloo k parathey 😭❤️', time: '15:44' },
+            { sender: 'left', text: 'Uthgye tumm? Chaii piyoge? ☕🥺', time: '15:44' },
+            { sender: 'right', text: '😋 Ha aapke hatho se cutie', time: '15:45' },
+            { sender: 'right', text: 'har cheez ek time pe achi lagti 💕😭 ek aap ho hmesha achi lagti', time: '15:45' },
+            { sender: 'left', text: '😂💕 jhalla hi ho bilkul aap', time: '15:46' },
+            { sender: 'right', text: 'haa apke liye 😂😭', time: '15:46' }
         ];
 
-        let messageIndex = 0;
+        let chatExecutionLock = false;
+        async function startLiveChatAnimation() {
+            if (chatExecutionLock) return;
+            chatExecutionLock = true;
+            const chatContainer = document.getElementById('chatContainer');
+            const chatStatus = document.getElementById('chatStatus');
+            const inputBoxText = document.getElementById('inputBoxText');
+            if (chatContainer) chatContainer.innerHTML = '';
 
-        function typeMessage(speaker, text, callback) {
-            const msgDiv = document.createElement("div");
-            msgDiv.className = speaker === "user" ? "msg-bubble msg-right" : "msg-bubble msg-left";
-            chatBox.appendChild(msgDiv);
-            
-            let charIndex = 0;
-            function typingInterval() {
-                if (charIndex < text.length) {
-                    msgDiv.textContent += text.charAt(charIndex);
-                    charIndex++;
-                    chatBox.scrollTop = chatBox.scrollHeight;
-                    setTimeout(typingInterval, 40);
+            for (let i = 0; i < chatData.length; i++) {
+                const messageObj = chatData[i];
+                if (messageObj.sender === 'left') {
+                    if (chatStatus) chatStatus.innerText = 'typing...';
+                    let typingBubble = createTypingIndicator();
+                    if (chatContainer) {
+                        chatContainer.appendChild(typingBubble);
+                        scrollToBottom(chatContainer);
+                    }
+                    await delay(1600);
+                    typingBubble.remove();
+                    if (chatStatus) chatStatus.innerText = 'online';
+                    if (chatContainer) {
+                        appendMessage(chatContainer, messageObj.sender, messageObj.text, messageObj.time);
+                        scrollToBottom(chatContainer);
+                    }
+                    await delay(1000);
                 } else {
-                    if (callback) callback();
+                    if (inputBoxText) {
+                        inputBoxText.style.opacity = '1';
+                        inputBoxText.style.color = '#ffffff';
+                    }
+                    for (let charIndex = 0; charIndex <= messageObj.text.length; charIndex++) {
+                        if (inputBoxText) inputBoxText.innerText = messageObj.text.substring(0, charIndex);
+                        await delay(35);
+                    }
+                    await delay(400);
+                    if (inputBoxText) {
+                        inputBoxText.innerText = 'Message...';
+                        inputBoxText.style.opacity = '0.6';
+                    }
+                    if (chatContainer) {
+                        appendMessage(chatContainer, messageObj.sender, messageObj.text, messageObj.time);
+                        scrollToBottom(chatContainer);
+                    }
+                    await delay(1200);
                 }
-            }
-            typingInterval();
-        }
-
-        function processNextMessage() {
-            if (messageIndex < conversation.length) {
-                let current = conversation[messageIndex];
-                
-                if (current.sender === "annika" && messageIndex > 0 && conversation[messageIndex - 1].sender === "user") {
-                    setTimeout(() => {
-                        if (statusText) statusText.textContent = "Seen just now";
-                        if (statusDot) {
-                            statusDot.style.backgroundColor = "#888";
-                            statusDot.style.boxShadow = "none";
-                        }
-                    }, 1000);
-                }
-
-                typeMessage(current.sender, current.text, () => {
-                    messageIndex++;
-                    setTimeout(processNextMessage, 800);
-                });
             }
         }
 
-        setTimeout(processNextMessage, 1000);
-    }
-</script>
+        function createTypingIndicator() {
+            const bubbleDiv = document.createElement('div');
+            bubbleDiv.className = 'msg-bubble msg-left typing-bubble';
+            bubbleDiv.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+            return bubbleDiv;
+        }
+
+        function appendMessage(container, senderType, contentText, timestamp) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `msg-bubble msg-${senderType}`;
+            messageDiv.innerHTML = `${contentText}<span class="msg-time">${timestamp}</span>`;
+            container.appendChild(messageDiv);
+        }
+
+        const thoughtsSequence = [
+            { speaker: 'vinnu', author: 'Vinnu ✨', text: 'yaar ye annika kitna pyari hai 😭kitni achi baate krti' },
+            { speaker: 'annika', author: 'Annika ji 🌸', text: 'yaar ye vinnu kash ye mere paas abhi jind me hota miss krti ho bada 🥲💓' },
+            { speaker: 'vinnu', author: 'Vinnu ✨', text: 'isko toh hmesha khush rakhunga sbse protect rakhunga galat ladko se 😭😂aur khud se bhi' },
+            { speaker: 'annika', author: 'Annika ji 🌸', text: '😭ye ekdam jhala hi hai yaar butterflies le aata hai' },
+            { speaker: 'vinnu', author: 'Vinnu ✨', text: 'anyways love her  🥰🫶' }
+        ];
+
+        let thoughtExecutionLock = false;
+        async function startThoughtSequence() {
+            if (thoughtExecutionLock) return;
+            thoughtExecutionLock = true;
+            const thoughtStage = document.getElementById('thoughtStage');
+            const charVinnu = document.getElementById('charVinnu');
+            const charAnnika = document.getElementById('charAnnika');
+            if (thoughtStage) thoughtStage.innerHTML = '';
+
+            for (let i = 0; i < thoughtsSequence.length; i++) {
+                const thoughtObj = thoughtsSequence[i];
+                if (thoughtObj.speaker === 'vinnu') {
+                    if (charVinnu) charVinnu.classList.add('active-char');
+                    if (charAnnika) charAnnika.classList.remove('active-char');
+                } else {
+                    if (charAnnika) charAnnika.classList.add('active-char');
+                    if (charVinnu) charVinnu.classList.remove('active-char');
+                }
+                const cloudElem = document.createElement('div');
+                cloudElem.className = 'cloud-bubble';
+                cloudElem.innerHTML = `<div class="cloud-author">💭 ${thoughtObj.author}</div><div class="cloud-text" id="cloudText_${i}"></div>`;
+                if (thoughtStage) {
+                    thoughtStage.innerHTML = '';
+                    thoughtStage.appendChild(cloudElem);
+                }
+                const textTarget = document.getElementById(`cloudText_${i}`);
+                const dialogue = thoughtObj.text;
+                for (let c = 0; c <= dialogue.length; c++) {
+                    if (textTarget) textTarget.innerText = dialogue.substring(0, c);
+                    await delay(30);
+                }
+                await delay(1500);
+            }
+        }
+
+        function scrollToBottom(scrollableContainer) {
+            if (scrollableContainer) {
+                scrollableContainer.scrollTop = scrollableContainer.scrollHeight;
+            }
+        }
+
+        function delay(milliseconds) {
+            return new Promise(function(resolve) {
+                setTimeout(resolve, milliseconds);
+            });
+        }
+    </script>
 </body>
 </html>
-
