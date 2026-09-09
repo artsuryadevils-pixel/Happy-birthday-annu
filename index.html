@@ -689,7 +689,7 @@
 
         @keyframes fadeIn { 
             from { opacity: 0; transform: translateY(12px); } 
-            to { opaci@keyframes fadeIn { 
+            to { opaci        @keyframes fadeIn { 
             from { opacity: 0; transform: translateY(12px); } 
             to { opacity: 1; transform: translateY(0); } 
         }
@@ -865,10 +865,7 @@
                     <div class="butterfly left-fly">🦋</div>
                     <div class="butterfly right-fly">🦋</div>
                     
-                    <video id="screenVideo" controls playsinline preload="metadata">
-    <source src="./12401.mp4" type="video/mp4">
-    Your browser does not support video.
-</video>
+                    <video id="screenVideo" src="recording.mp4" autoplay loop muted playsinline></video>
                 </div>
 
                 <p class="romantic-paragraph" style="font-size: 0.85rem; margin-bottom: 12px;">To be continued... ♾️</p>
@@ -1101,80 +1098,7 @@
             return new Promise(function(resolve) {
                 setTimeout(resolve, milliseconds);
             });
-        document.getElementById('screenVideo').addEventListener('ended', function() {
-    nextStep(7, null);
-});
+        }
     </script>
-    <!-- ================================================================
-     STEP 7: FOUR CHAT MEMORIES — SINGLE PAGE
-     ================================================================ -->
-<div class="card" id="step7">
-
-    <h1 class="hb-main-head" style="font-size:1.7rem; margin-bottom:15px;">
-        Our Memories ❤️
-    </h1>
-
-    <div style="
-        width:100%;
-        display:flex;
-        flex-direction:column;
-        gap:12px;
-    ">
-
-        <img
-            src="chat1.jpg"
-            alt="Chat Memory 1"
-            style="
-                width:100%;
-                height:auto;
-                display:block;
-                border-radius:18px;
-                border:1px solid rgba(255,183,213,0.4);
-                box-shadow:0 8px 25px rgba(0,0,0,0.65);
-            "
-        >
-
-        <img
-            src="chat2.jpg"
-            alt="Chat Memory 2"
-            style="
-                width:100%;
-                height:auto;
-                display:block;
-                border-radius:18px;
-                border:1px solid rgba(255,183,213,0.4);
-                box-shadow:0 8px 25px rgba(0,0,0,0.65);
-            "
-        >
-
-        <img
-            src="chat3.jpg"
-            alt="Chat Memory 3"
-            style="
-                width:100%;
-                height:auto;
-                display:block;
-                border-radius:18px;
-                border:1px solid rgba(255,183,213,0.4);
-                box-shadow:0 8px 25px rgba(0,0,0,0.65);
-            "
-        >
-
-        <img
-            src="chat4.jpg"
-            alt="Chat Memory 4"
-            style="
-                width:100%;
-                height:auto;
-                display:block;
-                border-radius:18px;
-                border:1px solid rgba(255,183,213,0.4);
-                box-shadow:0 8px 25px rgba(0,0,0,0.65);
-            "
-        >
-
-    </div>
-
-</div>
 </body>
 </html>
