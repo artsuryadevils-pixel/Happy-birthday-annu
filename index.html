@@ -1098,57 +1098,16 @@
             return new Promise(function(resolve) {
                 setTimeout(resolve, milliseconds);
             });
-        }
-    </script>
-</body>
-</html>
-<!-- Step 7: Chat Interface with Typing Effect and Sahiba Song -->
-<div id="step-7-container" style="position: relative; width: 100%; min-height: 100vh; background: #000; color: #fff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 20px 0; overflow: hidden;">
-
-    <!-- Background Sahiba Audio -->
-    <audio id="sahiba-audio" loop>
-        <source src="sahiba.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- Header Section -->
-    <div style="text-align: center; width: 100%; z-index: 10;">
-        <div style="font-size: 24px; font-weight: bold; margin-bottom: 5px; color: #ff4757;">😋🎀</div>
-        <div style="font-size: 20px; font-weight: 600; letter-spacing: 0.5px;">My favourite day</div>
-    </div>
-
-    <!-- Chat Box Container -->
-    <div style="width: 90%; max-width: 400px; background: rgba(20, 20, 20, 0.85); border-radius: 15px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); display: flex; flex-direction: column; z-index: 10; backdrop-filter: blur(5px);">
         
-        <!-- Contact Status Header -->
-        <div style="display: flex; align-items: center; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 10px;">
-            <div style="width: 10px; height: 10px; background-color: #2ed573; border-radius: 50%; margin-right: 8px;" id="status-dot"></div>
-            <div>
-                <div style="font-size: 14px; font-weight: bold;">Annika</div>
-                <div style="font-size: 11px; color: #aaa;" id="contact-status">online</div>
-            </div>
-        </div>
+    </
+</body
+</h
+Typ
+    </
 
-        <!-- Messages Area (Typing Effect Simulation) -->
-        <div id="chat-messages" style="height: 300px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 13px; padding-right: 5px;">
-            <!-- Dynamic typed messages will appear here via script below -->
-        </div>
-    </div>
 
-    <!-- Background Video Element (cat.mp4) -->
-    <video autoplay muted loop playsinline style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.25; z-index: 1;">
-        <source src="cat.mp4" type="video/mp4">
-    </video>
-
-    <!-- Footer -->
-    <div style="font-size: 14px; font-weight: 500; color: #ff6b81; z-index: 10; letter-spacing: 1px;">
-        My cute sweetheart
-    </div>
-
-</div>
-
-<script>
     // Step 7 Interactive Logic for Typing Effect & Status Switch
-    document.addEventListener("DOMContentLoaded", function() {
+    dodocument.addEventListener("DOMContentLoaded", function() {
         const audio = document.getElementById("sahiba-audio");
         audio.play().catch(e => console.log("Audio autoplay restricted:", e));
 
