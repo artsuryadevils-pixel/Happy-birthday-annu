@@ -1098,24 +1098,45 @@
             return new Promise(function(resolve) {
                 setTimeout(resolve, milliseconds);
             });
-        
-    </
-</body
-</h
-Typ
-    </
+        <!-- Step 7: Chat Interface with Exact Pink Theme -->
+<div class="card" id="step7Card">
+    <div style="font-size: 24px; font-weight: bold; margin-bottom: 5px; color: #ff71ce;">😋🎀</div>
+    <div style="font-size: 20px; font-weight: 600; color: #ffb7d5; margin-bottom: 15px; letter-spacing: 0.5px;">My favourite day</div>
+    
+    <div class="chat-card-box" style="background: rgba(25, 12, 38, 0.95); border: 1px solid rgba(255, 113, 206, 0.3); border-radius: 22px; padding: 14px 12px; backdrop-filter: blur(14px); text-align: left; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.6);">
+        <div class="chat-header" style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255, 113, 206, 0.2); padding-bottom: 10px; margin-bottom: 14px;">
+            <div class="chat-profile" style="display: flex; align-items: center; gap: 10px;">
+                <div class="profile-avatar" style="width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(45deg, #ff71ce, #b967ff); padding: 2px; display: flex; align-items: center; justify-content: center;">
+                    <div class="avatar-inner" style="width: 100%; height: 100%; background: #1a0933; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: bold; color: #ffb7d5;">A</div>
+                </div>
+                <div>
+                    <div class="chat-name" style="font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: bold; color: #ffffff;">Annika</div>
+                    <div class="chat-status" id="contact-status" style="font-size: 0.65rem; color: #ff71ce; display: block; margin-top: -3px; font-weight: 500;">online</div>
+                </div>
+            </div>
+            <div style="width: 10px; height: 10px; background-color: #ff71ce; border-radius: 50%; box-shadow: 0 0 8px #ff71ce;" id="status-dot"></div>
+        </div>
 
+        <div class="chat-messages-area" id="chat-messages" style="display: flex; flex-direction: column; gap: 10px; height: 350px; overflow-y: auto; padding-right: 6px;">
+            <!-- Dynamic typed messages appear here -->
+        </div>
+    </div>
 
-    // Step 7 Interactive Logic for Typing Effect & Status Switch
-    dodocument.addEventListener("DOMContentLoaded", function() {
+    <div style="font-size: 14px; font-weight: 500; color: #ff71ce; margin-top: 15px; letter-spacing: 1px; text-shadow: 0 0 10px rgba(255,113,206,0.4);">
+        My cute sweetheart
+    </div>
+</div>
+
+<!-- Step 7 Logic Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
         const audio = document.getElementById("sahiba-audio");
-        audio.play().catch(e => console.log("Audio autoplay restricted:", e));
+        if(audio) audio.play().catch(e => console.log("Audio autoplay restricted:", e));
 
         const chatBox = document.getElementById("chat-messages");
         const statusText = document.getElementById("contact-status");
         const statusDot = document.getElementById("status-dot");
 
-        // Conversation script definition
         const conversation = [
             { sender: "user", text: "Aree aree areeee 🥰 theenkss a lottt cutiee 💖" },
             { sender: "annika", text: "Bhagwan apki bhi har wishes puri kare 😉❤️ birday ho ya na ho😂" },
@@ -1126,22 +1147,9 @@ Typ
         let messageIndex = 0;
 
         function typeMessage(speaker, text, callback) {
+            if (!chatBox) return;
             const msgDiv = document.createElement("div");
-            msgDiv.style.padding = "8px 12px";
-            msgDiv.style.borderRadius = "10px";
-            msgDiv.style.maxWidth = "80%";
-            msgDiv.style.wordBreak = "break-word";
-            
-            if (speaker === "user") {
-                msgDiv.style.backgroundColor = "#ff4757";
-                msgDiv.style.color = "#fff";
-                msgDiv.style.alignSelf = "flex-end";
-            } else {
-                msgDiv.style.backgroundColor = "#333";
-                msgDiv.style.color = "#fff";
-                msgDiv.style.alignSelf = "flex-start";
-            }
-            
+            msgDiv.className = speaker === "user" ? "msg-bubble msg-right" : "msg-bubble msg-left";
             chatBox.appendChild(msgDiv);
             
             let charIndex = 0;
@@ -1150,7 +1158,7 @@ Typ
                     msgDiv.textContent += text.charAt(charIndex);
                     charIndex++;
                     chatBox.scrollTop = chatBox.scrollHeight;
-                    setTimeout(typingInterval, 40); // Typing speed
+                    setTimeout(typingInterval, 40);
                 } else {
                     if (callback) callback();
                 }
@@ -1162,22 +1170,32 @@ Typ
             if (messageIndex < conversation.length) {
                 let current = conversation[messageIndex];
                 
-                // If user finishes their turn, trigger 'Seen just now' after 1 second
                 if (current.sender === "annika" && messageIndex > 0 && conversation[messageIndex - 1].sender === "user") {
                     setTimeout(() => {
-                        statusText.textContent = "Seen just now";
-                        statusDot.style.backgroundColor = "#888";
+                        if(statusText) statusText.textContent = "Seen just now";
+                        if(statusDot) {
+                            statusDot.style.backgroundColor = "#888";
+                            statusDot.style.boxShadow = "none";
+                        }
                     }, 1000);
                 }
 
                 typeMessage(current.sender, current.text, () => {
                     messageIndex++;
-                    setTimeout(runChatSequence, 800); // Pause between messages
+                    setTimeout(runChatSequence, 800);
                 });
             }
         }
 
-        // Start chat after a short initial delay
-        setTimeout(runChatSequence, 1000);
+        setTimeout(runChatSequence, 1500);
     });
 </script>
+    
+    </
+</body
+</h
+Typ
+    </
+
+
+    // 
