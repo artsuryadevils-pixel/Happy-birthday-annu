@@ -904,12 +904,13 @@
 
           
             </div>
-      <!-- Step 8: "Kya tum sundar ho?" Question Slide -->
+     
+            <!-- Step 8: "Kya tum sundar ho?" Question Slide -->
 <div class="card" id="step8">
     <div class="question-box">
         <p>✨ Kya tum sundar ho? 🌸</p>
         <button class="btn-yes" onclick="playAudioSafely('phirmiladeramAudio'); nextStep(9);">Yes / Haan 💖</button>
-        <button class="btn-no" onclick="playAudioSafely('phirmiladeramAudio'); nextStep(9);">No 🙈</button>
+        <button class="btn-no" onclAudioSafely('phirmiladeramAudio'); nextStep(9);">No 🙈</button>
     </div>
     <div class="sticker-container">
         <video src="stick-figure.webm" autoplay loop muted playsinline class="stick-video"></video>
@@ -917,18 +918,7 @@
     <audio id="phirmiladeramAudio" src="phirmiladeram.mp3" preload="auto"></audio>
 </div>
 
-<!-- Step 8: "Kya tum sundar ho?" Question Slide -->
-<div class="card" id="step8">
-    <div class="question-box">
-        <p>✨ Kya tum sundar ho? 🌸</p>
-        <button class="btn-yes" onclick="playAudioSafely('phirmiladeramAudio'); nextStep(9);">Yes / Haan 💖</button>
-        <button class="btn-no" onclick="playAudioSafely('phirmiladeramAudio'); nextStep(9);">No 🙈</button>
-    </div>
-    <div class="sticker-container">
-        <video src="stick-figure.webm" autoplay loop muted playsinline class="stick-video"></video>
-    </div>
-    <audio id="phirmiladeramAudio" src="phirmiladeram.mp3" preload="auto"></audio>
-</div>
+
 
 <!-- Step 9: "Haan, main jaanta hoon..." Reply Slide -->
 <div class="card" id="step9">
@@ -1076,20 +1066,20 @@ function playAudioAndNext(targetStep, themeColor) {
 
         /* 3. Core Step Navigation & Transition Engine */
         function nextStep(stepNumber, songToPlay = null) {
-            if (songToPlay === 'boyfriend') {
-                playAudioSafely('boyfriendAudio');
-            } else if (songToPlay === 'forareason') {
-                playAudioSafely('forAReasonAudio');
-            } else if (songToPlay === 'blue') {
-                playAudioSafely('blueAudio');
-                    } else if (songToplay === 'sahiba' || songToPlay === 'step8') {
+    stopAllAudio();
+
+    if (songToPlay === 'boyfriend') {
+        playAudioSafely('boyfriendAudio');
+    } else if (songToPlay === 'forareason') {
+        playAudioSafely('forAReasonAudio');
+    } else if (songToPlay === 'blue') {
+        playAudioSafely('blueAudio');
+    } else if (songToPlay === 'sahiba') {
         playAudioSafely('step8Audio');
-                } else if (songToPlay === 'phirmiladeram') {
-        playAudioSafely('phirMilaDeRamAudio');
-                
-            } else {
-                stopAllAudio();
-            }
+    } else if (songToPlay === 'phirmiladeram') {
+        playAudioSafely('phirmiladeramAudio');
+    }
+
 
             var allCards = document.querySelectorAll('.card');
             allCards.forEach(function(card) {
