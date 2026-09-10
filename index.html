@@ -897,7 +897,7 @@
             <button class="glass-btn" onclick="nextStep(8, 'blue')" style="margin-top: 15px;">Next Step ➔</button>
                 
             </div>
-         <!-- Step 8 -->
+     <    <!-- Step 8 -->
     <div id="step8" class="card">
         <audio id="step8Audio" src="sahiba.mp3" preload="auto"></audio>
         <div class="card-content" style="text-align: center;">
@@ -920,34 +920,24 @@
                 <img src="sundar_reply.png" alt="Sundar Reply" style="width: 100%; max-width: 100%; border-radius: 12px; display: block; margin: 0 auto 10px auto;">
                 <video src="sticker_figure.webm" autoplay loop muted playsinline style="width: 100px; height: auto; display: block; margin: 0 auto;"></video>
             </div>
-            <button onclick="nextStep(10, 'sahiba')" style="cursor: pointer; padding: 12px 24px; font-size: 1rem; border-radius: 25px; border: none; background: #ff4b72; color: white; font-weight: bold;">💖 Next Question ➔ ✨</button>
+            <button onclick="nextStep(10, 'sahiba')">💖 Next Question ➔ ✨</button>
         </div>
     </div>
 
     <!-- Step 10 -->
-    <div id="step10" class="card" style="position: relative;">
-        <div class="card-content" style="text-align: center; padding: 15px; display: flex; flex-direction: column; justify-content: space-between; height: 100%; box-sizing: border-box;">
-            
-            <!-- Video & Initial Text -->
-            <div>
-                <video src="gift.mp4" autoplay loop muted playsinline style="width: 100%; max-height: 38vh; border-radius: 12px; object-fit: cover; display: block; margin: 0 auto 10px auto;"></video>
-                <div style="font-size: 0.85rem; color: #fff; font-weight: 600; margin-bottom: 8px; line-height: 1.4;">
-                    🫣 are lelo cutie sharmao mat 😂♾️🥹 tumhara hi hai sb lelo isme se
-                </div>
+    <div id="step10" class="card">
+        <div class="card-content" style="text-align: center; padding: 15px;">
+            <div style="margin-bottom: 12px;">
+                <video src="gift.mp4" autoplay loop muted playsinline style="width: 100%; max-height: 40vh; border-radius: 12px; object-fit: cover; display: block; margin: 0 auto;"></video>
             </div>
-
-            <!-- Sequential Fade Text Container (Jo animation ke liye zaroori hai) -->
-            <div id="step10Text" style="min-height: 70px; font-size: 0.85rem; color: #ffebf0; font-weight: 600; text-align: center; margin: 5px 0;">
-                <!-- Typewriter/Fade lines will load here dynamically -->
+            <div style="font-size: 0.9rem; color: #fff; font-weight: 600; margin-bottom: 15px; line-height: 1.4;">
+                🫣 are lelo cutie sharmao mat 😂♾️🥹 tumhara hi hai sb lelo isme se
             </div>
-
-            <!-- Bottom-Left Animated Sticker Figure -->
-            <div style="position: absolute; bottom: 8px; left: 8px; z-index: 10;">
-                <video src="sticker_figure.webm" autoplay loop muted playsinline style="width: 60px; height: auto; display: block;"></video>
+            <div id="step10Text" style="min-height: 70px; font-size: 0.9rem; color: #ffebf0; font-weight: 600; text-align: center;">
+                <!-- Typewriter/Fade lines will load here -->
             </div>
         </div>
     </div>
-
          
 
             
@@ -1077,38 +1067,37 @@ function playAudioAndNext(targetStep, themeColor) {
     <script>
         /* Step 10 Sequential Text Animation Logic */
     const step10Lines = [
-    "🫣 yaar ab waha aake toh nahi dila skta ♾️🥺",
-    "aur nah adress pata hai jo bhejwa du toh aap hi choose karlo inme 😭 se atleasts 😂",
-    "jo bhi karlo sbme aap achi hi lagogi i am demm sure 🥰"
-];
+        "😭 yaar ab waha aake toh nahi dila skta ♾️🥹",
+        "aur nah adress pata hai jo bhejwa du toh aap hi choose karlo inme 😭 se atleast 😂🎀",
+        "jo bhi karlo sbme aap achi hi lagogi i am demm sure 🥰"
+    ];
+
+    function startStep10Sequence() {
+        const container = document.getElementById('step10Text');
+        if (!container) return;
+        container.innerHTML = "";
         
-function startStep10Sequence() {
-    const container = document.getElementById('step10Text');
-    if (!container) return;
-    container.innerHTML = "";
+        let index = 0;
+        function showNextLine() {
+            if (index < step10Lines.length) {
+                const p = document.createElement('p');
+                p.style.opacity = 0;
+                p.style.transition = "opacity 0.8s ease-in-out";
+                p.style.margin = "5px 0";
+                p.innerText = step10Lines[index];
+                container.appendChild(p);
+                
+                // Trigger fade-in
+                setTimeout(function() {
+                    p.style.opacity = 1;
+                }, 50);
 
-    let index = 0;
-    function showNextLine() {
-        if (index < step10Lines.length) {
-            const p = document.createElement('p');
-            p.style.opacity = 0;
-            p.style.transition = "opacity 0.8s ease-in-out";
-            p.style.margin = "5px 0";
-            p.innerText = step10Lines[index];
-            container.appendChild(p);
-
-            setTimeout(function() {
-                p.style.opacity = 1;
-            }, 50);
-
-            index++;
-            setTimeout(showNextLine, 2200);
+                index++;
+                setTimeout(showNextLine, 2200); // Delay before next line appears sequentially
+            }
         }
+        showNextLine();
     }
-    showNextLine();
-}
-
-    
 
     /* Hook into nextStep to trigger Step 10 animation */
     // Add this inside your existing nextStep function when stepNumber === 10
@@ -1179,16 +1168,13 @@ function startStep10Sequence() {
                 mainContainer.classList.remove('bg-alt');
             }
 
-            
             if (stepNumber === 3) { startStep3Typewriter(); }
             if (stepNumber === 4) { startLiveChatAnimation(); }
             if (stepNumber === 5) { startThoughtSequence(); }
             if (stepNumber === 6) {
-                var videoElem = document.getElementById('screenVideo');
-                if (videoElem) {
-                    videoElem.play().catch(function(e)
-if (stepNumber === 10) { startStep10Sequence(); }
-
+                        if (stepNumber === 10) {
+                startStep10Sequence();
+                        }
                 
                 var videoElem = document.getElementById('screenVideo');
                 if (videoElem) {
