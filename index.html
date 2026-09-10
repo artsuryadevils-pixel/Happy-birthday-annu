@@ -1179,9 +1179,14 @@ function startStep10Sequence() {
                 mainContainer.classList.remove('bg-alt');
             }
 
+            
             if (stepNumber === 3) { startStep3Typewriter(); }
-if (stepNumber === 4) { startLiveChatAnimation(); }
-if (stepNumber === 5) { startThoughtSequence(); }
+            if (stepNumber === 4) { startLiveChatAnimation(); }
+            if (stepNumber === 5) { startThoughtSequence(); }
+            if (stepNumber === 6) {
+                var videoElem = document.getElementById('screenVideo');
+                if (videoElem) {
+                    videoElem.play().catch(function(e)
 if (stepNumber === 10) { startStep10Sequence(); }
 
                 
