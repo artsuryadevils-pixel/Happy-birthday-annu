@@ -905,19 +905,19 @@
           
             </div>
     
-          <!-- Step 8 -->
+            <!-- Step 8 -->
     <div id="step8" class="card">
-        <!-- Audio for Step 8 -->
         <audio id="step8Audio" src="sahiba.mp3" preload="auto"></audio>
         
-        <div class="card-content" style="text-align: center;">
+        <div class="card-content" style="text-align: center; position: relative; z-index: 10;">
             <h2>🌸 Kya tum sundar ho? 💖✨</h2>
             <div style="margin: 15px 0;">
                 <img src="sundar_question.png" alt="Sundar Question" style="width: 100%; max-width: 100%; border-radius: 12px; display: block; margin: 0 auto 10px auto;">
                 <video src="sticker_figure.webm" autoplay loop muted playsinline style="width: 100px; height: auto; display: block; margin: 0 auto;"></video>
             </div>
-            <button onclick="nextStep(9, 'sahiba')">💖 Haan / Yes 🥰</button>
-            <button onclick="nextStep(9, 'sahiba')">💖 No 🥺</button>
+            <!-- Clean click function with high z-index to ensure click works -->
+            <button onclick="nextStep(9, 'sahiba')" style="position: relative; z-index: 99; cursor: pointer;">💖 Haan / Yes 🥰</button>
+            <button onclick="nextStep(9, 'sahiba')" style="position: relative; z-index: 99; cursor: pointer;">💖 No 🥺</button>
         </div>
     </div>
 
@@ -930,9 +930,10 @@
                 <img src="sundar_reply.png" alt="Sundar Reply" style="width: 100%; max-width: 100%; border-radius: 12px; display: block; margin: 0 auto 10px auto;">
                 <video src="sticker_figure.webm" autoplay loop muted playsinline style="width: 100px; height: auto; display: block; margin: 0 auto;"></video>
             </div>
-            <button onclick="alert('Happy Birthday once again Annu! 🎉')">The End 💖</button>
+            <button onclick="alert('Happy Birthday once again Annu! 🎉')" style="cursor: pointer;">The End 💖</button>
         </div>
     </div>
+            
       
             
   
