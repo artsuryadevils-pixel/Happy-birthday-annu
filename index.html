@@ -891,9 +891,92 @@
                     </p>
                 </div>
 
-                <button class="glass-btn" onclick="nextStep(1, 'blue')" style="margin-top: 15px;">Replay Memories 🔄</button>
+                <button class="glass-btn" onclick="nextStep(8, 'blue')" style="margin-top: 15px;">Next Step ➔</button>
+
             </div>
+                   <!-- Step 8: Complete Combined View (Question + Floating Animation & Moving Car + Sahiba Audio) -->
+            <div class="card" id="step8" style="display: none; overflow: hidden; position: relative;">
+                <div class="dream-wrapper" style="position: relative; padding: 20px; text-align: center; min-height: 400px;">
+                    <div class="dream-overlay"></div>
+                    
+                    <div class="butterfly left-fly">🦋</div>
+                    <div class="butterfly right-fly">🦋</div>
+
+                    <!-- Background Audio for Step 8 -->
+                    <audio id="step8Audio" src="sahiba.mp3" preload="auto"></audio>
+
+                    <!-- Background Moving Car Animation Layer -->
+                    <div class="moving-car-bg" style="position: absolute; bottom: 5px; width: 100%; left: 0; opacity: 0.3; pointer-events: none; overflow: hidden; z-index: 1;">
+                        <div class="car-anim" style="font-size: 2rem; white-space: nowrap; animation: driveCar 6s linear infinite;">
+                            🚗💨 
+                        </div>
+                    </div>
+
+                    <!-- Main Content & Question -->
+                    <div style="position: relative; z-index: 2;">
+                        <h1 class="hb-main-head" style="font-size: 1.4rem; margin-bottom: 10px;">
+                            🤝 Tum Vinnu se milne aaogi? 💖✨
+                        </h1>
+
+                        <!-- Floating Stick Figures & Cloud Dialogue -->
+                        <div class="animation-stage" style="position: relative; margin: 15px 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            
+                            <!-- Cloud Thought Bubble -->
+                            <div class="cloud-bubble" style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.3); padding: 8px 12px; border-radius: 20px; margin-bottom: 10px; animation: floatCloud 2s ease-in-out infinite alternate;">
+                                <p style="color: #fff; font-size: 0.85rem; margin: 0; font-weight: 500;">
+                                    Are ruko ruko madam ji 🥹♾️ itni bhi kya jaldi
+                                </p>
+                            </div>
+
+                            <!-- Holding Hands Stick Figures -->
+                            <div class="stick-figures-container" style="display: flex; gap: 5px; align-items: center; animation: floatFigure 3s ease-in-out infinite alternate;">
+                                <span style="font-size: 2.2rem; filter: drop-shadow(0 0 8px rgba(255,182,193,0.8));">o_o</span>
+                                <span style="font-size: 1.3rem; color: #ff69b4;">🤝</span>
+                                <span style="font-size: 2.2rem; filter: drop-shadow(0 0 8px rgba(255,182,193,0.8));">^o^</span>
+                            </div>
+                        </div>
+                        
+                        <div class="grid-buttons" style="display: flex; flex-direction: column; gap: 8px; margin-top: 15px;">
+                            <button class="glass-btn" onclick="playAudioAndNext(9, 'blue')">💖 Yess aayungi 🥰</button>
+                            <button class="glass-btn" onclick="playAudioAndNext(9, 'blue')">❤️ Han yarr ofccccc ayungii ✨</button>
+                        </div>
+
+                        <p class="romantic-paragraph" style="font-size: 0.8rem; margin-top: 10px;">
+                            🌸 Aana hi padega, koi chance hi nahi! 😤💕✨
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+<style>
+@keyframes floatFigure {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-8px); }
+}
+@keyframes floatCloud {
+    0% { transform: translateY(0px) scale(1); }
+    100% { transform: translateY(-4px); scale(1.02); }
+}
+@keyframes driveCar {
+    0% { transform: translateX(-100px); }
+    100% { transform: translateX(350px); }
+}
+</style>
+
+<script>
+// Optional helper to trigger 'sahiba.mp3' when buttons are clicked if needed
+function playAudioAndNext(targetStep, themeColor) {
+    const audio = document.getElementById('step8Audio');
+    if (audio) {
+        audio.play().catch(e => console.log("Audio play blocked or missing:", e));
+    }
+    if (typeof nextStep === 'function') {
+        nextStep(targetStep, themeColor);
+    }
+}
+</script>
             
+     
             </div>
 
         </div>
