@@ -910,10 +910,7 @@
             <button onclick="nextStep(9, 'sahiba')">💖 Haan / Yes 🥰</button>
             <button onclick="nextStep(9, 'sahiba')">💖 No 🥺</button>
         </div>
-    </div>
-
-
-    <!-- Step 9 -->
+        <!-- Step 9 (Fixed Next Question Button) -->
     <div id="step9" class="card" style="pointer-events: auto !important;">
         <div class="card-content" style="text-align: center; position: relative; z-index: 9999;">
             <h2>💖 Haan, main jaanta hoon tum sundar ho... meri nazron se bhi dekho khud ko. 🥺💕</h2>
@@ -922,9 +919,35 @@
                 <img src="sundar_reply.png" alt="Sundar Reply" style="width: 100%; max-width: 100%; border-radius: 12px; display: block; margin: 0 auto 10px auto;">
                 <video src="sticker_figure.webm" autoplay loop muted playsinline style="width: 100px; height: auto; display: block; margin: 0 auto;"></video>
             </div>
-            <button onclick="alert('Happy Birthday once again Annu! 🎉')" style="position: relative; z-index: 99999; pointer-events: auto !important; cursor: pointer;">The End 💖</button>
+            <button onclick="nextStep(10, 'sahiba')" style="position: relative; z-index: 99999; pointer-events: auto !important; cursor: pointer;">💖 Next Question ➔ ✨</button>
         </div>
     </div>
+
+    <!-- Step 10 -->
+    <div id="step10" class="card" style="pointer-events: auto !important; position: relative;">
+        <div class="card-content" style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; position: relative; z-index: 9999; padding: 15px; box-sizing: border-box;">
+            
+            <!-- Main Content Area: Video (>50% screen width/focus) & Right Side Text -->
+            <div style="display: flex; gap: 12px; align-items: center; width: 100%; margin-top: 5px;">
+                <video src="Gift.mp4" autoplay loop muted playsinline style="width: 58%; max-height: 45vh; border-radius: 12px; object-fit: cover; box-shadow: 0 4px 15px rgba(0,0,0,0.3);"></video>
+                <div style="width: 42%; font-size: 0.85rem; color: #fff; line-height: 1.4; font-weight: 500;">
+                    🫣 are lelo cutie sharmao mat 😂♾️🥹 tumhara hi hai sb lelo isme se
+                </div>
+            </div>
+
+            <!-- Sequential Typewriter/Fade Text Container -->
+            <div id="step10Text" style="min-height: 80px; text-align: center; margin: 10px 0; font-size: 0.9rem; line-height: 1.5; color: #ffebf0; font-weight: 600;">
+                <!-- Dynamically loaded text lines -->
+            </div>
+
+            <!-- Bottom-Left Sticker Figure -->
+            <div style="position: absolute; bottom: 5px; left: 5px; z-index: 20;">
+                <video src="sticker_figure.webm" autoplay loop muted playsinline style="width: 65px; height: auto; display: block;"></video>
+            </div>
+        </div>
+    </div>
+
+            
             
 
  
@@ -1045,6 +1068,44 @@ function playAudioAndNext(targetStep, themeColor) {
        JAVASCRIPT CONTROLLERS, ANIMATION LOGIC & EVENT HANDLERS
        ========================================================================= -->
     <script>
+        /* Step 10 Sequential Text Animation Logic */
+    const step10Lines = [
+        "😭 yaar ab waha aake toh nahi dila skta ♾️🥹",
+        "aur nah adress pata hai jo bhejwa du toh aap hi choose karlo inme 😭 se atleast 😂🎀",
+        "jo bhi karlo sbme aap achi hi lagogi i am demm sure 🥰"
+    ];
+
+    function startStep10Sequence() {
+        const container = document.getElementById('step10Text');
+        if (!container) return;
+        container.innerHTML = "";
+        
+        let index = 0;
+        function showNextLine() {
+            if (index < step10Lines.length) {
+                const p = document.createElement('p');
+                p.style.opacity = 0;
+                p.style.transition = "opacity 0.8s ease-in-out";
+                p.style.margin = "5px 0";
+                p.innerText = step10Lines[index];
+                container.appendChild(p);
+                
+                // Trigger fade-in
+                setTimeout(function() {
+                    p.style.opacity = 1;
+                }, 50);
+
+                index++;
+                setTimeout(showNextLine, 2200); // Delay before next line appears sequentially
+            }
+        }
+        showNextLine();
+    }
+
+    /* Hook into nextStep to trigger Step 10 animation */
+    // Add this inside your existing nextStep function when stepNumber === 10
+    // if (stepNumber === 10) { startStep10Sequence(); }
+
         /* 1. Global Audio Management Function */
         function stopAllAudio() {
             var audioIds = ['boyfriendAudio', 'forAReasonAudio', 'sahibaAudio', 'blueAudio', 'phirmiladeramAudio'];
@@ -1114,6 +1175,10 @@ function playAudioAndNext(targetStep, themeColor) {
             if (stepNumber === 4) { startLiveChatAnimation(); }
             if (stepNumber === 5) { startThoughtSequence(); }
             if (stepNumber === 6) {
+                        if (stepNumber === 10) {
+                startStep10Sequence();
+                        }
+                
                 var videoElem = document.getElementById('screenVideo');
                 if (videoElem) {
                     videoElem.play().catch(function(e) { console.log("Video error:", e); });
