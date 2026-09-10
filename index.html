@@ -1045,7 +1045,8 @@ function playAudioAndNext(targetStep, themeColor) {
     <script>
         /* 1. Global Audio Management Function */
         function stopAllAudio() {
-            var audioIds = ['boyfriendAudio', 'forAReasonAudio', 'sahibaAudio''blueAudio''phirmiladeramAudio];
+            var audioIds = ['boyfriendAudio', 'forAReasonAudio', 'sahibaAudio', 'blueAudio', 'phirmiladeramAudio'];
+
             audioIds.forEach(function(id) {
                 var audioElement = document.getElementById(id);
                 if (audioElement) {
