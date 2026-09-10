@@ -909,16 +909,17 @@
             </div>
             <button onclick="nextStep(9, 'sahiba')">💖 Haan / Yes 🥰</button>
             <button onclick="nextStep(9, 'sahiba')">💖 No 🥺</button>
-        </div>
+        </div> absolute; bottom: 5px; left: 5px; z-index: 20;">
+                 <!-- Step 9 -->
     <div id="step9" class="card" style="pointer-events: auto !important;">
-        <div class="card-content" style="text-align: center; position: relative; z-index: 9999;">
+        <div class="card-content" style="text-align: center;">
             <h2>💖 Haan, main jaanta hoon tum sundar ho... meri nazron se bhi dekho khud ko. 🥺💕</h2>
             <p>Apne aapko aise underestimate mat karo. 🦋✨</p>
             <div style="margin: 15px 0;">
                 <img src="sundar_reply.png" alt="Sundar Reply" style="width: 100%; max-width: 100%; border-radius: 12px; display: block; margin: 0 auto 10px auto;">
                 <video src="sticker_figure.webm" autoplay loop muted playsinline style="width: 100px; height: auto; display: block; margin: 0 auto;"></video>
             </div>
-            <button onclick="nextStep(10, 'sahiba')" style="position: relative; z-index: 99999; pointer-events: auto !important; cursor: pointer; padding: 12px 24px; font-size: 1rem; border-radius: 25px; border: none; background: #ff4b72; color: white; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">💖 Next Question ➔ ✨</button>
+            <button onclick="nextStep(10, 'sahiba')" style="cursor: pointer;">💖 Next Question ➔ ✨</button>
         </div>
     </div>
 
@@ -926,15 +927,15 @@
     <div id="step10" class="card" style="pointer-events: auto !important; position: relative;">
         <div class="card-content" style="display: flex; flex-direction: column; height: 100%; justify-content: space-between; position: relative; z-index: 9999; padding: 15px; box-sizing: border-box;">
             
-            <!-- Main Content Area: Video (>50% screen width/focus) & Right Side Text -->
+            <!-- Main Content Area: Video & Right Side Text -->
             <div style="display: flex; gap: 12px; align-items: center; width: 100%; margin-top: 5px;">
-                <video src="Gift.mp4" autoplay loop muted playsinline style="width: 58%; max-height: 45vh; border-radius: 12px; object-fit: cover; box-shadow: 0 4px 15px rgba(0,0,0,0.3);"></video>
+                <video src="gift.mp4" autoplay loop muted playsinline style="width: 58%; max-height: 45vh; border-radius: 12px; object-fit: cover; box-shadow: 0 4px 15px rgba(0,0,0,0.3);"></video>
                 <div style="width: 42%; font-size: 0.85rem; color: #fff; line-height: 1.4; font-weight: 500;">
                     🫣 are lelo cutie sharmao mat 😂♾️🥹 tumhara hi hai sb lelo isme se
                 </div>
             </div>
 
-            <!-- Sequential Typewriter/Fade Text Container -->
+            <!-- Sequential Fade Text Container -->
             <div id="step10Text" style="min-height: 80px; text-align: center; margin: 10px 0; font-size: 0.9rem; line-height: 1.5; color: #ffebf0; font-weight: 600;">
                 <!-- Dynamically loaded text lines -->
             </div>
@@ -945,6 +946,7 @@
             </div>
         </div>
     </div>
+   
 
             
             
