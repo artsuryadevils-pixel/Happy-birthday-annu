@@ -901,16 +901,17 @@
 
           
             </div>
-       <!-- Step 8: "Kya tum sundar ho?" Question Slide -->
+      <!-- Step 8: "Kya tum sundar ho?" Question Slide -->
 <div class="card" id="step8">
     <div class="question-box">
         <p>✨ Kya tum sundar ho? 🌸</p>
-        <button class="btn-yes" onclick="nextStep(9, 'phirmiladeram')">Yes / Haan 💖</button>
-        <button class="btn-no" onclick="nextStep(9, 'phirmiladeram')">No 🙈</button>
+        <button class="btn-yes" onclick="playAudioSafely('phirmiladeramAudio'); nextStep(9);">Yes / Haan 💖</button>
+        <button class="btn-no" onclick="playAudioSafely('phirmiladeramAudio'); nextStep(9);">No 🙈</button>
     </div>
     <div class="sticker-container">
         <video src="stick-figure.webm" autoplay loop muted playsinline class="stick-video"></video>
     </div>
+    <audio id="phirmiladeramAudio" src="phirmiladeram.mp3" preload="auto"></audio>
 </div>
 
 <!-- Step 9: "Haan, main jaanta hoon..." Reply Slide -->
@@ -918,12 +919,16 @@
     <div class="question-box">
         <p>💕 Haan, main jaanta hoon tum sundar ho... meri nazron se bhi dekho khud ko. 🥺💕<br>
         Apne aapko aise underestimate mat karo. 🦋✨</p>
-        <button class="btn-next" onclick="nextStep(10, 'phirmiladeram')">💕 Next Question ➔ ✨</button>
+        <button class="btn-next" onclick="nextStep(10);">💕 Next Question ➔ ✨</button>
     </div>
     <div class="sticker-container">
         <video src="stick-figure.webm" autoplay loop muted playsinline class="stick-video"></video>
     </div>
 </div>
+            
+            background: url('bg1.jpg') no-repeat center center;
+            
+            
 
             <style>
         
@@ -1023,7 +1028,7 @@ function playAudioAndNext(targetStep, themeColor) {
     <script>
         /* 1. Global Audio Management Function */
         function stopAllAudio() {
-            var audioIds = ['boyfriendAudio', 'forAReasonAudio', 'blueAudio'];
+            var audioIds = ['boyfriendAudio', 'forAReasonAudio', 'sahibaAudio''blueAudio''phirmiladeramAudio];
             audioIds.forEach(function(id) {
                 var audioElement = document.getElementById(id);
                 if (audioElement) {
