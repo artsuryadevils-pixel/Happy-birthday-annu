@@ -899,8 +899,34 @@
 
                 
 
+          
             </div>
-        <style>
+       <!-- Step 8: "Kya tum sundar ho?" Question Slide -->
+<div class="card" id="step8">
+    <div class="question-box">
+        <p>✨ Kya tum sundar ho? 🌸</p>
+        <button class="btn-yes" onclick="nextStep(9, 'phirmiladeram')">Yes / Haan 💖</button>
+        <button class="btn-no" onclick="nextStep(9, 'phirmiladeram')">No 🙈</button>
+    </div>
+    <div class="sticker-container">
+        <video src="stick-figure.webm" autoplay loop muted playsinline class="stick-video"></video>
+    </div>
+</div>
+
+<!-- Step 9: "Haan, main jaanta hoon..." Reply Slide -->
+<div class="card" id="step9">
+    <div class="question-box">
+        <p>💕 Haan, main jaanta hoon tum sundar ho... meri nazron se bhi dekho khud ko. 🥺💕<br>
+        Apne aapko aise underestimate mat karo. 🦋✨</p>
+        <button class="btn-next" onclick="nextStep(10, 'phirmiladeram')">💕 Next Question ➔ ✨</button>
+    </div>
+    <div class="sticker-container">
+        <video src="stick-figure.webm" autoplay loop muted playsinline class="stick-video"></video>
+    </div>
+</div>
+
+            <style>
+        
 #step8 { display: none; }
 #step8.active { display: block !important; }
         </style>
@@ -956,29 +982,7 @@
                             🌸 Aana hi padega, koi chance hi nahi! 😤💕✨
                         </p>
                     </div>
-                    <!-- Step 8: "Kya tum sundar ho?" Question Slide -->
-<div class="card" id="step8">
-    <div class="question-box">
-        <p>✨ Kya tum sundar ho? 🌸</p>
-        <button class="btn-yes" onclick="nextStep(9, 'phirmiladeram')">Yes / Haan 💖</button>
-        <button class="btn-no" onclick="nextStep(9, 'phirmiladeram')">No 🙈</button>
-    </div>
-    <div class="sticker-container">
-        <video src="stick-figure.webm" autoplay loop muted playsinline class="stick-video"></video>
-    </div>
-</div>
-
-<!-- Step 9: "Haan, main jaanta hoon..." Reply Slide -->
-<div class="card" id="step9">
-    <div class="question-box">
-        <p>💕 Haan, main jaanta hoon tum sundar ho... meri nazron se bhi dekho khud ko. 🥺💕<br>
-        Apne aapko aise underestimate mat karo. 🦋✨</p>
-        <button class="btn-next" onclick="nextStep(10, 'phirmiladeram')">💕 Next Question ➔ ✨</button>
-    </div>
-    <div class="sticker-container">
-        <video src="stick-figure.webm" autoplay loop muted playsinline class="stick-video"></video>
-    </div>
-</div>
+                    
 
                 </div>
             </div>
