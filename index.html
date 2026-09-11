@@ -879,6 +879,7 @@
     <audio id="forAReasonAudio" src="forareason.mp3" loop preload="auto"></audio>
     <audio id="blueAudio" src="blue.mp3" loop preload="auto"></audio>
 
+    <audio id="goldenBrownAudio" src="goldenbrown.mp3" loop preload="auto"></audio>
     <!-- =========================================================================
        MAIN STEP CONTAINER & MULTI-CARD STRUCTURE
        ========================================================================= -->
@@ -1324,6 +1325,8 @@ function playAudioAndNext(targetStep, themeColor) {
         playAudioSafely('blueAudio');
     } else if (songToPlay === 'sahiba') {
         playAudioSafely('step8Audio');
+   } else if (songToPlay === 'goldenbrown') {
+    playAudioSafely('goldenBrownAudio');
     } else if (songToPlay === 'phirmiladeram') {
         playAudioSafely('phirmiladeramAudio');
     }
@@ -1562,7 +1565,7 @@ async function typeIntroText(element, text, speed = 45) {
 
 
 async function startStep11Sequence() {
-
+playAudioSafely('goldenBrownAudio');
     /* Hide password slide initially */
     step11Password.style.display = "none";
 
