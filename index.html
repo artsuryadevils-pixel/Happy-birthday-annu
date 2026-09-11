@@ -41,24 +41,21 @@
 
         /* 3. Main Step Container & Background Configuration */
         .step-container {
-            position: relative;
-            width: 100%;
-            max-width: 440px;
-            min-height: 92vh;
-            border-radius: 28px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            .step-container {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    min-height: 92vh;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: url('bg1.jpg') no-repeat center center;
     background-size: cover;
-            }
-            
-            transition: background 0.5s ease-in-out;
-        }
+    transition: background 0.5s ease-in-out;
+}
 
         /* Alternate Background State for Later Steps */
         .step-container.bg-alt {
@@ -691,10 +688,8 @@
         }
 
         @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(12px); } 
-            to { opaci        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(12px); } 
-            to { opacity: 1; transform: translateY(0); } 
+    from { opacity: 0; transform: translateY(12px); } 
+    to { opacity: 1; transform: translateY(0); } 
         }
 
         @keyframes popIn { 
@@ -897,19 +892,115 @@
             <button class="glass-btn" onclick="nextStep(8, 'blue')" style="margin-top: 15px;">Next Step ➔</button>
                 
             </div>
-     <    <!-- Step 8 -->
-    <div id="step8" class="card">
+     <!-- Step 8: Complete Combined View -->
+<div class="card" id="step8">
+    <div class="dream-wrapper" style="position: relative; padding: 20px; text-align: center; min-height: 400px;">
+        <div class="dream-overlay"></div>
+
+        <div class="butterfly left-fly">🦋</div>
+        <div class="butterfly right-fly">🦋</div>
+
+        <!-- Background Audio for Step 8 -->
         <audio id="step8Audio" src="sahiba.mp3" preload="auto"></audio>
-        <div class="card-content" style="text-align: center;">
-            <h2>🌸 Kya tum sundar ho? 💖✨</h2>
-            <div style="margin: 15px 0;">
-                <img src="sundar_question.png" alt="Sundar Question" style="width: 100%; max-width: 100%; border-radius: 12px; display: block; margin: 0 auto 10px auto;">
-                <video src="sticker_figure.webm" autoplay loop muted playsinline style="width: 100px; height: auto; display: block; margin: 0 auto;"></video>
+
+        <!-- Background Moving Car Animation -->
+        <div class="moving-car-bg" style="position: absolute; bottom: 5px; width: 100%; left: 0; opacity: 0.3; pointer-events: none; overflow: hidden; z-index: 1;">
+            <div class="car-anim" style="font-size: 2rem; white-space: nowrap; animation: driveCar 6s linear infinite;">
+                🚗💨
             </div>
-            <button onclick="nextStep(9, 'sahiba')">💖 Haan / Yes 🥰</button>
-            <button onclick="nextStep(9, 'sahiba')">💖 No 🥺</button>
+        </div>
+
+        <!-- Main Content -->
+        <div style="position: relative; z-index: 2;">
+
+            <h1 class="hb-main-head" style="font-size: 1.4rem; margin-bottom: 10px;">
+                🤝 Tum Vinnu se milne aaogi? 💖✨
+            </h1>
+
+            <!-- Floating Stick Figures & Cloud Dialogue -->
+            <div class="animation-stage" style="position: relative; margin: 15px 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+
+                <!-- Cloud Thought Bubble -->
+                <div class="cloud-bubble" style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.3); padding: 8px 12px; border-radius: 20px; margin-bottom: 10px; animation: floatCloud 2s ease-in-out infinite alternate;">
+                    <p style="color: #fff; font-size: 0.85rem; margin: 0; font-weight: 500;">
+                        Are ruko ruko madam ji 🥹♾️ itni bhi kya jaldi
+                    </p>
+                </div>
+
+                <!-- Holding Hands Stick Figures -->
+                <div class="stick-figures-container" style="display: flex; gap: 5px; align-items: center; animation: floatFigure 3s ease-in-out infinite alternate;">
+                    <span style="font-size: 2.2rem; filter: drop-shadow(0 0 8px rgba(255,182,193,0.8));">o_o</span>
+                    <span style="font-size: 1.3rem; color: #ff69b4;">🤝</span>
+                    <span style="font-size: 2.2rem; filter: drop-shadow(0 0 8px rgba(255,182,193,0.8));">^o^</span>
+                </div>
+
+            </div>
+
+            <!-- Answer Buttons -->
+            <div class="grid-buttons" style="display: flex; flex-direction: column; gap: 8px; margin-top: 15px;">
+
+                <button class="glass-btn" onclick="playAudioAndNext(9, 'sahiba')">
+                    💖 Yess aayungi 🥰
+                </button>
+
+                <button class="glass-btn" onclick="playAudioAndNext(9, 'sahiba')">
+                    ❤️ Han yarr ofccccc ayungii ✨
+                </button>
+
+            </div>
+
+            <p class="romantic-paragraph" style="font-size: 0.8rem; margin-top: 10px;">
+                🌸 Aana hi padega, koi chance hi nahi! 😤💕✨
+            </p>
+
         </div>
     </div>
+</div>
+
+<style>
+@keyframes floatFigure {
+    0% {
+        transform: translateY(0px);
+    }
+    100% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes floatCloud {
+    0% {
+        transform: translateY(0px) scale(1);
+    }
+    100% {
+        transform: translateY(-4px) scale(1.02);
+    }
+}
+
+@keyframes driveCar {
+    0% {
+        transform: translateX(-100px);
+    }
+    100% {
+        transform: translateX(350px);
+    }
+}
+</style>
+
+<script>
+function playAudioAndNext(targetStep, themeColor) {
+    const audio = document.getElementById('step8Audio');
+
+    if (audio) {
+        audio.play().catch(function(e) {
+            console.log("Audio play blocked or missing:", e);
+        });
+    }
+
+    if (typeof nextStep === 'function') {
+        nextStep(targetStep, themeColor);
+    }
+}
+</script>
 
     <!-- Step 9 -->
     <div id="step9" class="card">
@@ -969,95 +1060,7 @@
             
             
 
-            <style>
-        
-#step8 { display: none; }
-#step8.active { display: block !important; }
-        </style>
-            
-                    <!-- Step 8: Complete Combined View (Question + Floating Animation & Moving Car + Sahiba Audio) -->
-            <div class="card" id="step8">
-                <div class="dream-wrapper" style="position: relative; padding: 20px; text-align: center; min-height: 400px;">
-                    <div class="dream-overlay"></div>
-                    
-                    <div class="butterfly left-fly">🦋</div>
-                    <div class="butterfly right-fly">🦋</div>
-
-                    <!-- Background Audio for Step 8 -->
-                    <audio id="step8Audio" src="sahiba.mp3" preload="auto"></audio>
-
-                    <!-- Background Moving Car Animation Layer -->
-                    <div class="moving-car-bg" style="position: absolute; bottom: 5px; width: 100%; left: 0; opacity: 0.3; pointer-events: none; overflow: hidden; z-index: 1;">
-                        <div class="car-anim" style="font-size: 2rem; white-space: nowrap; animation: driveCar 6s linear infinite;">
-                            🚗💨 
-                        </div>
-                    </div>
-
-                    <!-- Main Content & Question -->
-                    <div style="position: relative; z-index: 2;">
-                        <h1 class="hb-main-head" style="font-size: 1.4rem; margin-bottom: 10px;">
-                            🤝 Tum Vinnu se milne aaogi? 💖✨
-                        </h1>
-
-                        <!-- Floating Stick Figures & Cloud Dialogue -->
-                        <div class="animation-stage" style="position: relative; margin: 15px 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                            
-                            <!-- Cloud Thought Bubble -->
-                            <div class="cloud-bubble" style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.3); padding: 8px 12px; border-radius: 20px; margin-bottom: 10px; animation: floatCloud 2s ease-in-out infinite alternate;">
-                                <p style="color: #fff; font-size: 0.85rem; margin: 0; font-weight: 500;">
-                                    Are ruko ruko madam ji 🥹♾️ itni bhi kya jaldi
-                                </p>
-                            </div>
-
-                            <!-- Holding Hands Stick Figures -->
-                            <div class="stick-figures-container" style="display: flex; gap: 5px; align-items: center; animation: floatFigure 3s ease-in-out infinite alternate;">
-                                <span style="font-size: 2.2rem; filter: drop-shadow(0 0 8px rgba(255,182,193,0.8));">o_o</span>
-                                <span style="font-size: 1.3rem; color: #ff69b4;">🤝</span>
-                                <span style="font-size: 2.2rem; filter: drop-shadow(0 0 8px rgba(255,182,193,0.8));">^o^</span>
-                            </div>
-                        </div>
-                        
-                        <div class="grid-buttons" style="display: flex; flex-direction: column; gap: 8px; margin-top: 15px;">
-                            <button class="glass-btn" onclick="playAudioAndNext(9, 'blue')">💖 Yess aayungi 🥰</button>
-                            <button class="glass-btn" onclick="playAudioAndNext(9, 'blue')">❤️ Han yarr ofccccc ayungii ✨</button>
-                        </div>
-
-                        <p class="romantic-paragraph" style="font-size: 0.8rem; margin-top: 10px;">
-                            🌸 Aana hi padega, koi chance hi nahi! 😤💕✨
-                        </p>
-                    </div>
-                    
-
-                </div>
-            </div>
-
-<style>
-@keyframes floatFigure {
-    0% { transform: translateY(0px); }
-    100% { transform: translateY(-8px); }
-}
-@keyframes floatCloud {
-    0% { transform: translateY(0px) scale(1); }
-    100% { transform: translateY(-4px); scale(1.02); }
-}
-@keyframes driveCar {
-    0% { transform: translateX(-100px); }
-    100% { transform: translateX(350px); }
-}
-</style>
-
-<script>
-// Optional helper to trigger 'sahiba.mp3' when buttons are clicked if needed
-function playAudioAndNext(targetStep, themeColor) {
-    const audio = document.getElementById('step8Audio');
-    if (audio) {
-        audio.play().catch(e => console.log("Audio play blocked or missing:", e));
-    }
-    if (typeof nextStep === 'function') {
-        nextStep(targetStep, themeColor);
-    }
-}
-</script>
+    
 
 
 
@@ -1105,7 +1108,7 @@ function playAudioAndNext(targetStep, themeColor) {
 
         /* 1. Global Audio Management Function */
         function stopAllAudio() {
-            var audioIds = ['boyfriendAudio', 'forAReasonAudio', 'sahibaAudio', 'blueAudio', 'phirmiladeramAudio'];
+            var audioIds = ['boyfriendAudio', 'forAReasonAudio', 'step8Audio', 'blueAudio', 'phirmiladeramAudio'];
 
             audioIds.forEach(function(id) {
                 var audioElement = document.getElementById(id);
@@ -1172,16 +1175,17 @@ function playAudioAndNext(targetStep, themeColor) {
             if (stepNumber === 4) { startLiveChatAnimation(); }
             if (stepNumber === 5) { startThoughtSequence(); }
             if (stepNumber === 6) {
-                        if (stepNumber === 10) {
-                startStep10Sequence();
-                        }
-                
-                var videoElem = document.getElementById('screenVideo');
-                if (videoElem) {
-                    videoElem.play().catch(function(e) { console.log("Video error:", e); });
-                }
-            }
-        }
+    var videoElem = document.getElementById('screenVideo');
+    if (videoElem) {
+        videoElem.play().catch(function(e) { 
+            console.log("Video error:", e); 
+        });
+    }
+}
+
+if (stepNumber === 10) {
+    startStep10Sequence();
+}
 
         const step3Message = "Sep 10 2022 just a single hi 😭🎀\nI can't forget it kitni phat rahi thi uske baad se lekar abtak hmari itni baate hogyi itne high lows aagye 🫶🫢\n\nbut still 😂 mujhe pehli wish abhi tak yaad hai ♾️🥰 20 sep my sweet annu turns 15 hayee 😭💕\n\nChaliye fir aage dekhte hmari visual representations stranger se jaan tak banne ki 😋🌹";
         const step3QuoteText = "situation decides that memory blushes dilati h ya ansu 👁️👁️😭 .";
