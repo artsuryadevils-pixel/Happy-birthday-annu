@@ -696,6 +696,178 @@
             from { opacity: 0; transform: scale(0.9); } 
             to { opacity: 1; transform: scale(1); } 
         }
+   /* ============================= */
+/* STEP 11 INTRO SLIDE */
+/* ============================= */
+
+#step11Intro,
+#step11Password {
+    display: none;
+}
+
+.step11-intro-text {
+    width: 90%;
+    margin: auto;
+    min-height: 300px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    font-size: 26px;
+    line-height: 1.6;
+    color: white;
+}
+
+.step11-intro-text div {
+    min-height: 45px;
+}
+
+
+/* ============================= */
+/* PASSWORD SLIDE */
+/* ============================= */
+
+.password-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.password-image-wrapper {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 0;
+}
+
+.password-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.password-title {
+    position: relative;
+    z-index: 2;
+
+    margin-bottom: 25px;
+
+    color: white;
+    font-size: 26px;
+    text-align: center;
+}
+
+.heart-password {
+    position: relative;
+    z-index: 2;
+
+    width: 75%;
+    max-width: 500px;
+
+    padding: 18px 20px;
+
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.35);
+
+    background: rgba(20,5,15,.75);
+
+    color: white;
+    font-size: 22px;
+    text-align: center;
+
+    outline: none;
+}
+
+.heart-password::placeholder {
+    color: rgba(255,255,255,.75);
+}
+
+.password-enter {
+    position: relative;
+    z-index: 2;
+
+    margin-top: 20px;
+
+    padding: 15px 35px;
+
+    border-radius: 15px;
+    border: none;
+
+    background: rgba(255,255,255,.2);
+    color: white;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.wrong-password {
+    position: relative;
+    z-index: 2;
+
+    width: 80%;
+    max-width: 500px;
+
+    margin-top: 18px;
+
+    color: white;
+    text-align: center;
+    font-size: 18px;
+}
+
+
+/* ============================= */
+/* UNLOCK */
+/* ============================= */
+
+.unlock-area {
+    position: relative;
+    z-index: 3;
+
+    display: none;
+
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 25px;
+}
+
+.unlock-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#lockIcon {
+    font-size: 35px;
+}
+
+.unlock-sticker {
+    width: 180px;
+    max-width: 55vw;
+
+    margin-top: 15px;
+
+    display: none;
+}
     </style>
 </head>
 <body>
@@ -1338,6 +1510,185 @@ if (stepNumber === 10) {
                 setTimeout(resolve, milliseconds);
             });
         }
+  /* ================================================= */
+/* STEP 10 → STEP 11 INTRO → PASSWORD */
+/* ================================================= */
+
+const step11Intro = document.getElementById("step11Intro");
+const step11Password = document.getElementById("step11Password");
+
+const introLine1 = document.getElementById("introLine1");
+const introLine2 = document.getElementById("introLine2");
+const introLine3 = document.getElementById("introLine3");
+
+const heartPassword = document.getElementById("heartPassword");
+const passwordEnterBtn = document.getElementById("passwordEnterBtn");
+
+const wrongPasswordMessage =
+    document.getElementById("wrongPasswordMessage");
+
+const unlockArea =
+    document.getElementById("unlockArea");
+
+const lockIcon =
+    document.getElementById("lockIcon");
+
+const unlockText =
+    document.getElementById("unlockText");
+
+const unlockSticker =
+    document.getElementById("unlockSticker");
+
+
+function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+async function typeIntroText(element, text, speed = 45) {
+
+    element.innerHTML = "";
+
+    for (let i = 0; i < text.length; i++) {
+
+        element.innerHTML += text[i];
+
+        await wait(speed);
+    }
+}
+
+
+async function startStep11Sequence() {
+
+    /* Hide password slide initially */
+    step11Password.style.display = "none";
+
+    /* Show intro slide */
+    step11Intro.style.display = "flex";
+
+    /* Line 1 */
+    await typeIntroText(
+        introLine1,
+        "Are ruko ruko, abhi kaha chali madam ji 🥹🤌"
+    );
+
+    await wait(400);
+
+    /* Line 2 */
+    await typeIntroText(
+        introLine2,
+        "Chalo apne dreams ka visual dikhata hun"
+    );
+
+    await wait(400);
+
+    /* Line 3 */
+    await typeIntroText(
+        introLine3,
+        "Lekin usse pehle .........."
+    );
+
+    /* Pause */
+    await wait(1200);
+
+    /* Automatically move to password slide */
+    step11Intro.style.display = "none";
+
+    step11Password.style.display = "flex";
+
+    heartPassword.focus();
+}
+
+
+/* ================================================= */
+/* PASSWORD CHECK */
+/* ================================================= */
+
+function checkHeartPassword() {
+
+    const enteredPassword =
+        heartPassword.value.trim();
+
+    /* Clear previous error */
+    wrongPasswordMessage.innerHTML = "";
+
+    /* Correct password */
+    if (enteredPassword.toLowerCase() === "annu") {
+
+        /* Disable further typing */
+        heartPassword.disabled = true;
+        passwordEnterBtn.disabled = true;
+
+        /* Hide wrong message */
+        wrongPasswordMessage.innerHTML = "";
+
+        /* Show unlock area */
+        unlockArea.style.display = "flex";
+
+        /* Change lock */
+        lockIcon.innerHTML = "🔓";
+
+        /* Show success text */
+        unlockText.innerHTML =
+            "Unlocked Successfully ✓";
+
+        /* Sticker appears ONLY after unlock */
+        unlockSticker.style.display = "block";
+
+        unlockSticker.currentTime = 0;
+
+        unlockSticker.play().catch(function(error) {
+            console.log("Sticker playback error:", error);
+        });
+
+        /* After unlock + 2 seconds → next slide */
+        setTimeout(function() {
+
+            /*
+             * Existing nextStep function is used here.
+             * Step 12 will open automatically.
+             */
+            if (typeof nextStep === "function") {
+                nextStep(12);
+            }
+
+        }, 2000);
+
+    }
+
+    /* Wrong password */
+    else {
+
+        wrongPasswordMessage.innerHTML =
+            "Oops madam ji 🥹🤌 Aapke name ke alawa uske dil ka password aur kya ho sakta? ❤️";
+
+        heartPassword.value = "";
+
+        heartPassword.focus();
+    }
+}
+
+
+/* ENTER button */
+passwordEnterBtn.addEventListener(
+    "click",
+    checkHeartPassword
+);
+
+
+/* Keyboard ENTER */
+heartPassword.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "Enter") {
+
+            event.preventDefault();
+
+            checkHeartPassword();
+        }
+    }
+);
     </script>
 </body>
 </html>
