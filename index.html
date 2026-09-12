@@ -1908,13 +1908,10 @@ function startStep12Sequence() {
       audioElem.volume = 1.0;
       audioElem.play().catch(e => console.log("Audio autoplay blocked:", e));
     }
-
     const videoElem = document.getElementById('shadiVideo');
     if (videoElem) {
       videoElem.play().catch(e => console.log("Video autoplay blocked:", e));
     }
-  }
-            }
         
     </script>
 </body>
