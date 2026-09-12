@@ -876,6 +876,29 @@
     object-fit: cover;
     z-index: 0;
   }
+  .password-image-wrapper {
+    position: relative;
+}
+
+.password-image {
+    width: 100%;
+    display: block;
+}
+
+.heart-password {
+    position: absolute;
+    top: 43%;
+    left: 18%;
+    width: 64%;
+    height: 55px;
+    background: rgba(20, 10, 20, 0.75);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 18px;
+    text-align: center;
+    font-size: 24px;
+    z-index: 5;
+}
     </style>
 </head>
 <body>
@@ -1241,9 +1264,7 @@ function playAudioAndNext(targetStep, themeColor) {
             <img src="vinnu.png" class="password-image">
         </div>
 
-        <h2 class="password-title">
-            🔐 Pehle dil ka password batao ❤️
-        </h2>
+        
 
         <input
             type="text"
@@ -1277,7 +1298,7 @@ function playAudioAndNext(targetStep, themeColor) {
             <video
                 id="unlockSticker"
                 class="unlock-sticker"
-                src="unlock.webm"
+                src="sticker_figure.webm"
                 muted
                 playsinline>
             </video>
@@ -1762,7 +1783,7 @@ function checkHeartPassword() {
     else {
 
         wrongPasswordMessage.innerHTML =
-            "Oops madam ji 🥹🤌 Aapke name ke alawa uske dil ka password aur kya ho sakta? ❤️";
+        "Are are 🥹🦋 madam ji apke name ke alawa aur kya ho skta password 🎀pyari madam ji"
 
         heartPassword.value = "";
 
