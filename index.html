@@ -1764,14 +1764,20 @@ function checkHeartPassword() {
             console.log("Sticker playback error:", error);
         });
 
-      setTimeout(function() {
-    step11Password.style.display = "none";
-    if (typeof nextStep === "function") {
-        nextStep(12);
-    }
-}, 2000); 
         /* After unlock + 2 seconds → next slide */
-        
+        setTimeout(function() {
+
+            /*
+             * Existing nextStep function is used here.
+             * Step 12 will open automatically.
+             */
+            if (typeof nextStep === "function") {
+                nextStep(12);
+            }
+
+        }, 2000);
+
+    }
 
     /* Wrong password */
     else {
