@@ -1823,7 +1823,14 @@ heartPassword.addEventListener(
             checkHeartPassword();
         }
     }
-    document.addEventListener('pointerdown', function(e) {
+      document.addEventListener('touchstart', function(e) {
+    const key = e.target.closest('button, .key, div, span');
+    if (key) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+
+  document.addEventListener('pointerdown', function(e) {
     const input = document.getElementById('heartPassword');
     if (!input) return;
     if (e.target.id === 'passwordEnterBtn' || e.target.closest('#passwordEnterBtn')) return;
@@ -1840,6 +1847,7 @@ heartPassword.addEventListener(
       input.value = input.value.slice(0, -1);
     }
   });
+        
         
       
     </script>
