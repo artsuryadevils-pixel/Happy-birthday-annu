@@ -1447,9 +1447,17 @@ function playAudioAndNext(targetStep, themeColor) {
 if (stepNumber === 10) {
     startStep10Sequence();
 }
-       
-        }
-        if (stepNumber >= 10) {
+
+if (stepNumber >= 10) {
+    var gardenVideo = document.getElementById('gardenBackgroundVideo');
+    if (gardenVideo) {
+        gardenVideo.play().catch(function(e) {
+            console.log("Garden video error:", e);
+        });
+    }
+}
+
+}
     var gardenVideo = document.getElementById('gardenBackgroundVideo');
     if (gardenVideo) {
         gardenVideo.play().catch(function(e) {
