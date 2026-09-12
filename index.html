@@ -1665,7 +1665,8 @@ playAudioSafely('goldenBrownAudio');
     step11Password.style.display = "none";
 
     /* Show intro slide */
-    step11Intro.style.display = "flex";
+    step11Intro.classList.add("active");
+step11Intro.style.display = "block";
 
     /* Line 1 */
     await typeIntroText(
