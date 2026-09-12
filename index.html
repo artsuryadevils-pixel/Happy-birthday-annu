@@ -899,6 +899,14 @@
     font-size: 24px;
     z-index: 5;
 }
+   #unlockSticker {
+    display: block !important;
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    margin: 20px auto;
+    object-fit: contain;
+}
     </style>
 </head>
 <body>
@@ -1726,7 +1734,9 @@ step11Intro.style.display = "block";
 /* ================================================= */
 /* PASSWORD CHECK */
 /* ================================================= */
-
+function typePasswordKey(key) {
+    heartPassword.value += key;
+        }
 function checkHeartPassword() {
 
     const enteredPassword =
