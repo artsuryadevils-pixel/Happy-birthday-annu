@@ -1275,10 +1275,12 @@ function playAudioAndNext(targetStep, themeColor) {
         
 
         <input
-            type="text"
+                type="text"
+    inputmode="none"
+          
             id="heartPassword"
             class="heart-password"
-            placeholder="Password..."
+            placeholder=" Type password..."
             autocomplete="off"
         >
 
@@ -1821,7 +1823,23 @@ heartPassword.addEventListener(
             checkHeartPassword();
         }
     }
+
 );
+     document.addEventListener('click', function(e) {
+    const input = document.getElementById('heartPassword');
+    if (!input) return;
+    
+    const key = e.target.closest('button, .key, [data-key]');
+    if (key && !key.id.includes('passwordEnterBtn')) {
+      const keyValue = key.innerText.trim();
+      if (keyValue.length === 1) {
+        input.value += keyValue;
+      } else if (key.innerText.toLowerCase() === 'backspace' || key.classList.contains('backspace') || key.classList.contains('fa-backspace')) {
+        input.value = input.value.slice(0, -1);
+      }
+    }
+  });
+      
     </script>
 </body>
 </html>
