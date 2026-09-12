@@ -1219,7 +1219,8 @@ function playAudioAndNext(targetStep, themeColor) {
     Continue ➔
       </button>
         </div>
-  <!-- STEP 11 INTRO -->
+    </div>
+        <!-- STEP 11 INTRO -->
 <div class="card" id="step11Intro">
 
     <div class="step11-intro-text">
@@ -1657,6 +1658,9 @@ async function typeIntroText(element, text, speed = 45) {
 
 async function startStep11Sequence() {
 playAudioSafely('goldenBrownAudio');
+  document.querySelectorAll('.card').forEach(function(card) {
+    card.classList.remove('active');
+});
     /* Hide password slide initially */
     step11Password.style.display = "none";
 
