@@ -1318,7 +1318,30 @@ function playAudioAndNext(targetStep, themeColor) {
 </div>
     </div>
          
+<div class="card" id="step11Password">
 
+    <!-- 1st div -->
+    <div class="password-container">
+
+        <!-- 2nd div -->
+        <div class="password-image-wrapper">
+            ...
+        </div>
+
+        <!-- input/button etc. -->
+
+        <!-- 3rd/4th divs -->
+        ...
+        
+    </div>
+</div>
+
+<!-- 👆 Step 11 Password ka LAST closing div -->
+
+<!-- YAHAN STEP 12 PASTE KARNA HAI -->
+<div class="card" id="step12">
+    ...
+</div>
             
         
    
@@ -1828,47 +1851,41 @@ heartPassword.addEventListener(
         }
     }
 );
- function startStep12Sequence() {
-  const targetCard = document.getElementById('card12') || document.querySelector('.card.active') || document.querySelector('.card');
-  
-  if (targetCard) {
-    targetCard.innerHTML = `
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; padding: 20px;">
-        <h2 id="typewriter12" style="font-family: 'Georgia', serif; font-size: 1.5rem; color: #fff; line-height: 1.6; text-shadow: 0 2px 8px rgba(0,0,0,0.3); font-style: italic;"></h2>
-      </div>
-    `;
+function startStep12Sequence() {
+
+    const targetCard = document.getElementById('step12');
+
+    if (!targetCard) {
+        console.log("Step 12 card not found!");
+        return;
+    }
+
+    const targetElement =
+        document.getElementById('typewriter12');
+
+    if (!targetElement) return;
+
+    targetElement.innerHTML = "";
 
     const text = "😔🫂🥹 Maybe one day us 🥀";
-    const targetElement = document.getElementById('typewriter12');
+
     let charIndex = 0;
 
     function typeWriterSlow() {
-      if (charIndex < text.length) {
-        targetElement.innerHTML += text.charAt(charIndex);
-        charIndex++;
-        setTimeout(typeWriterSlow, 180);
-      }
+
+        if (charIndex < text.length) {
+
+            targetElement.innerHTML +=
+                text.charAt(charIndex);
+
+            charIndex++;
+
+            setTimeout(typeWriterSlow, 180);
+        }
     }
 
     setTimeout(typeWriterSlow, 500);
-  }
- }
-        function startStep13Sequence() {
-  const targetCard = document.getElementById('card13') || document.querySelector('.card.active') || document.querySelector('.card');
-  
-  if (targetCard) {
-    targetCard.innerHTML = `
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; padding: 20px; position: relative; overflow: hidden;">
-        
-        <audio id="rooposhAudio" src="rooposh.mp4" autoplay loop></audio>
-
-        <video id="shadiVideo" src="shadi.mp4" autoplay playsinline style="width: 85%; max-width: 320px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); object-fit: cover; margin-bottom: 20px;"></video>
-        
-        <video src="sticker_figure.webm" autoplay loop muted playsinline style="width: 80px; height: 80px; position: absolute; bottom: 30px; left: -100px; animation: runAcross 8s linear infinite;"></video>
-        
-      </div>
-    `;
-
+}
     // CSS Animation for running sticker figure from left to right smoothly
     if (!document.getElementById('runningStickerStyle')) {
       const styleSheet = document.createElement("style");
@@ -1891,13 +1908,10 @@ heartPassword.addEventListener(
       audioElem.volume = 1.0;
       audioElem.play().catch(e => console.log("Audio autoplay blocked:", e));
     }
-
     const videoElem = document.getElementById('shadiVideo');
     if (videoElem) {
       videoElem.play().catch(e => console.log("Video autoplay blocked:", e));
     }
-  }
-            }
         
     </script>
 </body>
