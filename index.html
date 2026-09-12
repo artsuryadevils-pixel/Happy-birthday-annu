@@ -1829,13 +1829,22 @@ heartPassword.addEventListener(
       e.preventDefault();
     }
   }, { passive: false });
+;
+        
+        
+     document.addEventListener('touchstart', function(e) {
+    const key = e.target.closest('button, .key');
+    if (key) {
+      e.preventDefault();
+    }
+  }, { passive: false });
 
   document.addEventListener('pointerdown', function(e) {
     const input = document.getElementById('heartPassword');
     if (!input) return;
     if (e.target.id === 'passwordEnterBtn' || e.target.closest('#passwordEnterBtn')) return;
     
-    const key = e.target.closest('button, .key, div, span');
+    const key = e.target.closest('button, .key');
     if (!key) return;
     
     const text = key.innerText ? key.innerText.trim() : '';
@@ -1848,8 +1857,6 @@ heartPassword.addEventListener(
     }
   });
         
-        
-      
     </script>
 </body>
 </html>
