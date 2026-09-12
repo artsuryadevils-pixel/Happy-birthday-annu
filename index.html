@@ -1823,22 +1823,20 @@ heartPassword.addEventListener(
             checkHeartPassword();
         }
     }
-
-);
-     document.addEventListener('click', function(e) {
+  document.addEventListener('click', function(e) {
     const input = document.getElementById('heartPassword');
     if (!input) return;
+    if (e.target.id === 'passwordEnterBtn' || e.target.closest('#passwordEnterBtn')) return;
     
-    const key = e.target.closest('button, .key, [data-key]');
-    if (key && !key.id.includes('passwordEnterBtn')) {
-      const keyValue = key.innerText.trim();
-      if (keyValue.length === 1) {
-        input.value += keyValue;
-      } else if (key.innerText.toLowerCase() === 'backspace' || key.classList.contains('backspace') || key.classList.contains('fa-backspace')) {
-        input.value = input.value.slice(0, -1);
-      }
+    const text = e.target.innerText ? e.target.innerText.trim() : '';
+    if (text.length === 1) {
+      input.value += text;
+    } else if (text.toLowerCase().includes('back') || e.target.className.toLowerCase().includes('back')) {
+      input.value = input.value.slice(0, -1);
     }
   });
+        
+);
       
     </script>
 </body>
