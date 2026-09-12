@@ -1860,6 +1860,7 @@ heartPassword.addEventListener(
             checkHeartPassword();
         }
     }
+);
 function startStep12Sequence() {
   const targetCard = document.getElementById('step12'); 
   if (!targetCard) { 
@@ -1883,15 +1884,24 @@ function startStep12Sequence() {
 
 function startStep13Sequence() {
   const targetCard = document.getElementById('step13');
+  
   if (targetCard) {
     targetCard.innerHTML = `
       <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; padding: 20px; position: relative; overflow: hidden;">
+        
+        <!-- Background Audio (rooposh.mp4) -->
         <audio id="rooposhAudio" src="rooposh.mp4" autoplay loop></audio>
+
+        <!-- Enhanced Video Player (shadi.mp4) -->
         <video id="shadiVideo" src="shadi.mp4" autoplay playsinline style="width: 85%; max-width: 320px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); object-fit: cover; margin-bottom: 20px;"></video>
+        
+        <!-- Animated Running Happy Sticker Figure -->
         <video src="sticker_figure.webm" autoplay loop muted playsinline style="width: 80px; height: 80px; position: absolute; bottom: 30px; left: -100px; animation: runAcross 8s linear infinite;"></video>
+        
       </div>
     `;
 
+    // CSS Animation for running sticker figure from left to right smoothly
     if (!document.getElementById('runningStickerStyle')) {
       const styleSheet = document.createElement("style");
       styleSheet.id = 'runningStickerStyle';
@@ -1907,6 +1917,7 @@ function startStep13Sequence() {
       document.head.appendChild(styleSheet);
     }
 
+    // Ensure audio and video play safely
     const audioElem = document.getElementById('rooposhAudio');
     if (audioElem) {
       audioElem.volume = 1.0;
@@ -1919,8 +1930,6 @@ function startStep13Sequence() {
     }
   }
 }
-
-
         
     </script>
 </body>
