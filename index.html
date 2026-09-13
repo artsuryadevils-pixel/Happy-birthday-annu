@@ -1318,10 +1318,7 @@ function playAudioAndNext(targetStep, themeColor) {
 </div>
     </div>
          
-<div class="card" id="step11Password">
 
-    <!-- 1st div -->
-    <div class="password-container">
 
         <!-- 2nd div -->
         <div class="password-image-wrapper">
@@ -1336,26 +1333,40 @@ function playAudioAndNext(targetStep, themeColor) {
     </div>
 </div>
 
-<!-- 👆 Step 11 Password ka LAST closing div -->
+<!-- Step 12 Card -->
+<div class="card" id="step12">
+    <div class="card-content" style="
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        height:80vh;
+        text-align:center;
+        padding:20px;
+    ">
+        <h2 id="typewriter12" style="
+            font-family:'Georgia', serif;
+            font-size:1.5rem;
+            color:#fff;
+            line-height:1.6;
+            text-shadow:0 2px 8px rgba(0,0,0,0.3);
+            font-style:italic;
+            margin-bottom:30px;
+        "></h2>
 
-<!-- YAHAN STEP 12 PASTE KARNA HAI -->
-<div class="card" id="step12">
-    <!-- Step 12 Card -->
-<div class="card" id="step12">
-  <div class="card-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 80vh; text-align: center; padding: 20px;">
-    <h2 id="typewriter12" style="font-family: 'Georgia', serif; font-size: 1.5rem; color: #fff; line-height: 1.6; text-shadow: 0 2px 8px rgba(0,0,0,0.3); font-style: italic; margin-bottom: 30px;"></h2>
-    <button class="glass-btn" onclick="nextStep(13)">Next ➔</button>
-  </div>
+        <button class="glass-btn" onclick="nextStep(13)">
+            Next ➔
+        </button>
+    </div>
 </div>
 
 <!-- Step 13 Card -->
 <div class="card" id="step13">
-  <div class="card-content">
-    <!-- Yeh dynamically load hoga -->
-  </div>
+    <div class="card-content">
+        <!-- Yeh dynamically load hoga -->
+    </div>
 </div>
-    
-</div>
+
             
         
    
@@ -1926,7 +1937,99 @@ function startStep12Sequence() {
     if (videoElem) {
       videoElem.play().catch(e => console.log("Video autoplay blocked:", e));
     }
-        
+        function startStep13Sequence() {
+    const targetCard = document.getElementById('step13');
+
+    if (!targetCard) {
+        console.log("Step 13 card not found!");
+        return;
+    }
+
+    targetCard.innerHTML = `
+        <div style="
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            height:100%;
+            text-align:center;
+            padding:20px;
+            position:relative;
+            overflow:hidden;
+        ">
+
+            <video
+                id="shadiVideo"
+                src="shadi.mp4"
+                autoplay
+                playsinline
+                style="
+                    width:85%;
+                    max-width:320px;
+                    border-radius:16px;
+                    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+                    object-fit:cover;
+                    margin-bottom:20px;
+                ">
+            </video>
+
+            <video
+                src="sticker_figure.webm"
+                autoplay
+                loop
+                muted
+                playsinline
+                style="
+                    width:80px;
+                    height:80px;
+                    position:absolute;
+                    bottom:30px;
+                    left:-100px;
+                    animation:runAcross 8s linear infinite;
+                ">
+            </video>
+
+        </div>
+    `;
+
+    if (!document.getElementById('runningStickerStyle')) {
+        const styleSheet = document.createElement("style");
+        styleSheet.id = "runningStickerStyle";
+
+        styleSheet.innerHTML = `
+            @keyframes runAcross {
+                0% {
+                    left:-100px;
+                    transform:scaleX(1);
+                }
+
+                50% {
+                    left:calc(100% + 50px);
+                    transform:scaleX(1);
+                }
+
+                50.1% {
+                    transform:scaleX(-1);
+                }
+
+                100% {
+                    left:-100px;
+                    transform:scaleX(-1);
+                }
+            }
+        `;
+
+        document.head.appendChild(styleSheet);
+    }
+
+    const videoElem = document.getElementById('shadiVideo');
+
+    if (videoElem) {
+        videoElem.play().catch(function(error) {
+            console.log("Video autoplay blocked:", error);
+        });
+    }
+}
     </script>
 </body>
 </html>
