@@ -993,6 +993,38 @@
     </div>
 
 </div> 
+  /* STEP 15 */
+#step15 {
+    padding: 0;
+    overflow: hidden;
+}
+
+.step15-world {
+    position: relative;
+    width: 100%;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #05020a;
+}
+
+.step15-video {
+    width: 100%;
+    height: auto;
+    max-height: 92vh;
+    object-fit: contain;
+    display: block;
+}
+
+.step15-next {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
     </style>
 </head>
 <body>
@@ -1512,7 +1544,24 @@ function playAudioAndNext(targetStep, themeColor) {
     </div>
 
 </div>
-            
+     <!-- STEP 15 -->
+<div class="card" id="step15">
+    <div class="step15-world">
+        <video
+            id="step15Video"
+            src="step15_visual.mp4"
+            autoplay
+            loop
+            muted
+            playsinline
+            class="step15-video">
+        </video>
+
+        <button class="glass-btn step15-next" onclick="nextStep(16)">
+            Next ➔
+        </button>
+    </div>
+</div>       
         
    
 
@@ -1676,7 +1725,8 @@ function playAudioAndNext(targetStep, themeColor) {
       if (stepNumber === 14) {
     startStep14Sequence();
         }  
-if (stepNumber >= 10) {
+if (stepNumber === 15) { startStep15Sequence(); }
+            if (stepNumber >= 10) {
     var gardenVideo = document.getElementById('gardenBackgroundVideo');
     if (gardenVideo) {
         gardenVideo.play().catch(function(e) {
@@ -2201,7 +2251,25 @@ if (audioElem) {
 }
    
  function startStep14Sequence() {
+function startStep15Sequence() {
+    const videoElem = document.getElementById('step15Video');
 
+    if (videoElem) {
+        videoElem.currentTime = 0;
+        videoElem.play().catch(function(error) {
+            console.log("Step 15 video playback blocked:", error);
+        });
+    }
+}
+    const videoElem = document.getElementById('step15Video');
+
+    if (videoElem) {
+        videoElem.currentTime = 0;
+        videoElem.play().catch(function(error) {
+            console.log("Step 15 video playback blocked:", error);
+        });
+    }
+        }
     const videoElem = document.getElementById('step14Video');
 
     if (videoElem) {
