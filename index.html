@@ -1938,7 +1938,15 @@ function startStep12Sequence() {
     }
 
     targetCard.innerHTML = `
-        <div style="
+      <video
+    id="rooposhAudio"
+    src="rooposh.mp4"
+    autoplay
+    loop
+    
+    playsinline
+    style="display:none;">
+</video>
             display:flex;
             flex-direction:column;
             align-items:center;
@@ -2013,7 +2021,14 @@ function startStep12Sequence() {
 
         document.head.appendChild(styleSheet);
     }
+const audioElem = document.getElementById('rooposhAudio');
 
+if (audioElem) {
+    audioElem.volume = 1.0;
+    audioElem.play().catch(function(error) {
+        console.log("Audio autoplay blocked:", error);
+    });
+        }
     const videoElem = document.getElementById('shadiVideo');
 
     if (videoElem) {
