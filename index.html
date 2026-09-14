@@ -918,6 +918,81 @@
     max-width: 100%;
     box-sizing: border-box;
 }
+  <!-- STEP 14 - OUR LITTLE WORLD -->
+<div class="card" id="step14">
+
+    <div class="step14-world">
+
+        <!-- Animated background glow -->
+        <div class="step14-glow glow1"></div>
+        <div class="step14-glow glow2"></div>
+
+        <!-- Floating hearts -->
+        <div class="floating-heart heart1">♡</div>
+        <div class="floating-heart heart2">♡</div>
+        <div class="floating-heart heart3">♡</div>
+        <div class="floating-heart heart4">♡</div>
+
+        <!-- Top music label -->
+        <div class="step14-music">
+            ♫ rooposh ♫
+        </div>
+
+        <!-- Left label -->
+        <div class="name-label vinnu-label">
+            <span>Vinnu</span>
+            <small>♡</small>
+        </div>
+
+        <!-- Right label -->
+        <div class="name-label annika-label">
+            <span>Annika</span>
+            <small>♡</small>
+        </div>
+
+        <!-- Centre video -->
+        <div class="step14-video-box">
+
+            <video
+                id="step14Video"
+                src="shadi.mp4"
+                autoplay
+                loop
+                playsinline>
+            </video>
+
+        </div>
+
+        <!-- Left running sticker -->
+        <video
+            class="step14-runner runner-left"
+            src="sticker_figure.webm"
+            autoplay
+            loop
+            muted
+            playsinline>
+        </video>
+
+        <!-- Right running sticker -->
+        <video
+            class="step14-runner runner-right"
+            src="sticker_figure.webm"
+            autoplay
+            loop
+            muted
+            playsinline>
+        </video>
+
+        <!-- Next button -->
+        <button
+            class="glass-btn step14-next"
+            onclick="nextStep(15)">
+            Next ➔
+        </button>
+
+    </div>
+
+</div> 
     </style>
 </head>
 <body>
@@ -1362,7 +1437,81 @@ function playAudioAndNext(targetStep, themeColor) {
         <!-- Yeh dynamically load hoga -->
     </div>
 </div>
+<!-- STEP 14 - OUR LITTLE WORLD -->
+<div class="card" id="step14">
 
+    <div class="step14-world">
+
+        <!-- Animated background glow -->
+        <div class="step14-glow glow1"></div>
+        <div class="step14-glow glow2"></div>
+
+        <!-- Floating hearts -->
+        <div class="floating-heart heart1">♡</div>
+        <div class="floating-heart heart2">♡</div>
+        <div class="floating-heart heart3">♡</div>
+        <div class="floating-heart heart4">♡</div>
+
+        <!-- Top music label -->
+        <div class="step14-music">
+            ♫ rooposh ♫
+        </div>
+
+        <!-- Left label -->
+        <div class="name-label vinnu-label">
+            <span>Vinnu</span>
+            <small>♡</small>
+        </div>
+
+        <!-- Right label -->
+        <div class="name-label annika-label">
+            <span>Annika</span>
+            <small>♡</small>
+        </div>
+
+        <!-- Centre video -->
+        <div class="step14-video-box">
+
+            <video
+                id="step14Video"
+                src="shadi.mp4"
+                autoplay
+                loop
+                playsinline>
+            </video>
+
+        </div>
+
+        <!-- Left running sticker -->
+        <video
+            class="step14-runner runner-left"
+            src="sticker_figure.webm"
+            autoplay
+            loop
+            muted
+            playsinline>
+        </video>
+
+        <!-- Right running sticker -->
+        <video
+            class="step14-runner runner-right"
+            src="sticker_figure.webm"
+            autoplay
+            loop
+            muted
+            playsinline>
+        </video>
+
+        <!-- Next button -->
+        <button
+            class="glass-btn step14-next"
+            onclick="nextStep(15)">
+            Next ➔
+        </button>
+
+    </div>
+
+</div>
             
         
    
@@ -1524,7 +1673,9 @@ function playAudioAndNext(targetStep, themeColor) {
         if (stepNumber === 13) {
       startStep13Sequence();
     }
-        
+      if (stepNumber === 14) {
+    startStep14Sequence();
+        }  
 if (stepNumber >= 10) {
     var gardenVideo = document.getElementById('gardenBackgroundVideo');
     if (gardenVideo) {
@@ -1946,6 +2097,16 @@ function startStep12Sequence() {
     playsinline
     style="display:none;">
 </video>
+<button
+    class="glass-btn"
+    onclick="nextStep(14, 'rooposh')"
+    style="
+        position:absolute;
+        bottom:20px;
+        z-index:20;
+    ">
+    Next ➔
+</button>
 <div style="
             display:flex;
             flex-direction:column;
@@ -2038,6 +2199,28 @@ if (audioElem) {
         });
     }
 }
+   
+ function startStep14Sequence() {
+
+    const videoElem = document.getElementById('step14Video');
+
+    if (videoElem) {
+        videoElem.currentTime = 0;
+
+        videoElem.play().catch(function(error) {
+            console.log("Step 14 video playback blocked:", error);
+        });
+    }
+
+    const rooposhElem =
+        document.getElementById('rooposhAudio');
+
+    if (rooposhElem) {
+        rooposhElem.play().catch(function(error) {
+            console.log("Rooposh playback blocked:", error);
+        });
+    }
+ } 
     </script>
 </body>
 </html>
