@@ -2249,8 +2249,25 @@ if (audioElem) {
         });
     }
 }
-   
+ videoElem = document.getElementById('step14Video');
  function startStep14Sequence() {
+    const videoElem = document.getElementById('step14Video');
+
+    if (videoElem) {
+        videoElem.currentTime = 0;
+        videoElem.play().catch(function(error) {
+            console.log("Step 14 video playback blocked:", error);
+        });
+    }
+
+    const rooposhElem = document.getElementById('rooposhAudio');
+    if (rooposhElem) {
+        rooposhElem.play().catch(function(error) {
+            console.log("Rooposh playback blocked:", error);
+        });
+    }
+}
+
 function startStep15Sequence() {
     const videoElem = document.getElementById('step15Video');
 
@@ -2261,34 +2278,6 @@ function startStep15Sequence() {
         });
     }
 }
-    const videoElem = document.getElementById('step15Video');
-
-    if (videoElem) {
-        videoElem.currentTime = 0;
-        videoElem.play().catch(function(error) {
-            console.log("Step 15 video playback blocked:", error);
-        });
-    }
-        }
-    const videoElem = document.getElementById('step14Video');
-
-    if (videoElem) {
-        videoElem.currentTime = 0;
-
-        videoElem.play().catch(function(error) {
-            console.log("Step 14 video playback blocked:", error);
-        });
-    }
-
-    const rooposhElem =
-        document.getElementById('rooposhAudio');
-
-    if (rooposhElem) {
-        rooposhElem.play().catch(function(error) {
-            console.log("Rooposh playback blocked:", error);
-        });
-    }
- } 
     </script>
 </body>
 </html>
