@@ -3601,13 +3601,13 @@ async function cakeShowBlow(el) {
                 )
             );
 
-            if (
-                cakeRectNow &&
-                knifeRectNow.left <=
-                    cakeRectNow.left + cakeRectNow.width * 0.08
-            ) {
-                progressPercent = 100;
-            }
+        if (
+    cakeRectNow &&
+    knifeRectNow.left <=
+        cakeRectNow.left + cakeRectNow.width * 0.45
+) {
+    progressPercent = 100;
+}
 
             if (progress) {
                 progress.style.width = `${progressPercent}%`;
