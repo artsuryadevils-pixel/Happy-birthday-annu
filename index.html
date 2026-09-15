@@ -3569,164 +3569,84 @@ async function cakeShowBlow(el) {
         progress.style.width = '0%';
     }
   } 
-                  function waitForKnifeCut(knife, progress, scene) {
+                  
+      function waitForKnifeCut(knife, progress, scene) {
     return new Promise(resolve => {
-
         let dragging = false;
         let finished = false;
-
         let pointerOffsetX = 0;
-        let startLeft = 0;
-        let totalDistance = 1;
+        let currentLeft = 0;
 
-        const getX = e => {
-            if (e && typeof e.clientX === "number") {
-                return e.clientX;
-            }
-
-            if (e && e.touches && e.touches.length) {
-                return e.touches[0].clientX;
-            }
-
+        const getPointerX = e => {
+            if (typeof e.clientX === 'number') return e.clientX;
+            if (e.touches && e.touches[0]) return e.touches[0].clientX;
             return 0;
         };
 
-        const getSceneRect = () => {
-            return scene.getBoundingClientRect();
-        };
+        const getSceneRect = () => scene.getBoundingClientRect();
+
+        const getKnifeRect = () => knife.getBoundingClientRect();
 
         const getCakeRect = () => {
-            const cake = scene.querySelector(".cut-cake-stage");
-            return cake ? cake.getBoundingClientRect() : null;
+            const el = scene.querySelector('.cut-cake-stage');
+            return el ? el.getBoundingClientRect() : null;
         };
-
-        /* --------------------------------
-           INITIAL POSITION
-        -------------------------------- */
 
         const sceneRect = getSceneRect();
-        const knifeRect = knife.getBoundingClientRect();
-
-        startLeft = knifeRect.left - sceneRect.left;
-
+        const knifeRect = getKnifeRect();
         const cakeRect = getCakeRect();
 
+        currentLeft = knifeRect.left - sceneRect.left;
+
+        const startLeft = currentLeft;
+
         const targetPageX = cakeRect
-            ? cakeRect.left - 18
+            ? cakeRect.left - Math.min(18, cakeRect.width * 0.04)
             : sceneRect.left + sceneRect.width * 0.22;
 
-        const targetLeft =
-            targetPageX - sceneRect.left;
+        const targetLeft = targetPageX - sceneRect.left;
 
-        totalDistance = Math.max(
-            1,
-            startLeft - targetLeft
-        );
-
-
-        /* --------------------------------
-           FINISH
-        -------------------------------- */
-
-        const finish = () => {
-
-            if (finished) return;
-
-            finished = true;
-            dragging = false;
-
-            knife.classList.remove("dragging");
-
-            if (progress) {
-                progress.style.width = "100%";
-            }
-
-            cleanup();
-
-            resolve();
-        };
-
-
-        /* --------------------------------
-           POINTER DOWN
-           DOCUMENT CAPTURE
-        -------------------------------- */
+        const totalDistance =
+            Math.max(1, startLeft - targetLeft);
 
         const down = e => {
-
             if (finished) return;
 
             if (
-                e.pointerType === "mouse" &&
+                e.pointerType === 'mouse' &&
                 e.button !== 0
             ) {
                 return;
             }
 
-            const rect =
-                knife.getBoundingClientRect();
-
-            const x = getX(e);
-
-            /*
-             * IMPORTANT:
-             * We don't care which element actually
-             * received the touch.
-             *
-             * If the finger is physically over the
-             * knife, dragging starts.
-             */
-
-            if (
-                x < rect.left - 15 ||
-                x > rect.right + 15 ||
-                (typeof e.clientY === "number" &&
-                 (e.clientY < rect.top - 20 ||
-                  e.clientY > rect.bottom + 20))
-            ) {
-                return;
-            }
+            const rect = getKnifeRect();
 
             pointerOffsetX =
-                x - rect.left;
+                getPointerX(e) - rect.left;
 
             dragging = true;
 
-            knife.classList.add("dragging");
+            knife.classList.add('dragging');
 
             if (
                 knife.setPointerCapture &&
                 e.pointerId !== undefined
             ) {
                 try {
-                    knife.setPointerCapture(
-                        e.pointerId
-                    );
+                    knife.setPointerCapture(e.pointerId);
                 } catch (_) {}
             }
 
             e.preventDefault();
-            e.stopPropagation();
         };
 
-
-        /* --------------------------------
-           POINTER MOVE
-        -------------------------------- */
-
         const move = e => {
+            if (!dragging || finished) return;
 
-            if (!dragging || finished) {
-                return;
-            }
-
-            const rect =
-                getSceneRect();
-
-            const x = getX(e);
+            const rect = getSceneRect();
 
             let newLeft =
-                x -
+                getPointerX(e) -
                 rect.left -
                 pointerOffsetX;
 
@@ -3739,84 +3659,63 @@ async function cakeShowBlow(el) {
 
             newLeft = Math.max(
                 minLeft,
-                Math.min(
-                    maxLeft,
-                    newLeft
-                )
+                Math.min(maxLeft, newLeft)
             );
+
+            currentLeft = newLeft;
 
             knife.style.left =
-                newLeft + "px";
+                `${currentLeft}px`;
 
+            const knifeRectNow =
+                getKnifeRect();
 
-            /* --------------------------------
-               PROGRESS
-            -------------------------------- */
-
-            let percent =
-                ((startLeft - newLeft) /
-                totalDistance) * 100;
-
-            percent = Math.max(
-                0,
-                Math.min(100, percent)
-            );
-
-
-            const knifeNow =
-                knife.getBoundingClientRect();
-
-            const cakeNow =
+            const cakeRectNow =
                 getCakeRect();
 
-
-            /*
-             * Cake reached.
-             */
+            let progressPercent =
+                Math.max(
+                    0,
+                    Math.min(
+                        100,
+                        (
+                            (startLeft - currentLeft) /
+                            totalDistance
+                        ) * 100
+                    )
+                );
 
             if (
-                cakeNow &&
-                knifeNow.left <=
-                cakeNow.left +
-                cakeNow.width * 0.08
+                cakeRectNow &&
+                knifeRectNow.left <=
+                cakeRectNow.left +
+                cakeRectNow.width * 0.08
             ) {
-                percent = 100;
+                progressPercent = 100;
             }
-
 
             if (progress) {
                 progress.style.width =
-                    percent + "%";
+                    `${progressPercent}%`;
             }
 
-
-            if (percent >= 100) {
+            if (progressPercent >= 100) {
                 finish();
             }
 
             e.preventDefault();
         };
 
-
-        /* --------------------------------
-           POINTER UP
-        -------------------------------- */
-
         const up = e => {
-
-            if (!dragging) {
-                return;
-            }
+            if (!dragging) return;
 
             dragging = false;
 
-            knife.classList.remove(
-                "dragging"
-            );
+            knife.classList.remove('dragging');
 
             if (
-                knife.releasePointerCapture &&
                 e &&
+                knife.releasePointerCapture &&
                 e.pointerId !== undefined
             ) {
                 try {
@@ -3827,82 +3726,71 @@ async function cakeShowBlow(el) {
             }
         };
 
+        const finish = () => {
+            if (finished) return;
 
-        /* --------------------------------
-           CLEANUP
-        -------------------------------- */
+            finished = true;
+            dragging = false;
+
+            knife.classList.remove('dragging');
+
+            if (progress) {
+                progress.style.width = '100%';
+            }
+
+            cleanup();
+
+            resolve();
+        };
 
         const cleanup = () => {
-
-            document.removeEventListener(
-                "pointerdown",
-                down,
-                true
+            knife.removeEventListener(
+                'pointerdown',
+                down
             );
 
-            document.removeEventListener(
-                "pointermove",
-                move,
-                true
+            window.removeEventListener(
+                'pointermove',
+                move
             );
 
-            document.removeEventListener(
-                "pointerup",
-                up,
-                true
+            window.removeEventListener(
+                'pointerup',
+                up
             );
 
-            document.removeEventListener(
-                "pointercancel",
-                up,
-                true
+            window.removeEventListener(
+                'pointercancel',
+                up
             );
         };
 
-
-        /* --------------------------------
-           CAPTURE PHASE
-           THIS IS THE IMPORTANT FIX
-        -------------------------------- */
-
-        document.addEventListener(
-            "pointerdown",
-            down,
-            {
-                capture: true,
-                passive: false
-            }
+        knife.addEventListener(
+            'pointerdown',
+            down
         );
 
-        document.addEventListener(
-            "pointermove",
+        window.addEventListener(
+            'pointermove',
             move,
-            {
-                capture: true,
-                passive: false
-            }
+            { passive: false }
         );
 
-        document.addEventListener(
-            "pointerup",
-            up,
-            {
-                capture: true,
-                passive: false
-            }
+        window.addEventListener(
+            'pointerup',
+            up
         );
 
-        document.addEventListener(
-            "pointercancel",
-            up,
-            {
-                capture: true,
-                passive: false
-            }
+        window.addEventListener(
+            'pointercancel',
+            up
         );
     });
-                  }
-                            
+      }  
+
+            
+
+                              
             </script>
 </body>
 </html>
