@@ -3788,7 +3788,48 @@ async function cakeShowBlow(el) {
     });
       }  
 
-            
+     /* ===== CAKE KNIFE EVENT BRIDGE ===== */
+document.addEventListener('pointerdown', function (e) {
+
+    const step16 = document.getElementById('step16');
+    const knife = document.getElementById('cakeKnife');
+
+    if (!step16 || !knife) return;
+
+    // Sirf Step 16 active hone par
+    if (!step16.classList.contains('active')) return;
+
+    // Knife actually visible hona chahiye
+    if (knife.classList.contains('hidden-knife')) return;
+
+    const rect = knife.getBoundingClientRect();
+
+    const insideKnife =
+        e.clientX >= rect.left - 30 &&
+        e.clientX <= rect.right + 30 &&
+        e.clientY >= rect.top - 30 &&
+        e.clientY <= rect.bottom + 30;
+
+    if (!insideKnife) return;
+
+    // Original knife listener ko event forward karo
+    const forwarded = new PointerEvent('pointerdown', {
+        bubbles: true,
+        cancelable: true,
+        clientX: e.clientX,
+        clientY: e.clientY,
+        pointerId: e.pointerId,
+        pointerType: e.pointerType,
+        button: e.button,
+        buttons: e.buttons,
+        isPrimary: e.isPrimary
+    });
+
+    forwarded.__cakeKnifeForwarded = true;
+
+    knife.dispatchEvent(forwarded);
+
+}, { capture: true, passive: false });       
 
                               
             </script>
