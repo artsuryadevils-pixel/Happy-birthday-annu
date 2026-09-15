@@ -3581,60 +3581,20 @@ async function cakeShowBlow(el) {
             const minLeft = 8;
             const maxLeft =
                 rect.width - knife.offsetWidth - 8;
+   function waitForKnifeCut(knife, progress, scene) {
 
-            newLeft = Math.max(
-                minLeft,
-                Math.min(maxLeft, newLeft)
-            );
+    return new Promise(resolve => {
 
-            currentLeft = newLeft;
-            knife.style.left = `${currentLeft}px`;
+        let dragging = false;
+        let finished = false;
+        let offsetX = 0;
 
-            const knifeRectNow = getKnifeRect();
-            const cakeRectNow = getCakeRect();
-
-            let progressPercent = Math.max(
-                0,
-                Math.min(
-                    100,
-                    ((startLeft - currentLeft) / totalDistance) * 100
-                )
-            );
-
-        if (
-    cakeRectNow &&
-    knifeRectNow.left <=
-        cakeRectNow.left + cakeRectNow.width * 0.45
-) {
-    progressPercent = 100;
-}
-
-            if (progress) {
-                progress.style.width = `${progressPercent}%`;
+        const getX = e => {
+            if (e.clientX !== undefined) return e.clientX;
+            if (e.touches && e.touches[0]) {
+                return e.touches[0].clientX;
             }
-
-            if (progressPercent >= 100) {
-                finish();
-            }
-
-            e.preventDefault();
-        };
-
-        const up = e => {
-            if (!dragging) return;
-
-            dragging = false;
-            knife.classList.remove('dragging');
-
-            if (
-                e &&
-                knife.releasePointerCapture &&
-                e.pointerId !== undefined
-            ) {
-                try {
-                    knife.releasePointerCapture(e.pointerId);
-                } catch (_) {}
-            }
+            return 0;
         };
 
         const finish = () => {
@@ -3653,23 +3613,157 @@ async function cakeShowBlow(el) {
             resolve();
         };
 
-        const cleanup = () => {
-            knife.removeEventListener('pointerdown', down);
-            window.removeEventListener('pointermove', move);
-            window.removeEventListener('pointerup', up);
-            window.removeEventListener('pointercancel', up);
+        const down = e => {
+            if (finished) return;
+
+            if (e.pointerType === 'mouse' && e.button !== 0) {
+                return;
+            }
+
+            const rect = knife.getBoundingClientRect();
+
+            offsetX = getX(e) - rect.left;
+
+            dragging = true;
+
+            knife.classList.add('dragging');
+
+            if (knife.setPointerCapture && e.pointerId !== undefined) {
+                try {
+                    knife.setPointerCapture(e.pointerId);
+                } catch (_) {}
+            }
+
+            e.preventDefault();
         };
 
-        knife.addEventListener('pointerdown', down);
+        const move = e => {
+            if (!dragging || finished) return;
+
+            const sceneRect = scene.getBoundingClientRect();
+            const cakeRect = scene
+                .querySelector('.cut-cake-stage')
+                .getBoundingClientRect();
+
+            let newLeft =
+                getX(e) -
+                sceneRect.left -
+                offsetX;
+
+            const minLeft = 5;
+            const maxLeft =
+                sceneRect.width -
+                knife.offsetWidth -
+                5;
+
+            newLeft = Math.max(
+                minLeft,
+                Math.min(maxLeft, newLeft)
+            );
+
+            knife.style.left = newLeft + 'px';
+
+            const knifeRect =
+                knife.getBoundingClientRect();
+
+            /* Progress */
+            const cakeStart = cakeRect.left;
+            const cakeEnd = cakeRect.right;
+
+            const knifeCenter =
+                knifeRect.left +
+                knifeRect.width / 2;
+
+            let percent =
+                ((cakeStart - knifeCenter) /
+                (cakeStart - cakeEnd)) * 100;
+
+            percent = Math.max(
+                0,
+                Math.min(100, percent)
+            );
+
+            if (progress) {
+                progress.style.width =
+                    percent + '%';
+            }
+
+            /* CUT COMPLETE */
+            if (
+                knifeCenter <=
+                cakeRect.left +
+                cakeRect.width * 0.55
+            ) {
+                finish();
+            }
+
+            e.preventDefault();
+        };
+
+        const up = e => {
+
+            if (!dragging) return;
+
+            dragging = false;
+
+            knife.classList.remove('dragging');
+
+            if (
+                e &&
+                knife.releasePointerCapture &&
+                e.pointerId !== undefined
+            ) {
+                try {
+                    knife.releasePointerCapture(e.pointerId);
+                } catch (_) {}
+            }
+        };
+
+        const cleanup = () => {
+
+            knife.removeEventListener(
+                'pointerdown',
+                down
+            );
+
+            window.removeEventListener(
+                'pointermove',
+                move
+            );
+
+            window.removeEventListener(
+                'pointerup',
+                up
+            );
+
+            window.removeEventListener(
+                'pointercancel',
+                up
+            );
+        };
+
+        knife.addEventListener(
+            'pointerdown',
+            down
+        );
+
         window.addEventListener(
             'pointermove',
             move,
             { passive: false }
         );
-        window.addEventListener('pointerup', up);
-        window.addEventListener('pointercancel', up);
+
+        window.addEventListener(
+            'pointerup',
+            up
+        );
+
+        window.addEventListener(
+            'pointercancel',
+            up
+        );
     });
-  }
-    </script>
+   }
+            </script>
 </body>
 </html>
