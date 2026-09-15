@@ -2126,7 +2126,12 @@ function playAudioAndNext(targetStep, themeColor) {
       if (stepNumber === 14) {
     startStep14Sequence();
         }  
-if (stepNumber === 15) { startStep15Sequence(); }
+if (stepNumber === 15) { 
+    startStep15Sequence(); 
+}
+           if (stepNumber === 16) {
+    startStep16Sequence();
+           }
             if (stepNumber >= 10) {
     var gardenVideo = document.getElementById('gardenBackgroundVideo');
     if (gardenVideo) {
