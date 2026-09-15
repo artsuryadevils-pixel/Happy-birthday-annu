@@ -1626,7 +1626,7 @@
     position: absolute;
     inset: -12px -10px;
     z-index: -1;
-    pointer-events: auto;
+    pointer-events: none;
 }
 
 #step16 .cake-knife:active {
@@ -3191,7 +3191,15 @@ function startCakeChapterAudio() {
 }
         function startStep16Sequence() {
     const intro = document.getElementById('cakeIntroCard');
-  startCakeChapterAudio();
+  const rooposhElem = document.getElementById('rooposhAudio');
+
+if (rooposhElem) {
+    rooposhElem.pause();
+    rooposhElem.currentTime = 0;
+}
+
+startCakeChapterAudio();
+            startCakeChapterAudio();
             const first = document.getElementById('cakeFirstInstruction');
     const stage = document.getElementById('cakeStage');
 
