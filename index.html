@@ -3514,14 +3514,14 @@ async function cakeShowBlow(el) {
         progress.style.width = '0%';
     }
   } 
-  
-   function waitForKnifeCut(knife, progress, scene) {
+  function waitForKnifeCut(knife, progress, scene) {
 
     return new Promise(resolve => {
 
         let dragging = false;
         let finished = false;
-        let offsetX = 0;
+        let startX = 0;
+        let startLeft = 0;
 
         const getX = e => {
             if (e.clientX !== undefined) return e.clientX;
@@ -3548,15 +3548,18 @@ async function cakeShowBlow(el) {
         };
 
         const down = e => {
+
             if (finished) return;
 
             if (e.pointerType === 'mouse' && e.button !== 0) {
                 return;
             }
 
-            const rect = knife.getBoundingClientRect();
+            const sceneRect = scene.getBoundingClientRect();
+            const knifeRect = knife.getBoundingClientRect();
 
-            offsetX = getX(e) - rect.left;
+            startX = getX(e);
+            startLeft = knifeRect.left - sceneRect.left;
 
             dragging = true;
 
@@ -3572,6 +3575,7 @@ async function cakeShowBlow(el) {
         };
 
         const move = e => {
+
             if (!dragging || finished) return;
 
             const sceneRect = scene.getBoundingClientRect();
@@ -3579,16 +3583,14 @@ async function cakeShowBlow(el) {
                 .querySelector('.cut-cake-stage')
                 .getBoundingClientRect();
 
-            let newLeft =
-                getX(e) -
-                sceneRect.left -
-                offsetX;
+            const currentX = getX(e);
+            const distance = currentX - startX;
+
+            let newLeft = startLeft + distance;
 
             const minLeft = 5;
             const maxLeft =
-                sceneRect.width -
-                knife.offsetWidth -
-                5;
+                sceneRect.width - knife.offsetWidth - 5;
 
             newLeft = Math.max(
                 minLeft,
@@ -3597,20 +3599,20 @@ async function cakeShowBlow(el) {
 
             knife.style.left = newLeft + 'px';
 
-            const knifeRect =
-                knife.getBoundingClientRect();
+            const knifeRect = knife.getBoundingClientRect();
 
-            /* Progress */
-            const cakeStart = cakeRect.left;
-            const cakeEnd = cakeRect.right;
+            const totalDistance =
+                Math.max(
+                    1,
+                    startLeft -
+                    (cakeRect.left - sceneRect.left)
+                );
 
-            const knifeCenter =
-                knifeRect.left +
-                knifeRect.width / 2;
+            const moved =
+                startLeft - newLeft;
 
             let percent =
-                ((cakeStart - knifeCenter) /
-                (cakeStart - cakeEnd)) * 100;
+                (moved / totalDistance) * 100;
 
             percent = Math.max(
                 0,
@@ -3618,15 +3620,17 @@ async function cakeShowBlow(el) {
             );
 
             if (progress) {
-                progress.style.width =
-                    percent + '%';
+                progress.style.width = percent + '%';
             }
 
-            /* CUT COMPLETE */
+            /*
+             * Knife reaches the cake.
+             * Finish slightly inside the cake so mobile
+             * dragging does not require pixel-perfect accuracy.
+             */
             if (
-                knifeCenter <=
-                cakeRect.left +
-                cakeRect.width * 0.55
+                knifeRect.left <=
+                cakeRect.left + cakeRect.width * 0.55
             ) {
                 finish();
             }
@@ -3697,7 +3701,11 @@ async function cakeShowBlow(el) {
             up
         );
     });
-   }
+}
+
+            
+ 
+
             </script>
 </body>
 </html>
