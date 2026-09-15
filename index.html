@@ -1392,6 +1392,8 @@
 }
 #step16 .cake-cut-scene {
     pointer-events: auto !important;
+    touch-action: none !important;
+    overflow: visible !important;
 }
 
 
@@ -1407,12 +1409,13 @@
 
 #step16 #cakeKnife .knife-blade,
 #step16 #cakeKnife .knife-handle {
+    #step16 #cakeKnife.dragging {
+    animation: none !important;
+    cursor: grabbing !important;
+    }
     pointer-events: none !important;
-}
-        #step16 #cakeKnife {
-    background: rgba(255, 0, 0, 0.08) !important;
-    outline: 3px solid red !important;
-}
+} 
+
       
         #step16 .cut-cake-stage {
     position: absolute;
@@ -1733,7 +1736,33 @@
             drop-shadow(0 0 28px rgba(244,114,182,.65));
     }
 }
+/* ===== STEP 16 FINAL CAKE KNIFE FIX ===== */
 
+#step16 #cakeCutScene {
+    pointer-events: auto !important;
+    touch-action: none !important;
+    overflow: visible !important;
+}
+
+#step16 #cakeKnife {
+    pointer-events: auto !important;
+    touch-action: none !important;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    user-select: none !important;
+    cursor: grab;
+    z-index: 100000 !important;
+}
+
+#step16 #cakeKnife .knife-blade,
+#step16 #cakeKnife .knife-handle {
+    pointer-events: none !important;
+}
+
+#step16 #cakeKnife.dragging {
+    animation: none !important;
+    cursor: grabbing !important;
+}
 #step16 .cut-progress {
     position: absolute;
     left: 50%;
@@ -3540,38 +3569,67 @@ async function cakeShowBlow(el) {
         progress.style.width = '0%';
     }
   } 
-      function waitForKnifeCut(knife, progress, scene) {
+                  function waitForKnifeCut(knife, progress, scene) {
     return new Promise(resolve => {
 
         let dragging = false;
         let finished = false;
+
         let pointerOffsetX = 0;
-        let currentLeft = 0;
+        let startLeft = 0;
+        let totalDistance = 1;
 
         const getX = e => {
-            if (typeof e.clientX === "number") return e.clientX;
-            if (e.touches && e.touches[0]) return e.touches[0].clientX;
+            if (e && typeof e.clientX === "number") {
+                return e.clientX;
+            }
+
+            if (e && e.touches && e.touches.length) {
+                return e.touches[0].clientX;
+            }
+
             return 0;
         };
 
-        const sceneRect = scene.getBoundingClientRect();
+        const getSceneRect = () => {
+            return scene.getBoundingClientRect();
+        };
+
+        const getCakeRect = () => {
+            const cake = scene.querySelector(".cut-cake-stage");
+            return cake ? cake.getBoundingClientRect() : null;
+        };
+
+        /* --------------------------------
+           INITIAL POSITION
+        -------------------------------- */
+
+        const sceneRect = getSceneRect();
         const knifeRect = knife.getBoundingClientRect();
-        const cake = scene.querySelector(".cut-cake-stage");
-        const cakeRect = cake ? cake.getBoundingClientRect() : null;
 
-        currentLeft = knifeRect.left - sceneRect.left;
-        const startLeft = currentLeft;
+        startLeft = knifeRect.left - sceneRect.left;
 
-        const targetLeft = cakeRect
-            ? cakeRect.left - sceneRect.left - 18
-            : sceneRect.width * 0.22;
+        const cakeRect = getCakeRect();
 
-        const totalDistance = Math.max(
+        const targetPageX = cakeRect
+            ? cakeRect.left - 18
+            : sceneRect.left + sceneRect.width * 0.22;
+
+        const targetLeft =
+            targetPageX - sceneRect.left;
+
+        totalDistance = Math.max(
             1,
             startLeft - targetLeft
         );
 
-        function finish() {
+
+        /* --------------------------------
+           FINISH
+        -------------------------------- */
+
+        const finish = () => {
+
             if (finished) return;
 
             finished = true;
@@ -3584,20 +3642,54 @@ async function cakeShowBlow(el) {
             }
 
             cleanup();
-            resolve();
-        }
 
-        function down(e) {
+            resolve();
+        };
+
+
+        /* --------------------------------
+           POINTER DOWN
+           DOCUMENT CAPTURE
+        -------------------------------- */
+
+        const down = e => {
+
             if (finished) return;
 
             if (
                 e.pointerType === "mouse" &&
                 e.button !== 0
-            ) return;
+            ) {
+                return;
+            }
 
-            const rect = knife.getBoundingClientRect();
+            const rect =
+                knife.getBoundingClientRect();
 
-            pointerOffsetX = getX(e) - rect.left;
+            const x = getX(e);
+
+            /*
+             * IMPORTANT:
+             * We don't care which element actually
+             * received the touch.
+             *
+             * If the finger is physically over the
+             * knife, dragging starts.
+             */
+
+            if (
+                x < rect.left - 15 ||
+                x > rect.right + 15 ||
+                (typeof e.clientY === "number" &&
+                 (e.clientY < rect.top - 20 ||
+                  e.clientY > rect.bottom + 20))
+            ) {
+                return;
+            }
+
+            pointerOffsetX =
+                x - rect.left;
+
             dragging = true;
 
             knife.classList.add("dragging");
@@ -3607,24 +3699,39 @@ async function cakeShowBlow(el) {
                 e.pointerId !== undefined
             ) {
                 try {
-                    knife.setPointerCapture(e.pointerId);
+                    knife.setPointerCapture(
+                        e.pointerId
+                    );
                 } catch (_) {}
             }
 
             e.preventDefault();
-        }
+            e.stopPropagation();
+        };
 
-        function move(e) {
-            if (!dragging || finished) return;
 
-            const rect = scene.getBoundingClientRect();
+        /* --------------------------------
+           POINTER MOVE
+        -------------------------------- */
+
+        const move = e => {
+
+            if (!dragging || finished) {
+                return;
+            }
+
+            const rect =
+                getSceneRect();
+
+            const x = getX(e);
 
             let newLeft =
-                getX(e) -
+                x -
                 rect.left -
                 pointerOffsetX;
 
             const minLeft = 8;
+
             const maxLeft =
                 rect.width -
                 knife.offsetWidth -
@@ -3632,61 +3739,84 @@ async function cakeShowBlow(el) {
 
             newLeft = Math.max(
                 minLeft,
-                Math.min(maxLeft, newLeft)
+                Math.min(
+                    maxLeft,
+                    newLeft
+                )
             );
 
-            currentLeft = newLeft;
-
             knife.style.left =
-                currentLeft + "px";
+                newLeft + "px";
 
-            const knifeNow =
-                knife.getBoundingClientRect();
 
-            const cakeNow =
-                scene
-                    .querySelector(".cut-cake-stage")
-                    ?.getBoundingClientRect();
+            /* --------------------------------
+               PROGRESS
+            -------------------------------- */
 
             let percent =
-                ((startLeft - currentLeft) /
-                    totalDistance) * 100;
+                ((startLeft - newLeft) /
+                totalDistance) * 100;
 
             percent = Math.max(
                 0,
                 Math.min(100, percent)
             );
 
+
+            const knifeNow =
+                knife.getBoundingClientRect();
+
+            const cakeNow =
+                getCakeRect();
+
+
+            /*
+             * Cake reached.
+             */
+
             if (
                 cakeNow &&
                 knifeNow.left <=
-                    cakeNow.left +
-                    cakeNow.width * 0.08
+                cakeNow.left +
+                cakeNow.width * 0.08
             ) {
                 percent = 100;
             }
+
 
             if (progress) {
                 progress.style.width =
                     percent + "%";
             }
 
+
             if (percent >= 100) {
                 finish();
             }
 
             e.preventDefault();
-        }
+        };
 
-        function up(e) {
-            if (!dragging) return;
+
+        /* --------------------------------
+           POINTER UP
+        -------------------------------- */
+
+        const up = e => {
+
+            if (!dragging) {
+                return;
+            }
 
             dragging = false;
-            knife.classList.remove("dragging");
+
+            knife.classList.remove(
+                "dragging"
+            );
 
             if (
-                e &&
                 knife.releasePointerCapture &&
+                e &&
                 e.pointerId !== undefined
             ) {
                 try {
@@ -3695,53 +3825,83 @@ async function cakeShowBlow(el) {
                     );
                 } catch (_) {}
             }
-        }
+        };
 
-        function cleanup() {
-            knife.removeEventListener(
+
+        /* --------------------------------
+           CLEANUP
+        -------------------------------- */
+
+        const cleanup = () => {
+
+            document.removeEventListener(
                 "pointerdown",
-                down
+                down,
+                true
             );
 
-            window.removeEventListener(
+            document.removeEventListener(
                 "pointermove",
-                move
+                move,
+                true
             );
 
-            window.removeEventListener(
+            document.removeEventListener(
                 "pointerup",
-                up
+                up,
+                true
             );
 
-            window.removeEventListener(
+            document.removeEventListener(
                 "pointercancel",
-                up
+                up,
+                true
             );
-        }
+        };
 
-        knife.addEventListener(
+
+        /* --------------------------------
+           CAPTURE PHASE
+           THIS IS THE IMPORTANT FIX
+        -------------------------------- */
+
+        document.addEventListener(
             "pointerdown",
-            down
+            down,
+            {
+                capture: true,
+                passive: false
+            }
         );
 
-        window.addEventListener(
+        document.addEventListener(
             "pointermove",
             move,
-            { passive: false }
+            {
+                capture: true,
+                passive: false
+            }
         );
 
-        window.addEventListener(
+        document.addEventListener(
             "pointerup",
-            up
+            up,
+            {
+                capture: true,
+                passive: false
+            }
         );
 
-        window.addEventListener(
+        document.addEventListener(
             "pointercancel",
-            up
+            up,
+            {
+                capture: true,
+                passive: false
+            }
         );
     });
-}        
-
+                  }
                             
             </script>
 </body>
