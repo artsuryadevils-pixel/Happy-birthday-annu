@@ -2698,6 +2698,12 @@ async function startStep16Sequence() {
 
     await runCakeCutChapter();
 }
+                        
+  /* =========================================================
+   STEP 16 — CAKE CUTTING
+   Reference logic adapted to this project's normal functions
+   ========================================================= */
+
 async function runCakeCutChapter() {
 
     const title = document.getElementById('cakeCutTitle');
@@ -2705,37 +2711,26 @@ async function runCakeCutChapter() {
     const instruction = document.getElementById('knifeInstruction');
     const knife = document.getElementById('cakeKnife');
     const progress = document.querySelector('#cutProgress span');
+    const celebration = document.getElementById('cutCelebration');
 
     if (!title || !scene || !instruction || !knife) return;
 
-    // Reset
+    /* Title */
+    title.classList.remove('hidden');
+
+    await cakeWait(4000);
+
+    /* Cake cutting scene */
     scene.classList.remove('hidden');
     scene.classList.remove('cut-complete');
-    scene.classList.remove('cutting');
-
-    knife.classList.add('hidden-knife');
-    knife.classList.remove('ready-knife');
-    knife.classList.remove('dragging');
-
-    knife.style.left = '';
-    knife.style.top = '';
-    knife.style.animation = '';
 
     if (progress) {
         progress.style.width = '0%';
     }
 
-    // Title
-    title.classList.remove('hidden');
-    title.classList.add('show-card');
-
-    await cakeWait(4000);
-
-    title.classList.remove('show-card');
-
     await cakeWait(100);
 
-    // Instruction
+    /* Instruction */
     instruction.classList.remove('hidden');
     instruction.classList.add('show-card');
 
@@ -2747,119 +2742,115 @@ async function runCakeCutChapter() {
 
     instruction.classList.add('hidden');
 
-    // Knife
+    /* Knife becomes active */
     knife.classList.remove('hidden-knife');
     knife.classList.add('ready-knife');
 
     await cakeWait(300);
 
-    // REAL DRAG
-    await waitForKnifeCut(
-        knife,
-        progress,
-        scene
-    );
+    /* Wait for actual knife drag */
+    await waitForKnifeCut(knife, progress, scene);
 
     knife.classList.remove('ready-knife');
 
     scene.classList.add('cut-complete');
+
+    /* Let cake pieces separate */
+    await cakeWait(1100);
+
+    /* Celebration */
+    if (celebration) {
+
+        celebration.classList.remove('hidden');
+        celebration.classList.add('show-card');
+
+        await cakeWait(2600);
+
+        celebration.classList.remove('show-card');
+
+        await cakeWait(500);
+
+        celebration.classList.add('hidden');
+    }
+
+    /* Clean exit */
+    await cakeWait(400);
+
+    scene.classList.add('hidden');
+    scene.classList.remove('cut-complete');
+
+    knife.classList.add('hidden-knife');
+
+    if (progress) {
+        progress.style.width = '0%';
+    }
 }
 
 
+/* =========================================================
+   KNIFE DRAG — ORIGINAL REFERENCE BEHAVIOUR
+   ========================================================= */
+
 function waitForKnifeCut(knife, progress, scene) {
 
-    return new Promise(resolve => {
+    return new Promise(function(resolve) {
 
         let dragging = false;
         let finished = false;
         let pointerOffsetX = 0;
         let currentLeft = 0;
 
-        const getPointerX = e => {
+        const getPointerX = function(e) {
 
-            if (
-                typeof e.clientX === 'number'
-            ) {
+            if (typeof e.clientX === 'number') {
                 return e.clientX;
             }
 
-            if (
-                e.touches &&
-                e.touches[0]
-            ) {
+            if (e.touches && e.touches[0]) {
                 return e.touches[0].clientX;
             }
 
             return 0;
         };
 
+        const getSceneRect = function() {
+            return scene.getBoundingClientRect();
+        };
 
-        const getSceneRect = () =>
-            scene.getBoundingClientRect();
+        const getKnifeRect = function() {
+            return knife.getBoundingClientRect();
+        };
 
+        const getCakeRect = function() {
 
-        const getKnifeRect = () =>
-            knife.getBoundingClientRect();
+            const el = scene.querySelector('.cut-cake-stage');
 
-
-        const getCakeRect = () => {
-
-            const el =
-                scene.querySelector(
-                    '.cut-cake-stage'
-                );
-
-            return el
-                ? el.getBoundingClientRect()
-                : null;
+            return el ? el.getBoundingClientRect() : null;
         };
 
 
-        const sceneRect =
-            getSceneRect();
+        const sceneRect = getSceneRect();
+        const knifeRect = getKnifeRect();
+        const cakeRect = getCakeRect();
 
-        const knifeRect =
-            getKnifeRect();
+        currentLeft = knifeRect.left - sceneRect.left;
 
-
-        currentLeft =
-            knifeRect.left -
-            sceneRect.left;
+        const startLeft = currentLeft;
 
 
-        const startLeft =
-            currentLeft;
+        const targetPageX = cakeRect
+            ? cakeRect.left - Math.min(18, cakeRect.width * 0.04)
+            : sceneRect.left + sceneRect.width * 0.22;
+
+        const targetLeft = targetPageX - sceneRect.left;
+
+        const totalDistance = Math.max(
+            1,
+            startLeft - targetLeft
+        );
 
 
-        const cakeRect =
-            getCakeRect();
-
-
-        const targetPageX =
-            cakeRect
-                ? cakeRect.left -
-                  Math.min(
-                      18,
-                      cakeRect.width * 0.04
-                  )
-                : sceneRect.left +
-                  sceneRect.width * 0.22;
-
-
-        const targetLeft =
-            targetPageX -
-            sceneRect.left;
-
-
-        const totalDistance =
-            Math.max(
-                1,
-                startLeft -
-                targetLeft
-            );
-
-
-        const down = e => {
+        const down = function(e) {
 
             if (finished) return;
 
@@ -2870,53 +2861,35 @@ function waitForKnifeCut(knife, progress, scene) {
                 return;
             }
 
-
-            const rect =
-                getKnifeRect();
-
+            const rect = getKnifeRect();
 
             pointerOffsetX =
-                getPointerX(e) -
-                rect.left;
-
+                getPointerX(e) - rect.left;
 
             dragging = true;
 
-
-            knife.classList.add(
-                'dragging'
-            );
+            knife.classList.add('dragging');
 
 
             if (
                 knife.setPointerCapture &&
                 e.pointerId !== undefined
             ) {
+
                 try {
-                    knife.setPointerCapture(
-                        e.pointerId
-                    );
+                    knife.setPointerCapture(e.pointerId);
                 } catch (_) {}
             }
-
 
             e.preventDefault();
         };
 
 
-        const move = e => {
+        const move = function(e) {
 
-            if (
-                !dragging ||
-                finished
-            ) {
-                return;
-            }
+            if (!dragging || finished) return;
 
-
-            const rect =
-                getSceneRect();
-
+            const rect = getSceneRect();
 
             let newLeft =
                 getPointerX(e) -
@@ -2926,26 +2899,19 @@ function waitForKnifeCut(knife, progress, scene) {
 
             const minLeft = 8;
 
-
             const maxLeft =
                 rect.width -
                 knife.offsetWidth -
                 8;
 
 
-            newLeft =
-                Math.max(
-                    minLeft,
-                    Math.min(
-                        maxLeft,
-                        newLeft
-                    )
-                );
+            newLeft = Math.max(
+                minLeft,
+                Math.min(maxLeft, newLeft)
+            );
 
 
-            currentLeft =
-                newLeft;
-
+            currentLeft = newLeft;
 
             knife.style.left =
                 currentLeft + 'px';
@@ -2954,21 +2920,17 @@ function waitForKnifeCut(knife, progress, scene) {
             const knifeRectNow =
                 getKnifeRect();
 
-
             const cakeRectNow =
                 getCakeRect();
 
 
-            let percent =
+            let progressPercent =
                 Math.max(
                     0,
                     Math.min(
                         100,
                         (
-                            (
-                                startLeft -
-                                currentLeft
-                            ) /
+                            (startLeft - currentLeft) /
                             totalDistance
                         ) * 100
                     )
@@ -2981,36 +2943,32 @@ function waitForKnifeCut(knife, progress, scene) {
                 cakeRectNow.left +
                 cakeRectNow.width * 0.08
             ) {
-                percent = 100;
+
+                progressPercent = 100;
             }
 
 
             if (progress) {
                 progress.style.width =
-                    percent + '%';
+                    progressPercent + '%';
             }
 
 
-            if (
-                percent >= 100
-            ) {
+            if (progressPercent >= 100) {
                 finish();
             }
-
 
             e.preventDefault();
         };
 
 
-        const up = e => {
+        const up = function(e) {
 
             if (!dragging) return;
 
             dragging = false;
 
-            knife.classList.remove(
-                'dragging'
-            );
+            knife.classList.remove('dragging');
 
 
             if (
@@ -3018,6 +2976,7 @@ function waitForKnifeCut(knife, progress, scene) {
                 knife.releasePointerCapture &&
                 e.pointerId !== undefined
             ) {
+
                 try {
                     knife.releasePointerCapture(
                         e.pointerId
@@ -3027,23 +2986,19 @@ function waitForKnifeCut(knife, progress, scene) {
         };
 
 
-        const finish = () => {
+        const finish = function() {
 
             if (finished) return;
 
             finished = true;
+
             dragging = false;
 
-            knife.classList.remove(
-                'dragging'
-            );
-
+            knife.classList.remove('dragging');
 
             if (progress) {
-                progress.style.width =
-                    '100%';
+                progress.style.width = '100%';
             }
-
 
             cleanup();
 
@@ -3051,7 +3006,7 @@ function waitForKnifeCut(knife, progress, scene) {
         };
 
 
-        const cleanup = () => {
+        const cleanup = function() {
 
             knife.removeEventListener(
                 'pointerdown',
@@ -3083,9 +3038,7 @@ function waitForKnifeCut(knife, progress, scene) {
         window.addEventListener(
             'pointermove',
             move,
-            {
-                passive: false
-            }
+            { passive: false }
         );
 
         window.addEventListener(
@@ -3102,16 +3055,39 @@ function waitForKnifeCut(knife, progress, scene) {
 }
 
 
+/* =========================================================
+   STEP 16 START
+   ========================================================= */
+
+async function startStep16Sequence() {
+
+    const cakeAudio =
+        document.getElementById('cakeChapterAudio');
+
+    if (cakeAudio) {
+
+        cakeAudio.currentTime = 0;
+
+        cakeAudio.play().catch(function() {});
+    }
+
+    await runCakeCutChapter();
+}
+
+
+/* =========================================================
+   SMALL WAIT HELPER
+   ========================================================= */
+
 function cakeWait(ms) {
 
-    return new Promise(
-        resolve =>
-            setTimeout(
-                resolve,
-                ms
-            )
-    );
-}
+    return new Promise(function(resolve) {
+
+        setTimeout(resolve, ms);
+
+    });
+        }                          
+        
     </script>
 </body>
 </html>
