@@ -3514,73 +3514,7 @@ async function cakeShowBlow(el) {
         progress.style.width = '0%';
     }
   } 
-  function waitForKnifeCut(knife, progress, scene) {
-    return new Promise(resolve => {
-
-        let dragging = false;
-        let finished = false;
-        let pointerOffsetX = 0;
-        let currentLeft = 0;
-
-        const getPointerX = e => {
-            if (typeof e.clientX === 'number') return e.clientX;
-            if (e.touches && e.touches[0]) return e.touches[0].clientX;
-            return 0;
-        };
-
-        const getSceneRect = () => scene.getBoundingClientRect();
-        const getKnifeRect = () => knife.getBoundingClientRect();
-
-        const getCakeRect = () => {
-            const el = scene.querySelector('.cut-cake-stage');
-            return el ? el.getBoundingClientRect() : null;
-        };
-
-        const sceneRect = getSceneRect();
-        const knifeRect = getKnifeRect();
-        const cakeRect = getCakeRect();
-
-        currentLeft = knifeRect.left - sceneRect.left;
-        const startLeft = currentLeft;
-
-        const targetPageX = cakeRect
-            ? cakeRect.left - Math.min(18, cakeRect.width * 0.04)
-            : sceneRect.left + sceneRect.width * 0.22;
-
-        const targetLeft = targetPageX - sceneRect.left;
-        const totalDistance = Math.max(1, startLeft - targetLeft);
-
-        const down = e => {
-            if (finished) return;
-            if (e.pointerType === 'mouse' && e.button !== 0) return;
-
-            const rect = getKnifeRect();
-
-            pointerOffsetX = getPointerX(e) - rect.left;
-
-            dragging = true;
-            knife.classList.add('dragging');
-
-            if (knife.setPointerCapture && e.pointerId !== undefined) {
-                try {
-                    knife.setPointerCapture(e.pointerId);
-                } catch (_) {}
-            }
-
-            e.preventDefault();
-        };
-
-        const move = e => {
-            if (!dragging || finished) return;
-
-            const rect = getSceneRect();
-
-            let newLeft =
-                getPointerX(e) - rect.left - pointerOffsetX;
-
-            const minLeft = 8;
-            const maxLeft =
-                rect.width - knife.offsetWidth - 8;
+  
    function waitForKnifeCut(knife, progress, scene) {
 
     return new Promise(resolve => {
