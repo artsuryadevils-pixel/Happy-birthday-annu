@@ -1723,7 +1723,35 @@
 #step16 .cake-knife.dragging {
     animation: none;
 }
+/* ===== FINAL KNIFE DRAG OVERRIDE ===== */
 
+#step16 #cakeCutScene {
+    pointer-events: auto !important;
+    touch-action: none !important;
+    overflow: visible !important;
+}
+
+#step16 #cakeKnife {
+    pointer-events: auto !important;
+    touch-action: none !important;
+    position: absolute !important;
+    z-index: 100000 !important;
+    cursor: grab !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -webkit-touch-callout: none !important;
+}
+
+#step16 #cakeKnife .knife-blade,
+#step16 #cakeKnife .knife-handle {
+    pointer-events: none !important;
+}
+
+#step16 #cakeKnife.dragging {
+    animation: none !important;
+    cursor: grabbing !important;
+    transition: none !important;
+}
 @keyframes knifeAttentionStep16 {
     to {
         transform:
@@ -3570,63 +3598,87 @@ async function cakeShowBlow(el) {
     }
   } 
                   
-      function waitForKnifeCut(knife, progress, scene) {
+                function waitForKnifeCut(knife, progress, scene) {
     return new Promise(resolve => {
+
         let dragging = false;
         let finished = false;
-        let pointerOffsetX = 0;
-        let currentLeft = 0;
+        let pointerId = null;
+        let offsetX = 0;
 
-        const getPointerX = e => {
+        const cake = scene.querySelector('.cut-cake-stage');
+
+        if (!cake) {
+            resolve();
+            return;
+        }
+
+        const getX = e => {
             if (typeof e.clientX === 'number') return e.clientX;
             if (e.touches && e.touches[0]) return e.touches[0].clientX;
             return 0;
         };
 
-        const getSceneRect = () => scene.getBoundingClientRect();
-
-        const getKnifeRect = () => knife.getBoundingClientRect();
-
-        const getCakeRect = () => {
-            const el = scene.querySelector('.cut-cake-stage');
-            return el ? el.getBoundingClientRect() : null;
+        const cleanup = () => {
+            document.removeEventListener('pointerdown', onDown, true);
+            document.removeEventListener('pointermove', onMove, true);
+            document.removeEventListener('pointerup', onUp, true);
+            document.removeEventListener('pointercancel', onUp, true);
         };
 
-        const sceneRect = getSceneRect();
-        const knifeRect = getKnifeRect();
-        const cakeRect = getCakeRect();
+        const finish = () => {
+            if (finished) return;
 
-        currentLeft = knifeRect.left - sceneRect.left;
+            finished = true;
+            dragging = false;
 
-        const startLeft = currentLeft;
+            knife.classList.remove('dragging');
+            knife.style.cursor = 'grab';
 
-        const targetPageX = cakeRect
-            ? cakeRect.left - Math.min(18, cakeRect.width * 0.04)
-            : sceneRect.left + sceneRect.width * 0.22;
+            if (progress) {
+                progress.style.width = '100%';
+            }
 
-        const targetLeft = targetPageX - sceneRect.left;
+            cleanup();
+            resolve();
+        };
 
-        const totalDistance =
-            Math.max(1, startLeft - targetLeft);
-
-        const down = e => {
+        const onDown = e => {
             if (finished) return;
 
             if (
+                e.type === 'pointerdown' &&
                 e.pointerType === 'mouse' &&
                 e.button !== 0
             ) {
                 return;
             }
 
-            const rect = getKnifeRect();
+            const r = knife.getBoundingClientRect();
 
-            pointerOffsetX =
-                getPointerX(e) - rect.left;
+            const x = getX(e);
+            const y = typeof e.clientY === 'number'
+                ? e.clientY
+                : (e.touches && e.touches[0]
+                    ? e.touches[0].clientY
+                    : 0);
+
+            const hit =
+                x >= r.left - 35 &&
+                x <= r.right + 35 &&
+                y >= r.top - 35 &&
+                y <= r.bottom + 35;
+
+            if (!hit) return;
 
             dragging = true;
+            pointerId = e.pointerId ?? null;
+
+            offsetX = x - r.left;
 
             knife.classList.add('dragging');
+            knife.style.animation = 'none';
+            knife.style.cursor = 'grabbing';
 
             if (
                 knife.setPointerCapture &&
@@ -3638,80 +3690,105 @@ async function cakeShowBlow(el) {
             }
 
             e.preventDefault();
+            e.stopPropagation();
         };
 
-        const move = e => {
+        const onMove = e => {
             if (!dragging || finished) return;
 
-            const rect = getSceneRect();
+            if (
+                pointerId !== null &&
+                e.pointerId !== undefined &&
+                e.pointerId !== pointerId
+            ) {
+                return;
+            }
+
+            const sceneRect = scene.getBoundingClientRect();
 
             let newLeft =
-                getPointerX(e) -
-                rect.left -
-                pointerOffsetX;
+                getX(e) -
+                sceneRect.left -
+                offsetX;
 
-            const minLeft = 8;
-
+            const minLeft = 0;
             const maxLeft =
-                rect.width -
-                knife.offsetWidth -
-                8;
+                sceneRect.width -
+                knife.offsetWidth;
 
             newLeft = Math.max(
                 minLeft,
                 Math.min(maxLeft, newLeft)
             );
 
-            currentLeft = newLeft;
+            /*
+             * IMPORTANT:
+             * Direct pixel positioning.
+             * Existing CSS left: calc(...) is overridden
+             * while dragging.
+             */
+            knife.style.left = newLeft + 'px';
 
-            knife.style.left =
-                `${currentLeft}px`;
+            const knifeRect =
+                knife.getBoundingClientRect();
 
-            const knifeRectNow =
-                getKnifeRect();
+            const cakeRect =
+                cake.getBoundingClientRect();
 
-            const cakeRectNow =
-                getCakeRect();
+            /*
+             * Progress based on knife movement.
+             */
+            const startX =
+                sceneRect.left +
+                sceneRect.width * 0.78;
 
-            let progressPercent =
-                Math.max(
-                    0,
-                    Math.min(
-                        100,
-                        (
-                            (startLeft - currentLeft) /
-                            totalDistance
-                        ) * 100
-                    )
-                );
+            const targetX =
+                cakeRect.left +
+                cakeRect.width * 0.08;
 
+            const distance =
+                Math.max(1, startX - targetX);
+
+            const currentX =
+                knifeRect.left;
+
+            let percent =
+                ((startX - currentX) / distance) * 100;
+
+            percent = Math.max(
+                0,
+                Math.min(100, percent)
+            );
+
+            /*
+             * Knife reached cake.
+             */
             if (
-                cakeRectNow &&
-                knifeRectNow.left <=
-                cakeRectNow.left +
-                cakeRectNow.width * 0.08
+                knifeRect.left <=
+                cakeRect.left +
+                cakeRect.width * 0.10
             ) {
-                progressPercent = 100;
+                finish();
+                e.preventDefault();
+                return;
             }
 
             if (progress) {
                 progress.style.width =
-                    `${progressPercent}%`;
-            }
-
-            if (progressPercent >= 100) {
-                finish();
+                    percent + '%';
             }
 
             e.preventDefault();
         };
 
-        const up = e => {
+        const onUp = e => {
             if (!dragging) return;
 
             dragging = false;
+            pointerId = null;
 
             knife.classList.remove('dragging');
+            knife.style.cursor = 'grab';
 
             if (
                 e &&
@@ -3724,114 +3801,42 @@ async function cakeShowBlow(el) {
                     );
                 } catch (_) {}
             }
+
+            e.preventDefault?.();
         };
 
-        const finish = () => {
-            if (finished) return;
-
-            finished = true;
-            dragging = false;
-
-            knife.classList.remove('dragging');
-
-            if (progress) {
-                progress.style.width = '100%';
-            }
-
-            cleanup();
-
-            resolve();
-        };
-
-        const cleanup = () => {
-            knife.removeEventListener(
-                'pointerdown',
-                down
-            );
-
-            window.removeEventListener(
-                'pointermove',
-                move
-            );
-
-            window.removeEventListener(
-                'pointerup',
-                up
-            );
-
-            window.removeEventListener(
-                'pointercancel',
-                up
-            );
-        };
-
-        knife.addEventListener(
+        /*
+         * CAPTURE PHASE:
+         * Overlay/other elements cannot block the knife.
+         */
+        document.addEventListener(
             'pointerdown',
-            down
+            onDown,
+            true
         );
 
-        window.addEventListener(
+        document.addEventListener(
             'pointermove',
-            move,
-            { passive: false }
+            onMove,
+            {
+                capture: true,
+                passive: false
+            }
         );
 
-        window.addEventListener(
+        document.addEventListener(
             'pointerup',
-            up
+            onUp,
+            true
         );
 
-        window.addEventListener(
+        document.addEventListener(
             'pointercancel',
-            up
+            onUp,
+            true
         );
     });
-      }  
-
-     /* ===== CAKE KNIFE EVENT BRIDGE ===== */
-document.addEventListener('pointerdown', function (e) {
-
-    const step16 = document.getElementById('step16');
-    const knife = document.getElementById('cakeKnife');
-
-    if (!step16 || !knife) return;
-
-    // Sirf Step 16 active hone par
-    if (!step16.classList.contains('active')) return;
-
-    // Knife actually visible hona chahiye
-    if (knife.classList.contains('hidden-knife')) return;
-
-    const rect = knife.getBoundingClientRect();
-
-    const insideKnife =
-        e.clientX >= rect.left - 30 &&
-        e.clientX <= rect.right + 30 &&
-        e.clientY >= rect.top - 30 &&
-        e.clientY <= rect.bottom + 30;
-
-    if (!insideKnife) return;
-
-    // Original knife listener ko event forward karo
-    const forwarded = new PointerEvent('pointerdown', {
-        bubbles: true,
-        cancelable: true,
-        clientX: e.clientX,
-        clientY: e.clientY,
-        pointerId: e.pointerId,
-        pointerType: e.pointerType,
-        button: e.button,
-        buttons: e.buttons,
-        isPrimary: e.isPrimary
-    });
-
-    forwarded.__cakeKnifeForwarded = true;
-
-    knife.dispatchEvent(forwarded);
-
-}, { capture: true, passive: false });       
-
-                              
+}  
             </script>
 </body>
 </html>
