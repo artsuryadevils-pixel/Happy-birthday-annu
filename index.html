@@ -1025,53 +1025,32 @@
     transform: translateX(-50%);
     z-index: 10;
 }
-   /* ===== STEP 16 CAKE CUTTING — REFERENCE BASE ===== */
+   
+    /* =========================
+   CAKE CUTTING
+   ========================= */
 
-#step16 {
-    position: relative;
-    min-height: 92vh;
-    padding: 0;
-    overflow: hidden;
-}
-
-#step16 .cake-cut-scene {
+.cake-cut-scene {
     position: absolute;
     inset: 0;
-    z-index: 15;
-    pointer-events: auto;
-    touch-action: none;
-    user-select: none;
-    -webkit-user-select: none;
 }
 
-#step16 .cut-cake-stage {
+.cut-cake-stage {
     position: absolute;
     left: 50%;
     top: 54%;
-    width: min(88vw, 390px);
-    height: min(58vw, 240px);
+    width: min(44vw, 390px);
+    height: min(29vw, 240px);
     transform: translate(-50%, -50%);
 }
 
-#step16 .cut-cake-shadow {
-    position: absolute;
-    left: 50%;
-    bottom: 2%;
-    width: 92%;
-    height: 25px;
-    transform: translateX(-50%);
-    border-radius: 50%;
-    background: rgba(0,0,0,.4);
-    filter: blur(10px);
-}
-
-#step16 .cut-cake-art {
+.cut-cake-art {
     position: absolute;
     inset: 0;
     transition: transform .9s ease, opacity .9s ease;
 }
 
-#step16 .cut-cake-top {
+.cut-cake-top {
     position: absolute;
     left: 50%;
     top: 17%;
@@ -1083,18 +1062,7 @@
     box-shadow: inset 0 8px 12px rgba(255,255,255,.3);
 }
 
-#step16 .cut-cake-name-script {
-    position: absolute;
-    left: 50%;
-    top: 25%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-    font-family: 'Great Vibes', cursive;
-    font-size: 25px;
-    color: #8b315f;
-}
-
-#step16 .cut-cake-body {
+.cut-cake-body {
     position: absolute;
     left: 50%;
     top: 35%;
@@ -1105,7 +1073,7 @@
     background: linear-gradient(180deg, #e98ab7, #a33e76);
 }
 
-#step16 .cut-cake-plate {
+.cut-cake-plate {
     position: absolute;
     left: 50%;
     bottom: 0;
@@ -1116,91 +1084,72 @@
     background: linear-gradient(#fff, #bbc6d5);
 }
 
-#step16 .cake-half {
-    position: absolute;
-    top: 25%;
-    width: 40%;
-    height: 60%;
-    opacity: 0;
-    border-radius: 15px;
-    background: linear-gradient(
-        180deg,
-        #f8b4d2 0%,
-        #e98ab7 42%,
-        #a33e76 100%
-    );
-    box-shadow:
-        0 16px 28px rgba(0,0,0,.3),
-        inset 0 8px 12px rgba(255,255,255,.16);
-    pointer-events: none;
-    overflow: visible;
-    will-change: transform, opacity;
+.cake-half-left {
+    left: 5%;
+    transform-origin: right center;
 }
 
-#step16 .cake-half::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -8%;
-    height: 22%;
-    border-radius: 50%;
-    background: linear-gradient(180deg, #fff4fa, #f6b2d1);
-    box-shadow: inset 0 5px 8px rgba(255,255,255,.28);
+.cake-half-right {
+    right: 5%;
+    transform-origin: left center;
 }
 
-#step16 .cake-half::after {
-    content: '';
-    position: absolute;
-    width: 9px;
-    height: 4px;
-    left: 28%;
-    top: 28%;
-    border-radius: 4px;
-    background: #fbbf24;
-    box-shadow:
-        32px 10px 0 #93c5fd,
-        54px -4px 0 #f472b6;
+.cake-cut-scene.cutting .cut-cake-art {
+    transform: scale(.985);
 }
 
-#step16 .cake-cut-scene.cut-complete .cut-cake-art {
+.cake-cut-scene.cut-complete .cut-cake-art {
     opacity: 0;
 }
 
-#step16 .cake-cut-scene.cut-complete .cake-half {
+.cake-cut-scene.cut-complete .cake-half {
     opacity: 1;
 }
 
-#step16 .cake-cut-scene.cut-complete .cake-half-left {
-    animation: cakeHalfLeft 1.05s cubic-bezier(.16,1,.3,1) forwards;
+.cake-cut-scene.cut-complete .cake-half-left {
+    animation: halfLeft 1.05s cubic-bezier(.16,1,.3,1) forwards;
 }
 
-#step16 .cake-cut-scene.cut-complete .cake-half-right {
-    animation: cakeHalfRight 1.05s cubic-bezier(.16,1,.3,1) forwards;
+.cake-cut-scene.cut-complete .cake-half-right {
+    animation: halfRight 1.05s cubic-bezier(.16,1,.3,1) forwards;
 }
 
-@keyframes cakeHalfLeft {
-    from {
-        transform: translateX(0) rotate(0);
+@keyframes halfLeft {
+    0% {
+        opacity: 0;
+        transform: translate(0,0) rotate(0deg);
     }
-    to {
-        transform: translateX(-35px) rotate(-8deg);
-    }
-}
 
-@keyframes cakeHalfRight {
-    from {
-        transform: translateX(0) rotate(0);
+    22% {
+        opacity: 1;
     }
-    to {
-        transform: translateX(35px) rotate(8deg);
+
+    100% {
+        opacity: 1;
+        transform: translate(-88px,-38px) rotate(-8deg);
     }
 }
 
-#step16 .short-instruction {
+@keyframes halfRight {
+    0% {
+        opacity: 0;
+        transform: translate(0,0) rotate(0deg);
+    }
+
+    22% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(88px,-38px) rotate(8deg);
+    }
+}
+
+.short-instruction {
     position: absolute;
     left: 50%;
-    top: 32%;
+    bottom: clamp(34px,8vh,75px);
     transform: translateX(-50%);
     padding: 10px 18px;
     border-radius: 999px;
@@ -1208,25 +1157,60 @@
     border: 1px solid rgba(255,255,255,.15);
     box-shadow: 0 10px 30px rgba(0,0,0,.4);
     font-size: .9rem;
-    z-index: 20;
 }
 
-#step16 .short-instruction.show-card {
-    animation: instructionInStep16 .7s ease forwards;
+.short-instruction.show-card {
+    animation: instructionIn .7s ease forwards;
 }
 
-@keyframes instructionInStep16 {
+@keyframes instructionIn {
     from {
         opacity: 0;
         transform: translateX(-50%) translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateX(-50%) translateY(0);
     }
 }
 
-#step16 .cake-knife {
+.cut-progress {
+    position: absolute;
+    left: 50%;
+    bottom: clamp(22px,4vh,42px);
+    width: min(300px,55vw);
+    height: 5px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.12);
+    overflow: hidden;
+    opacity: .8;
+}
+
+.cut-progress span {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg,#f472b6,#fbbf24,#fff);
+    box-shadow: 0 0 12px rgba(244,114,182,.8);
+    transition: width .15s ease;
+}
+
+.cut-celebration {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1.7rem,4vw,3rem);
+    font-weight: 700;
+    text-shadow: 0 0 25px #f472b6;
+}
+
+.cut-celebration.show-card {
+    animation: celebratePop 2.8s ease forwards;
+}
+  .cake-knife {
     position: absolute;
     left: calc(50% + min(25vw, 240px));
     top: 53%;
@@ -1236,132 +1220,125 @@
     cursor: grab;
     touch-action: none;
     user-select: none;
-    -webkit-user-select: none;
     z-index: 10000 !important;
     pointer-events: auto !important;
 }
 
-#step16 .cake-knife::before {
+.cake-knife::before {
     content: '';
     position: absolute;
     inset: -12px -10px;
     z-index: -1;
-    pointer-events: none;
+    pointer-events: auto;
 }
 
-#step16 .cake-knife:active {
+.cake-knife:active {
     cursor: grabbing;
 }
 
-#step16 .cake-knife.hidden-knife {
+.cake-knife.hidden-knife {
     opacity: 0;
     pointer-events: none;
 }
 
-#step16 .cake-knife.ready-knife {
-    animation: knifeAttentionStep16 1.4s ease-in-out infinite alternate;
+.cake-knife.ready-knife {
+    animation: knifeAttention 1.4s ease-in-out infinite alternate;
 }
 
-#step16 .cake-knife.dragging {
+.cake-knife.dragging {
     animation: none;
 }
+   /* Premium luminous cake-cutting knife */
+.cake-knife{filter:drop-shadow(0 0 7px rgba(255,181,222,.45)) drop-shadow(0 8px 15px rgba(0,0,0,.4))}
+.knife-blade{background:linear-gradient(115deg,#fff 0%,#e9d9e6 28%,#fff 48%,#f6a9d0 62%,#fff 78%,#cfd8e4 100%);box-shadow:0 0 9px rgba(255,255,255,.85),0 0 20px rgba(244,114,182,.55),0 5px 14px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.75)}
+.knife-blade::after{content:'';position:absolute;left:8%;right:8%;top:4px;height:3px;border-radius:999px;background:linear-gradient(90deg,transparent,#fff,rgba(255,182,222,.95),#fff,transparent);box-shadow:0 0 9px rgba(255,255,255,.9);animation:knifeShimmer 1.8s linear infinite}
+.knife-handle{background:linear-gradient(135deg,#2b1228,#7d285b 42%,#f472b6 70%,#3b1832);border:1px solid rgba(255,209,234,.4);box-shadow:0 0 12px rgba(244,114,182,.28),0 4px 12px rgba(0,0,0,.38)}
+.cake-knife.ready-knife{animation:knifeAttentionPremium 1.5s ease-in-out infinite alternate}
+@keyframes knifeShimmer{0%{transform:translateX(-15px);opacity:.25}50%{opacity:1}100%{transform:translateX(75px);opacity:.25}}
+@keyframes knifeAttentionPremium{to{transform:translateY(-50%) rotate(-13deg) scale(1.025);filter:drop-shadow(0 0 12px rgba(255,255,255,.55)) drop-shadow(0 0 28px rgba(244,114,182,.65))}}
+  .cake-knife.ready-knife {
+    animation: knifeAttentionPremium 1.4s ease-in-out infinite alternate;
+}
 
-@keyframes knifeAttentionStep16 {
+@keyframes knifeAttentionPremium {
+    from {
+        transform: translateY(-50%) rotate(-13deg) translateX(0);
+    }
     to {
-        transform:
-            translateY(-50%)
-            rotate(-13deg)
-            scale(1.025);
+        transform: translateY(-50%) rotate(-13deg) translateX(-8px);
     }
 }
-
-#step16 .knife-blade {
-    position: absolute;
-    left: 0;
-    top: 10px;
-    width: 105px;
-    height: 24px;
-    border-radius: 4px 18px 18px 4px;
-    background: linear-gradient(
-        180deg,
-        #ffffff,
-        #d7dce5,
-        #ffffff
-    );
-    box-shadow: 0 3px 8px rgba(0,0,0,.35);
-    pointer-events: none;
+.cut-cake-art {
+    isolation: isolate;
 }
 
-#step16 .knife-handle {
+.cut-cake-art::before {
+    content: '';
     position: absolute;
-    right: 0;
-    top: 6px;
-    width: 52px;
-    height: 34px;
-    border-radius: 8px 13px 13px 8px;
+    inset: -8px -10px 4px;
+    border-radius: 46% 46% 25% 25%;
     background: linear-gradient(
-        180deg,
-        #f472b6,
-        #a33e76
-    );
-    box-shadow: 0 5px 10px rgba(0,0,0,.35);
-    pointer-events: none;
-}
-
-#step16 .cut-progress {
-    position: absolute;
-    left: 50%;
-    bottom: clamp(22px, 4vh, 42px);
-    transform: translateX(-50%);
-    width: min(300px, 55vw);
-    height: 5px;
-    border-radius: 10px;
-    background: rgba(255,255,255,.12);
-    overflow: hidden;
-    opacity: .8;
-}
-
-#step16 .cut-progress span {
-    display: block;
-    width: 0;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        #f472b6,
-        #fbbf24,
+        120deg,
+        #fff,
+        rgba(255,168,219,.95),
+        rgba(255,240,247,.95),
+        rgba(244,114,182,.95),
         #fff
     );
-    transition: width .15s ease;
+    background-size: 250% 250%;
+    filter: blur(6px);
+    opacity: .72;
+    z-index: -2;
+    animation: cakeBorderShift 4.5s ease-in-out infinite;
 }
 
-#step16 .sequence-card {
+.cut-cake-art::after {
+    content: '';
     position: absolute;
-    z-index: 20;
-    opacity: 0;
+    inset: 1px 4px 7px;
+    border: 1px solid rgba(255,255,255,.34);
+    border-radius: 44% 44% 25% 25%;
+    box-shadow:
+        inset 0 0 22px rgba(255,192,224,.18),
+        0 0 25px rgba(244,114,182,.2);
     pointer-events: none;
-    transition: opacity .7s ease;
+    z-index: 8;
+} 
+ .cut-cake-top {
+    box-shadow:
+        inset 0 8px 12px rgba(255,255,255,.3),
+        0 0 18px rgba(255,180,220,.24);
 }
 
-#step16 .sequence-card.show-card {
-    opacity: 1;
+.cut-cake-body {
+    box-shadow:
+        inset 0 10px 20px rgba(255,255,255,.16),
+        inset 0 -16px 25px rgba(0,0,0,.18),
+        0 0 20px rgba(244,114,182,.14);
 }
 
-#step16 .sequence-card-left-top {
-    left: 7%;
-    top: 12%;
+.cut-cake-name-script {
+    position: absolute;
+    left: 50%;
+    top: 52%;
+    transform: translate(-50%,-50%) rotate(-2deg);
+    white-space: nowrap;
+    font-family: var(--font-serif);
+    font-size: clamp(.9rem,2vw,1.35rem);
+    font-style: italic;
+    font-weight: 600;
+    color: #fff9fc;
+    text-shadow:
+        0 1px 2px rgba(105,30,73,.35),
+        0 0 10px rgba(255,111,190,.5);
+    z-index: 9;
 }
-
-@media (max-width: 700px) {
-
-    #step16 .cake-knife {
-        left: calc(50% + 18vw);
-        width: 118px;
-    }
-
-    #step16 .short-instruction {
-        max-width: 90vw;
-        text-align: center;
-    }
+  @media (max-width: 700px){
+    .cake-intro-image{background-position:center center}
+    .cake-intro-cake-hotspot{width:72vw;height:42vh;top:56%}
+    .cake-intro-continue-hint{top:auto;bottom:5%;font-size:.62rem;letter-spacing:.09em;padding:7px 11px}
+    .cake-name-script{font-size:clamp(.78rem,4vw,1.15rem)}
+    .cut-cake-name-script{font-size:clamp(.72rem,3.7vw,1.05rem)}
 }
     </style>
 </head>
@@ -1375,6 +1352,7 @@
     <audio id="blueAudio" src="blue.mp3" loop preload="auto"></audio>
 
     <audio id="goldenBrownAudio" src="goldenbrown.mp3" loop preload="auto"></audio>
+   <audio id="cakeChapterAudio" src="cake.mp3" loop preload="auto"></audio>
     <!-- =========================================================================
        MAIN STEP CONTAINER & MULTI-CARD STRUCTURE
        ========================================================================= -->
@@ -1899,10 +1877,10 @@ function playAudioAndNext(targetStep, themeColor) {
             Next ➔
         </button>
     </div>
-<!-- STEP 16: BIRTHDAY CAKE -->
+<!-- STEP 16 — CAKE CUTTING -->
+
 <div class="card" id="step16">
 
-    <!-- CAKE CUTTING -->
     <div id="cakeCutTitle" class="sequence-card sequence-card-left-top hidden">
         NOW — CAKE CUTTING 🎂🔪
     </div>
@@ -1927,45 +1905,47 @@ function playAudioAndNext(targetStep, themeColor) {
 
             </div>
 
-            <div
-                id="cakeHalfLeft"
-                class="cake-half cake-half-left">
-            </div>
+            <div id="cakeHalfLeft"
+                 class="cake-half cake-half-left"></div>
 
-            <div
-                id="cakeHalfRight"
-                class="cake-half cake-half-right">
-            </div>
+            <div id="cakeHalfRight"
+                 class="cake-half cake-half-right"></div>
 
         </div>
 
-        <div
-            id="knifeInstruction"
-            class="short-instruction hidden">
+
+        <div id="knifeInstruction"
+             class="short-instruction hidden">
+
             CAKE KAATO KEWTIE CHUMTIYA NAHI 🔪
+
         </div>
 
-        <div
-            id="cakeKnife"
-            class="cake-knife hidden-knife"
-            aria-label="Drag the knife">
+
+        <div id="cakeKnife"
+             class="cake-knife hidden-knife"
+             aria-label="Drag the knife">
 
             <div class="knife-blade"></div>
+
             <div class="knife-handle"></div>
 
         </div>
 
-        <div id="cutProgress" class="cut-progress">
-            <span></span>
-        </div>
 
+        <div id="cutProgress"
+             class="cut-progress">
+
+            <span></span>
+
+        </div>
+<div id="cutCelebration"
+     class="cut-celebration hidden">
+    🎉 Cake cut successfully! 🎂✨
+</div>
     </div>
 
 </div>
-</div>       
- <audio id="cakeChapterAudio" src="cake.mp3" preload="auto" loop></audio>       
-   
-
             
             
 
@@ -2685,27 +2665,160 @@ function startStep15Sequence() {
     }
 }
   // ===== STEP 16 CAKE CUTTING — REFERENCE LOGIC =====
-
-
 async function startStep16Sequence() {
 
     const cakeAudio = document.getElementById('cakeChapterAudio');
 
     if (cakeAudio) {
         cakeAudio.currentTime = 0;
+        cakeAudio.volume = 0.42;
         cakeAudio.play().catch(() => {});
     }
 
+    await runCakeChapter();
     await runCakeCutChapter();
 }
+
+
                         
   /* =========================================================
    STEP 16 — CAKE CUTTING
    Reference logic adapted to this project's normal functions
-   ========================================================= */
+   ==============l*/
+async function runCakeChapter() {
+    const intro = document.getElementById('cakeIntroCard');
+    const first = document.getElementById('cakeFirstInstruction');
+    const stage = document.getElementById('cakeStage');
+    const cakeInstruction = document.getElementById('cakeBlowInstruction');
+    const countdown = document.getElementById('cakeCountdown');
+    const blow = document.getElementById('cakeBlowText');
+    const roast = document.getElementById('cakeRoastCard');
+    const second = document.getElementById('cakeSecondInstruction');
+    const celebration = document.getElementById('cakeFinalCelebration');
+    const candles = [...document.querySelectorAll('#cakeCandles .candle')];
 
-async function runCakeCutChapter() {
+    await runCakeIntroReveal();
+    await fadeCardIn(intro, 3000);
+    await wait(350);
+    await fadeCardIn(first, 5000);
+    await wait(450);
 
+    stage.classList.remove('hidden');
+    await wait(80);
+    stage.classList.add('visible', 'entering');
+    await wait(1850);
+    stage.classList.remove('entering');
+
+    await fadeElementInOut(cakeInstruction, 1800);
+    await runCountdown(countdown, 3);
+    await showBlow(blow);
+
+    candles.forEach(c => c.classList.add('dim'));
+    await wait(950);
+    candles.forEach(c => c.classList.remove('dim'));
+
+    await fadeCardIn(roast, 8000);
+    await wait(350);
+    await fadeCardIn(second, 5000);
+    await wait(400);
+
+    await fadeElementInOut(cakeInstruction, 1400);
+    await runCountdown(countdown, 3);
+    await showBlow(blow);
+
+    candles.forEach(c => c.classList.add('extinguished'));
+    await wait(1500);
+
+    celebration.classList.remove('hidden');
+    celebration.classList.add('show-celebration');
+    await wait(3000);
+    celebration.classList.remove('show-celebration');
+    celebration.classList.add('hidden');
+
+    stage.classList.remove('visible');
+    await wait(900);
+    stage.classList.add('hidden');
+}
+        async function runCakeIntroReveal() {
+    const reveal = document.getElementById('cakeIntroReveal');
+const hint = document.getElementById('cakeIntroContinueHint');
+const hotspot = document.getElementById('cakeIntroCakeHotspot');
+    if (!reveal || !hotspot) return;
+
+    reveal.classList.remove('hidden', 'is-leaving', 'cake-intro-active');
+    reveal.setAttribute('aria-hidden', 'false');
+    void reveal.offsetWidth;
+    reveal.classList.add('cake-intro-active');
+
+    if (hint) hint.classList.add('show-hint');
+
+    await new Promise(resolve => {
+        let completed = false;
+
+        const finish = event => {
+            event?.preventDefault?.();
+            if (completed) return;
+
+            completed = true;
+            hotspot.classList.add('cake-hotspot-hit');
+            reveal.classList.add('cake-intro-impact');
+
+            setTimeout(() => {
+                reveal.classList.add('is-leaving');
+
+                setTimeout(() => {
+                    reveal.classList.add('hidden');
+                    reveal.setAttribute('aria-hidden', 'true');
+                    reveal.classList.remove(
+                        'cake-intro-active',
+                        'is-leaving',
+                        'cake-intro-impact'
+                    );
+                    resolve();
+                }, 1000);
+            }, 850);
+        };
+
+        hotspot.addEventListener('pointerup', finish, { once: true });
+        hotspot.addEventListener('click', finish, { once: true });
+
+        hotspot.addEventListener('keydown', event => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                finish(event);
+            }
+        }, { once: true });
+    });
+        }      
+ async function runCountdown(el, start = 3) {
+    if (!el) return;
+    el.classList.remove('hidden');
+
+    for (let n = start; n >= 1; n--) {
+        el.textContent = n;
+        el.classList.remove('show-count');
+        void el.offsetWidth;
+        el.classList.add('show-count');
+        await wait(1000);
+    }
+
+    el.textContent = '0';
+    el.classList.remove('show-count');
+    void el.offsetWidth;
+    el.classList.add('show-count');
+    await wait(700);
+
+    el.classList.add('hidden');
+    el.classList.remove('show-count');
+ } 
+       async function showBlow(el) {
+    if (!el) return;
+    el.classList.remove('hidden');
+    el.classList.add('show-blow');
+    await wait(1150);
+    el.classList.remove('show-blow');
+    el.classList.add('hidden');
+       }
+        async function runCakeCutChapter() {
     const title = document.getElementById('cakeCutTitle');
     const scene = document.getElementById('cakeCutScene');
     const instruction = document.getElementById('knifeInstruction');
@@ -2715,379 +2828,179 @@ async function runCakeCutChapter() {
 
     if (!title || !scene || !instruction || !knife) return;
 
-    /* Title */
-    title.classList.remove('hidden');
+    // The title gets its own uninterrupted reading window.
+    await fadeCardIn(title, 4000);
 
-    await cakeWait(4000);
-
-    /* Cake cutting scene */
     scene.classList.remove('hidden');
     scene.classList.remove('cut-complete');
+    if (progress) progress.style.width = '0%';
 
-    if (progress) {
-        progress.style.width = '0%';
-    }
+    await wait(100);
 
-    await cakeWait(100);
-
-    /* Instruction */
+    // Short instruction appears only after the title is completely gone.
     instruction.classList.remove('hidden');
     instruction.classList.add('show-card');
-
-    await cakeWait(3000);
-
+    await wait(3000);
     instruction.classList.remove('show-card');
-
-    await cakeWait(700);
-
+    await wait(700);
     instruction.classList.add('hidden');
 
-    /* Knife becomes active */
+    // Knife is now the only active interaction.
     knife.classList.remove('hidden-knife');
     knife.classList.add('ready-knife');
+    await wait(300);
 
-    await cakeWait(300);
-
-    /* Wait for actual knife drag */
     await waitForKnifeCut(knife, progress, scene);
 
     knife.classList.remove('ready-knife');
-
     scene.classList.add('cut-complete');
 
-    /* Let cake pieces separate */
-    await cakeWait(1100);
+    // Let the two pieces visibly separate before the celebration.
+    await wait(1100);
 
-    /* Celebration */
     if (celebration) {
-
         celebration.classList.remove('hidden');
         celebration.classList.add('show-card');
-
-        await cakeWait(2600);
-
+        await wait(2600);
         celebration.classList.remove('show-card');
-
-        await cakeWait(500);
-
+        await wait(500);
         celebration.classList.add('hidden');
     }
 
-    /* Clean exit */
-    await cakeWait(400);
-
+    // Leave the cut scene cleanly before the birthday moment begins.
+    await wait(400);
     scene.classList.add('hidden');
     scene.classList.remove('cut-complete');
-
     knife.classList.add('hidden-knife');
-
-    if (progress) {
-        progress.style.width = '0%';
-    }
+    if (progress) progress.style.width = '0%';
 }
 
-
-/* =========================================================
-   KNIFE DRAG — ORIGINAL REFERENCE BEHAVIOUR
-   ========================================================= */
-
 function waitForKnifeCut(knife, progress, scene) {
-
-    return new Promise(function(resolve) {
-
+    return new Promise(resolve => {
         let dragging = false;
         let finished = false;
         let pointerOffsetX = 0;
         let currentLeft = 0;
 
-        const getPointerX = function(e) {
-
-            if (typeof e.clientX === 'number') {
-                return e.clientX;
-            }
-
-            if (e.touches && e.touches[0]) {
-                return e.touches[0].clientX;
-            }
-
+        const getPointerX = e => {
+            if (typeof e.clientX === 'number') return e.clientX;
+            if (e.touches && e.touches[0]) return e.touches[0].clientX;
             return 0;
         };
 
-        const getSceneRect = function() {
-            return scene.getBoundingClientRect();
-        };
-
-        const getKnifeRect = function() {
-            return knife.getBoundingClientRect();
-        };
-
-        const getCakeRect = function() {
-
+        const getSceneRect = () => scene.getBoundingClientRect();
+        const getKnifeRect = () => knife.getBoundingClientRect();
+        const getCakeRect = () => {
             const el = scene.querySelector('.cut-cake-stage');
-
             return el ? el.getBoundingClientRect() : null;
         };
-
 
         const sceneRect = getSceneRect();
         const knifeRect = getKnifeRect();
         const cakeRect = getCakeRect();
 
         currentLeft = knifeRect.left - sceneRect.left;
-
         const startLeft = currentLeft;
-
 
         const targetPageX = cakeRect
             ? cakeRect.left - Math.min(18, cakeRect.width * 0.04)
             : sceneRect.left + sceneRect.width * 0.22;
 
         const targetLeft = targetPageX - sceneRect.left;
+        const totalDistance = Math.max(1, startLeft - targetLeft);
 
-        const totalDistance = Math.max(
-            1,
-            startLeft - targetLeft
-        );
-
-
-        const down = function(e) {
-
+        const down = e => {
             if (finished) return;
-
-            if (
-                e.pointerType === 'mouse' &&
-                e.button !== 0
-            ) {
-                return;
-            }
+            if (e.pointerType === 'mouse' && e.button !== 0) return;
 
             const rect = getKnifeRect();
-
-            pointerOffsetX =
-                getPointerX(e) - rect.left;
-
+            pointerOffsetX = getPointerX(e) - rect.left;
             dragging = true;
-
             knife.classList.add('dragging');
 
-
-            if (
-                knife.setPointerCapture &&
-                e.pointerId !== undefined
-            ) {
-
-                try {
-                    knife.setPointerCapture(e.pointerId);
-                } catch (_) {}
+            if (knife.setPointerCapture && e.pointerId !== undefined) {
+                try { knife.setPointerCapture(e.pointerId); } catch (_) {}
             }
 
             e.preventDefault();
         };
 
-
-        const move = function(e) {
-
+        const move = e => {
             if (!dragging || finished) return;
 
             const rect = getSceneRect();
-
-            let newLeft =
-                getPointerX(e) -
-                rect.left -
-                pointerOffsetX;
-
+            let newLeft = getPointerX(e) - rect.left - pointerOffsetX;
 
             const minLeft = 8;
+            const maxLeft = rect.width - knife.offsetWidth - 8;
 
-            const maxLeft =
-                rect.width -
-                knife.offsetWidth -
-                8;
-
-
-            newLeft = Math.max(
-                minLeft,
-                Math.min(maxLeft, newLeft)
-            );
-
-
+            newLeft = Math.max(minLeft, Math.min(maxLeft, newLeft));
             currentLeft = newLeft;
+            knife.style.left = `${currentLeft}px`;
 
-            knife.style.left =
-                currentLeft + 'px';
+            const knifeRectNow = getKnifeRect();
+            const cakeRectNow = getCakeRect();
 
-
-            const knifeRectNow =
-                getKnifeRect();
-
-            const cakeRectNow =
-                getCakeRect();
-
-
-            let progressPercent =
-                Math.max(
-                    0,
-                    Math.min(
-                        100,
-                        (
-                            (startLeft - currentLeft) /
-                            totalDistance
-                        ) * 100
-                    )
-                );
-
+            let progressPercent = Math.max(
+                0,
+                Math.min(100, ((startLeft - currentLeft) / totalDistance) * 100)
+            );
 
             if (
                 cakeRectNow &&
-                knifeRectNow.left <=
-                cakeRectNow.left +
-                cakeRectNow.width * 0.08
+                knifeRectNow.left <= cakeRectNow.left + cakeRectNow.width * 0.08
             ) {
-
                 progressPercent = 100;
             }
 
+            if (progress) progress.style.width = `${progressPercent}%`;
 
-            if (progress) {
-                progress.style.width =
-                    progressPercent + '%';
-            }
-
-
-            if (progressPercent >= 100) {
-                finish();
-            }
+            if (progressPercent >= 100) finish();
 
             e.preventDefault();
         };
 
-
-        const up = function(e) {
-
+        const up = e => {
             if (!dragging) return;
 
             dragging = false;
-
             knife.classList.remove('dragging');
-
 
             if (
                 e &&
                 knife.releasePointerCapture &&
                 e.pointerId !== undefined
             ) {
-
-                try {
-                    knife.releasePointerCapture(
-                        e.pointerId
-                    );
-                } catch (_) {}
+                try { knife.releasePointerCapture(e.pointerId); } catch (_) {}
             }
         };
 
-
-        const finish = function() {
-
+        const finish = () => {
             if (finished) return;
 
             finished = true;
-
             dragging = false;
-
             knife.classList.remove('dragging');
 
-            if (progress) {
-                progress.style.width = '100%';
-            }
+            if (progress) progress.style.width = '100%';
 
             cleanup();
-
             resolve();
         };
 
-
-        const cleanup = function() {
-
-            knife.removeEventListener(
-                'pointerdown',
-                down
-            );
-
-            window.removeEventListener(
-                'pointermove',
-                move
-            );
-
-            window.removeEventListener(
-                'pointerup',
-                up
-            );
-
-            window.removeEventListener(
-                'pointercancel',
-                up
-            );
+        const cleanup = () => {
+            knife.removeEventListener('pointerdown', down);
+            window.removeEventListener('pointermove', move);
+            window.removeEventListener('pointerup', up);
+            window.removeEventListener('pointercancel', up);
         };
 
-
-        knife.addEventListener(
-            'pointerdown',
-            down
-        );
-
-        window.addEventListener(
-            'pointermove',
-            move,
-            { passive: false }
-        );
-
-        window.addEventListener(
-            'pointerup',
-            up
-        );
-
-        window.addEventListener(
-            'pointercancel',
-            up
-        );
-
+        knife.addEventListener('pointerdown', down);
+        window.addEventListener('pointermove', move, { passive: false });
+        window.addEventListener('pointerup', up);
+        window.addEventListener('pointercancel', up);
     });
-}
-
-
-/* =========================================================
-   STEP 16 START
-   ========================================================= */
-
-async function startStep16Sequence() {
-
-    const cakeAudio =
-        document.getElementById('cakeChapterAudio');
-
-    if (cakeAudio) {
-
-        cakeAudio.currentTime = 0;
-
-        cakeAudio.play().catch(function() {});
-    }
-
-    await runCakeCutChapter();
-}
-
-
-/* =========================================================
-   SMALL WAIT HELPER
-   ========================================================= */
-
-function cakeWait(ms) {
-
-    return new Promise(function(resolve) {
-
-        setTimeout(resolve, ms);
-
-    });
-        }                          
-        
+        }
     </script>
 </body>
 </html>
