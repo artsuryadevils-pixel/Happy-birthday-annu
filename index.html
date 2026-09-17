@@ -2049,25 +2049,69 @@ function playAudioAndNext(targetStep, themeColor) {
 
         /* 2. Safe Audio Player Wrapper */
         function playAudioSafely(audioId) {
-            stopAllAudio();
+        
             var audioElement = document.getElementById(audioId);
             if (audioElement) {
                 var playPromise = audioElement.play();
                 if (playPromise !== undefined) {
                     playPromise.catch(function(error) {
-                        console.log("Browser audio restriction caught:", error);
-                    });
+    if (error && error.name === 'AbortError') {
+        return;
+    }
+
+    console.log("Audio playback error:", error);
+});
                 }
             }
         }
 
         function nextStep(stepNumber, songToPlay = null) {
+    
 
     // Step 16 handles its own reference-style audio switch.
     if (stepNumber !== 16) {
         stopAllAudio();
     }
+function switchToBirthdayAudio() {
+    var audioIds = [
+        'boyfriendAudio',
+        'forAReasonAudio',
+        'blueAudio',
+        'goldenBrownAudio',
+        'partyChapterAudio',
+        'memoriesChapterAudio',
+        'weddingChapterAudio'
+    ];
 
+    audioIds.forEach(function(id) {
+        var audio = document.getElementById(id);
+
+        if (audio && !audio.paused) {
+            try {
+                audio.pause();
+                audio.currentTime = 0;
+            } catch (err) {
+                console.log("Birthday audio reset error:", err);
+            }
+        }
+    });
+
+    var cakeAudio = document.getElementById('cakeChapterAudio');
+
+    if (cakeAudio) {
+        cakeAudio.currentTime = 0;
+        cakeAudio.volume = 0.42;
+
+        var playPromise = cakeAudio.play();
+
+        if (playPromise !== undefined) {
+            playPromise.catch(function(error) {
+                if (error && error.name === 'AbortError') return;
+                console.log("Cake audio playback error:", error);
+            });
+        }
+    }
+        }
     if (stepNumber !== 16) {
         if (songToPlay === 'boyfriend') {
             playAudioSafely('boyfriendAudio');
