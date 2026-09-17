@@ -2061,81 +2061,107 @@ function playAudioAndNext(targetStep, themeColor) {
             }
         }
 
-        /* 3. Core Step Navigation & Transition Engine */
         function nextStep(stepNumber, songToPlay = null) {
-    stopAllAudio();
 
-    if (songToPlay === 'boyfriend') {
-        playAudioSafely('boyfriendAudio');
-    } else if (songToPlay === 'forareason') {
-        playAudioSafely('forAReasonAudio');
-    } else if (songToPlay === 'blue') {
-        playAudioSafely('blueAudio');
-    } else if (songToPlay === 'sahiba') {
-        playAudioSafely('step8Audio');
-   } else if (songToPlay === 'goldenbrown') {
-    playAudioSafely('goldenBrownAudio');
-    } else if (songToPlay === 'phirmiladeram') {
-        playAudioSafely('phirmiladeramAudio');
+    // Step 16 handles its own reference-style audio switch.
+    if (stepNumber !== 16) {
+        stopAllAudio();
     }
 
+    if (stepNumber !== 16) {
+        if (songToPlay === 'boyfriend') {
+            playAudioSafely('boyfriendAudio');
+        } else if (songToPlay === 'forareason') {
+            playAudioSafely('forAReasonAudio');
+        } else if (songToPlay === 'blue') {
+            playAudioSafely('blueAudio');
+        } else if (songToPlay === 'sahiba') {
+            playAudioSafely('step8Audio');
+        } else if (songToPlay === 'goldenbrown') {
+            playAudioSafely('goldenBrownAudio');
+        } else if (songToPlay === 'phirmiladeram') {
+            playAudioSafely('phirmiladeramAudio');
+        }
+    }
 
-            var allCards = document.querySelectorAll('.card');
-            allCards.forEach(function(card) {
-                card.classList.remove('active');
+    var allCards = document.querySelectorAll('.card');
+
+    allCards.forEach(function(card) {
+        card.classList.remove('active');
+    });
+
+    var targetCard = document.getElementById('step' + stepNumber);
+
+    if (targetCard) {
+        targetCard.classList.add('active');
+    }
+
+    var mainContainer = document.getElementById('mainContainer');
+
+    if (stepNumber === 5 || stepNumber === 6) {
+        mainContainer.classList.add('bg-alt');
+    } else {
+        mainContainer.classList.remove('bg-alt');
+    }
+
+    if (stepNumber === 3) {
+        startStep3Typewriter();
+    }
+
+    if (stepNumber === 4) {
+        startLiveChatAnimation();
+    }
+
+    if (stepNumber === 5) {
+        startThoughtSequence();
+    }
+
+    if (stepNumber === 6) {
+        var videoElem = document.getElementById('screenVideo');
+
+        if (videoElem) {
+            videoElem.play().catch(function(e) {
+                console.log("Video error:", e);
             });
-
-            var targetCard = document.getElementById('step' + stepNumber);
-            if (targetCard) { 
-                targetCard.classList.add('active'); 
-            }
-
-            var mainContainer = document.getElementById('mainContainer');
-            if (stepNumber === 5 || stepNumber === 6) {
-                mainContainer.classList.add('bg-alt');
-            } else {
-                mainContainer.classList.remove('bg-alt');
-            }
-
-            if (stepNumber === 3) { startStep3Typewriter(); }
-            if (stepNumber === 4) { startLiveChatAnimation(); }
-            if (stepNumber === 5) { startThoughtSequence(); }
-            if (stepNumber === 6) {
-    var videoElem = document.getElementById('screenVideo');
-    if (videoElem) {
-        videoElem.play().catch(function(e) { 
-            console.log("Video error:", e); 
-        });
+        }
     }
-}
-                if (stepNumber === 10) {
-    startStep10Sequence();
-}
+
+    if (stepNumber === 10) {
+        startStep10Sequence();
+    }
+
     if (stepNumber === 12) {
-      startStep12Sequence();
+        startStep12Sequence();
     }
-        if (stepNumber === 13) {
-      startStep13Sequence();
-    }
-      if (stepNumber === 14) {
-    startStep14Sequence();
-        }  
-if (stepNumber === 15) { 
-    startStep15Sequence(); 
-}
-           if (stepNumber === 16) {
-    startStep16Sequence();
-           }
-            if (stepNumber >= 10) {
-    var gardenVideo = document.getElementById('gardenBackgroundVideo');
-    if (gardenVideo) {
-        gardenVideo.play().catch(function(e) {
-            console.log("Garden video error:", e);
-        });
-    }
-}
 
-            }
+    if (stepNumber === 13) {
+        startStep13Sequence();
+    }
+
+    if (stepNumber === 14) {
+        startStep14Sequence();
+    }
+
+    if (stepNumber === 15) {
+        startStep15Sequence();
+    }
+
+    if (stepNumber === 16) {
+        startStep16Sequence();
+    }
+
+    if (stepNumber >= 10) {
+        var gardenVideo = document.getElementById('gardenBackgroundVideo');
+
+        if (gardenVideo) {
+            gardenVideo.play().catch(function(e) {
+                console.log("Garden video error:", e);
+            });
+        }
+    }
+        }
+
+            
         const step3Message = "Sep 10 2022 just a single hi 😭🎀\nI can't forget it kitni phat rahi thi uske baad se lekar abtak hmari itni baate hogyi itne high lows aagye 🫶🫢\n\nbut still 😂 mujhe pehli wish abhi tak yaad hai ♾️🥰 20 sep my sweet annu turns 15 hayee 😭💕\n\nChaliye fir aage dekhte hmari visual representations stranger se jaan tak banne ki 😋🌹";
         const step3QuoteText = "situation decides that memory blushes dilati h ya ansu 👁️👁️😭 .";
 
@@ -2683,18 +2709,42 @@ function startStep15Sequence() {
         });
     }
 }
-  // ===== STEP 16 CAKE CUTTING — REFERENCE LOGIC =====
-async function startStep16Sequence() {
+ // ===== BIRTHDAY / CAKE AUDIO — REFERENCE LOGIC =====
+function switchToBirthdayAudio() {
+
+    [
+        document.getElementById('ambientAudio'),
+        document.getElementById('goldBrownAudio'),
+        document.getElementById('customChoiceAudio'),
+        document.getElementById('partyChapterAudio'),
+        document.getElementById('memoriesChapterAudio'),
+        document.getElementById('weddingChapterAudio')
+    ].forEach(function(audio) {
+
+        if (audio && !audio.paused) {
+            audio.pause();
+            audio.currentTime = 0;
+        }
+
+    });
 
     const cakeAudio = document.getElementById('cakeChapterAudio');
 
     if (cakeAudio) {
         cakeAudio.currentTime = 0;
         cakeAudio.volume = 0.42;
-        cakeAudio.play().catch(() => {});
+        cakeAudio.play().catch(function(error) {
+            console.log("Cake audio playback blocked:", error);
+        });
     }
+        } 
+// ===== STEP 16 CAKE CUTTING — REFERENCE FLOW =====
+async function startStep16Sequence() {
 
-    
+    switchToBirthdayAudio();
+
+    await wait(120);
+
     await runCakeCutChapter();
 }
 
