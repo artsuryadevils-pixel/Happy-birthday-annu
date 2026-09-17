@@ -1083,7 +1083,15 @@
     border-radius: 50%;
     background: linear-gradient(#fff, #bbc6d5);
 }
-
+.cake-half {
+    position: absolute;
+    top: 0;
+    width: 45%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+}
+        
 .cake-half-left {
     left: 5%;
     transform-origin: right center;
@@ -1174,7 +1182,6 @@
         transform: translateX(-50%) translateY(0);
     }
 }
-
 .cut-progress {
     position: absolute;
     left: 50%;
@@ -1182,9 +1189,12 @@
     width: min(300px,55vw);
     height: 5px;
     border-radius: 10px;
-    background: rgba(255,255,255,.12);
+    background: rgba(255, 255, 255, 0.2);
     overflow: hidden;
     opacity: .8;
+}
+        
+        
 }
 
 .cut-progress span {
@@ -1878,7 +1888,6 @@ function playAudioAndNext(targetStep, themeColor) {
         </button>
     </div>
 <!-- STEP 16 — CAKE CUTTING -->
-
 <div class="card" id="step16">
 
     <div id="cakeCutTitle" class="sequence-card sequence-card-left-top hidden">
@@ -1888,75 +1897,43 @@ function playAudioAndNext(targetStep, themeColor) {
     <div id="cakeCutScene" class="cake-cut-scene hidden">
 
         <div class="cut-cake-stage">
-
             <div class="cut-cake-shadow"></div>
 
             <div class="cut-cake-art" id="cutCakeArt">
-
                 <div class="cut-cake-top">
                     <span class="cut-cake-name-script">
                         dear Annu ♡
                     </span>
                 </div>
-
                 <div class="cut-cake-body"></div>
-
                 <div class="cut-cake-plate"></div>
-
             </div>
 
-            <div id="cakeHalfLeft"
-                 class="cake-half cake-half-left"></div>
-
-            <div id="cakeHalfRight"
-                 class="cake-half cake-half-right"></div>
-
+            <div id="cakeHalfLeft" class="cake-half cake-half-left"></div>
+            <div id="cakeHalfRight" class="cake-half cake-half-right"></div>
         </div>
 
-
-        <div id="knifeInstruction"
-             class="short-instruction hidden">
-
+        <div id="knifeInstruction" class="short-instruction hidden">
             CAKE KAATO KEWTIE CHUMTIYA NAHI 🔪
-
         </div>
 
-
-        <div id="cakeKnife"
-             class="cake-knife hidden-knife"
-             aria-label="Drag the knife">
-
+        <div id="cakeKnife" class="cake-knife hidden-knife" aria-label="Drag the knife">
             <div class="knife-blade"></div>
-
             <div class="knife-handle"></div>
-
         </div>
 
-
-        <div id="cutProgress"
-             class="cut-progress">
-
+        <div id="cutProgress" class="cut-progress">
             <span></span>
-
         </div>
-<div id="cutCelebration"
-     class="cut-celebration hidden">
-    🎉 Cake cut successfully! 🎂✨
-</div>
+
+        <div id="cutCelebration" class="cut-celebration hidden">
+            🎉 Cake cut successfully! 🎂✨
+        </div>
+
     </div>
 
 </div>
-            
-            
-
- 
-            
-            
-
-            
-      
-            
-  
+    
             
             
             
@@ -2143,7 +2120,12 @@ if (stepNumber === 15) {
                 if (quoteBox) quoteBox.innerText = step3QuoteText.substring(0, j);
                 await delay(30);
             }
-        }
+        
+    step3ExecutionLock = false;
+}
+
+
+    
 
         const chatData = [
             { sender: 'left', text: 'Good morning shweety 🌸', time: '15:44' },
