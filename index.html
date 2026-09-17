@@ -2064,14 +2064,6 @@ function playAudioAndNext(targetStep, themeColor) {
                 }
             }
         }
-
-        window.nextStep = function(stepNumber, songToPlay = null) {
-    
-
-    // Step 16 handles its own reference-style audio switch.
-    if (stepNumber !== 16) {
-        stopAllAudio();
-    }
 function switchToBirthdayAudio() {
     var audioIds = [
         'boyfriendAudio',
@@ -2111,7 +2103,16 @@ function switchToBirthdayAudio() {
             });
         }
     }
-        }
+}
+       
+        window.nextStep = function(stepNumber, songToPlay = null) {
+    
+
+    // Step 16 handles its own reference-style audio switch.
+    if (stepNumber !== 16) {
+        stopAllAudio();
+    }
+
     if (stepNumber !== 16) {
         if (songToPlay === 'boyfriend') {
             playAudioSafely('boyfriendAudio');
