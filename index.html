@@ -2065,7 +2065,7 @@ function playAudioAndNext(targetStep, themeColor) {
             }
         }
 
-        function nextStep(stepNumber, songToPlay = null) {
+        window.nextStep = function(stepNumber, songToPlay = null) {
     
 
     // Step 16 handles its own reference-style audio switch.
