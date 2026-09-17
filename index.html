@@ -2784,13 +2784,24 @@ function switchToBirthdayAudio() {
         } 
 // ===== STEP 16 CAKE CUTTING — REFERENCE FLOW =====
 async function startStep16Sequence() {
-console.log("STEP 16 STARTED");
-    switchToBirthdayAudio();
+    console.log("STEP 16 STARTED");
+
+    try {
+        switchToBirthdayAudio();
+        console.log("BIRTHDAY AUDIO DONE");
+    } catch (error) {
+        console.error("BIRTHDAY AUDIO FUNCTION ERROR:", error);
+    }
 
     await wait(120);
+    console.log("WAIT DONE");
 
-    await runCakeCutChapter();
-console.log("CAKE CHAPTER DONE");
+    try {
+        await runCakeCutChapter();
+        console.log("CAKE CHAPTER DONE");
+    } catch (error) {
+        console.error("CAKE CHAPTER ERROR:", error);
+    }
 }
 
 
