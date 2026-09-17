@@ -2686,7 +2686,32 @@ async function startStep16Sequence() {
    Reference logic adapted to this project's normal functions
    ==============l*/
 
-      
+ function fadeCardIn(element, duration = 4000) {
+    return new Promise(resolve => {
+        if (!element) {
+            resolve();
+            return;
+        }
+        element.classList.remove('hidden');
+        element.style.opacity = 0;
+        element.style.transition = `opacity ${duration / 2}ms ease-in-out`;
+        
+        // Fade in
+        setTimeout(() => {
+            element.style.opacity = 1;
+        }, 50);
+
+        // Fade out after showing
+        setTimeout(() => {
+            element.style.opacity = 0;
+            setTimeout(() => {
+                element.classList.add('hidden');
+                resolve();
+            }, duration / 2);
+        }, duration);
+    });
+        }
+        
  
         async function runCakeCutChapter() {
     const title = document.getElementById('cakeCutTitle');
