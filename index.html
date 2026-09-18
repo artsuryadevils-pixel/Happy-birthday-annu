@@ -2703,20 +2703,31 @@ function playAudioAndNext(targetStep, themeColor) {
     // if (stepNumber === 10) { startStep10Sequence(); }
 
         /* 1. Global Audio Management Function */
-        function stopAllAudio() {
-            var audioIds = ['boyfriendAudio', 'forAReasonAudio', 'step8Audio', 'blueAudio', 'goldenBrownAudio', 'phirmiladeramAudio', 'step16CakeAudio'];
-            audioIds.forEach(function(id) {
-                var audioElement = document.getElementById(id);
-                if (audioElement) {
-                    try {
-                        audioElement.pause();
-                        audioElement.currentTime = 0;
-                    } catch(err) {
-                        console.log("Audio reset error:", err);
-                    }
-                }
-            });
+ function stopAllAudio() {
+    var audioIds = [
+        'boyfriendAudio',
+        'forAReasonAudio',
+        'step8Audio',
+        'blueAudio',
+        'goldenBrownAudio',
+        'phirmiladeramAudio',
+        'rooposhAudio',
+        'step16CakeAudio'
+    ];
+
+    audioIds.forEach(function(id) {
+        var audioElement = document.getElementById(id);
+
+        if (audioElement) {
+            try {
+                audioElement.pause();
+                audioElement.currentTime = 0;
+            } catch (err) {
+                console.log("Audio reset error:", err);
+            }
         }
+    });
+}
 
         /* 2. Safe Audio Player Wrapper */
         function playAudioSafely(audioId) {
@@ -3460,13 +3471,23 @@ async function startStep16Sequence() {
     step16ClearSpeaker();
     if (wind) wind.classList.add("hidden");
     lights.forEach(light => light.style.animationDuration = "0.65s");
+// Cake chapter audio — Rooposh must be completely stopped first.
+const rooposhAudio = document.getElementById("rooposhAudio");
 
-    // Cake chapter audio.
-    if (cakeAudio) {
-        cakeAudio.currentTime = 0;
-        cakeAudio.volume = 0.42;
-        cakeAudio.play().catch(err => console.log("Step 16 cake audio blocked:", err));
-    }
+if (rooposhAudio) {
+    rooposhAudio.pause();
+    rooposhAudio.currentTime = 0;
+}
+
+if (cakeAudio) {
+    cakeAudio.pause();
+    cakeAudio.currentTime = 0;
+    cakeAudio.volume = 0.42;
+
+    cakeAudio.play().catch(err => {
+        console.log("Step 16 cake audio blocked:", err);
+    });
+}
 
     // 1) Birthday text.
     await step16Wait(4000);
