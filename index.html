@@ -1377,14 +1377,22 @@
     animation: characterFloat 2.7s ease-in-out .5s infinite;
 }
 
-/* Uncle behind Annu */
+/* Uncle behind Annu — visible head/shoulders, Annu remains in front */
 .uncle-character {
     left: 50%;
-    bottom: 31%;
-    transform: translateX(-50%) scale(1.35);
+    bottom: 30%;
+    transform: translateX(-50%) scale(1.28);
     z-index: 18;
-    opacity: .95;
+    opacity: 1;
+    pointer-events: none;
 }
+.uncle-character .css-character {
+    z-index: 18;
+    filter: drop-shadow(0 9px 10px rgba(0,0,0,.58));
+}
+.uncle-character .char-head { z-index: 24; }
+.uncle-character .char-hair { z-index: 25; }
+.uncle-character .character-name { position: relative; z-index: 26; white-space: nowrap; }
 
 @keyframes characterFloat {
     0%,100% {
@@ -1585,6 +1593,168 @@
         transform: translateX(-50%) scale(.1);
     }
 }
+
+/* STEP 16 — interaction visibility + cake cutting */
+.hidden { display: none !important; }
+
+.step16-dialogue {
+    position: absolute;
+    left: 50%;
+    top: 16%;
+    z-index: 80;
+    width: min(88%, 520px);
+    padding: 14px 18px;
+    transform: translateX(-50%) translateY(12px) scale(.96);
+    opacity: 0;
+    border: 1px solid rgba(255,183,213,.55);
+    border-radius: 22px;
+    background: rgba(20,8,28,.88);
+    color: #fff;
+    box-shadow: 0 12px 30px rgba(0,0,0,.55), 0 0 22px rgba(255,113,206,.22);
+    backdrop-filter: blur(12px);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(.9rem, 3.4vw, 1.1rem);
+    line-height: 1.5;
+    transition: opacity .35s ease, transform .35s ease;
+}
+.step16-dialogue.show { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+
+.step16-wind {
+    position: absolute;
+    left: 50%;
+    top: 47%;
+    z-index: 75;
+    display: flex;
+    gap: 5px;
+    transform: translate(-50%,-50%);
+    color: #dff7ff;
+    font-size: 2rem;
+    text-shadow: 0 0 12px rgba(210,245,255,.9);
+    animation: step16WindMove .45s ease-in-out infinite alternate;
+}
+@keyframes step16WindMove { from { transform: translate(-58%,-50%) scale(.9); opacity:.45; } to { transform: translate(-42%,-50%) scale(1.15); opacity:1; } }
+
+.step16-cut-button {
+    position: absolute;
+    left: 50%;
+    bottom: 7%;
+    z-index: 90;
+    transform: translateX(-50%);
+    width: min(88%, 360px);
+    padding: 12px 18px;
+    border: 1px solid rgba(255,183,213,.65);
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(255,113,206,.9), rgba(151,65,180,.92));
+    color: #fff;
+    font: 600 .86rem Poppins, sans-serif;
+    box-shadow: 0 8px 24px rgba(0,0,0,.5), 0 0 18px rgba(255,113,206,.35);
+    cursor: pointer;
+}
+
+.step16-knife {
+    position: absolute;
+    left: calc(50% + min(22vw, 145px));
+    top: 50%;
+    z-index: 100;
+    width: 110px;
+    height: 38px;
+    transform: translateY(-50%);
+    touch-action: none;
+    user-select: none;
+    cursor: grab;
+}
+.step16-knife:active { cursor: grabbing; }
+.knife-blade {
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 72px;
+    height: 18px;
+    background: linear-gradient(180deg,#fff,#b8c2cf 52%,#707987);
+    clip-path: polygon(0 0,100% 0,78% 100%,0 100%);
+    filter: drop-shadow(0 4px 5px rgba(0,0,0,.45));
+}
+.knife-handle {
+    position: absolute;
+    right: 0;
+    top: 7px;
+    width: 43px;
+    height: 24px;
+    border-radius: 7px 11px 11px 7px;
+    background: linear-gradient(180deg,#1d1d24,#08080c);
+    box-shadow: 0 4px 8px rgba(0,0,0,.45);
+}
+
+.step16-cut-progress {
+    position: absolute;
+    left: 50%;
+    bottom: 3.5%;
+    z-index: 89;
+    width: min(82%, 330px);
+    height: 6px;
+    transform: translateX(-50%);
+    overflow: hidden;
+    border-radius: 999px;
+    background: rgba(255,255,255,.16);
+}
+.step16-cut-progress span { display:block; width:0; height:100%; border-radius:inherit; background: linear-gradient(90deg,#ff71ce,#ffd1e8); transition: width .08s linear; }
+
+.step16-cut-done {
+    position: absolute;
+    left: 50%;
+    top: 18%;
+    z-index: 95;
+    transform: translateX(-50%);
+    width: min(90%, 420px);
+    padding: 13px 16px;
+    border-radius: 20px;
+    background: rgba(15,7,25,.9);
+    border: 1px solid rgba(255,183,213,.6);
+    color: #fff;
+    text-align: center;
+    font: 600 1rem Poppins,sans-serif;
+    box-shadow: 0 0 25px rgba(255,113,206,.3);
+}
+
+.step16-wish-cloud {
+    position: absolute;
+    left: 50%;
+    top: 11%;
+    z-index: 110;
+    width: min(88%, 430px);
+    padding: 16px 20px;
+    transform: translate(-50%,-30px) scale(.7);
+    opacity: 0;
+    border-radius: 30px;
+    background: rgba(255,255,255,.94);
+    color: #3b1630;
+    box-shadow: 0 12px 30px rgba(0,0,0,.4), 0 0 25px rgba(255,183,213,.6);
+    text-align: center;
+    font: 600 .95rem Poppins,sans-serif;
+}
+.step16-wish-cloud.fly { animation: step16CloudFly .9s cubic-bezier(.16,1,.3,1) forwards; }
+@keyframes step16CloudFly { to { opacity:1; transform: translate(-50%,0) scale(1); } }
+
+.step16-real-cake { transition: transform .35s ease, filter .35s ease; }
+.step16-real-cake.cake-cut { filter: drop-shadow(0 0 18px rgba(255,183,213,.6)); animation: cakeCutJolt .35s ease; }
+.step16-real-cake.cake-cut::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 7%;
+    z-index: 40;
+    width: 5px;
+    height: 76%;
+    transform: translateX(-50%) rotate(2deg);
+    border-radius: 999px;
+    background: linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,113,206,.9),rgba(255,255,255,.5));
+    box-shadow: 0 0 10px rgba(255,113,206,.9);
+}
+@keyframes cakeCutJolt { 0%{transform:translate(-50%,-50%) scale(1)} 45%{transform:translate(-50%,-50%) scale(1.035)} 100%{transform:translate(-50%,-50%) scale(1)} }
+
+.step16-main-scene.dancing .step16-character { animation: step16Dance .55s ease-in-out infinite alternate !important; }
+@keyframes step16Dance { from { transform: translateY(0) rotate(-5deg) scale(1); } to { transform: translateY(-12px) rotate(5deg) scale(1.06); } }
     </style>
 </head>
 <body>
@@ -1881,6 +2051,163 @@
         transform: translateX(350px);
     }
 }
+
+/* =========================================================
+   STEP 16 FINAL VISUAL / MOBILE OVERRIDES
+   ========================================================= */
+#step16 .step16-world {
+    isolation: isolate;
+    background: linear-gradient(180deg, rgba(5,2,10,.28), rgba(5,2,10,.62));
+}
+#step16 .step16-birthday-bg::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(ellipse at 50% 58%, rgba(255,205,232,.14), transparent 28%),
+      linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.48));
+    z-index:1;
+}
+#step16 .step16-birthday-bg::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,.55) 100%);
+    z-index:2;
+}
+#step16 .step16-main-scene { z-index:5; }
+#step16 .step16-string-lights span { animation-play-state: paused; }
+#step16 .step16-main-scene.lights-on .step16-string-lights span { animation-play-state: running; }
+
+/* CSS-drawn animated people: no extra image assets required. */
+#step16 .css-character {
+    position:relative;
+    width:74px;
+    height:132px;
+    margin:0 auto;
+    filter:drop-shadow(0 8px 7px rgba(0,0,0,.45));
+}
+#step16 .char-head {
+    position:absolute; left:50%; top:7px; width:43px; height:43px;
+    transform:translateX(-50%); border-radius:50%;
+    background:linear-gradient(145deg,#ffd8bd,#e7a47d);
+    box-shadow:inset -4px -5px 7px rgba(0,0,0,.12), 0 0 0 2px rgba(255,255,255,.12);
+    z-index:3;
+}
+#step16 .char-hair {
+    position:absolute; left:50%; top:1px; width:48px; height:29px;
+    transform:translateX(-50%); border-radius:55% 55% 35% 35%;
+    background:#24171b; z-index:4;
+}
+#step16 .char-body {
+    position:absolute; left:50%; top:48px; width:49px; height:57px;
+    transform:translateX(-50%); border-radius:16px 16px 12px 12px;
+    background:linear-gradient(135deg,#252b4a,#111426); z-index:2;
+}
+#step16 .char-arm {
+    position:absolute; top:53px; width:12px; height:52px; border-radius:999px;
+    background:#e5a27b; transform-origin:top center; z-index:1;
+}
+#step16 .arm-left { left:9px; transform:rotate(18deg); }
+#step16 .arm-right { right:9px; transform:rotate(-18deg); }
+#step16 .char-leg {
+    position:absolute; top:99px; width:13px; height:34px; border-radius:999px;
+    background:#171821; z-index:1;
+}
+#step16 .leg-left { left:22px; transform:rotate(5deg); }
+#step16 .leg-right { right:22px; transform:rotate(-5deg); }
+#step16 .annu-figure .char-body { background:linear-gradient(135deg,#f05b9f,#9b2f71); }
+#step16 .tannu-figure .char-body { background:linear-gradient(135deg,#6b72e8,#373b93); }
+#step16 .uncle-figure { transform:scale(1.25); transform-origin:center bottom; }
+#step16 .uncle-figure .char-body { background:linear-gradient(135deg,#52616f,#202833); }
+#step16 .birthday-cap {
+    width:45px; height:32px; top:-22px; z-index:10;
+    background:linear-gradient(145deg,#ff71ce,#7e4ac8);
+    clip-path:polygon(50% 0,100% 100%,0 100%); border-radius:7px 7px 2px 2px;
+    animation:step16CapBounce 1.8s ease-in-out infinite alternate;
+}
+#step16 .birthday-cap::after { content:""; position:absolute; left:50%; bottom:-6px; width:9px; height:9px; transform:translateX(-50%); border-radius:50%; background:#fff; }
+@keyframes step16CapBounce { from{transform:translateX(-50%) rotate(-8deg) translateY(0)} to{transform:translateX(-50%) rotate(8deg) translateY(-5px)} }
+
+#step16 .step16-character { transition:filter .25s ease, transform .35s ease, opacity .35s ease; }
+
+/* Whoever is speaking gets a clear visual highlight. */
+#step16 .step16-character.active-speaker {
+    z-index: 95 !important;
+    filter: drop-shadow(0 0 12px rgba(255,183,213,.95)) drop-shadow(0 0 28px rgba(255,113,206,.65));
+}
+#step16 .step16-character.active-speaker .character-name {
+    color: #fff;
+    font-weight: 800;
+    text-shadow: 0 0 8px rgba(255,183,213,1), 0 2px 6px #000;
+}
+#step16 .step16-character.active-speaker::after {
+    content: "SPEAKING";
+    position: absolute; left: 50%; bottom: calc(100% + 4px);
+    transform: translateX(-50%);
+    padding: 3px 8px; border-radius: 999px;
+    background: rgba(255,113,206,.22); border: 1px solid rgba(255,183,213,.7);
+    color: #fff; font: 700 9px/1 Poppins, sans-serif; letter-spacing: .08em;
+    white-space: nowrap; box-shadow: 0 0 12px rgba(255,113,206,.35);
+    pointer-events: none; animation: speakerPulse .8s ease-in-out infinite alternate;
+}
+@keyframes speakerPulse {
+    from { opacity: .72; transform: translateX(-50%) scale(.96); }
+    to { opacity: 1; transform: translateX(-50%) scale(1.04); }
+}
+#step16 .step16-dialogue[data-speaker="vinnu"]::after,
+#step16 .step16-dialogue[data-speaker="annu"]::after,
+#step16 .step16-dialogue[data-speaker="tannu"]::after {
+    content: ""; position: absolute; bottom: -10px; width: 18px; height: 18px;
+    background: rgba(20,8,28,.88); border-right: 1px solid rgba(255,183,213,.55);
+    border-bottom: 1px solid rgba(255,183,213,.55); transform: rotate(45deg);
+}
+#step16 .step16-dialogue[data-speaker="vinnu"]::after { left: 18%; }
+#step16 .step16-dialogue[data-speaker="annu"]::after { left: 50%; margin-left: -9px; }
+#step16 .step16-dialogue[data-speaker="tannu"]::after { right: 18%; }
+#step16 .step16-main-scene.wind-active .step16-real-cake { animation:step16WindCake .42s ease-in-out infinite alternate; }
+#step16 .step16-main-scene.wind-active .step16-character { animation:step16WindPeople .45s ease-in-out infinite alternate; }
+@keyframes step16WindCake { from{transform:translate(-50%,-50%) translateX(-5px)} to{transform:translate(-50%,-50%) translateX(8px) rotate(1deg)} }
+@keyframes step16WindPeople { from{margin-left:-5px; transform:rotate(-2deg)} to{margin-left:8px; transform:rotate(3deg)} }
+
+#step16 .step16-real-cake.cake-cutting { filter:drop-shadow(0 0 22px rgba(255,113,206,.7)); }
+#step16 .step16-real-cake.cake-cutting::after {
+    content:""; position:absolute; left:50%; top:8%; width:3px; height:74%;
+    transform:translateX(-50%) rotate(1deg); background:rgba(255,255,255,.9);
+    box-shadow:0 0 12px rgba(255,113,206,.95); z-index:30;
+}
+#step16 .step16-real-cake.cake-cut { animation:step16CakeFinish .6s ease both; }
+#step16 .step16-real-cake.cake-cut::before {
+    content:""; position:absolute; left:50%; top:9%; width:6px; height:73%;
+    transform:translateX(-50%) rotate(2deg); border-radius:99px;
+    background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,113,206,.95),rgba(255,255,255,.55));
+    box-shadow:0 0 13px rgba(255,113,206,.9); z-index:35;
+}
+@keyframes step16CakeFinish { 0%{transform:translate(-50%,-50%) scale(1)} 35%{transform:translate(-50%,-50%) scale(1.05)} 70%{transform:translate(-50%,-50%) scale(.98)} 100%{transform:translate(-50%,-50%) scale(1)} }
+
+#step16 .step16-cut-button { bottom:8%; }
+#step16 .step16-knife { cursor:grab; touch-action:none; }
+#step16 .step16-knife:focus { outline:2px solid rgba(255,183,213,.85); outline-offset:5px; }
+#step16 .step16-wish-cloud { max-width:430px; }
+
+@media (max-width:600px) {
+    #step16 .step16-character { width:78px; }
+    #step16 .css-character { transform:scale(.82); transform-origin:center bottom; }
+    #step16 .uncle-figure { transform:scale(1.02); }
+    #step16 .step16-real-cake { width:min(68vw,320px); height:min(45vw,215px); }
+    #step16 .step16-knife { width:96px; height:34px; }
+    #step16 .knife-blade { width:62px; height:16px; }
+    #step16 .knife-handle { width:37px; height:22px; }
+    #step16 .vinnu-character { left:0; bottom:18%; }
+    #step16 .tannu-character { right:0; bottom:18%; }
+    #step16 .annu-character { bottom:17%; }
+    #step16 .uncle-character {
+        bottom: 31%;
+        transform: translateX(-50%) scale(1.08);
+    }
+    #step16 .uncle-character .character-name { font-size: .62rem; }
+}
+
 </style>
 
 <script>
@@ -2184,9 +2511,10 @@ function playAudioAndNext(targetStep, themeColor) {
             <!-- Avinash Uncle behind Annu -->
             <div class="step16-character uncle-character">
                 <div class="character-glow"></div>
-                <div class="character-sticker uncle-sticker">
-                    <span class="sticker-head">👨</span>
-                    <span class="sticker-body">🧍</span>
+                <div class="css-character uncle-figure" aria-label="Avinash Uncle">
+                    <div class="char-head"></div><div class="char-hair"></div>
+                    <div class="char-body"></div><div class="char-arm arm-left"></div><div class="char-arm arm-right"></div>
+                    <div class="char-leg leg-left"></div><div class="char-leg leg-right"></div>
                 </div>
                 <div class="character-name">Avinash Uncle</div>
             </div>
@@ -2194,9 +2522,10 @@ function playAudioAndNext(targetStep, themeColor) {
             <!-- Vinnu -->
             <div class="step16-character vinnu-character">
                 <div class="character-glow"></div>
-                <div class="character-sticker vinnu-sticker">
-                    <span class="sticker-head">🧑</span>
-                    <span class="sticker-body">🧍</span>
+                <div class="css-character vinnu-figure" aria-label="Vinnu">
+                    <div class="char-head"></div><div class="char-hair"></div>
+                    <div class="char-body"></div><div class="char-arm arm-left"></div><div class="char-arm arm-right"></div>
+                    <div class="char-leg leg-left"></div><div class="char-leg leg-right"></div>
                 </div>
                 <div class="character-name">Vinnu 💗</div>
             </div>
@@ -2204,29 +2533,28 @@ function playAudioAndNext(targetStep, themeColor) {
             <!-- Annu in center -->
             <div class="step16-character annu-character">
                 <div class="character-glow"></div>
-
-                <div class="birthday-cap">🎉</div>
-
-                <div class="character-sticker annu-sticker">
-                    <span class="sticker-head">👧</span>
-                    <span class="sticker-body">🧍</span>
+                <div class="birthday-cap"><span class="cap-pom">●</span></div>
+                <div class="css-character annu-figure" aria-label="Annu">
+                    <div class="char-head"></div><div class="char-hair"></div>
+                    <div class="char-body"></div><div class="char-arm arm-left"></div><div class="char-arm arm-right"></div>
+                    <div class="char-leg leg-left"></div><div class="char-leg leg-right"></div>
                 </div>
-
                 <div class="character-name">Annu 🎀</div>
             </div>
 
             <!-- Tannu -->
             <div class="step16-character tannu-character">
                 <div class="character-glow"></div>
-                <div class="character-sticker tannu-sticker">
-                    <span class="sticker-head">👩</span>
-                    <span class="sticker-body">🧍</span>
+                <div class="css-character tannu-figure" aria-label="Tannu">
+                    <div class="char-head"></div><div class="char-hair"></div>
+                    <div class="char-body"></div><div class="char-arm arm-left"></div><div class="char-arm arm-right"></div>
+                    <div class="char-leg leg-left"></div><div class="char-leg leg-right"></div>
                 </div>
                 <div class="character-name">Tannu 💕</div>
             </div>
 
             <!-- Chocolate Cake -->
-            <div id="step16Cake" class="step16-real-cake">
+            <div id="step16Cake" class="step16-real-cake" role="button" tabindex="0" aria-label="Birthday cake">
 
                 <div class="cake-candle">
                     <div class="candle-flame"></div>
@@ -2376,7 +2704,7 @@ function playAudioAndNext(targetStep, themeColor) {
 
         /* 1. Global Audio Management Function */
         function stopAllAudio() {
-            var audioIds = ['boyfriendAudio', 'forAReasonAudio', 'step8Audio', 'blueAudio', 'goldenBrownAudio', 'phirmiladeramAudio'];
+            var audioIds = ['boyfriendAudio', 'forAReasonAudio', 'step8Audio', 'blueAudio', 'goldenBrownAudio', 'phirmiladeramAudio', 'step16CakeAudio'];
             audioIds.forEach(function(id) {
                 var audioElement = document.getElementById(id);
                 if (audioElement) {
@@ -3001,7 +3329,7 @@ if (audioElem) {
         });
     }
 
-        const rooposhElem = document.getElementById('rooposhAudio');
+    const rooposhElem = document.getElementById('rooposhAudio');
     if (rooposhElem) {
         rooposhElem.play().catch(function(error) {
             console.log("Rooposh playback blocked:", error);
@@ -3065,169 +3393,141 @@ function step16Hide(element) {
     element.classList.add("hidden");
 }
 
-async function startStep16Sequence() {
+function step16SetSpeaker(speaker) {
+    const scene = document.getElementById("step16MainScene");
+    const dialogue = document.getElementById("step16Dialogue");
+    if (!scene) return;
+    scene.querySelectorAll(".step16-character").forEach(c => c.classList.remove("active-speaker"));
+    if (dialogue) dialogue.removeAttribute("data-speaker");
+    const map = { vinnu: ".vinnu-character", annu: ".annu-character", tannu: ".tannu-character", uncle: ".uncle-character" };
+    const character = map[speaker] ? scene.querySelector(map[speaker]) : null;
+    if (character) character.classList.add("active-speaker");
+    if (dialogue && map[speaker]) dialogue.setAttribute("data-speaker", speaker);
+}
 
+function step16ClearSpeaker() {
+    const scene = document.getElementById("step16MainScene");
+    const dialogue = document.getElementById("step16Dialogue");
+    if (scene) scene.querySelectorAll(".step16-character").forEach(c => c.classList.remove("active-speaker"));
+    if (dialogue) dialogue.removeAttribute("data-speaker");
+}
+
+async function startStep16Sequence() {
+    const step16 = document.getElementById("step16");
     const intro = document.getElementById("step16Intro");
     const firstCake = document.getElementById("step16CakeReveal");
     const mainScene = document.getElementById("step16MainScene");
-
     const cake = document.getElementById("step16Cake");
     const candle = document.querySelector("#step16 .cake-candle");
-
     const dialogue = document.getElementById("step16Dialogue");
     const dialogueText = document.getElementById("step16DialogueText");
-
     const wind = document.getElementById("step16Wind");
-
     const cutButton = document.getElementById("step16CutButton");
     const knife = document.getElementById("step16Knife");
     const progress = document.querySelector("#step16CutProgress span");
     const progressBox = document.getElementById("step16CutProgress");
-
     const cutDone = document.getElementById("step16CutDone");
-
     const wishCloud = document.getElementById("step16WishCloud");
     const wishText = document.getElementById("step16WishText");
+    const lights = document.querySelectorAll("#step16 .step16-string-lights span");
+    const cakeAudio = document.getElementById("step16CakeAudio");
 
-    if (!intro || !firstCake || !mainScene) {
-        console.log("STEP 16 elements missing.");
+    if (!step16 || !intro || !firstCake || !mainScene || !cake || !cutButton || !knife) {
+        console.error("STEP 16: required element missing.");
         return;
     }
 
     console.log("STEP 16 STARTED");
 
-    /* ---------------------------------------------------------
-       AUDIO
-       --------------------------------------------------------- */
+    // Reset only Step 16 so re-entry never inherits an old animation state.
+    intro.style.display = "block";
+    intro.style.opacity = "1";
+    firstCake.classList.add("hidden");
+    firstCake.style.opacity = "1";
+    firstCake.style.display = "";
+    mainScene.classList.add("hidden");
+    mainScene.classList.remove("dancing", "wind-active", "lights-on");
+    candle?.classList.remove("blown");
+    cake.classList.remove("cake-cut", "cake-cutting");
+    cutButton.classList.add("hidden");
+    knife.classList.add("hidden");
+    progressBox?.classList.add("hidden");
+    cutDone?.classList.add("hidden");
+    wishCloud?.classList.add("hidden");
+    wishCloud?.classList.remove("fly");
+    if (progress) progress.style.width = "0%";
+    if (dialogue) dialogue.classList.add("hidden");
+    step16ClearSpeaker();
+    if (wind) wind.classList.add("hidden");
+    lights.forEach(light => light.style.animationDuration = "0.65s");
 
-    const cakeAudio = document.getElementById("step16CakeAudio");
-
+    // Cake chapter audio.
     if (cakeAudio) {
         cakeAudio.currentTime = 0;
         cakeAudio.volume = 0.42;
-
-        cakeAudio.play().catch(error => {
-            console.log("Step 16 cake audio blocked:", error);
-        });
+        cakeAudio.play().catch(err => console.log("Step 16 cake audio blocked:", err));
     }
 
-    /* ---------------------------------------------------------
-       1. INTRO
-       --------------------------------------------------------- */
-
-    intro.style.display = "block";
-    intro.style.opacity = "1";
-
+    // 1) Birthday text.
     await step16Wait(4000);
-
     intro.style.opacity = "0";
-
-    await step16Wait(1000);
-
+    await step16Wait(900);
     intro.style.display = "none";
 
-    /* ---------------------------------------------------------
-       2. TWO SECOND PAUSE
-       --------------------------------------------------------- */
-
+    // 2) Two-second pause.
     await step16Wait(2000);
 
-    /* ---------------------------------------------------------
-       3. FIRST CAKE APPEARS
-       --------------------------------------------------------- */
-
+    // 3) First cake reveal.
     step16Show(firstCake);
-
-    await step16Wait(3500);
-
+    await step16Wait(3000);
     firstCake.style.opacity = "0";
+    await step16Wait(800);
+    step16Hide(firstCake);
 
-    await step16Wait(1000);
-
-    firstCake.style.display = "none";
-
-    /* ---------------------------------------------------------
-       4. MAIN SCENE
-       --------------------------------------------------------- */
-
+    // 4) Main continuous birthday scene.
     step16Show(mainScene);
-
     mainScene.style.opacity = "1";
+    await step16Wait(1600);
 
-    await step16Wait(1200);
-
-    /* ---------------------------------------------------------
-       5. CAKE + CHARACTERS SETTLE
-       --------------------------------------------------------- */
-
-    await step16Wait(1800);
-
-    /* ---------------------------------------------------------
-       6. LIGHTS MOMENT
-       --------------------------------------------------------- */
-
-    const lights = document.querySelectorAll(
-        ".step16-string-lights span"
-    );
-
-    lights.forEach(light => {
-        light.style.animationDuration = "0.45s";
-    });
-
+    // 5) Decorative lights begin; candle goes out exactly 2 seconds later.
+    mainScene.classList.add("lights-on");
     await step16Wait(2000);
+    candle?.classList.add("blown");
+    await step16Wait(850);
 
-    /* ---------------------------------------------------------
-       7. CANDLE BLOWS OUT
-       --------------------------------------------------------- */
-
-    if (candle) {
-        candle.classList.add("blown");
-    }
-
-    await step16Wait(900);
-
-    /* ---------------------------------------------------------
-       8. VINNU DIALOGUE
-       --------------------------------------------------------- */
-
+    // 6) Vinnu dialogue — typewriter + speaker highlight.
+    step16SetSpeaker("vinnu");
     step16Show(dialogue);
+    dialogue.classList.add("show");
+    await step16TypeText(dialogueText, "Foonk maaro cutie, kya intezaar kar rahi ho? 😳💨", 48);
+    await step16Wait(2500);
+    dialogue.classList.remove("show");
+    step16Hide(dialogue);
 
+    /* ---------------------------------------------------------
+       9. ANNU REPLY
+       --------------------------------------------------------- */
+
+    step16SetSpeaker("annu");
+    step16Show(dialogue);
     dialogue.classList.add("show");
 
     await step16TypeText(
-    dialogueText,
-    "Foonk maaro cutie, kya intezaar kar rahi ho? 😳💨",
-    48
-);
+        dialogueText,
+        "Are yaar, sharma rahi 😳🙈",
+        55
+    );
 
-    await step16Wait(2500);
+    await step16Wait(2200);
 
     dialogue.classList.remove("show");
     step16Hide(dialogue);
-/* ---------------------------------------------------------
-   9. ANNU REPLY
-   --------------------------------------------------------- */
-
-step16Show(dialogue);
-dialogue.classList.add("show");
-
-await step16TypeText(
-    dialogueText,
-    "Are yaar, sharma rahi 😳🙈",
-    55
-);
-
-await step16Wait(2200);
-
-dialogue.classList.remove("show");
-step16Hide(dialogue);
-
-    
 
     /* ---------------------------------------------------------
        10. TANNU DIALOGUE
        --------------------------------------------------------- */
 
+    step16SetSpeaker("tannu");
     step16Show(dialogue);
     dialogue.classList.add("show");
 
@@ -3241,301 +3541,165 @@ step16Hide(dialogue);
 
     dialogue.classList.remove("show");
     step16Hide(dialogue);
+    step16ClearSpeaker();
 
-    /* ---------------------------------------------------------
-       11. WIND
-       --------------------------------------------------------- */
-
+    // 11) Wind: visual gust + characters/cake sway.
     step16Show(wind);
-
+    mainScene.classList.add("wind-active");
     await step16Wait(2200);
-
+    mainScene.classList.remove("wind-active");
     step16Hide(wind);
 
-    /* ---------------------------------------------------------
-       12. CAKE CUT BUTTON
-       --------------------------------------------------------- */
-
+    // 12) Ask for the cut.
     step16Show(cutButton);
 
-    
-
-    /* Button activates knife */
-    cutButton.onclick = function () {
-
+    let cutStarted = false;
+    const beginCut = () => {
+        if (cutStarted) return;
+        cutStarted = true;
         step16Hide(cutButton);
-
+        knife.classList.remove("hidden");
         step16Show(knife);
         step16Show(progressBox);
-
-        knife.classList.remove("hidden");
+        knife.focus?.();
     };
 
-    /* ---------------------------------------------------------
-       13. WAIT FOR KNIFE
-       --------------------------------------------------------- */
+    cutButton.onclick = beginCut;
+    cake.onclick = beginCut;
+    cake.onkeydown = event => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            beginCut();
+        }
+    };
 
-    await step16WaitForKnife(
-        knife,
-        progress,
-        cake
-    );
+    // Wait until the user actually drags the knife across the cake.
+    await step16WaitForKnife(knife, progress, cake);
 
     step16Hide(progressBox);
-
-    if (cake) {
-        cake.classList.add("cake-cut");
-    }
+    knife.classList.add("hidden");
+    cake.classList.add("cake-cut");
 
     await step16Wait(900);
 
-    /* ---------------------------------------------------------
-       14. CUT CELEBRATION
-       --------------------------------------------------------- */
-
+    // 14) Cut celebration.
     step16Show(cutDone);
-
     await step16Wait(2200);
-
     step16Hide(cutDone);
 
-    /* ---------------------------------------------------------
-       15. EVERYONE DANCES
-       --------------------------------------------------------- */
-
+    // 15) Everyone dances.
     mainScene.classList.add("dancing");
-
     await step16Wait(4500);
-
     mainScene.classList.remove("dancing");
 
-    /* ---------------------------------------------------------
-       16. WISH CLOUD
-       --------------------------------------------------------- */
-
+    // 16) Wish cloud flies toward Annu; text types in.
     step16Show(wishCloud);
-
     wishCloud.classList.add("fly");
-
     await step16Wait(900);
-
-    await step16TypeText(
-        wishText,
-        "Anika, jaldi se apni wish maango cutie, apni eyes close karo 🥰✨",
-        48
-    );
-
+    await step16TypeText(wishText, "Anika, jaldi se apni wish maango cutie, apni eyes close karo 🥰✨", 48);
     await step16Wait(3500);
 
     console.log("STEP 16 COMPLETE");
 }
 
-
 /* =========================================================
    STEP 16 — INTERACTIVE KNIFE
    ========================================================= */
-
 function step16WaitForKnife(knife, progress, cake) {
-
     return new Promise(resolve => {
-
-        if (!knife) {
-            resolve();
-            return;
-        }
+        if (!knife || !cake) { resolve(); return; }
 
         let dragging = false;
         let finished = false;
-        let startX = 0;
-        let currentX = 0;
+        let minX = 0;
+        let maxX = 0;
+        let cakeLeft = 0;
+        let cakeRight = 0;
+        let cakeWidth = 1;
 
         function getX(event) {
+            if (event.clientX != null) return event.clientX;
+            if (event.touches && event.touches.length) return event.touches[0].clientX;
+            return 0;
+        }
 
-            if (event.touches && event.touches.length) {
-                return event.touches[0].clientX;
-            }
-
-            return event.clientX;
+        function measure() {
+            const scene = document.getElementById("step16MainScene");
+            if (!scene) return false;
+            const sceneRect = scene.getBoundingClientRect();
+            const cakeRect = cake.getBoundingClientRect();
+            const knifeWidth = knife.offsetWidth || 110;
+            minX = Math.max(6, cakeRect.left - sceneRect.left - knifeWidth * 0.82);
+            maxX = Math.min(sceneRect.width - knifeWidth - 6, cakeRect.right - sceneRect.left - knifeWidth * 0.12);
+            cakeLeft = cakeRect.left;
+            cakeRight = cakeRect.right;
+            cakeWidth = Math.max(1, cakeRect.width);
+            return true;
         }
 
         function finish() {
-
             if (finished) return;
-
             finished = true;
             dragging = false;
-
-            if (progress) {
-                progress.style.width = "100%";
-            }
-
+            if (progress) progress.style.width = "100%";
             cleanup();
             resolve();
         }
 
         function pointerDown(event) {
-
             if (finished) return;
-
+            measure();
             dragging = true;
-
-            startX = getX(event);
-
-            knife.setPointerCapture?.(
-                event.pointerId
-            );
-
+            knife.setPointerCapture?.(event.pointerId);
             event.preventDefault();
         }
 
         function pointerMove(event) {
-
             if (!dragging || finished) return;
+            const scene = document.getElementById("step16MainScene");
+            if (!scene || !measure()) return;
 
-            const scene =
-                document.getElementById(
-                    "step16MainScene"
-                );
+            const sceneRect = scene.getBoundingClientRect();
+            const knifeWidth = knife.offsetWidth || 110;
+            let x = getX(event) - sceneRect.left - knifeWidth / 2;
+            x = Math.max(minX, Math.min(maxX, x));
+            knife.style.left = x + "px";
 
-            if (!scene) return;
+            const knifeRect = knife.getBoundingClientRect();
+            // Progress is based on the knife tip crossing the cake from right to left.
+            const tipX = knifeRect.left + Math.min(knifeRect.width * 0.82, knifeRect.width);
+            const raw = ((cakeRight - tipX) / cakeWidth) * 100;
+            const percentage = Math.max(0, Math.min(100, raw));
+            if (progress) progress.style.width = percentage + "%";
 
-            const sceneRect =
-                scene.getBoundingClientRect();
+            // Show the cake as being cut while the knife is over it.
+            const overCake = knifeRect.right > cakeLeft && knifeRect.left < cakeRight;
+            cake.classList.toggle("cake-cutting", overCake);
 
-            const knifeWidth =
-                knife.offsetWidth;
-
-            currentX =
-                getX(event) -
-                sceneRect.left -
-                knifeWidth / 2;
-
-            const minX = 10;
-
-            const maxX =
-                sceneRect.width -
-                knifeWidth -
-                10;
-
-            currentX =
-                Math.max(
-                    minX,
-                    Math.min(maxX, currentX)
-                );
-
-            knife.style.left =
-                currentX + "px";
-
-            /* Cake position */
-            const cakeRect =
-                cake
-                    ? cake.getBoundingClientRect()
-                    : null;
-
-            let percentage = 0;
-
-            if (cakeRect) {
-
-                const knifeRect =
-                    knife.getBoundingClientRect();
-
-                const distance =
-                    Math.max(
-                        1,
-                        knifeRect.right -
-                        cakeRect.left
-                    );
-
-                percentage =
-                    Math.max(
-                        0,
-                        Math.min(
-                            100,
-                            ((sceneRect.right -
-                                knifeRect.left) /
-                                sceneRect.width) *
-                                100
-                        )
-                    );
-
-                if (
-                    knifeRect.left <=
-                    cakeRect.left +
-                    cakeRect.width * 0.12
-                ) {
-                    percentage = 100;
-                }
-            }
-
-            if (progress) {
-                progress.style.width =
-                    percentage + "%";
-            }
-
-            if (percentage >= 100) {
-                finish();
-            }
-
+            if (knifeRect.left <= cakeLeft + 4) finish();
             event.preventDefault();
         }
 
         function pointerUp(event) {
-
             dragging = false;
-
-            try {
-                knife.releasePointerCapture?.(
-                    event.pointerId
-                );
-            } catch (_) {}
+            try { knife.releasePointerCapture?.(event.pointerId); } catch (_) {}
         }
 
         function cleanup() {
-
-            knife.removeEventListener(
-                "pointerdown",
-                pointerDown
-            );
-
-            window.removeEventListener(
-                "pointermove",
-                pointerMove
-            );
-
-            window.removeEventListener(
-                "pointerup",
-                pointerUp
-            );
-
-            window.removeEventListener(
-                "pointercancel",
-                pointerUp
-            );
+            knife.removeEventListener("pointerdown", pointerDown);
+            window.removeEventListener("pointermove", pointerMove);
+            window.removeEventListener("pointerup", pointerUp);
+            window.removeEventListener("pointercancel", pointerUp);
+            cake.classList.remove("cake-cutting");
         }
 
-        knife.addEventListener(
-            "pointerdown",
-            pointerDown
-        );
-
-        window.addEventListener(
-            "pointermove",
-            pointerMove,
-            { passive: false }
-        );
-
-        window.addEventListener(
-            "pointerup",
-            pointerUp
-        );
-
-        window.addEventListener(
-            "pointercancel",
-            pointerUp
-        );
-
+        measure();
+        knife.addEventListener("pointerdown", pointerDown);
+        window.addEventListener("pointermove", pointerMove, { passive: false });
+        window.addEventListener("pointerup", pointerUp);
+        window.addEventListener("pointercancel", pointerUp);
     });
-} 
-    </script>
+}
+</script>
 </body>
 </html>
