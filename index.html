@@ -1031,9 +1031,6 @@
 
 #step16 {
     position: relative;
-    width: 100%;
-    min-height: 92vh;
-    height: 92vh;
     overflow: hidden;
     background: #09030d;
 }
@@ -1566,25 +1563,7 @@
 }
 
 .cake-candle.blown .candle-flame {
-    animation: flameOut .7s ease forwards;
-}
-
-@keyframes flameOut {
-    0% {
-        opacity: 1;
-        transform: translateX(-50%) scale(1);
-    }
-
-    50% {
-        opacity: .5;
-        transform: translateX(-50%) scale(1.4, .7);
-    }
-
-    100% {
-        opacity: 0;
-        transform: translateX(-50%) scale(.1);
-    }
-}
+    animation: flameOut .7 
     </style>
 </head>
 <body>
@@ -2111,7 +2090,7 @@ function playAudioAndNext(targetStep, themeColor) {
             id="step15Video"
             src="step15_visual.mp4"
             autoplay
-    
+            
             muted
             playsinline
             class="step15-video">
@@ -3007,16 +2986,13 @@ if (audioElem) {
             console.log("Rooposh playback blocked:", error);
         });
     }
-        function startStep15Sequence() {
+}
+
+function startStep15Sequence() {
     const videoElem = document.getElementById('step15Video');
 
     if (videoElem) {
         videoElem.currentTime = 0;
-
-        videoElem.onended = function() {
-            nextStep(16);
-        };
-
         videoElem.play().catch(function(error) {
             console.log("Step 15 video playback blocked:", error);
         });
@@ -3070,7 +3046,7 @@ async function startStep16Sequence() {
     const mainScene = document.getElementById("step16MainScene");
 
     const cake = document.getElementById("step16Cake");
-    const candle = document.querySelector("#step16 .cake-candle");
+    const candle = document.querySelector(".cake-candle");
 
     const dialogue = document.getElementById("step16Dialogue");
     const dialogueText = document.getElementById("step16DialogueText");
@@ -3172,7 +3148,7 @@ async function startStep16Sequence() {
         light.style.animationDuration = "0.45s";
     });
 
-    await step16Wait(2000);
+    await step16Wait(2500);
 
     /* ---------------------------------------------------------
        7. CANDLE BLOWS OUT
@@ -3193,34 +3169,33 @@ async function startStep16Sequence() {
     dialogue.classList.add("show");
 
     await step16TypeText(
-    dialogueText,
-    "Foonk maaro cutie, kya intezaar kar rahi ho? 😳💨",
-    48
-);
+        dialogueText,
+        "Cake kaato cutie 🎂🔪 Itna sharma kyun rahi ho? 😳🙈",
+        48
+    );
 
     await step16Wait(2500);
 
     dialogue.classList.remove("show");
     step16Hide(dialogue);
-/* ---------------------------------------------------------
-   9. ANNU REPLY
-   --------------------------------------------------------- */
 
-step16Show(dialogue);
-dialogue.classList.add("show");
+    /* ---------------------------------------------------------
+       9. ANNU REPLY
+       --------------------------------------------------------- */
 
-await step16TypeText(
-    dialogueText,
-    "Are yaar, sharma rahi 😳🙈",
-    55
-);
+    step16Show(dialogue);
+    dialogue.classList.add("show");
 
-await step16Wait(2200);
+    await step16TypeText(
+        dialogueText,
+        "Are yaar, sharma rahi 😳🙈",
+        55
+    );
 
-dialogue.classList.remove("show");
-step16Hide(dialogue);
+    await step16Wait(2200);
 
-    
+    dialogue.classList.remove("show");
+    step16Hide(dialogue);
 
     /* ---------------------------------------------------------
        10. TANNU DIALOGUE
@@ -3256,7 +3231,7 @@ step16Hide(dialogue);
 
     step16Show(cutButton);
 
-    
+    await step16Wait(1800);
 
     /* Button activates knife */
     cutButton.onclick = function () {
@@ -3534,12 +3509,9 @@ function step16WaitForKnife(knife, progress, cake) {
 
     });
 } 
-
-            
-     </script>
+    </script>
 <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
 <script>eruda.init();</script>
-
+            
         </body>
-
-        </html>
+</html>
