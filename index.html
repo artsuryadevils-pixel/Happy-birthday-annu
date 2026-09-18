@@ -1755,6 +1755,435 @@
 
 .step16-main-scene.dancing .step16-character { animation: step16Dance .55s ease-in-out infinite alternate !important; }
 @keyframes step16Dance { from { transform: translateY(0) rotate(-5deg) scale(1); } to { transform: translateY(-12px) rotate(5deg) scale(1.06); } }
+   /* =========================================================
+   STEP 17 — DISCO DANCE PARTY
+   ========================================================= */
+
+#step17 {
+    position: relative;
+    width: 100%;
+    min-height: 92vh;
+    height: 92vh;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 30%, #5c146f 0%, #180622 38%, #050208 100%);
+}
+
+.step17-disco-stage {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 42%, rgba(255,0,200,.22), transparent 28%),
+        linear-gradient(180deg, #09000f 0%, #17021e 48%, #030105 100%);
+}
+
+/* Neon ambience */
+.step17-neon-glow {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 25%, rgba(0,255,255,.18), transparent 22%),
+        radial-gradient(circle at 85% 20%, rgba(255,0,170,.2), transparent 24%),
+        radial-gradient(circle at 50% 65%, rgba(150,0,255,.2), transparent 35%);
+    animation: step17Glow 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes step17Glow {
+    from { opacity: .55; }
+    to { opacity: 1; }
+}
+
+/* Moving spotlights */
+.step17-spotlight {
+    position: absolute;
+    top: -15%;
+    width: 16%;
+    height: 125%;
+    opacity: .38;
+    filter: blur(3px);
+    transform-origin: 50% 0;
+    pointer-events: none;
+}
+
+.step17-light-1 {
+    left: 8%;
+    background: linear-gradient(
+        180deg,
+        rgba(0,255,255,.5),
+        transparent 72%
+    );
+    animation: step17LightOne 3.4s ease-in-out infinite alternate;
+}
+
+.step17-light-2 {
+    left: 42%;
+    background: linear-gradient(
+        180deg,
+        rgba(255,0,190,.6),
+        transparent 72%
+    );
+    animation: step17LightTwo 3s ease-in-out infinite alternate;
+}
+
+.step17-light-3 {
+    right: 8%;
+    background: linear-gradient(
+        180deg,
+        rgba(150,80,255,.55),
+        transparent 72%
+    );
+    animation: step17LightThree 3.7s ease-in-out infinite alternate;
+}
+
+@keyframes step17LightOne {
+    from { transform: rotate(-24deg); }
+    to { transform: rotate(18deg); }
+}
+
+@keyframes step17LightTwo {
+    from { transform: rotate(18deg); }
+    to { transform: rotate(-18deg); }
+}
+
+@keyframes step17LightThree {
+    from { transform: rotate(24deg); }
+    to { transform: rotate(-15deg); }
+}
+
+/* Disco floor */
+.step17-disco-floor {
+    position: absolute;
+    left: -10%;
+    bottom: -8%;
+    width: 120%;
+    height: 45%;
+    transform: perspective(500px) rotateX(58deg);
+    transform-origin: bottom center;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,255,255,.2) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            rgba(255,0,190,.2) 1px,
+            transparent 1px
+        );
+    background-size: 42px 42px;
+    box-shadow:
+        0 -15px 45px rgba(255,0,200,.2);
+}
+
+.step17-floor-grid {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            90deg,
+            transparent 0 48%,
+            rgba(255,255,255,.08) 50%,
+            transparent 52%
+        );
+    animation: step17FloorMove 1.8s linear infinite;
+}
+
+@keyframes step17FloorMove {
+    from { transform: translateY(0); }
+    to { transform: translateY(42px); }
+}
+
+/* Disco ball */
+.step17-disco-ball {
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    width: 62px;
+    height: 62px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background:
+        linear-gradient(135deg, #fff, #777 30%, #eee 48%, #555 70%, #fff);
+    box-shadow:
+        0 0 20px rgba(255,255,255,.65),
+        0 0 55px rgba(255,0,200,.35);
+    animation: step17Ball 3s linear infinite;
+}
+
+.step17-disco-ball::before {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 55px;
+    background: rgba(255,255,255,.5);
+    left: 50%;
+    bottom: 100%;
+}
+
+.step17-disco-ball span {
+    position: absolute;
+    inset: 12px;
+    border-radius: 50%;
+    background:
+        repeating-linear-gradient(
+            45deg,
+            rgba(255,255,255,.8) 0 4px,
+            transparent 4px 9px
+        );
+}
+
+@keyframes step17Ball {
+    from { transform: translateX(-50%) rotate(0deg); }
+    to { transform: translateX(-50%) rotate(360deg); }
+}
+
+/* DJ booth */
+.step17-dj-booth {
+    position: absolute;
+    left: 50%;
+    top: 22%;
+    transform: translateX(-50%);
+    width: 46%;
+    max-width: 210px;
+    padding: 9px 12px;
+    border-radius: 14px;
+    background: rgba(8,3,15,.85);
+    border: 1px solid rgba(255,113,206,.55);
+    box-shadow:
+        0 0 18px rgba(255,0,190,.3),
+        inset 0 0 18px rgba(0,255,255,.08);
+    z-index: 8;
+}
+
+.step17-dj-screen {
+    text-align: center;
+    color: #fff;
+    font: 800 .75rem Poppins, sans-serif;
+    letter-spacing: .18em;
+}
+
+.step17-equalizer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 4px;
+    height: 30px;
+    margin-top: 6px;
+}
+
+.step17-equalizer i {
+    width: 5px;
+    height: 12px;
+    border-radius: 5px;
+    background: #ff71ce;
+    animation: step17EQ .65s ease-in-out infinite alternate;
+}
+
+.step17-equalizer i:nth-child(2) { animation-delay: .12s; }
+.step17-equalizer i:nth-child(3) { animation-delay: .23s; }
+.step17-equalizer i:nth-child(4) { animation-delay: .08s; }
+.step17-equalizer i:nth-child(5) { animation-delay: .3s; }
+.step17-equalizer i:nth-child(6) { animation-delay: .16s; }
+.step17-equalizer i:nth-child(7) { animation-delay: .28s; }
+.step17-equalizer i:nth-child(8) { animation-delay: .04s; }
+.step17-equalizer i:nth-child(9) { animation-delay: .2s; }
+
+@keyframes step17EQ {
+    from { height: 7px; }
+    to { height: 29px; }
+}
+
+/* Dancers */
+.step17-dancer {
+    position: absolute;
+    z-index: 30;
+    width: 100px;
+    text-align: center;
+    transform-origin: center bottom;
+}
+
+.step17-sticker {
+    font-size: 58px;
+    line-height: 1;
+    filter:
+        drop-shadow(0 5px 5px rgba(0,0,0,.6))
+        drop-shadow(0 0 12px rgba(255,113,206,.35));
+}
+
+.step17-name {
+    margin-top: 5px;
+    color: #fff;
+    font: 700 .7rem Poppins, sans-serif;
+    text-shadow: 0 2px 5px #000;
+}
+
+/* Vinnu — energetic */
+.step17-vinnu {
+    left: 5%;
+    bottom: 19%;
+    animation: step17DanceVinnu .62s ease-in-out infinite alternate;
+}
+
+/* Annu — energetic */
+.step17-annu {
+    left: 50%;
+    bottom: 18%;
+    transform: translateX(-50%);
+    z-index: 35;
+    animation: step17DanceAnnu .56s ease-in-out infinite alternate;
+}
+
+/* Tannu — energetic */
+.step17-tannu {
+    right: 5%;
+    bottom: 19%;
+    animation: step17DanceTannu .6s ease-in-out infinite alternate;
+}
+
+/* Uncle — intentionally subtle */
+.step17-uncle {
+    left: 50%;
+    bottom: 31%;
+    transform: translateX(-50%) scale(1.18);
+    z-index: 25;
+    animation: step17DanceUncle 1.45s ease-in-out infinite alternate;
+}
+
+.step17-cap {
+    position: absolute;
+    left: 50%;
+    top: -28px;
+    transform: translateX(-50%);
+    font-size: 29px;
+    animation: step17Cap 1s ease-in-out infinite alternate;
+}
+
+/* Three energetic dancers */
+@keyframes step17DanceVinnu {
+    0% {
+        transform: rotate(-10deg) translateY(5px) scale(1);
+    }
+    50% {
+        transform: rotate(12deg) translateY(-18px) scale(1.08);
+    }
+    100% {
+        transform: rotate(-8deg) translateY(3px) scale(.98);
+    }
+}
+
+@keyframes step17DanceAnnu {
+    0% {
+        transform: translateX(-50%) rotate(9deg) translateY(3px) scale(1);
+    }
+    50% {
+        transform: translateX(-50%) rotate(-11deg) translateY(-21px) scale(1.1);
+    }
+    100% {
+        transform: translateX(-50%) rotate(7deg) translateY(0) scale(1);
+    }
+}
+
+@keyframes step17DanceTannu {
+    0% {
+        transform: rotate(11deg) translateY(4px) scale(1);
+    }
+    50% {
+        transform: rotate(-13deg) translateY(-19px) scale(1.08);
+    }
+    100% {
+        transform: rotate(9deg) translateY(2px) scale(.99);
+    }
+}
+
+/* Uncle only moves a little */
+@keyframes step17DanceUncle {
+    0% {
+        transform: translateX(-50%) scale(1.18) rotate(-2deg) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) scale(1.18) rotate(3deg) translateY(-5px);
+    }
+    100% {
+        transform: translateX(-50%) scale(1.18) rotate(-2deg) translateY(0);
+    }
+}
+
+@keyframes step17Cap {
+    from { transform: translateX(-50%) rotate(-8deg); }
+    to { transform: translateX(-50%) rotate(8deg); }
+}
+
+/* Party text */
+.step17-party-text {
+    position: absolute;
+    left: 50%;
+    top: 12%;
+    transform: translateX(-50%);
+    z-index: 40;
+    text-align: center;
+    width: 90%;
+    pointer-events: none;
+}
+
+.step17-party-text span {
+    display: block;
+    color: #fff;
+    font: 900 clamp(1.3rem, 6vw, 2.2rem) Poppins, sans-serif;
+    letter-spacing: .14em;
+    text-shadow:
+        0 0 8px #ff71ce,
+        0 0 25px rgba(255,0,190,.8);
+    animation: step17TitlePulse .8s ease-in-out infinite alternate;
+}
+
+.step17-party-text b {
+    display: block;
+    margin-top: 4px;
+    color: #ffd8ec;
+    font: 700 .75rem Poppins, sans-serif;
+    letter-spacing: .1em;
+}
+
+@keyframes step17TitlePulse {
+    from { opacity: .72; transform: scale(.98); }
+    to { opacity: 1; transform: scale(1.03); }
+}
+
+/* Mobile */
+@media (max-width: 520px) {
+
+    .step17-dancer {
+        width: 76px;
+    }
+
+    .step17-sticker {
+        font-size: 46px;
+    }
+
+    .step17-vinnu {
+        left: 1%;
+        bottom: 17%;
+    }
+
+    .step17-tannu {
+        right: 1%;
+        bottom: 17%;
+    }
+
+    .step17-annu {
+        bottom: 16%;
+    }
+
+    .step17-uncle {
+        bottom: 28%;
+        transform: translateX(-50%) scale(.92);
+    }
+
+    .step17-dj-booth {
+        top: 25%;
+        width: 48%;
+    }
+} 
     </style>
 </head>
 <body>
@@ -2629,7 +3058,75 @@ function playAudioAndNext(targetStep, themeColor) {
 
 <!-- Step 16 audio -->
 <audio id="step16CakeAudio" src="cake.mp3" preload="auto" loop></audio>
-   
+  <!-- =========================================================
+     STEP 17 — DISCO DANCE PARTY
+     ========================================================= -->
+<div class="card" id="step17">
+
+    <div class="step17-disco-stage">
+
+        <!-- Disco atmosphere -->
+        <div class="step17-neon-glow"></div>
+
+        <div class="step17-spotlight step17-light-1"></div>
+        <div class="step17-spotlight step17-light-2"></div>
+        <div class="step17-spotlight step17-light-3"></div>
+
+        <!-- Disco floor -->
+        <div class="step17-disco-floor">
+            <div class="step17-floor-grid"></div>
+        </div>
+
+        <!-- DJ booth -->
+        <div class="step17-dj-booth">
+            <div class="step17-dj-screen">DJ 🎧</div>
+            <div class="step17-equalizer">
+                <i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i></i>
+            </div>
+        </div>
+
+        <!-- Disco ball -->
+        <div class="step17-disco-ball">
+            <span></span>
+        </div>
+
+        <!-- =========================
+             FOUR DANCING CHARACTERS
+             ========================= -->
+
+        <!-- Vinnu -->
+        <div class="step17-dancer step17-vinnu">
+            <div class="step17-sticker">👦</div>
+            <div class="step17-name">Vinnu</div>
+        </div>
+
+        <!-- Annu -->
+        <div class="step17-dancer step17-annu">
+            <div class="step17-sticker">👧</div>
+            <div class="step17-cap">🎉</div>
+            <div class="step17-name">Annu</div>
+        </div>
+
+        <!-- Tannu -->
+        <div class="step17-dancer step17-tannu">
+            <div class="step17-sticker">👧</div>
+            <div class="step17-name">Tannu</div>
+        </div>
+
+        <!-- Avinash Uncle — slower/smaller movement -->
+        <div class="step17-dancer step17-uncle">
+            <div class="step17-sticker">👨</div>
+            <div class="step17-name">Avinash Uncle</div>
+        </div>
+
+        <div class="step17-party-text">
+            <span>LET'S DANCE</span>
+            <b>🎶 BIRTHDAY NIGHT 🎂</b>
+        </div>
+
+    </div>
+</div> 
 
             
             
@@ -2806,6 +3303,9 @@ if (stepNumber === 15) { startStep15Sequence(); }
             if (stepNumber === 16) {
     startStep16Sequence();
 }
+       if (stepNumber === 17) {
+    startStep17Sequence();
+       }   
             if (stepNumber >= 10) {
     var gardenVideo = document.getElementById('gardenBackgroundVideo');
     if (gardenVideo) {
@@ -3721,6 +4221,43 @@ function step16WaitForKnife(knife, progress, cake) {
         window.addEventListener("pointercancel", pointerUp);
     });
 }
-</script>
+/* =========================================================
+   STEP 17 — DISCO DANCE + BOYFRIEND SONG
+   ========================================================= */
+
+function startStep17Sequence() {
+
+    // Stop every previous chapter's audio first.
+    stopAllAudio();
+
+    // Extra safety: explicitly stop Rooposh and cake.
+    const rooposhAudio = document.getElementById("rooposhAudio");
+    const cakeAudio = document.getElementById("step16CakeAudio");
+    const boyfriendAudio = document.getElementById("boyfriendAudio");
+
+    if (rooposhAudio) {
+        rooposhAudio.pause();
+        rooposhAudio.currentTime = 0;
+    }
+
+    if (cakeAudio) {
+        cakeAudio.pause();
+        cakeAudio.currentTime = 0;
+    }
+
+    // Play Karan Aujla — Boyfriend.
+    if (boyfriendAudio) {
+        boyfriendAudio.pause();
+        boyfriendAudio.currentTime = 0;
+        boyfriendAudio.volume = 0.8;
+
+        boyfriendAudio.play().catch(function(error) {
+            console.log("Boyfriend audio playback blocked:", error);
+        });
+    }
+
+    console.log("STEP 17 DISCO PARTY STARTED");
+}
+    </script>
 </body>
 </html>
