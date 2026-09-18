@@ -3001,13 +3001,15 @@ if (audioElem) {
         });
     }
 
-    const rooposhElem = document.getElementById('rooposhAudio');
+        const rooposhElem = document.getElementById('rooposhAudio');
     if (rooposhElem) {
         rooposhElem.play().catch(function(error) {
             console.log("Rooposh playback blocked:", error);
         });
     }
-        function startStep15Sequence() {
+}
+
+function startStep15Sequence() {
     const videoElem = document.getElementById('step15Video');
 
     if (videoElem) {
