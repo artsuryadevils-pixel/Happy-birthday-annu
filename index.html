@@ -1707,13 +1707,52 @@
 #step17 .annu .s17-body{background:linear-gradient(135deg,#f05b9f,#9b2f71)}#step17 .tannu .s17-body{background:linear-gradient(135deg,#6b72e8,#373b93)}#step17 .uncle .s17-body{background:linear-gradient(135deg,#52616f,#202833);}
 #step17 .s17-limbs:before,#step17 .s17-limbs:after{content:"";position:absolute;top:58px;width:11px;height:50px;border-radius:99px;background:#e5a27b;}#step17 .s17-limbs:before{left:10px;transform:rotate(28deg)}#step17 .s17-limbs:after{right:10px;transform:rotate(-28deg)}
 #step17 .s17-legs{position:absolute;left:22px;top:103px;width:13px;height:35px;border-radius:99px;background:#171821;transform:rotate(8deg);box-shadow:20px -2px 0 #171821;}
-#step17 .s17-name{margin-top:5px;color:#fff;font:600 .68rem Poppins,sans-serif;text-shadow:0 2px 5px #000;}
+#step17 .s17-name{position:absolute;top:-24px;left:50%;transform:translateX(-50%);margin:0;color:#fff;font:600 .68rem Poppins,sans-serif;text-shadow:0 2px 5px #000;white-space:nowrap;z-index:30;}
 #step17 .s17-cap{position:absolute;top:-28px;left:50%;transform:translateX(-50%);font-size:30px;z-index:9;}
 #step17 .s17-dj{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);z-index:15;width:115px;height:42px;border-radius:12px 12px 5px 5px;background:linear-gradient(#64245f,#190d25);border:1px solid rgba(255,255,255,.25);box-shadow:0 0 25px rgba(255,113,206,.3);}
 #step17 .s17-dj:after{content:"DJ 🎧";position:absolute;inset:0;display:grid;place-items:center;color:#fff;font:600 .7rem Poppins,sans-serif;}
 #step17 .step17-next{position:absolute;z-index:30;left:50%;bottom:3%;transform:translateX(-50%);width:min(88%,360px);padding:16px 22px;border:1px solid rgba(255,183,213,.7);border-radius:999px;background:linear-gradient(135deg,#ff71ce,#8d3ec2);color:#fff;font:700 1rem Poppins,sans-serif;box-shadow:0 10px 28px rgba(0,0,0,.55),0 0 20px rgba(255,113,206,.35);}
 #step16 .step16-next-btn{position:absolute;left:50%;bottom:3%;z-index:130;transform:translateX(-50%);width:min(90%,370px);padding:16px 24px;border:1px solid rgba(255,255,255,.7);border-radius:999px;background:linear-gradient(135deg,#ff71ce,#8d3ec2);color:#fff;font:700 1rem Poppins,sans-serif;box-shadow:0 10px 28px rgba(0,0,0,.55),0 0 22px rgba(255,113,206,.4);}
 @media(max-width:600px){#step17 .s17-char{transform:scale(.82);bottom:17%}#step17 .s17-char.vinnu{left:0}#step17 .s17-char.tannu{right:0}#step17 .s17-char.annu{left:50%;transform:translateX(-50%) scale(.82)}#step17 .s17-char.uncle{bottom:28%;transform:translateX(-50%) scale(.9)}}
+
+/* =========================================================
+   POST-STEP-17 MEMORY SLIDES — NEW ADDITIONS ONLY
+   ========================================================= */
+.post17-slide{position:relative;width:100%;min-height:92vh;height:92vh;overflow:hidden;background:#ff6262;color:#fff;font-family:Poppins,sans-serif;}
+.post17-slide .post17-bg{position:absolute;inset:0;background:radial-gradient(circle at 20% 15%,rgba(255,255,255,.20),transparent 28%),radial-gradient(circle at 80% 80%,rgba(255,255,255,.13),transparent 32%),linear-gradient(135deg,#ff6868,#ff5d79);}
+.post17-slide .post17-inner{position:relative;z-index:2;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 18px;box-sizing:border-box;}
+.post17-slide .post17-caption{margin:0;text-align:center;color:#fff;text-shadow:0 3px 12px rgba(0,0,0,.30);font-family:'Great Vibes',cursive;font-size:clamp(1.7rem,7vw,3rem);line-height:1.18;}
+.post17-slide .post17-sub{margin-top:14px;font-size:.9rem;letter-spacing:1px;opacity:.9;}
+.post17-photo-two{background:#ff6262;}
+.post17-photo-two .post17-inner{justify-content:center;gap:18px;}
+.post17-photo-two .photo-pair{width:min(94%,620px);display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:center;}
+.post17-photo-two .photo-frame{background:#fff;padding:8px;border-radius:20px;box-shadow:0 12px 35px rgba(0,0,0,.28);transform:rotate(-2deg);}
+.post17-photo-two .photo-frame:nth-child(2){transform:rotate(2deg);}
+.post17-photo-two img{display:block;width:100%;height:min(52vh,500px);object-fit:cover;border-radius:14px;}
+.post17-photo-two .post17-caption{font-family:Poppins,sans-serif;font-weight:700;font-size:clamp(1.1rem,5vw,1.8rem);}
+.post17-collage{background:#ff6262;}
+.post17-collage .post17-inner{padding:12px;justify-content:center;}
+.post17-collage img{width:100%;height:88vh;object-fit:contain;border-radius:18px;filter:drop-shadow(0 12px 30px rgba(0,0,0,.25));}
+.post17-collage .post17-overlay-text{position:absolute;left:50%;bottom:3%;transform:translateX(-50%);width:min(92%,700px);padding:12px 16px;border-radius:20px;background:rgba(0,0,0,.43);backdrop-filter:blur(5px);font-size:clamp(.82rem,3.5vw,1.1rem);line-height:1.55;text-align:center;color:#fff;}
+.post17-gallery{background:#ff6262;}
+.post17-gallery .post17-inner{justify-content:center;gap:18px;}
+.post17-gallery .gallery-grid{width:min(94%,700px);height:78vh;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;}
+.post17-gallery .gallery-grid img{width:100%;height:100%;object-fit:cover;border:7px solid #fff;border-radius:22px;box-shadow:0 10px 25px rgba(0,0,0,.25);}
+.post17-gallery .gallery-grid img:first-child{grid-row:span 2;}
+.post17-gallery .post17-caption{font-family:Poppins,sans-serif;font-weight:700;font-size:clamp(1rem,4.5vw,1.6rem);}
+.post17-two-old{background:#ff6262;}
+.post17-two-old .two-old-grid{width:min(92%,620px);display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.post17-two-old img{width:100%;height:50vh;object-fit:cover;border:7px solid #fff;border-radius:24px;box-shadow:0 12px 30px rgba(0,0,0,.25);}
+.post17-mom{background:#ff6262;}
+.post17-mom .mom-photo{width:min(88%,620px);max-height:72vh;object-fit:contain;border:8px solid #fff;border-radius:24px;box-shadow:0 15px 35px rgba(0,0,0,.28);}
+.post17-rewind .rewind-grid{width:min(94%,700px);height:76vh;display:grid;grid-template-columns:1.05fr .95fr;grid-template-rows:1fr 1fr;gap:12px;}
+.post17-rewind .rewind-grid img{width:100%;height:100%;object-fit:cover;border:7px solid #fff;border-radius:22px;box-shadow:0 10px 25px rgba(0,0,0,.25);}
+.post17-rewind .rewind-grid img:first-child{grid-row:span 2;}
+.post17-blue .blue-grid{width:min(94%,700px);height:76vh;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.post17-blue .blue-grid img{width:100%;height:100%;object-fit:cover;border:7px solid #fff;border-radius:22px;box-shadow:0 10px 25px rgba(0,0,0,.25);}
+@media(max-width:600px){
+  .post17-photo-two .photo-pair{gap:8px}.post17-photo-two img{height:48vh}.post17-collage img{height:86vh}.post17-gallery .gallery-grid{height:72vh;gap:8px}.post17-two-old .two-old-grid{gap:8px}.post17-two-old img{height:47vh}.post17-rewind .rewind-grid,.post17-blue .blue-grid{height:72vh;gap:8px}.post17-slide .post17-inner{padding:18px 10px}
+}
 </style>
 </head>
 <body>
@@ -2611,6 +2650,99 @@ function playAudioAndNext(targetStep, themeColor) {
   </div>
 </div>
 
+
+<!-- =========================================================
+     POST-STEP-17 SLIDES — NEW ADDITIONS ONLY
+     ========================================================= -->
+<div class="card post17-slide" id="step18">
+  <div class="post17-bg"></div>
+  <div class="post17-inner">
+    <p class="post17-caption">Chalo ab apke beautiful darshan ho jae 😭❤️</p>
+  </div>
+</div>
+
+<div class="card post17-slide post17-photo-two" id="step19">
+  <div class="post17-bg"></div>
+  <div class="post17-inner">
+    <div class="photo-pair">
+      <div class="photo-frame"><img src="a_warm_candid_romantic_casual_outdoor_portrait_s.png" alt="Us in another universe - 1"></div>
+      <div class="photo-frame"><img src="a_warm_candid_outdoor_porch_style_portrait_scene.png" alt="Us in another universe - 2"></div>
+    </div>
+    <p class="post17-caption">🥰🎀🌷 us in another universe 🫶</p>
+  </div>
+</div>
+
+<div class="card post17-slide post17-collage" id="step20">
+  <div class="post17-bg"></div>
+  <div class="post17-inner">
+    <img src="13177.jpg" alt="Birthday collage">
+    <div class="post17-overlay-text">🌹😭jab mere paas moon already hai toh 🥰😂toh stars ki kya jarurat<br>Hayee kitni pyari lag rahi 😋❤️<br>kala teeka laga deta hun kisi ki nazar 🧿 nah lage meri bhi 😂</div>
+  </div>
+</div>
+
+<div class="card post17-slide post17-gallery" id="step21">
+  <div class="post17-bg"></div>
+  <div class="post17-inner">
+    <div class="gallery-grid">
+      <img src="13168.jpg" alt="Old memory 1">
+      <img src="13164.jpg" alt="Old memory 2">
+      <img src="12368.jpg" alt="Old memory 3">
+    </div>
+    <p class="post17-caption">😂🧿ki old pics hit 😭 nostalgia 👽👍</p>
+  </div>
+</div>
+
+<div class="card post17-slide post17-two-old" id="step22">
+  <div class="post17-bg"></div>
+  <div class="post17-inner">
+    <div class="two-old-grid">
+      <img src="13170.jpg" alt="Cutie memory 1">
+      <img src="12370.jpg" alt="Cutie memory 2">
+    </div>
+    <p class="post17-caption">🌷🎀🧿hawww my 2 cutie puties ♾️</p>
+  </div>
+</div>
+
+<div class="card post17-slide post17-mom" id="step23">
+  <div class="post17-bg"></div>
+  <div class="post17-inner">
+    <img class="mom-photo" src="13175.jpg" alt="Memory with aunty">
+    <p class="post17-caption">🌷This is the closest picture to my heart 😭and apke liye bhi shyad idk what to say 🥀more baki aap jyada hi janti hongi aur miss krti hongi 🫶may God bless aunty and rest in peace her ❤️</p>
+  </div>
+</div>
+
+<div class="card post17-slide post17-rewind" id="step24">
+  <div class="post17-bg"></div>
+  <div class="post17-inner">
+    <div class="rewind-grid">
+      <img src="13161.jpg" alt="Memory rewind 1">
+      <img src="13162.jpg" alt="Memory rewind 2">
+      <img src="13123.jpg" alt="Memory rewind 3">
+    </div>
+    <p class="post17-caption">memories rewind</p>
+  </div>
+</div>
+
+<div class="card post17-slide post17-blue" id="step25">
+  <div class="post17-bg"></div>
+  <div class="post17-inner">
+    <div class="blue-grid">
+      <img src="13178.png" alt="Beautiful memory 1">
+      <img src="13180.png" alt="Beautiful memory 2">
+      <img src="13172.jpg" alt="Beautiful memory 3">
+    </div>
+    <p class="post17-caption">Beautiful as well as well as 1/cos C too 😭😂🌷and hotness toh jind me bhut ho rahi aaj kal</p>
+  </div>
+</div>
+
+<!-- New media used only by the new slides -->
+<audio id="post17PhirmilaAudio" src="phirmiladeram.mp3" preload="auto" loop></audio>
+<audio id="post17DhandhaAudio" src="dhandha_ka_do_numberi.mp3" preload="auto" loop></audio>
+<audio id="post17BlueAudio" src="blue.mp3" preload="auto" loop></audio>
+<video id="post17MemoriesVideo" src="memories.mp4" preload="auto" playsinline style="display:none"></video>
+
+<button id="step17NextBtn" class="step17-next" type="button" onclick="window.showNewSlide('step18',null,4500)" style="display:none;position:absolute;left:50%;bottom:3%;transform:translateX(-50%);z-index:100;width:min(88%,360px);padding:16px 22px;border:1px solid rgba(255,183,213,.7);border-radius:999px;background:linear-gradient(135deg,#ff71ce,#8d3ec2);color:#fff;font:700 1rem Poppins,sans-serif;box-shadow:0 10px 28px rgba(0,0,0,.55),0 0 20px rgba(255,113,206,.35);">NEXT 💗</button>
+
 <!-- Step 16 audio -->
 <audio id="step16CakeAudio" src="cake.mp3" preload="auto" loop></audio>
    
@@ -3193,7 +3325,7 @@ function startStep12Sequence() {
 
     targetCard.innerHTML = `
       <video
-    id="rooposhAudio"
+    id="step13RooposhVideo"
     src="rooposh.mp4"
     autoplay
     loop
@@ -3303,7 +3435,6 @@ if (audioElem) {
         });
     }
 }
- videoElem = document.getElementById('step14Video');
  function startStep14Sequence() {
     const videoElem = document.getElementById('step14Video');
 
@@ -3698,8 +3829,90 @@ function startStep17Sequence() {
     const step17 = document.getElementById("step17");
     if (!step17) { console.error("STEP 17: container missing."); return; }
     console.log("STEP 17 DJ DANCE STARTED");
+    const nextBtn = document.getElementById("step17NextBtn");
+    if (nextBtn) {
+        nextBtn.style.display = "none";
+        setTimeout(() => { nextBtn.style.display = "block"; }, 20000);
+    }
     step17.querySelectorAll(".s17-char").forEach(c => { c.style.animationPlayState = "running"; });
 }
+
+
+/* =========================================================
+   POST-STEP-17 AUTO FLOW — NEW ADDITIONS ONLY
+   ========================================================= */
+(function(){
+  const slideIds = ['step18','step19','step20','step21','step22','step23','step24','step25'];
+  let flowStarted = false;
+  let timer = null;
+
+  function stopNewMedia(){
+    ['post17PhirmilaAudio','post17DhandhaAudio','post17BlueAudio','post17MemoriesVideo'].forEach(id=>{
+      const el=document.getElementById(id);
+      if(el){ try{el.pause(); el.currentTime=0;}catch(e){} }
+    });
+  }
+
+  window.showNewSlide = function showNewSlide(id, mediaId, duration){
+    document.querySelectorAll('.card').forEach(c=>c.classList.remove('active'));
+    const card=document.getElementById(id);
+    if(!card) return;
+    card.classList.add('active');
+    if (typeof stopAllAudio === 'function') stopAllAudio();
+    stopNewMedia();
+    if(mediaId){
+      const media=document.getElementById(mediaId);
+      if(media){
+        try{media.currentTime=0;}catch(e){}
+        media.play().catch(e=>console.log('New slide media blocked:',e));
+      }
+    }
+    if(timer) clearTimeout(timer);
+    if(duration>0) timer=setTimeout(()=>nextNewSlide(),duration);
+  }
+
+  function nextNewSlide(){
+    const active=document.querySelector('.post17-slide.active');
+    if(!active) return;
+    const index=slideIds.indexOf(active.id);
+      if(index<0 || index>=slideIds.length-1) return;
+  const next=index+1;
+  const configs=[
+    ['step18',null,4500],
+    ['step19',null,6000],
+    ['step20','post17PhirmilaAudio',8000],
+    ['step21','post17DhandhaAudio',7000],
+    ['step22','post17DhandhaAudio',6500],
+    ['step23','post17MemoriesVideo',8500],
+    ['step24',null,7000],
+    ['step25','post17BlueAudio',0]
+  ];
+  const cfg=configs[next];
+  showNewSlide(cfg[0],cfg[1],cfg[2]);
+}
+
+function beginAfterDance(){
+  if(flowStarted) return;
+  flowStarted=true;
+  if(timer) clearTimeout(timer);
+
+  // Dance for 20 seconds, then only reveal the NEXT button.
+  // The user decides when to continue.
+  const nextBtn=document.getElementById('step17NextBtn');
+  if(nextBtn) nextBtn.style.display='block';
+}
+
+const observer=new MutationObserver(()=>{
+  const s17=document.getElementById('step17');
+  if(s17 && s17.classList.contains('active')) beginAfterDance();
+});
+
+observer.observe(document.body,{
+  subtree:true,
+  attributes:true,
+  attributeFilter:['class']
+});
+})();
 </script>
 </body>
 </html>
