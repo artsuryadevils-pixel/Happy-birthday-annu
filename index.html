@@ -4342,6 +4342,16 @@ function startStep17Sequence() {
   // No MutationObserver and no timed slide navigation.
 
 })();
-  </script>
+ // Is line ko code mein kahin bhi ek baar daal de (jaise hi file load ho)
+document.addEventListener('click', function(e) {
+  if (e.target && e.target.classList.contains('post17-next')) {
+    e.preventDefault();
+    if (typeof window.post17ManualNext === 'function') {
+      window.post17ManualNext();
+    }
+  }
+});
+        
+    </script>
 </body>
 </html>  
