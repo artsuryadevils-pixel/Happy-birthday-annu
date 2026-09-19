@@ -4194,11 +4194,15 @@ function startStep17Sequence() {
   }
 
   window.showNewSlide = function showNewSlide(id, mediaId){
-    document.querySelectorAll('.card').forEach(c=>c.classList.remove('active'));
-    const card=document.getElementById(id);
-    if(!card) return;
-    card.classList.add('active');
 
+    // Step 17 ka purana NEXT button hide karo,
+    // warna woh Step 18+ ke NEXT button ke upar aa sakta hai.
+    const oldStep17Next = document.getElementById('step17NextBtn');
+    if (oldStep17Next) {
+        oldStep17Next.style.display = 'none';
+    }
+
+    document.querySelectorAll('.card').forEach(c=>c.classList.remove('active'));
     currentIndex = slideIds.indexOf(id);
 
     if (typeof stopAllAudio === 'function') stopAllAudio();
