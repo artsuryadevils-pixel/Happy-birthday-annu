@@ -1728,7 +1728,7 @@
 .post17-photo-two .photo-pair{width:min(94%,620px);display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:center;}
 .post17-photo-two .photo-frame{background:#fff;padding:8px;border-radius:20px;box-shadow:0 12px 35px rgba(0,0,0,.28);transform:rotate(-2deg);}
 .post17-photo-two .photo-frame:nth-child(2){transform:rotate(2deg);}
-.post17-photo-two img{display:block;width:100%;height:min(52vh,500px);object-fit:cover;border-radius:14px;}
+.post17-photo-two img{display:block;width:100%;height:min(52vh,500px);object-fit:contain;border-radius:14px;}
 .post17-photo-two .post17-caption{font-family:Poppins,sans-serif;font-weight:700;font-size:clamp(1.1rem,5vw,1.8rem);}
 .post17-collage{background:#ff6262;}
 .post17-collage .post17-inner{padding:12px;justify-content:center;}
@@ -1737,19 +1737,19 @@
 .post17-gallery{background:#ff6262;}
 .post17-gallery .post17-inner{justify-content:center;gap:18px;}
 .post17-gallery .gallery-grid{width:min(94%,700px);height:78vh;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;}
-.post17-gallery .gallery-grid img{width:100%;height:100%;object-fit:cover;border:7px solid #fff;border-radius:22px;box-shadow:0 10px 25px rgba(0,0,0,.25);}
+.post17-gallery .gallery-grid img{width:100%;height:100%;object-fit:contain;border:7px solid #fff;border-radius:22px;box-shadow:0 10px 25px rgba(0,0,0,.25);}
 .post17-gallery .gallery-grid img:first-child{grid-row:span 2;}
 .post17-gallery .post17-caption{font-family:Poppins,sans-serif;font-weight:700;font-size:clamp(1rem,4.5vw,1.6rem);}
 .post17-two-old{background:#ff6262;}
 .post17-two-old .two-old-grid{width:min(92%,620px);display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.post17-two-old img{width:100%;height:50vh;object-fit:cover;border:7px solid #fff;border-radius:24px;box-shadow:0 12px 30px rgba(0,0,0,.25);}
+.post17-two-old img{width:100%;height:50vh;object-fit:contain;border:7px solid #fff;border-radius:24px;box-shadow:0 12px 30px rgba(0,0,0,.25);}
 .post17-mom{background:#ff6262;}
 .post17-mom .mom-photo{width:min(88%,620px);max-height:72vh;object-fit:contain;border:8px solid #fff;border-radius:24px;box-shadow:0 15px 35px rgba(0,0,0,.28);}
 .post17-rewind .rewind-grid{width:min(94%,700px);height:76vh;display:grid;grid-template-columns:1.05fr .95fr;grid-template-rows:1fr 1fr;gap:12px;}
-.post17-rewind .rewind-grid img{width:100%;height:100%;object-fit:cover;border:7px solid #fff;border-radius:22px;box-shadow:0 10px 25px rgba(0,0,0,.25);}
+.post17-rewind .rewind-grid img{width:100%;height:100%;object-fit:contain;border:7px solid #fff;border-radius:22px;box-shadow:0 10px 25px rgba(0,0,0,.25);}
 .post17-rewind .rewind-grid img:first-child{grid-row:span 2;}
 .post17-blue .blue-grid{width:min(94%,700px);height:76vh;display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.post17-blue .blue-grid img{width:100%;height:100%;object-fit:cover;border:7px solid #fff;border-radius:22px;box-shadow:0 10px 25px rgba(0,0,0,.25);}
+.post17-blue .blue-grid img{width:100%;height:100%;object-fit:contain;border:7px solid #fff;border-radius:22px;box-shadow:0 10px 25px rgba(0,0,0,.25);}
 @media(max-width:600px){
   .post17-photo-two .photo-pair{gap:8px}.post17-photo-two img{height:48vh}.post17-collage img{height:86vh}.post17-gallery .gallery-grid{height:72vh;gap:8px}.post17-two-old .two-old-grid{gap:8px}.post17-two-old img{height:47vh}.post17-rewind .rewind-grid,.post17-blue .blue-grid{height:72vh;gap:8px}.post17-slide .post17-inner{padding:18px 10px}
 }
@@ -2206,6 +2206,220 @@
     #step16 .uncle-character .character-name { font-size: .62rem; }
 }
 
+
+/* =========================================================
+   FINAL POST-17 PHOTO/MEMORY FIXES
+   ========================================================= */
+.post17-slide{
+    position:relative;
+    min-height:92vh;
+    height:92vh;
+    overflow:hidden;
+}
+.post17-slide .post17-bg{
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(rgba(91,34,104,.58),rgba(39,10,56,.72)),
+      url("step11_background.webm");
+    background-size:cover;
+    background-position:center;
+    filter:saturate(.9);
+    z-index:0;
+}
+.post17-slide .post17-inner{
+    position:relative;
+    z-index:2;
+    width:100%;
+    height:100%;
+    box-sizing:border-box;
+    padding:clamp(14px,3vw,28px) clamp(10px,3vw,24px) 105px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+}
+.post17-slide .post17-caption,
+.post17-slide .post17-overlay-text{
+    position:relative;
+    z-index:12;
+    width:min(94%,760px);
+    box-sizing:border-box;
+    max-height:24vh;
+    overflow:auto;
+    padding:10px 14px;
+    margin:0;
+    border-radius:18px;
+    background:rgba(18,5,25,.72);
+    color:#fff;
+    text-align:center;
+    line-height:1.42;
+    text-shadow:0 2px 7px #000;
+}
+.post17-photo-two .photo-pair,
+.post17-gallery .gallery-grid,
+.post17-two-old .two-old-grid,
+.post17-rewind .rewind-grid,
+.post17-blue .blue-grid{
+    width:min(96%,760px);
+    height:min(62vh,620px);
+    flex:0 0 auto;
+}
+.post17-photo-two .photo-frame{
+    height:100%;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.22);
+    border-radius:20px;
+}
+.post17-photo-two .photo-frame img,
+.post17-gallery .gallery-grid img,
+.post17-two-old .two-old-grid img,
+.post17-rewind .rewind-grid img,
+.post17-blue .blue-grid img{
+    width:100%;
+    height:100%;
+    object-fit:contain !important;
+}
+.post17-collage .post17-inner > img{
+    width:min(96%,760px);
+    height:min(66vh,650px);
+    object-fit:contain !important;
+}
+.post17-mom .mom-photo{
+    width:min(94%,620px);
+    height:min(66vh,650px);
+    object-fit:contain !important;
+}
+.post17-slide .post17-next{
+    position:absolute !important;
+    left:50% !important;
+    bottom:16px !important;
+    transform:translateX(-50%) !important;
+    z-index:80 !important;
+}
+.post17-celebration-layer{
+    position:absolute;
+    inset:0;
+    z-index:40;
+    pointer-events:none;
+    overflow:hidden;
+}
+.post17-falling{
+    position:absolute;
+    top:-12vh;
+    animation:post17Fall linear forwards;
+    filter:drop-shadow(0 2px 4px rgba(0,0,0,.35));
+}
+@keyframes post17Fall{
+    0%{transform:translate3d(0,-12vh,0) rotate(0deg);opacity:0}
+    10%{opacity:1}
+    100%{transform:translate3d(var(--drift),112vh,0) rotate(var(--spin));opacity:0}
+}
+@media(max-width:600px){
+    .post17-slide .post17-inner{
+        padding:12px 8px 105px;
+        gap:10px;
+    }
+    .post17-photo-two .photo-pair,
+    .post17-gallery .gallery-grid,
+    .post17-two-old .two-old-grid,
+    .post17-rewind .rewind-grid,
+    .post17-blue .blue-grid{
+        width:96%;
+        height:57vh;
+    }
+    .post17-collage .post17-inner > img,
+    .post17-mom .mom-photo{
+        width:96%;
+        height:61vh;
+    }
+    .post17-slide .post17-caption,
+    .post17-slide .post17-overlay-text{
+        max-height:25vh;
+        font-size:.88rem;
+    }
+}
+
+/* Scratch overlay */
+.post17-scratch-wrap{
+    position:absolute;
+    inset:0;
+    z-index:35;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(20,5,28,.22);
+}
+.post17-scratch-wrap.hidden{display:none}
+.post17-scratch-card{
+    position:relative;
+    width:min(88%,430px);
+    height:min(62%,430px);
+    border-radius:26px;
+    overflow:hidden;
+    box-shadow:0 18px 45px rgba(0,0,0,.48);
+}
+.post17-scratch-card canvas{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    touch-action:none;
+}
+.post17-scratch-hint{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    z-index:2;
+    pointer-events:none;
+    padding:14px 20px;
+    border-radius:999px;
+    background:rgba(15,4,22,.78);
+    color:#fff;
+    font:700 1rem Poppins,sans-serif;
+    text-align:center;
+}
+.post17-scratch-reveal{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(255,113,206,.12);
+}
+.post17-balloon-blast{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%) scale(.15);
+    z-index:65;
+    font-size:clamp(90px,22vw,190px);
+    opacity:0;
+    pointer-events:none;
+}
+.post17-balloon-blast.blast{
+    animation:post17BalloonBlast .9s ease-out forwards;
+}
+@keyframes post17BalloonBlast{
+    0%{opacity:0;transform:translate(-50%,-50%) scale(.15)}
+    45%{opacity:1;transform:translate(-50%,-50%) scale(1.18)}
+    100%{opacity:0;transform:translate(-50%,-50%) scale(2.1)}
+}
+.post17-scratch-photo-hidden{
+    opacity:0;
+    transition:opacity .45s ease;
+}
+.post17-scratch-photo-hidden.revealed{opacity:1}
+
+/* =========================================================
+   END FINAL POST-17 FIXES
+   ========================================================= */
 </style>
 
 <script>
@@ -3741,8 +3955,7 @@ function step16WaitForKnife(knife, progress, cake) {
         let cakeWidth = 1;
 
         function getX(event) {
-            if (event.clientX != null) return event.clientX;
-            if (event.touches && event.touches.length) return event.touches[0].clientX;
+                        if (event.touches && event.touches.length) return event.touches[0].clientX;
             return 0;
         }
 
@@ -3789,10 +4002,12 @@ function step16WaitForKnife(knife, progress, cake) {
             knife.style.left = x + "px";
 
             const knifeRect = knife.getBoundingClientRect();
+
             // Progress is based on the knife tip crossing the cake from right to left.
             const tipX = knifeRect.left + Math.min(knifeRect.width * 0.82, knifeRect.width);
             const raw = ((cakeRight - tipX) / cakeWidth) * 100;
             const percentage = Math.max(0, Math.min(100, raw));
+
             if (progress) progress.style.width = percentage + "%";
 
             // Show the cake as being cut while the knife is over it.
@@ -3827,92 +4042,306 @@ function step16WaitForKnife(knife, progress, cake) {
 
 function startStep17Sequence() {
     const step17 = document.getElementById("step17");
-    if (!step17) { console.error("STEP 17: container missing."); return; }
-    console.log("STEP 17 DJ DANCE STARTED");
     const nextBtn = document.getElementById("step17NextBtn");
+    if (!step17) { console.error("STEP 17: container missing."); return; }
+
     if (nextBtn) {
         nextBtn.style.display = "none";
-        setTimeout(() => { nextBtn.style.display = "block"; }, 20000);
+
+        nextBtn.onclick = function () {
+            if (typeof showNewSlide === "function") {
+                showNewSlide("step18", null);
+            }
+        };
+
+        clearTimeout(window.__step17NextTimer);
+
+        window.__step17NextTimer = setTimeout(function () {
+            if (document.getElementById("step17")?.classList.contains("active")) {
+                nextBtn.style.display = "block";
+            }
+        }, 20000);
     }
-    step17.querySelectorAll(".s17-char").forEach(c => { c.style.animationPlayState = "running"; });
+
+    console.log("STEP 17 DJ DANCE STARTED");
 }
 
 
 /* =========================================================
    POST-STEP-17 AUTO FLOW — NEW ADDITIONS ONLY
    ========================================================= */
+
 (function(){
   const slideIds = ['step18','step19','step20','step21','step22','step23','step24','step25'];
-  let flowStarted = false;
-  let timer = null;
+  let currentIndex = -1;
 
   function stopNewMedia(){
     ['post17PhirmilaAudio','post17DhandhaAudio','post17BlueAudio','post17MemoriesVideo'].forEach(id=>{
       const el=document.getElementById(id);
-      if(el){ try{el.pause(); el.currentTime=0;}catch(e){} }
+      if(el){ 
+        try{
+          el.pause(); 
+          el.currentTime=0;
+        }catch(e){}
+      }
     });
   }
 
-  window.showNewSlide = function showNewSlide(id, mediaId, duration){
+  window.showNewSlide = function showNewSlide(id, mediaId){
     document.querySelectorAll('.card').forEach(c=>c.classList.remove('active'));
+
     const card=document.getElementById(id);
     if(!card) return;
+
     card.classList.add('active');
+    currentIndex = slideIds.indexOf(id);
+
     if (typeof stopAllAudio === 'function') stopAllAudio();
     stopNewMedia();
+
     if(mediaId){
       const media=document.getElementById(mediaId);
+
       if(media){
-        try{media.currentTime=0;}catch(e){}
+        try{
+          media.currentTime=0;
+        }catch(e){}
+
         media.play().catch(e=>console.log('New slide media blocked:',e));
       }
     }
-    if(timer) clearTimeout(timer);
-    if(duration>0) timer=setTimeout(()=>nextNewSlide(),duration);
-  }
+
+    post17PrepareSpecialSlide(card);
+  };
 
   function nextNewSlide(){
-    const active=document.querySelector('.post17-slide.active');
-    if(!active) return;
-    const index=slideIds.indexOf(active.id);
-      if(index<0 || index>=slideIds.length-1) return;
-  const next=index+1;
-  const configs=[
-    ['step18',null,4500],
-    ['step19',null,6000],
-    ['step20','post17PhirmilaAudio',8000],
-    ['step21','post17DhandhaAudio',7000],
-    ['step22','post17DhandhaAudio',6500],
-    ['step23','post17MemoriesVideo',8500],
-    ['step24',null,7000],
-    ['step25','post17BlueAudio',0]
-  ];
-  const cfg=configs[next];
-  showNewSlide(cfg[0],cfg[1],cfg[2]);
-}
+    if(currentIndex < 0 || currentIndex >= slideIds.length-1) return;
 
-function beginAfterDance(){
-  if(flowStarted) return;
-  flowStarted=true;
-  if(timer) clearTimeout(timer);
+    const next = currentIndex + 1;
 
-  // Dance for 20 seconds, then only reveal the NEXT button.
-  // The user decides when to continue.
-  const nextBtn=document.getElementById('step17NextBtn');
-  if(nextBtn) nextBtn.style.display='block';
-}
+    const configs=[
+      ['step18',null],
+      ['step19',null],
+      ['step20','post17PhirmilaAudio'],
+      ['step21','post17DhandhaAudio'],
+      ['step22','post17DhandhaAudio'],
+      ['step23','post17MemoriesVideo'],
+      ['step24',null],
+      ['step25','post17BlueAudio']
+    ];
 
-const observer=new MutationObserver(()=>{
-  const s17=document.getElementById('step17');
-  if(s17 && s17.classList.contains('active')) beginAfterDance();
-});
+    showNewSlide(configs[next][0],configs[next][1]);
+  }
 
-observer.observe(document.body,{
-  subtree:true,
-  attributes:true,
-  attributeFilter:['class']
-});
+  window.post17ManualNext = nextNewSlide;
+
+  function post17PrepareSpecialSlide(card){
+    const special = ['step19','step20','step25'].includes(card.id);
+
+    let btn = card.querySelector('.post17-next');
+
+    if(!btn){
+      btn=document.createElement('button');
+      btn.type='button';
+      btn.className='post17-next';
+      btn.textContent='NEXT 💗';
+      card.appendChild(btn);
+    }
+
+    btn.style.display='none';
+    btn.onclick=()=>window.post17ManualNext();
+
+    if(!special){
+
+      // Normal photo/memory slide:
+      // celebration first, then NEXT.
+      setTimeout(()=>{
+        post17StartFalling(card, ()=>{
+          btn.style.display='block';
+        });
+      },80);
+
+      return;
+    }
+
+    post17StartScratch(card, ()=>{
+      post17StartFalling(card, ()=>{
+        btn.style.display='block';
+      });
+    });
+  }
+
+  function post17StartScratch(card, done){
+    let wrap=card.querySelector('.post17-scratch-wrap');
+
+    if(!wrap){
+      wrap=document.createElement('div');
+      wrap.className='post17-scratch-wrap';
+
+      wrap.innerHTML=`
+        <div class="post17-scratch-card">
+          <div class="post17-scratch-reveal"></div>
+          <div class="post17-scratch-hint">SCRATCH HERE ✨</div>
+          <canvas></canvas>
+        </div>
+
+        <div class="post17-balloon-blast">🎈</div>`;
+
+      card.appendChild(wrap);
+    }
+
+    wrap.classList.remove('hidden');
+
+    const canvas=wrap.querySelector('canvas');
+    const ctx=canvas.getContext('2d',{willReadFrequently:true});
+    const box=wrap.querySelector('.post17-scratch-card');
+
+    function resize(){
+      const r=box.getBoundingClientRect();
+      const d=Math.min(window.devicePixelRatio||1,2);
+
+      canvas.width=Math.max(1,Math.floor(r.width*d));
+      canvas.height=Math.max(1,Math.floor(r.height*d));
+
+      canvas.style.width=r.width+'px';
+      canvas.style.height=r.height+'px';
+
+      ctx.setTransform(d,0,0,d,0,0);
+
+      ctx.fillStyle='#b66cff';
+      ctx.fillRect(0,0,r.width,r.height);
+
+      ctx.fillStyle='rgba(255,255,255,.22)';
+
+      for(let y=0;y<r.height;y+=18){
+        for(let x=0;x<r.width;x+=18){
+          ctx.fillRect(x,y,9,9);
+        }
+      }
+    }
+
+    resize();
+
+    let scratching=false;
+    let finished=false;
+    let last=0;
+
+    function scratch(ev){
+      if(finished) return;
+
+      const r=canvas.getBoundingClientRect();
+      const p=ev.touches ? ev.touches[0] : ev;
+
+      const x=p.clientX-r.left;
+      const y=p.clientY-r.top;
+
+      ctx.globalCompositeOperation='destination-out';
+
+      ctx.beginPath();
+      ctx.arc(x,y,30,0,Math.PI*2);
+      ctx.fill();
+
+      const now=Date.now();
+
+      if(now-last<180) return;
+      last=now;
+
+      const data=ctx.getImageData(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      ).data;
+
+      let clear=0;
+
+      for(let i=3;i<data.length;i+=16){
+        if(data[i]<40) clear++;
+      }
+
+      const ratio=clear/(data.length/16);
+
+      if(ratio>.52){
+        finished=true;
+
+        wrap.querySelector('.post17-scratch-hint').style.display='none';
+
+        wrap.querySelector('.post17-balloon-blast').classList.add('blast');
+
+        setTimeout(()=>{
+          wrap.classList.add('hidden');
+          done();
+        },850);
+      }
+    }
+
+    canvas.onpointerdown=e=>{
+      scratching=true;
+      canvas.setPointerCapture?.(e.pointerId);
+      scratch(e);
+    };
+
+    canvas.onpointermove=e=>{
+      if(scratching) scratch(e);
+    };
+
+    canvas.onpointerup=()=>{
+      scratching=false;
+    };
+
+    canvas.onpointercancel=()=>{
+      scratching=false;
+    };
+  }
+
+  function post17StartFalling(card,done){
+    let layer=card.querySelector('.post17-celebration-layer');
+
+    if(!layer){
+      layer=document.createElement('div');
+      layer.className='post17-celebration-layer';
+      card.appendChild(layer);
+    }
+
+    layer.innerHTML='';
+
+    const items=['❤️','🎀','🎊'];
+    const count=34;
+
+    for(let i=0;i<count;i++){
+      const s=document.createElement('span');
+
+      s.className='post17-falling';
+      s.textContent=items[i%items.length];
+
+      s.style.left=(Math.random()*100)+'%';
+      s.style.fontSize=(18+Math.random()*20)+'px';
+      s.style.animationDuration=(2.6+Math.random()*2.1)+'s';
+      s.style.animationDelay=(Math.random()*.55)+'s';
+
+      s.style.setProperty(
+        '--drift',
+        ((Math.random()-.5)*180)+'px'
+      );
+
+      s.style.setProperty(
+        '--spin',
+        ((Math.random()-.5)*720)+'deg'
+      );
+
+      layer.appendChild(s);
+    }
+
+    setTimeout(()=>{
+      layer.innerHTML='';
+      done();
+    },4300);
+  }
+
+  // Keep this flow manual.
+  // No MutationObserver and no timed slide navigation.
+
 })();
-</script>
+  </script>
 </body>
-</html>
+</html>  
