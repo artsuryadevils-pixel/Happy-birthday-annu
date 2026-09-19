@@ -1755,435 +1755,1195 @@
 
 .step16-main-scene.dancing .step16-character { animation: step16Dance .55s ease-in-out infinite alternate !important; }
 @keyframes step16Dance { from { transform: translateY(0) rotate(-5deg) scale(1); } to { transform: translateY(-12px) rotate(5deg) scale(1.06); } }
-   /* =========================================================
-   STEP 17 — DISCO DANCE PARTY
+  /* =========================================================
+   STEP 17 — DJ / DISCO DANCE
    ========================================================= */
 
 #step17 {
     position: relative;
-    width: 100%;
-    min-height: 92vh;
-    height: 92vh;
     overflow: hidden;
-    background:
-        radial-gradient(circle at 50% 30%, #5c146f 0%, #180622 38%, #050208 100%);
+    background: #05020a;
+    color: #fff;
 }
 
-.step17-disco-stage {
+
+/* Main world */
+#step17 .step17-world {
     position: absolute;
     inset: 0;
     overflow: hidden;
     background:
-        radial-gradient(circle at 50% 42%, rgba(255,0,200,.22), transparent 28%),
-        linear-gradient(180deg, #09000f 0%, #17021e 48%, #030105 100%);
+        radial-gradient(circle at 50% 35%, rgba(255,80,210,.18), transparent 34%),
+        linear-gradient(180deg, #090313 0%, #12051d 55%, #050108 100%);
 }
 
-/* Neon ambience */
-.step17-neon-glow {
+
+/* Disco background */
+#step17 .step17-bg {
     position: absolute;
     inset: 0;
-    background:
-        radial-gradient(circle at 15% 25%, rgba(0,255,255,.18), transparent 22%),
-        radial-gradient(circle at 85% 20%, rgba(255,0,170,.2), transparent 24%),
-        radial-gradient(circle at 50% 65%, rgba(150,0,255,.2), transparent 35%);
-    animation: step17Glow 2.8s ease-in-out infinite alternate;
+    overflow: hidden;
 }
 
-@keyframes step17Glow {
-    from { opacity: .55; }
-    to { opacity: 1; }
+
+/* Floor grid */
+#step17 .step17-grid {
+    position: absolute;
+    left: -30%;
+    bottom: -20%;
+    width: 160%;
+    height: 60%;
+    transform: perspective(420px) rotateX(63deg);
+    transform-origin: center bottom;
+
+    background:
+        linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px);
+
+    background-size: 55px 55px;
+
+    animation: step17GridMove 2s linear infinite;
 }
+
+@keyframes step17GridMove {
+
+    from {
+        background-position: 0 0, 0 0;
+    }
+
+    to {
+        background-position: 0 55px, 55px 0;
+    }
+}
+
 
 /* Moving spotlights */
-.step17-spotlight {
+#step17 .step17-spotlight {
     position: absolute;
     top: -15%;
-    width: 16%;
-    height: 125%;
-    opacity: .38;
-    filter: blur(3px);
-    transform-origin: 50% 0;
-    pointer-events: none;
+    width: 24%;
+    height: 115%;
+
+    opacity: .23;
+    filter: blur(8px);
+
+    transform-origin: top center;
+    mix-blend-mode: screen;
 }
 
-.step17-light-1 {
-    left: 8%;
+#step17 .spotlight-one {
+    left: 5%;
     background: linear-gradient(
         180deg,
-        rgba(0,255,255,.5),
-        transparent 72%
+        rgba(255,80,220,.9),
+        transparent
     );
-    animation: step17LightOne 3.4s ease-in-out infinite alternate;
+    animation: step17SpotOne 4s ease-in-out infinite alternate;
 }
 
-.step17-light-2 {
-    left: 42%;
+#step17 .spotlight-two {
+    left: 38%;
     background: linear-gradient(
         180deg,
-        rgba(255,0,190,.6),
-        transparent 72%
+        rgba(90,170,255,.9),
+        transparent
     );
-    animation: step17LightTwo 3s ease-in-out infinite alternate;
+    animation: step17SpotTwo 3.4s ease-in-out infinite alternate;
 }
 
-.step17-light-3 {
-    right: 8%;
+#step17 .spotlight-three {
+    right: 4%;
     background: linear-gradient(
         180deg,
-        rgba(150,80,255,.55),
-        transparent 72%
+        rgba(255,170,70,.9),
+        transparent
     );
-    animation: step17LightThree 3.7s ease-in-out infinite alternate;
+    animation: step17SpotThree 4.5s ease-in-out infinite alternate;
 }
 
-@keyframes step17LightOne {
-    from { transform: rotate(-24deg); }
-    to { transform: rotate(18deg); }
+@keyframes step17SpotOne {
+    from {
+        transform: rotate(-22deg);
+    }
+
+    to {
+        transform: rotate(24deg);
+    }
 }
 
-@keyframes step17LightTwo {
-    from { transform: rotate(18deg); }
-    to { transform: rotate(-18deg); }
+@keyframes step17SpotTwo {
+    from {
+        transform: rotate(25deg);
+    }
+
+    to {
+        transform: rotate(-25deg);
+    }
 }
 
-@keyframes step17LightThree {
-    from { transform: rotate(24deg); }
-    to { transform: rotate(-15deg); }
+@keyframes step17SpotThree {
+    from {
+        transform: rotate(24deg);
+    }
+
+    to {
+        transform: rotate(-24deg);
+    }
 }
 
-/* Disco floor */
-.step17-disco-floor {
-    position: absolute;
-    left: -10%;
-    bottom: -8%;
-    width: 120%;
-    height: 45%;
-    transform: perspective(500px) rotateX(58deg);
-    transform-origin: bottom center;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0,255,255,.2) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            rgba(255,0,190,.2) 1px,
-            transparent 1px
-        );
-    background-size: 42px 42px;
-    box-shadow:
-        0 -15px 45px rgba(255,0,200,.2);
-}
-
-.step17-floor-grid {
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(
-            90deg,
-            transparent 0 48%,
-            rgba(255,255,255,.08) 50%,
-            transparent 52%
-        );
-    animation: step17FloorMove 1.8s linear infinite;
-}
-
-@keyframes step17FloorMove {
-    from { transform: translateY(0); }
-    to { transform: translateY(42px); }
-}
 
 /* Disco ball */
-.step17-disco-ball {
+#step17 .step17-disco-ball {
     position: absolute;
-    top: 7%;
     left: 50%;
-    width: 62px;
-    height: 62px;
+    top: -15px;
+    z-index: 20;
     transform: translateX(-50%);
-    border-radius: 50%;
-    background:
-        linear-gradient(135deg, #fff, #777 30%, #eee 48%, #555 70%, #fff);
-    box-shadow:
-        0 0 20px rgba(255,255,255,.65),
-        0 0 55px rgba(255,0,200,.35);
-    animation: step17Ball 3s linear infinite;
 }
 
-.step17-disco-ball::before {
-    content: "";
-    position: absolute;
-    width: 2px;
-    height: 55px;
-    background: rgba(255,255,255,.5);
-    left: 50%;
-    bottom: 100%;
-}
-
-.step17-disco-ball span {
-    position: absolute;
-    inset: 12px;
-    border-radius: 50%;
-    background:
-        repeating-linear-gradient(
-            45deg,
-            rgba(255,255,255,.8) 0 4px,
-            transparent 4px 9px
-        );
-}
-
-@keyframes step17Ball {
-    from { transform: translateX(-50%) rotate(0deg); }
-    to { transform: translateX(-50%) rotate(360deg); }
-}
-
-/* DJ booth */
-.step17-dj-booth {
-    position: absolute;
-    left: 50%;
-    top: 22%;
-    transform: translateX(-50%);
-    width: 46%;
-    max-width: 210px;
-    padding: 9px 12px;
-    border-radius: 14px;
-    background: rgba(8,3,15,.85);
-    border: 1px solid rgba(255,113,206,.55);
-    box-shadow:
-        0 0 18px rgba(255,0,190,.3),
-        inset 0 0 18px rgba(0,255,255,.08);
-    z-index: 8;
-}
-
-.step17-dj-screen {
-    text-align: center;
-    color: #fff;
-    font: 800 .75rem Poppins, sans-serif;
-    letter-spacing: .18em;
-}
-
-.step17-equalizer {
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    gap: 4px;
-    height: 30px;
-    margin-top: 6px;
-}
-
-.step17-equalizer i {
-    width: 5px;
-    height: 12px;
-    border-radius: 5px;
-    background: #ff71ce;
-    animation: step17EQ .65s ease-in-out infinite alternate;
-}
-
-.step17-equalizer i:nth-child(2) { animation-delay: .12s; }
-.step17-equalizer i:nth-child(3) { animation-delay: .23s; }
-.step17-equalizer i:nth-child(4) { animation-delay: .08s; }
-.step17-equalizer i:nth-child(5) { animation-delay: .3s; }
-.step17-equalizer i:nth-child(6) { animation-delay: .16s; }
-.step17-equalizer i:nth-child(7) { animation-delay: .28s; }
-.step17-equalizer i:nth-child(8) { animation-delay: .04s; }
-.step17-equalizer i:nth-child(9) { animation-delay: .2s; }
-
-@keyframes step17EQ {
-    from { height: 7px; }
-    to { height: 29px; }
-}
-
-/* Dancers */
-.step17-dancer {
-    position: absolute;
-    z-index: 30;
-    width: 100px;
-    text-align: center;
-    transform-origin: center bottom;
-}
-
-.step17-sticker {
-    font-size: 58px;
-    line-height: 1;
+#step17 .disco-ball-core {
+    font-size: 62px;
     filter:
-        drop-shadow(0 5px 5px rgba(0,0,0,.6))
-        drop-shadow(0 0 12px rgba(255,113,206,.35));
+        drop-shadow(0 0 10px rgba(255,255,255,.75))
+        drop-shadow(0 0 28px rgba(255,113,206,.65));
+
+    animation:
+        step17DiscoRotate 4s linear infinite,
+        step17DiscoGlow 1.4s ease-in-out infinite alternate;
 }
 
-.step17-name {
-    margin-top: 5px;
-    color: #fff;
-    font: 700 .7rem Poppins, sans-serif;
-    text-shadow: 0 2px 5px #000;
+@keyframes step17DiscoRotate {
+
+    0% {
+        transform: rotate(-8deg);
+    }
+
+    50% {
+        transform: rotate(8deg);
+    }
+
+    100% {
+        transform: rotate(-8deg);
+    }
 }
 
-/* Vinnu — energetic */
-.step17-vinnu {
+@keyframes step17DiscoGlow {
+
+    from {
+        filter:
+            drop-shadow(0 0 8px rgba(255,255,255,.55))
+            drop-shadow(0 0 18px rgba(255,113,206,.4));
+    }
+
+    to {
+        filter:
+            drop-shadow(0 0 16px rgba(255,255,255,1))
+            drop-shadow(0 0 34px rgba(255,113,206,.8));
+    }
+}
+
+
+/* Top blinking lights */
+#step17 .step17-top-lights {
+    position: absolute;
     left: 5%;
-    bottom: 19%;
-    animation: step17DanceVinnu .62s ease-in-out infinite alternate;
-}
-
-/* Annu — energetic */
-.step17-annu {
-    left: 50%;
-    bottom: 18%;
-    transform: translateX(-50%);
-    z-index: 35;
-    animation: step17DanceAnnu .56s ease-in-out infinite alternate;
-}
-
-/* Tannu — energetic */
-.step17-tannu {
     right: 5%;
-    bottom: 19%;
-    animation: step17DanceTannu .6s ease-in-out infinite alternate;
+    top: 9%;
+    z-index: 30;
+
+    display: flex;
+    justify-content: space-between;
 }
 
-/* Uncle — intentionally subtle */
-.step17-uncle {
-    left: 50%;
-    bottom: 31%;
-    transform: translateX(-50%) scale(1.18);
-    z-index: 25;
-    animation: step17DanceUncle 1.45s ease-in-out infinite alternate;
+#step17 .step17-top-lights span {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+
+    background: #fff;
+
+    box-shadow:
+        0 0 8px rgba(255,255,255,.95),
+        0 0 18px rgba(255,113,206,.8);
+
+    animation: step17LightBlink .55s ease-in-out infinite alternate;
 }
 
-.step17-cap {
+#step17 .step17-top-lights span:nth-child(2) {
+    animation-delay: .12s;
+}
+
+#step17 .step17-top-lights span:nth-child(3) {
+    animation-delay: .25s;
+}
+
+#step17 .step17-top-lights span:nth-child(4) {
+    animation-delay: .38s;
+}
+
+#step17 .step17-top-lights span:nth-child(5) {
+    animation-delay: .51s;
+}
+
+#step17 .step17-top-lights span:nth-child(6) {
+    animation-delay: .64s;
+}
+
+#step17 .step17-top-lights span:nth-child(7) {
+    animation-delay: .77s;
+}
+
+#step17 .step17-top-lights span:nth-child(8) {
+    animation-delay: .9s;
+}
+
+@keyframes step17LightBlink {
+
+    from {
+        opacity: .25;
+        transform: scale(.65);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+
+
+/* Floating music notes */
+#step17 .music-note {
+    position: absolute;
+    z-index: 15;
+
+    font-size: 30px;
+    color: rgba(255,255,255,.8);
+
+    text-shadow:
+        0 0 8px rgba(255,113,206,.9),
+        0 0 20px rgba(120,180,255,.65);
+
+    animation: step17NoteFloat 3.2s ease-in-out infinite;
+}
+
+#step17 .note-one {
+    left: 9%;
+    top: 25%;
+}
+
+#step17 .note-two {
+    right: 10%;
+    top: 29%;
+    animation-delay: .7s;
+}
+
+#step17 .note-three {
+    left: 22%;
+    top: 18%;
+    animation-delay: 1.2s;
+}
+
+#step17 .note-four {
+    right: 23%;
+    top: 19%;
+    animation-delay: 1.8s;
+}
+
+@keyframes step17NoteFloat {
+
+    0%,100% {
+        transform: translateY(0) rotate(-8deg);
+        opacity: .35;
+    }
+
+    50% {
+        transform: translateY(-25px) rotate(10deg);
+        opacity: 1;
+    }
+}
+
+
+/* Title */
+#step17 .step17-title {
     position: absolute;
     left: 50%;
-    top: -28px;
-    transform: translateX(-50%);
-    font-size: 29px;
-    animation: step17Cap 1s ease-in-out infinite alternate;
-}
+    top: 13%;
+    z-index: 45;
 
-/* Three energetic dancers */
-@keyframes step17DanceVinnu {
-    0% {
-        transform: rotate(-10deg) translateY(5px) scale(1);
-    }
-    50% {
-        transform: rotate(12deg) translateY(-18px) scale(1.08);
-    }
-    100% {
-        transform: rotate(-8deg) translateY(3px) scale(.98);
-    }
-}
-
-@keyframes step17DanceAnnu {
-    0% {
-        transform: translateX(-50%) rotate(9deg) translateY(3px) scale(1);
-    }
-    50% {
-        transform: translateX(-50%) rotate(-11deg) translateY(-21px) scale(1.1);
-    }
-    100% {
-        transform: translateX(-50%) rotate(7deg) translateY(0) scale(1);
-    }
-}
-
-@keyframes step17DanceTannu {
-    0% {
-        transform: rotate(11deg) translateY(4px) scale(1);
-    }
-    50% {
-        transform: rotate(-13deg) translateY(-19px) scale(1.08);
-    }
-    100% {
-        transform: rotate(9deg) translateY(2px) scale(.99);
-    }
-}
-
-/* Uncle only moves a little */
-@keyframes step17DanceUncle {
-    0% {
-        transform: translateX(-50%) scale(1.18) rotate(-2deg) translateY(0);
-    }
-    50% {
-        transform: translateX(-50%) scale(1.18) rotate(3deg) translateY(-5px);
-    }
-    100% {
-        transform: translateX(-50%) scale(1.18) rotate(-2deg) translateY(0);
-    }
-}
-
-@keyframes step17Cap {
-    from { transform: translateX(-50%) rotate(-8deg); }
-    to { transform: translateX(-50%) rotate(8deg); }
-}
-
-/* Party text */
-.step17-party-text {
-    position: absolute;
-    left: 50%;
-    top: 12%;
-    transform: translateX(-50%);
-    z-index: 40;
-    text-align: center;
     width: 90%;
+    transform: translateX(-50%);
+
+    text-align: center;
     pointer-events: none;
 }
 
-.step17-party-text span {
-    display: block;
-    color: #fff;
-    font: 900 clamp(1.3rem, 6vw, 2.2rem) Poppins, sans-serif;
-    letter-spacing: .14em;
-    text-shadow:
-        0 0 8px #ff71ce,
-        0 0 25px rgba(255,0,190,.8);
-    animation: step17TitlePulse .8s ease-in-out infinite alternate;
+#step17 .step17-title-small {
+    font: 600 .62rem Poppins, sans-serif;
+    letter-spacing: .25em;
+    opacity: .72;
 }
 
-.step17-party-text b {
-    display: block;
+#step17 .step17-title-main {
     margin-top: 4px;
-    color: #ffd8ec;
-    font: 700 .75rem Poppins, sans-serif;
-    letter-spacing: .1em;
+
+    font:
+        700 clamp(1.25rem, 5vw, 2rem)
+        Poppins, sans-serif;
+
+    text-shadow:
+        0 0 10px rgba(255,113,206,.9),
+        0 0 25px rgba(255,113,206,.55);
+
+    animation: step17TitlePulse 1.2s ease-in-out infinite alternate;
 }
 
 @keyframes step17TitlePulse {
-    from { opacity: .72; transform: scale(.98); }
-    to { opacity: 1; transform: scale(1.03); }
+
+    from {
+        transform: scale(.98);
+    }
+
+    to {
+        transform: scale(1.035);
+    }
 }
 
-/* Mobile */
-@media (max-width: 520px) {
 
-    .step17-dancer {
+/* Stage */
+#step17 .step17-stage {
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+}
+
+
+/* Back stage */
+#step17 .step17-stage-back {
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: 20%;
+    height: 46%;
+
+    border-radius: 50% 50% 15px 15px;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(255,113,206,.14),
+            transparent 68%
+        );
+
+    border-top: 1px solid rgba(255,255,255,.14);
+}
+
+
+/* Dance floor */
+#step17 .step17-dance-floor {
+    position: absolute;
+    left: 2%;
+    right: 2%;
+    bottom: 5%;
+    height: 25%;
+
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    gap: 3px;
+
+    transform: perspective(360px) rotateX(48deg);
+    transform-origin: center bottom;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 12px;
+
+    background: rgba(15,5,25,.75);
+}
+
+#step17 .step17-dance-floor span {
+    border: 1px solid rgba(255,255,255,.08);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,113,206,.25),
+            rgba(80,130,255,.08)
+        );
+
+    animation: step17FloorPulse .8s ease-in-out infinite alternate;
+}
+
+#step17 .step17-dance-floor span:nth-child(2n) {
+    animation-delay: .2s;
+}
+
+#step17 .step17-dance-floor span:nth-child(3n) {
+    animation-delay: .4s;
+}
+
+@keyframes step17FloorPulse {
+
+    from {
+        opacity: .3;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   STEP 17 CHARACTERS
+   ========================================================= */
+
+#step17 .step17-character {
+    position: absolute;
+    width: 92px;
+
+    text-align: center;
+    transform-origin: center bottom;
+
+    z-index: 70;
+}
+
+
+/* Glow under character */
+#step17 .step17-character-glow {
+    position: absolute;
+    left: 50%;
+    bottom: 3px;
+
+    width: 72px;
+    height: 25px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background: rgba(255,113,206,.28);
+    filter: blur(13px);
+}
+
+
+/* Character positions */
+#step17 .step17-vinnu {
+    left: 5%;
+    bottom: 20%;
+
+    animation:
+        step17VinnuDance
+        .48s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+#step17 .step17-tannu {
+    right: 5%;
+    bottom: 20%;
+
+    animation:
+        step17TannuDance
+        .52s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+/* Annu center */
+#step17 .step17-annu {
+    left: 50%;
+    bottom: 19%;
+
+    transform: translateX(-50%);
+
+    z-index: 78;
+
+    animation:
+        step17AnnuDance
+        .55s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+/* Uncle behind Annu */
+#step17 .step17-uncle {
+    left: 50%;
+    bottom: 27%;
+
+    transform:
+        translateX(-50%)
+        scale(1.22);
+
+    z-index: 65;
+
+    animation:
+        step17UncleDance
+        1.35s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+/* CSS person */
+#step17 .step17-css-character {
+    position: relative;
+
+    width: 74px;
+    height: 132px;
+
+    margin: 0 auto;
+
+    filter:
+        drop-shadow(0 8px 7px rgba(0,0,0,.5));
+}
+
+
+/* Head */
+#step17 .step17-char-head {
+    position: absolute;
+
+    left: 50%;
+    top: 7px;
+
+    width: 43px;
+    height: 43px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffd8bd,
+            #e7a47d
+        );
+
+    box-shadow:
+        inset -4px -5px 7px rgba(0,0,0,.12),
+        0 0 0 2px rgba(255,255,255,.12);
+
+    z-index: 3;
+}
+
+
+/* Hair */
+#step17 .step17-char-hair {
+    position: absolute;
+
+    left: 50%;
+    top: 1px;
+
+    width: 48px;
+    height: 29px;
+
+    transform: translateX(-50%);
+
+    border-radius:
+        55% 55% 35% 35%;
+
+    background: #24171b;
+
+    z-index: 4;
+}
+
+
+/* Body */
+#step17 .step17-char-body {
+    position: absolute;
+
+    left: 50%;
+    top: 48px;
+
+    width: 49px;
+    height: 57px;
+
+    transform: translateX(-50%);
+
+    border-radius:
+        16px 16px 12px 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #252b4a,
+            #111426
+        );
+
+    z-index: 2;
+}
+
+
+/* Girls */
+#step17 .step17-annu-figure .step17-char-body {
+    background:
+        linear-gradient(
+            135deg,
+            #f05b9f,
+            #9b2f71
+        );
+}
+
+#step17 .step17-tannu-figure .step17-char-body {
+    background:
+        linear-gradient(
+            135deg,
+            #6b72e8,
+            #373b93
+        );
+}
+
+
+/* Uncle */
+#step17 .step17-uncle-figure {
+    transform: scale(1.25);
+    transform-origin: center bottom;
+}
+
+#step17 .step17-uncle-figure .step17-char-body {
+    background:
+        linear-gradient(
+            135deg,
+            #52616f,
+            #202833
+        );
+}
+
+
+/* Arms */
+#step17 .step17-char-arm {
+    position: absolute;
+
+    top: 53px;
+
+    width: 12px;
+    height: 52px;
+
+    border-radius: 999px;
+
+    background: #e5a27b;
+
+    transform-origin: top center;
+
+    z-index: 1;
+}
+
+#step17 .step17-arm-left {
+    left: 9px;
+    transform: rotate(18deg);
+}
+
+#step17 .step17-arm-right {
+    right: 9px;
+    transform: rotate(-18deg);
+}
+
+
+/* Legs */
+#step17 .step17-char-leg {
+    position: absolute;
+
+    top: 99px;
+
+    width: 13px;
+    height: 34px;
+
+    border-radius: 999px;
+
+    background: #171821;
+
+    z-index: 1;
+}
+
+#step17 .step17-leg-left {
+    left: 22px;
+    transform: rotate(5deg);
+}
+
+#step17 .step17-leg-right {
+    right: 22px;
+    transform: rotate(-5deg);
+}
+
+
+/* =========================================================
+   DIFFERENT DANCE STYLES
+   ========================================================= */
+
+
+/* Vinnu — energetic */
+@keyframes step17VinnuDance {
+
+    0% {
+        transform:
+            rotate(-9deg)
+            translateY(4px)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            rotate(9deg)
+            translateY(-13px)
+            scale(1.07);
+    }
+
+    100% {
+        transform:
+            rotate(-7deg)
+            translateY(2px)
+            scale(1.03);
+    }
+}
+
+
+/* Tannu — energetic */
+@keyframes step17TannuDance {
+
+    0% {
+        transform:
+            rotate(8deg)
+            translateY(2px)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            rotate(-10deg)
+            translateY(-15px)
+            scale(1.08);
+    }
+
+    100% {
+        transform:
+            rotate(7deg)
+            translateY(0)
+            scale(1.04);
+    }
+}
+
+
+/* Annu — energetic */
+@keyframes step17AnnuDance {
+
+    0% {
+        transform:
+            translateX(-50%)
+            rotate(-7deg)
+            translateY(3px)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            rotate(8deg)
+            translateY(-17px)
+            scale(1.09);
+    }
+
+    100% {
+        transform:
+            translateX(-50%)
+            rotate(-6deg)
+            translateY(1px)
+            scale(1.05);
+    }
+}
+
+
+/* Uncle — deliberately slower and smaller */
+@keyframes step17UncleDance {
+
+    0% {
+        transform:
+            translateX(-50%)
+            scale(1.22)
+            rotate(-3deg)
+            translateY(2px);
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            scale(1.25)
+            rotate(3deg)
+            translateY(-5px);
+    }
+
+    100% {
+        transform:
+            translateX(-50%)
+            scale(1.22)
+            rotate(-2deg)
+            translateY(1px);
+    }
+}
+
+
+/* Birthday cap */
+#step17 .step17-birthday-cap {
+    position: absolute;
+
+    left: 50%;
+    top: -29px;
+
+    z-index: 100;
+
+    transform:
+        translateX(-50%)
+        rotate(-10deg);
+
+    font-size: 30px;
+
+    animation:
+        step17CapDance
+        .55s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+@keyframes step17CapDance {
+
+    from {
+        transform:
+            translateX(-50%)
+            rotate(-12deg)
+            translateY(0);
+    }
+
+    to {
+        transform:
+            translateX(-50%)
+            rotate(12deg)
+            translateY(-5px);
+    }
+}
+
+
+/* Character names */
+#step17 .step17-character-name {
+    margin-top: 2px;
+
+    color: #ffe5f2;
+
+    font:
+        700 .66rem
+        Poppins, sans-serif;
+
+    white-space: nowrap;
+
+    text-shadow:
+        0 2px 5px #000,
+        0 0 8px rgba(255,113,206,.45);
+}
+
+
+/* DJ booth */
+#step17 .step17-dj-booth {
+    position: absolute;
+
+    left: 50%;
+    bottom: 6%;
+
+    z-index: 50;
+
+    width: 150px;
+    height: 65px;
+
+    transform: translateX(-50%);
+
+    border-radius:
+        16px 16px 8px 8px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #21102c,
+            #09050e
+        );
+
+    border:
+        1px solid rgba(255,255,255,.18);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.65),
+        0 0 22px rgba(255,113,206,.25);
+}
+
+
+/* Equalizer */
+#step17 .dj-screen {
+    position: absolute;
+
+    left: 14px;
+    right: 14px;
+    top: 8px;
+
+    height: 25px;
+
+    display: flex;
+    align-items: end;
+    justify-content: center;
+
+    gap: 4px;
+}
+
+#step17 .dj-screen span {
+    width: 6px;
+    height: 8px;
+
+    border-radius: 3px;
+
+    background: rgba(255,255,255,.9);
+
+    animation:
+        step17Equalizer
+        .42s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+#step17 .dj-screen span:nth-child(2) {
+    animation-delay: .08s;
+}
+
+#step17 .dj-screen span:nth-child(3) {
+    animation-delay: .16s;
+}
+
+#step17 .dj-screen span:nth-child(4) {
+    animation-delay: .24s;
+}
+
+#step17 .dj-screen span:nth-child(5) {
+    animation-delay: .32s;
+}
+
+#step17 .dj-screen span:nth-child(6) {
+    animation-delay: .4s;
+}
+
+#step17 .dj-screen span:nth-child(7) {
+    animation-delay: .48s;
+}
+
+#step17 .dj-screen span:nth-child(8) {
+    animation-delay: .56s;
+}
+
+@keyframes step17Equalizer {
+
+    from {
+        height: 5px;
+    }
+
+    to {
+        height: 25px;
+    }
+}
+
+
+/* DJ discs */
+#step17 .dj-deck {
+    position: absolute;
+
+    left: 18px;
+    right: 18px;
+    bottom: 12px;
+
+    height: 20px;
+}
+
+#step17 .dj-disc {
+    position: absolute;
+
+    left: 18px;
+    top: 0;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+
+    border: 2px solid rgba(255,255,255,.6);
+
+    animation:
+        step17DiscSpin
+        1.2s
+        linear
+        infinite;
+}
+
+#step17 .dj-disc-two {
+    right: 18px;
+    left: auto;
+}
+
+@keyframes step17DiscSpin {
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* DJ label */
+#step17 .dj-label {
+    position: absolute;
+
+    right: 8px;
+    top: 35px;
+
+    font:
+        700 .55rem
+        Poppins, sans-serif;
+
+    opacity: .65;
+}
+
+
+/* Bottom caption */
+#step17 .step17-bottom-text {
+    position: absolute;
+
+    left: 50%;
+    bottom: 1.8%;
+
+    z-index: 100;
+
+    width: 90%;
+
+    transform: translateX(-50%);
+
+    text-align: center;
+
+    font:
+        700 .62rem
+        Poppins, sans-serif;
+
+    letter-spacing: .14em;
+
+    text-shadow:
+        0 0 10px rgba(255,113,206,.85);
+}
+
+
+/* =========================================================
+   STEP 17 NEXT BUTTON
+   ========================================================= */
+
+#step17 .step17-next-btn {
+    position: absolute;
+
+    left: 50%;
+    bottom: 8%;
+
+    transform: translateX(-50%);
+
+    z-index: 300;
+
+    padding: 11px 26px;
+
+    border: 1px solid rgba(255,183,213,.65);
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,113,206,.95),
+            rgba(130,65,180,.95)
+        );
+
+    color: #fff;
+
+    font:
+        700 .82rem
+        Poppins, sans-serif;
+
+    box-shadow:
+        0 8px 24px rgba(0,0,0,.5),
+        0 0 18px rgba(255,113,206,.4);
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    #step17 .step17-disco-ball {
+        top: -7px;
+    }
+
+    #step17 .disco-ball-core {
+        font-size: 48px;
+    }
+
+    #step17 .step17-title {
+        top: 12%;
+    }
+
+    #step17 .step17-title-main {
+        font-size: 1.15rem;
+    }
+
+    #step17 .step17-character {
         width: 76px;
     }
 
-    .step17-sticker {
-        font-size: 46px;
+    #step17 .step17-css-character {
+        transform: scale(.72);
+        transform-origin: center bottom;
     }
 
-    .step17-vinnu {
-        left: 1%;
-        bottom: 17%;
-    }
-
-    .step17-tannu {
-        right: 1%;
-        bottom: 17%;
-    }
-
-    .step17-annu {
-        bottom: 16%;
-    }
-
-    .step17-uncle {
+    #step17 .step17-uncle {
         bottom: 28%;
-        transform: translateX(-50%) scale(.92);
     }
 
-    .step17-dj-booth {
-        top: 25%;
-        width: 48%;
+    #step17 .step17-vinnu {
+        left: 0;
+        bottom: 20%;
     }
-} 
+
+    #step17 .step17-tannu {
+        right: 0;
+        bottom: 20%;
+    }
+
+    #step17 .step17-annu {
+        bottom: 19%;
+    }
+
+    #step17 .step17-uncle-figure {
+        transform: scale(.92);
+    }
+
+    #step17 .step17-character-name {
+        font-size: .56rem;
+    }
+
+    #step17 .step17-dj-booth {
+        width: 125px;
+        height: 56px;
+    }
+
+    #step17 .step17-bottom-text {
+        font-size: .48rem;
+    }
+    }
     </style>
 </head>
 <body>
@@ -3049,7 +3809,12 @@ function playAudioAndNext(targetStep, themeColor) {
             <div id="step16WishCloud" class="step16-wish-cloud hidden">
                 <div id="step16WishText"></div>
             </div>
-<button id="step17NextBtn" class="step16-next-btn" onclick="nextStep(17)">
+<!-- STEP 17 NEXT BUTTON -->
+<button
+    id="step17NextBtn"
+    class="step17-next-btn"
+    type="button"
+    onclick="nextStep(17, 'boyfriend')">
     NEXT 💗
 </button>
         </div>
@@ -3060,76 +3825,238 @@ function playAudioAndNext(targetStep, themeColor) {
 
 <!-- Step 16 audio -->
 <audio id="step16CakeAudio" src="cake.mp3" preload="auto" loop></audio>
-  <!-- =========================================================
-     STEP 17 — DISCO DANCE PARTY
+   
+<!-- =========================================================
+     STEP 17 — DJ / DISCO DANCE
      ========================================================= -->
+
 <div class="card" id="step17">
 
-    <div class="step17-disco-stage">
+    <div class="step17-world">
 
-        <!-- Disco atmosphere -->
-        <div class="step17-neon-glow"></div>
+        <!-- Disco background -->
+        <div class="step17-bg">
 
-        <div class="step17-spotlight step17-light-1"></div>
-        <div class="step17-spotlight step17-light-2"></div>
-        <div class="step17-spotlight step17-light-3"></div>
+            <div class="step17-grid"></div>
 
-        <!-- Disco floor -->
-        <div class="step17-disco-floor">
-            <div class="step17-floor-grid"></div>
-        </div>
+            <!-- Moving spotlights -->
+            <div class="step17-spotlight spotlight-one"></div>
+            <div class="step17-spotlight spotlight-two"></div>
+            <div class="step17-spotlight spotlight-three"></div>
 
-        <!-- DJ booth -->
-        <div class="step17-dj-booth">
-            <div class="step17-dj-screen">DJ 🎧</div>
-            <div class="step17-equalizer">
-                <i></i><i></i><i></i><i></i><i></i>
-                <i></i><i></i><i></i><i></i>
+            <!-- Disco ball -->
+            <div class="step17-disco-ball">
+                <div class="disco-ball-core">🪩</div>
             </div>
+
+            <!-- Neon top lights -->
+            <div class="step17-top-lights">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- Floating music symbols -->
+            <div class="music-note note-one">♪</div>
+            <div class="music-note note-two">♫</div>
+            <div class="music-note note-three">♬</div>
+            <div class="music-note note-four">♪</div>
+
         </div>
 
-        <!-- Disco ball -->
-        <div class="step17-disco-ball">
-            <span></span>
+
+        <!-- DJ title -->
+        <div class="step17-title">
+            <div class="step17-title-small">BIRTHDAY DANCE NIGHT</div>
+            <div class="step17-title-main">DJ MODE ON 🪩🎶</div>
         </div>
 
-        <!-- =========================
-             FOUR DANCING CHARACTERS
-             ========================= -->
 
-        <!-- Vinnu -->
-        <div class="step17-dancer step17-vinnu">
-            <div class="step17-sticker">👦</div>
-            <div class="step17-name">Vinnu</div>
-        </div>
+        <!-- Stage -->
+        <div class="step17-stage">
 
-        <!-- Annu -->
-        <div class="step17-dancer step17-annu">
-            <div class="step17-sticker">👧</div>
-            <div class="step17-cap">🎉</div>
-            <div class="step17-name">Annu</div>
-        </div>
+            <div class="step17-stage-back"></div>
 
-        <!-- Tannu -->
-        <div class="step17-dancer step17-tannu">
-            <div class="step17-sticker">👧</div>
-            <div class="step17-name">Tannu</div>
-        </div>
+            <!-- Dance floor -->
+            <div class="step17-dance-floor">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
 
-        <!-- Avinash Uncle — slower/smaller movement -->
-        <div class="step17-dancer step17-uncle">
-            <div class="step17-sticker">👨</div>
-            <div class="step17-name">Avinash Uncle</div>
-        </div>
 
-        <div class="step17-party-text">
-            <span>LET'S DANCE</span>
-            <b>🎶 BIRTHDAY NIGHT 🎂</b>
+            <!-- =================================================
+                 AVINASH UNCLE
+                 Slow / light dance
+                 ================================================= -->
+            <div class="step17-character step17-uncle">
+
+                <div class="step17-character-glow"></div>
+
+                <div class="step17-css-character step17-uncle-figure">
+
+                    <div class="step17-char-head"></div>
+                    <div class="step17-char-hair"></div>
+                    <div class="step17-char-body"></div>
+
+                    <div class="step17-char-arm step17-arm-left"></div>
+                    <div class="step17-char-arm step17-arm-right"></div>
+
+                    <div class="step17-char-leg step17-leg-left"></div>
+                    <div class="step17-char-leg step17-leg-right"></div>
+
+                </div>
+
+                <div class="step17-character-name">
+                    Avinash Uncle 🕺
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 VINNU
+                 Energetic dance
+                 ================================================= -->
+            <div class="step17-character step17-vinnu">
+
+                <div class="step17-character-glow"></div>
+
+                <div class="step17-css-character step17-vinnu-figure">
+
+                    <div class="step17-char-head"></div>
+                    <div class="step17-char-hair"></div>
+                    <div class="step17-char-body"></div>
+
+                    <div class="step17-char-arm step17-arm-left"></div>
+                    <div class="step17-char-arm step17-arm-right"></div>
+
+                    <div class="step17-char-leg step17-leg-left"></div>
+                    <div class="step17-char-leg step17-leg-right"></div>
+
+                </div>
+
+                <div class="step17-character-name">
+                    Vinnu 🕺
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 ANNU
+                 Center + birthday cap + energetic dance
+                 ================================================= -->
+            <div class="step17-character step17-annu">
+
+                <div class="step17-character-glow"></div>
+
+                <div class="step17-birthday-cap">
+                    🎀
+                </div>
+
+                <div class="step17-css-character step17-annu-figure">
+
+                    <div class="step17-char-head"></div>
+                    <div class="step17-char-hair"></div>
+                    <div class="step17-char-body"></div>
+
+                    <div class="step17-char-arm step17-arm-left"></div>
+                    <div class="step17-char-arm step17-arm-right"></div>
+
+                    <div class="step17-char-leg step17-leg-left"></div>
+                    <div class="step17-char-leg step17-leg-right"></div>
+
+                </div>
+
+                <div class="step17-character-name">
+                    Annu 🎀
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 TANNU
+                 Energetic dance
+                 ================================================= -->
+            <div class="step17-character step17-tannu">
+
+                <div class="step17-character-glow"></div>
+
+                <div class="step17-css-character step17-tannu-figure">
+
+                    <div class="step17-char-head"></div>
+                    <div class="step17-char-hair"></div>
+                    <div class="step17-char-body"></div>
+
+                    <div class="step17-char-arm step17-arm-left"></div>
+                    <div class="step17-char-arm step17-arm-right"></div>
+
+                    <div class="step17-char-leg step17-leg-left"></div>
+                    <div class="step17-char-leg step17-leg-right"></div>
+
+                </div>
+
+                <div class="step17-character-name">
+                    Tannu 💕
+                </div>
+
+            </div>
+
+
+            <!-- DJ Booth -->
+            <div class="step17-dj-booth">
+
+                <div class="dj-screen">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="dj-deck">
+                    <div class="dj-disc"></div>
+                    <div class="dj-disc dj-disc-two"></div>
+                </div>
+
+                <div class="dj-label">
+                    DJ 🎧
+                </div>
+
+            </div>
+
+
+            <!-- Dance caption -->
+            <div class="step17-bottom-text">
+                <span>🎶</span>
+                LET'S DANCE ANNU
+                <span>🎶</span>
+            </div>
+
         </div>
 
     </div>
-</div> 
 
+</div>
             
             
 
@@ -3305,9 +4232,9 @@ if (stepNumber === 15) { startStep15Sequence(); }
             if (stepNumber === 16) {
     startStep16Sequence();
 }
-       if (stepNumber === 17) {
+          if (stepNumber === 17) {
     startStep17Sequence();
-       }   
+          } 
             if (stepNumber >= 10) {
     var gardenVideo = document.getElementById('gardenBackgroundVideo');
     if (gardenVideo) {
@@ -4224,41 +5151,45 @@ function step16WaitForKnife(knife, progress, cake) {
     });
 }
 /* =========================================================
-   STEP 17 — DISCO DANCE + BOYFRIEND SONG
+   STEP 17 — DJ / DISCO DANCE
    ========================================================= */
 
 function startStep17Sequence() {
 
-    // Stop every previous chapter's audio first.
-    stopAllAudio();
+    const step17 = document.getElementById("step17");
 
-    // Extra safety: explicitly stop Rooposh and cake.
-    const rooposhAudio = document.getElementById("rooposhAudio");
-    const cakeAudio = document.getElementById("step16CakeAudio");
-    const boyfriendAudio = document.getElementById("boyfriendAudio");
-
-    if (rooposhAudio) {
-        rooposhAudio.pause();
-        rooposhAudio.currentTime = 0;
+    if (!step17) {
+        console.error("STEP 17: container missing.");
+        return;
     }
 
-    if (cakeAudio) {
-        cakeAudio.pause();
-        cakeAudio.currentTime = 0;
-    }
+    console.log("STEP 17 DJ DANCE STARTED");
 
-    // Play Karan Aujla — Boyfriend.
-    if (boyfriendAudio) {
-        boyfriendAudio.pause();
-        boyfriendAudio.currentTime = 0;
-        boyfriendAudio.volume = 0.8;
+    /*
+       boyfriend.mp3 is already handled by:
+       nextStep(17, 'boyfriend')
+       
+       So we do NOT create another audio element here.
+    */
 
-        boyfriendAudio.play().catch(function(error) {
-            console.log("Boyfriend audio playback blocked:", error);
-        });
-    }
+    const dancers = step17.querySelectorAll(".step17-character");
 
-    console.log("STEP 17 DISCO PARTY STARTED");
+    dancers.forEach(function(dancer) {
+        dancer.style.animationPlayState = "running";
+    });
+
+}
+
+
+/* Add Step 17 to existing navigation */
+if (typeof nextStep === "function") {
+
+    /*
+       IMPORTANT:
+       This does not replace nextStep().
+       It only starts Step 17 when nextStep(17) opens it.
+    */
+
 }
     </script>
 </body>
