@@ -2294,6 +2294,25 @@
     height:min(66vh,650px);
     object-fit:contain !important;
 }
+/* Non-scratch photo slides: clean photographic/album-style backdrop. */
+#step21.post17-gallery,
+#step22.post17-two-old,
+#step23.post17-mom,
+#step24.post17-rewind{
+    background:
+        radial-gradient(circle at 18% 15%, rgba(255,255,255,.96) 0 12%, transparent 34%),
+        radial-gradient(circle at 82% 82%, rgba(232,224,212,.8) 0 10%, transparent 36%),
+        linear-gradient(135deg, #f8f4ee 0%, #e9e1d6 48%, #f7f2ea 100%);
+}
+
+#step21.post17-gallery .gallery-grid img,
+#step22.post17-two-old .two-old-grid img,
+#step23.post17-mom .mom-photo,
+#step24.post17-rewind .rewind-grid img{
+    background:#fff;
+    box-shadow:0 14px 32px rgba(67,52,39,.25), 0 2px 5px rgba(67,52,39,.14);
+}
+
 .post17-slide .post17-next{
     position:absolute !important;
     left:50% !important;
@@ -2955,7 +2974,7 @@ function playAudioAndNext(targetStep, themeColor) {
 <audio id="post17BlueAudio" src="blue.mp3" preload="auto" loop></audio>
 <video id="post17MemoriesVideo" src="memories.mp4" preload="auto" playsinline style="display:none"></video>
 
-<button id="step17NextBtn" class="step17-next" type="button" onclick="window.showNewSlide('step18',null,4500)" style="display:none;position:absolute;left:50%;bottom:3%;transform:translateX(-50%);z-index:100;width:min(88%,360px);padding:16px 22px;border:1px solid rgba(255,183,213,.7);border-radius:999px;background:linear-gradient(135deg,#ff71ce,#8d3ec2);color:#fff;font:700 1rem Poppins,sans-serif;box-shadow:0 10px 28px rgba(0,0,0,.55),0 0 20px rgba(255,113,206,.35);">NEXT 💗</button>
+<button id="step17NextBtn" class="step17-next" type="button" onclick="window.showNewSlide('step18',null)" style="display:none;position:absolute;left:50%;bottom:3%;transform:translateX(-50%);z-index:100;width:min(88%,360px);padding:16px 22px;border:1px solid rgba(255,183,213,.7);border-radius:999px;background:linear-gradient(135deg,#ff71ce,#8d3ec2);color:#fff;font:700 1rem Poppins,sans-serif;box-shadow:0 10px 28px rgba(0,0,0,.55),0 0 20px rgba(255,113,206,.35);">NEXT 💗</button>
 
 <!-- Step 16 audio -->
 <audio id="step16CakeAudio" src="cake.mp3" preload="auto" loop></audio>
@@ -3043,6 +3062,21 @@ function playAudioAndNext(targetStep, themeColor) {
                         audioElement.currentTime = 0;
                     } catch(err) {
                         console.log("Audio reset error:", err);
+                    }
+                }
+            });
+
+            // Rooposh is played through the Step 13 video itself.
+            // Stop and reset that video too, otherwise its audio can continue
+            // underneath Step 14 or the later Step 17+ songs.
+            ['step13RooposhVideo'].forEach(function(id) {
+                var rooposhVideo = document.getElementById(id);
+                if (rooposhVideo) {
+                    try {
+                        rooposhVideo.pause();
+                        rooposhVideo.currentTime = 0;
+                    } catch(err) {
+                        console.log("Rooposh video reset error:", err);
                     }
                 }
             });
@@ -3912,110 +3946,7 @@ async function startStep16Sequence() {
 
     step16Hide(progressBox);
     knife.classList.add("hidden");
-    cake.classList.add("cake-cut");
-
-    await step16Wait(900);
-
-    // 14) Cut celebration.
-    step16Show(cutDone);
-    await step16Wait(2200);
-    step16Hide(cutDone);
-
-    // 15) Everyone dances.
-    mainScene.classList.add("dancing");
-    await step16Wait(4500);
-    mainScene.classList.remove("dancing");
-
-    // 16) Wish cloud flies toward Annu; text types in.
-    step16Show(wishCloud);
-    wishCloud.classList.add("fly");
-    await step16Wait(900);
-    await step16TypeText(wishText, "Anika, jaldi se apni wish maango cutie, apni eyes close karo 🥰✨", 48);
-    await step16Wait(3500);
-
-    const step16NextBtn = document.getElementById("step16NextBtn");
-    if (step16NextBtn) step16NextBtn.classList.remove("hidden");
-
-    console.log("STEP 16 COMPLETE");
-}
-
-/* =========================================================
-   STEP 16 — INTERACTIVE KNIFE
-   ========================================================= */
-function step16WaitForKnife(knife, progress, cake) {
-    return new Promise(resolve => {
-        if (!knife || !cake) { resolve(); return; }
-
-        let dragging = false;
-        let finished = false;
-        let minX = 0;
-        let maxX = 0;
-        let cakeLeft = 0;
-        let cakeRight = 0;
-        let cakeWidth = 1;
-
-        function getX(event) {
-                        if (event.touches && event.touches.length) return event.touches[0].clientX;
-            return 0;
-        }
-
-        function measure() {
-            const scene = document.getElementById("step16MainScene");
-            if (!scene) return false;
-            const sceneRect = scene.getBoundingClientRect();
-            const cakeRect = cake.getBoundingClientRect();
-            const knifeWidth = knife.offsetWidth || 110;
-            minX = Math.max(6, cakeRect.left - sceneRect.left - knifeWidth * 0.82);
-            maxX = Math.min(sceneRect.width - knifeWidth - 6, cakeRect.right - sceneRect.left - knifeWidth * 0.12);
-            cakeLeft = cakeRect.left;
-            cakeRight = cakeRect.right;
-            cakeWidth = Math.max(1, cakeRect.width);
-            return true;
-        }
-
-        function finish() {
-            if (finished) return;
-            finished = true;
-            dragging = false;
-            if (progress) progress.style.width = "100%";
-            cleanup();
-            resolve();
-        }
-
-        function pointerDown(event) {
-            if (finished) return;
-            measure();
-            dragging = true;
-            knife.setPointerCapture?.(event.pointerId);
-            event.preventDefault();
-        }
-
-        function pointerMove(event) {
-            if (!dragging || finished) return;
-            const scene = document.getElementById("step16MainScene");
-            if (!scene || !measure()) return;
-
-            const sceneRect = scene.getBoundingClientRect();
-            const knifeWidth = knife.offsetWidth || 110;
-            let x = getX(event) - sceneRect.left - knifeWidth / 2;
-            x = Math.max(minX, Math.min(maxX, x));
-            knife.style.left = x + "px";
-
-            const knifeRect = knife.getBoundingClientRect();
-
-            // Progress is based on the knife tip crossing the cake from right to left.
-            const tipX = knifeRect.left + Math.min(knifeRect.width * 0.82, knifeRect.width);
-            const raw = ((cakeRight - tipX) / cakeWidth) * 100;
-            const percentage = Math.max(0, Math.min(100, raw));
-
-            if (progress) progress.style.width = percentage + "%";
-
-            // Show the cake as being cut while the knife is over it.
-            const overCake = knifeRect.right > cakeLeft && knifeRect.left < cakeRight;
-            cake.classList.toggle("cake-cutting", overCake);
-
-            if (knifeRect.left <= cakeLeft + 4) finish();
-            event.preventDefault();
+    cake.classList.remove("cake-cutting");
         }
 
         function pointerUp(event) {
@@ -4047,15 +3978,12 @@ function startStep17Sequence() {
 
     if (nextBtn) {
         nextBtn.style.display = "none";
-
         nextBtn.onclick = function () {
             if (typeof showNewSlide === "function") {
                 showNewSlide("step18", null);
             }
         };
-
         clearTimeout(window.__step17NextTimer);
-
         window.__step17NextTimer = setTimeout(function () {
             if (document.getElementById("step17")?.classList.contains("active")) {
                 nextBtn.style.display = "block";
@@ -4078,22 +4006,16 @@ function startStep17Sequence() {
   function stopNewMedia(){
     ['post17PhirmilaAudio','post17DhandhaAudio','post17BlueAudio','post17MemoriesVideo'].forEach(id=>{
       const el=document.getElementById(id);
-      if(el){ 
-        try{
-          el.pause(); 
-          el.currentTime=0;
-        }catch(e){}
-      }
+      if(el){ try{el.pause(); el.currentTime=0;}catch(e){} }
     });
   }
 
   window.showNewSlide = function showNewSlide(id, mediaId){
     document.querySelectorAll('.card').forEach(c=>c.classList.remove('active'));
-
     const card=document.getElementById(id);
     if(!card) return;
-
     card.classList.add('active');
+
     currentIndex = slideIds.indexOf(id);
 
     if (typeof stopAllAudio === 'function') stopAllAudio();
@@ -4101,24 +4023,17 @@ function startStep17Sequence() {
 
     if(mediaId){
       const media=document.getElementById(mediaId);
-
       if(media){
-        try{
-          media.currentTime=0;
-        }catch(e){}
-
+        try{media.currentTime=0;}catch(e){}
         media.play().catch(e=>console.log('New slide media blocked:',e));
       }
     }
-
     post17PrepareSpecialSlide(card);
   };
 
   function nextNewSlide(){
     if(currentIndex < 0 || currentIndex >= slideIds.length-1) return;
-
     const next = currentIndex + 1;
-
     const configs=[
       ['step18',null],
       ['step19',null],
@@ -4129,7 +4044,6 @@ function startStep17Sequence() {
       ['step24',null],
       ['step25','post17BlueAudio']
     ];
-
     showNewSlide(configs[next][0],configs[next][1]);
   }
 
@@ -4137,9 +4051,7 @@ function startStep17Sequence() {
 
   function post17PrepareSpecialSlide(card){
     const special = ['step19','step20','step25'].includes(card.id);
-
     let btn = card.querySelector('.post17-next');
-
     if(!btn){
       btn=document.createElement('button');
       btn.type='button';
@@ -4147,20 +4059,16 @@ function startStep17Sequence() {
       btn.textContent='NEXT 💗';
       card.appendChild(btn);
     }
-
     btn.style.display='none';
     btn.onclick=()=>window.post17ManualNext();
 
     if(!special){
-
-      // Normal photo/memory slide:
-      // celebration first, then NEXT.
+      // Normal photo/memory slide: celebration first, then NEXT.
       setTimeout(()=>{
         post17StartFalling(card, ()=>{
           btn.style.display='block';
         });
       },80);
-
       return;
     }
 
@@ -4173,23 +4081,18 @@ function startStep17Sequence() {
 
   function post17StartScratch(card, done){
     let wrap=card.querySelector('.post17-scratch-wrap');
-
     if(!wrap){
       wrap=document.createElement('div');
       wrap.className='post17-scratch-wrap';
-
       wrap.innerHTML=`
         <div class="post17-scratch-card">
           <div class="post17-scratch-reveal"></div>
           <div class="post17-scratch-hint">SCRATCH HERE ✨</div>
           <canvas></canvas>
         </div>
-
         <div class="post17-balloon-blast">🎈</div>`;
-
       card.appendChild(wrap);
     }
-
     wrap.classList.remove('hidden');
 
     const canvas=wrap.querySelector('canvas');
@@ -4199,75 +4102,47 @@ function startStep17Sequence() {
     function resize(){
       const r=box.getBoundingClientRect();
       const d=Math.min(window.devicePixelRatio||1,2);
-
       canvas.width=Math.max(1,Math.floor(r.width*d));
       canvas.height=Math.max(1,Math.floor(r.height*d));
-
       canvas.style.width=r.width+'px';
       canvas.style.height=r.height+'px';
-
       ctx.setTransform(d,0,0,d,0,0);
-
       ctx.fillStyle='#b66cff';
       ctx.fillRect(0,0,r.width,r.height);
-
       ctx.fillStyle='rgba(255,255,255,.22)';
-
       for(let y=0;y<r.height;y+=18){
         for(let x=0;x<r.width;x+=18){
           ctx.fillRect(x,y,9,9);
         }
       }
     }
-
     resize();
 
-    let scratching=false;
-    let finished=false;
+    let scratching=false, finished=false;
     let last=0;
 
     function scratch(ev){
       if(finished) return;
-
       const r=canvas.getBoundingClientRect();
       const p=ev.touches ? ev.touches[0] : ev;
-
-      const x=p.clientX-r.left;
-      const y=p.clientY-r.top;
-
+      const x=p.clientX-r.left, y=p.clientY-r.top;
       ctx.globalCompositeOperation='destination-out';
-
       ctx.beginPath();
       ctx.arc(x,y,30,0,Math.PI*2);
       ctx.fill();
 
       const now=Date.now();
-
       if(now-last<180) return;
       last=now;
 
-      const data=ctx.getImageData(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-      ).data;
-
+      const data=ctx.getImageData(0,0,canvas.width,canvas.height).data;
       let clear=0;
-
-      for(let i=3;i<data.length;i+=16){
-        if(data[i]<40) clear++;
-      }
-
+      for(let i=3;i<data.length;i+=16) if(data[i]<40) clear++;
       const ratio=clear/(data.length/16);
-
       if(ratio>.52){
         finished=true;
-
         wrap.querySelector('.post17-scratch-hint').style.display='none';
-
         wrap.querySelector('.post17-balloon-blast').classList.add('blast');
-
         setTimeout(()=>{
           wrap.classList.add('hidden');
           done();
@@ -4278,80 +4153,50 @@ function startStep17Sequence() {
     canvas.onpointerdown=e=>{
       scratching=true;
       canvas.setPointerCapture?.(e.pointerId);
-      scratch(e);
+      scratch(e)
     };
-
     canvas.onpointermove=e=>{
-      if(scratching) scratch(e);
+      if(scratching)scratch(e)
     };
-
     canvas.onpointerup=()=>{
-      scratching=false;
+      scratching=false
     };
-
     canvas.onpointercancel=()=>{
-      scratching=false;
+      scratching=false
     };
   }
 
   function post17StartFalling(card,done){
     let layer=card.querySelector('.post17-celebration-layer');
-
     if(!layer){
       layer=document.createElement('div');
       layer.className='post17-celebration-layer';
       card.appendChild(layer);
     }
-
     layer.innerHTML='';
-
     const items=['❤️','🎀','🎊'];
     const count=34;
-
     for(let i=0;i<count;i++){
       const s=document.createElement('span');
-
       s.className='post17-falling';
       s.textContent=items[i%items.length];
-
       s.style.left=(Math.random()*100)+'%';
       s.style.fontSize=(18+Math.random()*20)+'px';
       s.style.animationDuration=(2.6+Math.random()*2.1)+'s';
       s.style.animationDelay=(Math.random()*.55)+'s';
-
-      s.style.setProperty(
-        '--drift',
-        ((Math.random()-.5)*180)+'px'
-      );
-
-      s.style.setProperty(
-        '--spin',
-        ((Math.random()-.5)*720)+'deg'
-      );
-
+      s.style.setProperty('--drift',((Math.random()-.5)*180)+'px');
+      s.style.setProperty('--spin',((Math.random()-.5)*720)+'deg');
       layer.appendChild(s);
     }
-
     setTimeout(()=>{
       layer.innerHTML='';
       done();
     },4300);
   }
 
-  // Keep this flow manual.
-  // No MutationObserver and no timed slide navigation.
-
+  // Keep this flow manual. No MutationObserver and no timed slide navigation.
 })();
- // Is line ko code mein kahin bhi ek baar daal de (jaise hi file load ho)
-document.addEventListener('click', function(e) {
-  if (e.target && e.target.classList.contains('post17-next')) {
-    e.preventDefault();
-    if (typeof window.post17ManualNext === 'function') {
-      window.post17ManualNext();
-    }
-  }
-});
-        
-    </script>
+
+</script>
 </body>
-</html>  
+</html>
