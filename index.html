@@ -4244,16 +4244,11 @@ function startStep17Sequence() {
     }
     btn.style.display='none';
     btn.onclick=()=>window.post17ManualNext();
-
+;
     if(!special){
-      // Normal photo/memory slide: celebration first, then NEXT.
-      setTimeout(()=>{
-        post17StartFalling(card, ()=>{
-          btn.style.display='block';
-        });
-      },80);
-      return;
-    }
+  btn.style.display='block';
+  return;
+}
 
     post17StartScratch(card, ()=>{
       post17StartFalling(card, ()=>{
