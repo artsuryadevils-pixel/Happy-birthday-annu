@@ -2498,7 +2498,7 @@
 .post17-balloon-blast{
     position:absolute;
     left:50%;
-    top:50%;
+          top:50%;
     transform:translate(-50%,-50%) scale(.15);
     z-index:65;
     font-size:clamp(90px,22vw,190px);
@@ -4203,6 +4203,9 @@ function startStep17Sequence() {
     }
 
     document.querySelectorAll('.card').forEach(c=>c.classList.remove('active'));
+    const card = document.getElementById(id);
+    if(!card) return;
+    card.classList.add('active');
     currentIndex = slideIds.indexOf(id);
 
     if (typeof stopAllAudio === 'function') stopAllAudio();
@@ -4375,3 +4378,4 @@ function startStep17Sequence() {
               
 
     
+                              
